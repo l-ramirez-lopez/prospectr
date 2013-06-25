@@ -1,0 +1,39 @@
+\name{movav}
+\alias{movav}
+\title{Moving average}
+\usage{
+  movav(X,w)
+}
+\arguments{
+  \item{X}{numeric \code{data.frame}, \code{matrix} or
+  \code{vector} to process}
+
+  \item{w}{filter length}
+}
+\value{
+  a \code{matrix} or \code{vector} with the filtered
+  signal(s)
+}
+\description{
+  A simple moving average of a \code{vector},
+  \code{data.frame} or \code{matrix} using a convolution
+  function written in C++/Rcpp for fast computing
+}
+\examples{
+data(NIRsoil)
+wav <- as.numeric(colnames(NIRsoil$spc))
+spc <- 1/10^NIRsoil$spc # conversion to reflectance
+spc <- spc + rnorm(length(spc),0,0.001) # adding some noise
+matplot(wav,t(spc[1:10,]),type="l",xlab="Wavelength /nm",ylab="Reflectance")
+mov <- movav(spc,w=11) # window size of 11 nm
+matlines(as.numeric(colnames(mov)),t(mov[1:10,])) # smoothed data
+}
+\author{
+  Antoine Stevens
+}
+\seealso{
+  \code{\link[signal]{sgolayfilt}},
+  \code{\link{savitzkyGolay}}, \code{\link{gapDer}},
+  \code{\link{binning}}, \code{\link{continuumRemoval}}
+}
+

@@ -1,0 +1,6 @@
+## Use the R_HOME indirection to support installations of multiple R version
+PKG_LIBS = $(BLAS_LIBS) $(FLIBS) $(LAPACK_LIBS) \
+$(shell "Rscript.exe" -e "Rcpp:::LdFlags()")
+##PKG_LIBS+= -lRcpp
+PKG_CPPFLAGS = -I${R_HOME}/include -I${R_HOME}/library/Rcpp/include \
+-I${R_HOME}/library/RcppArmadillo/include -I. -DNDEBUG

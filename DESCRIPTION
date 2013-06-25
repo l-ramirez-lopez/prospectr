@@ -1,0 +1,47 @@
+Package: prospect
+Type: Package
+Title: Miscellaneous functions for processing and sample selection of vis-NIR
+    diffuse reflectance data
+Version: 0.1
+Date: 2012-12-19
+Author: Antoine Stevens and Leonardo Ramirez-Lopez
+Maintainer: Antoine Stevens <antoine.stevens@uclouvain.be>
+Description: The package provides functions for pretreatment and sample
+    selection of visible and near infrared diffuse reflectance spectra
+Repository: CRAN
+License: GPL (>=3)
+Suggests:
+    hyperSpec,
+    knitr,
+Depends:
+    Rcpp (>= 0.10.0),
+    RcppArmadillo (>= 0.3.4.4),
+    foreach,
+    iterators
+LinkingTo: Rcpp,
+    RcppArmadillo
+Collate:
+    'RcppExports.R'
+    'blockNorm.r'
+    'blockScale.r'
+    'cochranTest.r'
+    'continuumRemoval.r'
+    'detrend.r'
+    'puchwein.r'
+    'readASD.r'
+    'savitzkyGolay.r'
+    'spliceCorrection.r'
+    'standardNormalVariate.r'
+    'Cul.r'
+    'binning.r'
+    'duplex.r'
+    'gapDer.r'
+    'honigs.r'
+    'kenstone.r'
+    'movav.r'
+    'naes.r'
+    'resample.r'
+    'resample2.r'
+    'shenkWest.r'
+    'prospectpackage.r'
+    'NIRsoil.r'
