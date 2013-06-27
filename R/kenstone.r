@@ -90,7 +90,7 @@ kenStone <- function(X,k,pc,group){
       group <- as.factor(group)
       warning("group has been coerced to a factor")  
     }
-    if(nlevels(group) > k) 
+    if(k > nlevels(group)) 
       k <- nlevels(group) - 1
   }
   

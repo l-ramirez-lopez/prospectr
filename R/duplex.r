@@ -85,7 +85,7 @@ duplex <- function(X,k,pc,group){
       group <- as.factor(group)
       warning("group has been coerced to a factor")  
     }
-    if(nlevels(group)/2 < k) 
+    if(k > nlevels(group)/2) 
       k <- floor(nlevels(group)/2) 
   }  
   
