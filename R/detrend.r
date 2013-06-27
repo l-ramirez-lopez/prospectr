@@ -20,7 +20,7 @@
 #' matplot(wav,t(det[1:10,]),type="l",xlab="Wavelength /nm",ylab="Reflectance") 
 #' mtext("Detrend spectra")
 #' par(opar)
-#' @details The Detrend is a row-wise transformation that allows to correct for wavelength-dependent 
+#' @details The detrend is a row-wise transformation that allows to correct for wavelength-dependent 
 #' scattering effects (variations in curvilinearity). A second-degree polynomial is fit through each spectrum:
 #' \deqn{x_i = a\lambda^2 + b\lambda + c + e_i}
 #' were \eqn{x_i} is the spectrum, \eqn{\lambda} is the wavelength vector, a, b, c are estimated by least square, 

@@ -13,7 +13,7 @@
 #' spc <- 1/10^NIRsoil$spc # conversion to reflectance
 #' spc <- spc + rnorm(length(spc),0,0.001) # adding some noise
 #' matplot(wav,t(spc[1:10,]),type="l",xlab="Wavelength /nm",ylab="Reflectance")
-#' mov <- movav(spc,w=11) # window size of 11 nm
+#' mov <- movav(spc,w=11) # window size of 11 bands
 #' matlines(as.numeric(colnames(mov)),t(mov[1:10,])) # smoothed data
 #' @return a \code{matrix} or \code{vector} with the filtered signal(s)
 #' @seealso \code{\link[signal]{sgolayfilt}}, \code{\link{savitzkyGolay}}, \code{\link{gapDer}}, \code{\link{binning}}, \code{\link{continuumRemoval}}
