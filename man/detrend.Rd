@@ -24,7 +24,7 @@
   fitted residuals.
 }
 \details{
-  The Detrend is a row-wise transformation that allows to
+  The detrend is a row-wise transformation that allows to
   correct for wavelength-dependent scattering effects
   (variations in curvilinearity). A second-degree
   polynomial is fit through each spectrum: \deqn{x_i =

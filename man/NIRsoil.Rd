@@ -24,10 +24,10 @@
   with 5 variables: Nt (Total Nitrogen), Ciso (Carbon), CEC
   (Cation Exchange Capacity), train (\code{vector} of {0,1}
   indicating training (1) and validation (0) samples) and
-  spc (a \code{matrix} with absorbance NIR data and as band
+  spc (a \code{matrix} with absorbance NIR data and band
   positions as \code{colnames}). Nt, Ciso and CEC have
-  respectively 22 %, 11 % and 46 % of the observations with
-  missing values.
+  respectively 22 \%, 11 \% and 46 \% of the observations
+  with missing values.
 }
 \references{
   Fernandez Pierna, J.A., and Dardenne, P., 2008. Soil
