@@ -351,13 +351,16 @@ readASD <- function(fnames, in_format = c("binary", "txt"), out_format = c("matr
             wavelength <- data[, 1]
         }
         # Copy data into a list
-        if (length(reference)) {
+        if (length(reference)){
             reflectance <- target
             reflectance <- reflectance/reference
             spc[[i]] <- list(name = Name, datetime = DateTime, header = H, radiance = target, reference = reference, reflectance = reflectance, 
                 wavelength = wavelength)
         } else {
-            spc[[i]] <- list(name = Name, datetime = DateTime, header = H, reflectance = target, reference = "Missing reference spectrum", wavelength = wavelength)
+            if(pos>2)
+              spc[[i]] <- list(name = Name, datetime = DateTime, header = H, reflectance = target, reference = "Missing reference spectrum", wavelength = wavelength)
+            else
+              spc[[i]] <- list(name = Name, reflectance = target, reference = "Missing reference spectrum", wavelength = wavelength)
         }
         i <- i + 1
     }
