@@ -14,6 +14,7 @@
 \usepackage{authblk} % manage authors and affiliations
 \usepackage[cm, headings]{fullpage} % for larger margins
 \usepackage{hyperref} 
+
 \newcommand{\R}{\texttt{R} }
 \newcommand{\Rfunction}[1]{{\texttt{#1}}}
 \newcommand{\Robject}[1]{{\texttt{#1}}}
@@ -32,7 +33,7 @@
   linktocpage = {true},
 }
 
-\title{An Introduction to the \Rpackage{prospect} package}
+\title{An introduction to the \Rpackage{prospect} package}
 \author[1]{Antoine Stevens}
 \author[2]{Leonardo Ramirez--Lopez}
 
@@ -42,6 +43,7 @@
 \date{\today}
 
 \begin{document}
+
 \maketitle
 
 \tableofcontents
@@ -59,16 +61,16 @@ Visible and Near Infrared diffuse reflectance (vis--NIR) spectroscopy is a high-
 \hline
 Package Name & Description  \\
 \hline
-\Rpackage{chemometrics}  &  functions and scripts for chemometrics  \\
-\Rpackage{ChemometricsWithR} &  functions and scripts for chemometrics       \\
-\Rpackage{ChemoSpec}  &  misc functions for exploratory analysis in Spectroscopy \\
-\Rpackage{hyperSpec} &  processing and visualisation of spectra   \\
-\Rpackage{cluster} & cluster analysis and visualisation    \\   
-\Rpackage{mvoutlier} & outlier detection in the multivariate space \\ 
-\Rpackage{pls} & partial least square regression \\         
-\Rpackage{signal} & signal filtering \\
-\Rpackage{soil.spec} & some functions related to soil spectroscopy \\
-\Rpackage{caret}  & training classification and regression models \\
+\href{http://cran.r-project.org/web/packages/chemometrics/index.html}{\Rpackage{chemometrics}}  &  functions and scripts for chemometrics  \\
+\href{http://cran.r-project.org/web/packages/ChemometricsWithR/index.html}{\Rpackage{ChemometricsWithR}} &  functions and scripts for chemometrics       \\
+\href{http://cran.r-project.org/web/packages/ChemoSpec/index.html}{\Rpackage{ChemoSpec}}  &  misc functions for exploratory analysis in Spectroscopy \\
+\href{http://cran.r-project.org/web/packages/hyperSpec/index.html}{\Rpackage{hyperSpec}} &  processing and visualisation of spectra   \\
+\href{http://cran.r-project.org/web/packages/cluster/index.html}{\Rpackage{cluster}} & cluster analysis and visualisation    \\   
+\href{http://cran.r-project.org/web/packages/mvoutlier/index.html}{\Rpackage{mvoutlier}} & outlier detection in the multivariate space \\ 
+\href{http://cran.r-project.org/web/packages/pls/index.html}{\Rpackage{pls}} & partial least square regression \\         
+\href{http://cran.r-project.org/web/packages/signal/index.html}{\Rpackage{signal}} & signal filtering \\
+\href{http://cran.r-project.org/web/packages/soil.spec/index.html}{\Rpackage{soil.spec}} & some functions related to soil spectroscopy \\
+\href{http://cran.r-project.org/web/packages/caret/index.html}{\Rpackage{caret}}  & training classification and regression models \\
 \hline
 \end{tabular}
 \label{tab:pck}
@@ -94,7 +96,7 @@ Function Name & Description  \\
 \Rfunction{standardNormalVariate} & Standard Normal Variate (SNV) transformation \\
 \Rfunction{binning} & average a signal in column bins \\
 \Rfunction{resample} & resample a signal to new band positions \\
-\Rfunction{resample2} & resample a signal using new FWHM values \\
+\Rfunction{resample2} & resample a signal using FWHM values \\
 \Rfunction{blockScale} & block scaling \\
 \Rfunction{blockNorm}& sum of squares block weighting \\
 \hline
@@ -333,12 +335,12 @@ For selecting representative samples, the \Rpackage{prospect} package provides f
 
 \subsection{Kennard-Stone sampling (\Rfunction{kenStone})}
 
-To sample a subset of $n$  samples $\mathrm{X_{tr}} = \left \{ \mathrm{x_{tr}}_{j} \right \}_{j=1}^{n}$, from a given set of $N$ samples $\mathrm{X} = \left \{ \mathrm{x}_i \right \}_{i=1}^{N}$ (note that $N>n$) the Kennard-Stone sampling  algorithm consists in \cite{kennard1969}: 
+To sample a subset of $n$  samples $X_{tr} = \left \{ {x_{tr}}_{j} \right \}_{j=1}^{n}$, from a given set of $N$ samples $X = \left \{ x_i \right \}_{i=1}^{N}$ (note that $N>n$) the Kennard-Stone (CADEX) sampling  algorithm consists in \cite{kennard1969}: 
 
 \begin{enumerate}
-  \item Find in $\mathrm{X}$ the samples $\mathrm{x_{tr1}}$ and  $\mathrm{x_{tr2}}$ that are the farthest apart from each other, allocate them in $\mathrm{X_{tr}}$  and remove them from $\mathrm{X}$.   
-  \item Find in $\mathrm{X}$ the sample $\mathrm{x_{tr3}}$ which is the most dissimilar to the ones already allocated in $\mathrm{X_{tr}}$. Allocate $\mathrm{x_{tr3}}$ in $\mathrm{X_{tr}}$  and then remove it from $\mathrm{X}$. Note that the dissimilarity between $\mathrm{X_{tr}}$  and each $\mathrm{x}_i$  is given by the minimum distance of any sample allocated in $\mathrm{X_{tr}}$  to each $\mathrm{x}_i$. In other words, the selected sample is one of the nearest neighbours of the points already selected which is characterized by the maximum distance to the other points already selected.   
-  \item Repeat the step 2 n-3 times in order to select the remaining samples ($\mathrm{x_{tr4}},..., \mathrm{x_{tr}}_n$).   
+  \item Find in $X$ the samples ${x_{tr}}_1$ and  ${x_{tr}}_2$ that are the farthest apart from each other, allocate them in $X_{tr}$  and remove them from $X$.   
+  \item Find in $X$ the sample ${x_{tr}}_3$ with the maximum dissimilarity to $X_{tr}$. Allocate ${x_{tr}}_3$ in $X_{tr}$  and then remove it from $X$. The dissimilarity between $X_{tr}$  and each $x_i$  is given by the minimum distance of any sample allocated in $X_{tr}$  to each $x_i$. In other words, the selected sample is one of the nearest neighbours of the points already selected which is characterized by the maximum distance to the other points already selected.   
+  \item Repeat the step 2 n-3 times in order to select the remaining samples (${x_{tr}}_4,..., {x_{tr}}_n$).   
 
 \end{enumerate}
 
@@ -386,7 +388,7 @@ legend("topright",legend=c("calibration","validation"),pch=c(19,17),col=c("red",
 
 \subsection{$k$-means sampling (\Rfunction{naes})}
 
-The $k$-means sampling simply uses $k$-means clustering algorithm. To sample a subset of $n$  samples $\mathrm{X_{tr}} = \left \{ \mathrm{x_{tr}}_{j} \right \}_{j=1}^{n}$, from a given set of $N$ samples $\mathrm{X} = \left \{ \mathrm{x}_i \right \}_{i=1}^{N}$ (note that $N>n$) the algorithm works as follows:  
+The $k$-means sampling simply uses $k$-means clustering algorithm. To sample a subset of $n$  samples $X_{tr} = \left \{ {x_{tr}}_{j} \right \}_{j=1}^{n}$, from a given set of $N$ samples $X = \left \{ x_i \right \}_{i=1}^{N}$ (note that $N>n$) the algorithm works as follows:  
 
 \begin{enumerate}
   \item Perform a $k$-means clustering of $\mathrm{X}$ using $n$ clusters.   
