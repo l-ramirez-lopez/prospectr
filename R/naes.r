@@ -55,7 +55,7 @@ naes <- function(X, k, pc, iter.max = 10, method = 0,.center=TRUE,.scale=TRUE){
     X <- as.matrix(X)  
   if(missing(k))
     stop("'k' must be a number or matrix")
-  method <- match.arg(method)
+  
   if(ncol(X)<2)
     stop("'X' must have at least 2 columns")  
   
