@@ -51,10 +51,6 @@ spliceCorrection <- function(X, wav, splice = c(1000, 1830), interpol.bands = 10
     }
     
     if (parallel) {
-        # copy-pasted from plyr:::llply
-        if (!require("foreach") & require("iterators")) {
-            stop("foreach and iterators package required for parallel operation", call. = FALSE)
-        }
         if (getDoParWorkers() == 1) {
             warning("No parallel backend registered", call. = TRUE)
         }

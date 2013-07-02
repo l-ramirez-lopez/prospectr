@@ -7,6 +7,7 @@
 #' @param a integer 
 #' @param b integer
 #' @keywords internal
+#' @useDynLib prospect
 bitAND <- function(aa, bb) {
     .Call('prospect_bitAND', PACKAGE = 'prospect', aa, bb)
 }
@@ -21,6 +22,7 @@ bitSR <- function(a, b) {
 #' @param X matrix to convolve
 #' @param f filter
 #' @keywords internal
+#' @useDynLib prospect
 convCppM <- function(X, f) {
     .Call('prospect_convCppM', PACKAGE = 'prospect', X, f)
 }
@@ -37,6 +39,7 @@ convCppV <- function(X, f) {
 #' @param method a \code{string} with possible values "euclid", "cor", "cosine"
 #' @return a distance \code{matrix}
 #' @keywords internal
+#' @useDynLib prospect
 #' @author Antoine Stevens and Leonardo Ramirez-Lopez
 fastDist <- function(X, Y, method) {
     .Call('prospect_fastDist', PACKAGE = 'prospect', X, Y, method)
@@ -51,6 +54,7 @@ fastDist <- function(X, Y, method) {
 #' @return a distance \code{vector}
 #' @author Antoine Stevens and Leonardo Ramirez-Lopez
 #' @keywords internal 
+#' @useDynLib prospect
 fastDistV <- function(X, Y, method) {
     .Call('prospect_fastDistV', PACKAGE = 'prospect', X, Y, method)
 }
@@ -63,6 +67,7 @@ fastDistV <- function(X, Y, method) {
 #' @param new_wav a numeric \code{vector} giving the new band positions
 #' @param fwhm numeric \code{vector} giving the full width half maximums of the new band positions.
 #' @keywords internal
+#' @useDynLib prospect
 ResampleCppM <- function(X, wav, new_wav, fwhm) {
     .Call('prospect_ResampleCppM', PACKAGE = 'prospect', X, wav, new_wav, fwhm)
 }

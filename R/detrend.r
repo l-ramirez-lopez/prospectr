@@ -53,10 +53,6 @@ detrend <- function(X, wav, parallel = FALSE) {
     X <- sweep(X, 1, apply(X, 1, sd), "/")
     
     if (parallel) {
-        # copy-pasted from plyr:::llply
-        if (!require("foreach") & require("iterators")) {
-            stop("foreach and iterators package required for parallel operation", call. = FALSE)
-        }
         if (getDoParWorkers() == 1) {
             warning("No parallel backend registered", call. = TRUE)
         }

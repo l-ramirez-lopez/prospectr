@@ -1,7 +1,7 @@
 #' @title Kennard-Stone algorithm for calibration sampling
 #' @description Select calibration samples from a large multivariate data using the Kennard-Stone algorithm
 #' @usage 
-#' kenStone(X,k,pc,group)
+#' kenStone(X,k,method,pc,group,.center = TRUE,.scale = FALSE)
 #' @param X a numeric \code{matrix} 
 #' @param k number of desired calibration samples
 #' @param method distance measure to be used: 'euclid' (Euclidean distance) or 'mahal' (Mahalanobis distance, default). 
@@ -28,14 +28,14 @@
 #' Kennard, R.W., and Stone, L.A., 1969. Computer aided design of experiments. Technometrics 11, 137-148.
 #' @examples
 #' data(NIRsoil) 
-#' sel <- kenStone(NIRsoil$spc,k=30,pc=.999)
-#' plot(sel$pc[,1],sel$pc[,2],xlab="PC1",ylab="PC2")
-#' points(sel$pc[sel$model,1],sel$pc[sel$model,2],pch=19,col=2)  # points selected for calibration  
+#' sel <- kenStone(NIRsoil$spc,k=30,pc=.99)
+#' plot(sel$pc[,1:2],xlab="PC1",ylab="PC2")
+#' points(sel$pc[sel$model,1:2],pch=19,col=2)  # points selected for calibration  
 #' # Test on artificial data
 #' X <- expand.grid(1:20,1:20) + rnorm(1e5,0,.1)
-#' plot(X[,1],X[,2],xlab="VAR1",ylab="VAR2")
-#' sel <- kenStone(X,k=25)
-#' points(X[sel$model,1],X[sel$model,2],pch=19,col=2)
+#' plot(X,xlab="VAR1",ylab="VAR2")
+#' sel <- kenStone(X,k=25,method="euclid")
+#' points(X[sel$model,],pch=19,col=2)
 #' @author Antoine Stevens & Leonardo Ramirez-Lopez
 #' @details 
 #' The Kennard--Stone algorithm allows to select samples with a uniform distribution over the predictor space (Kennard and Stone, 1969).
@@ -59,7 +59,7 @@
 #' @seealso  \code{\link{duplex}}, \code{\link{shenkWest}}, \code{\link{naes}}, \code{\link{honigs}}
 #' @export
 #' 
-kenStone <- function(X,k,method=c("mahal","euclid"),pc,group,.center=TRUE,.scale=TRUE){
+kenStone <- function(X,k,method=c("mahal","euclid"),pc,group,.center=TRUE,.scale=FALSE){
   
   if(missing(k))
     stop("'k' must be specified")

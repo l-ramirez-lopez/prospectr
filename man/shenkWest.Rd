@@ -2,7 +2,8 @@
 \alias{shenkWest}
 \title{SELECT algorithm for calibration sampling}
 \usage{
-  shenkWest(X,d.min=0.6,pc=0.95,rm.outlier=FALSE)
+  shenkWest(X,d.min=0.6,pc=0.95,rm.outlier=FALSE,.center =
+    TRUE,.scale = FALSE)
 }
 \arguments{
   \item{X}{numeric \code{data.frame} or \code{matrix}}
@@ -60,12 +61,12 @@
 \examples{
 data(NIRsoil)
 sel <- shenkWest(NIRsoil$spc,pc=.99,d.min=.3,rm.outlier=FALSE)
-plot(sel$pc[,1],sel$pc[,2],xlab="PC1",ylab="PC2")
-points(sel$pc[sel$model,1],sel$pc[sel$model,2],pch=19,col=2)  # points selected for calibration
+plot(sel$pc[,1:2],xlab="PC1",ylab="PC2")
+points(sel$pc[sel$model,1:2],pch=19,col=2)  # points selected for calibration
 # without outliers
 sel <- shenkWest(NIRsoil$spc,pc=.99,d.min=.3,rm.outlier=TRUE)
-plot(sel$pc[,1],sel$pc[,2],xlab="PC1",ylab="PC2")
-points(sel$pc[sel$model,1],sel$pc[sel$model,2],pch=15,col=3)  # points selected for calibration
+plot(sel$pc[,1:2],xlab="PC1",ylab="PC2")
+points(sel$pc[sel$model,1:2],pch=15,col=3)  # points selected for calibration
 }
 \author{
   Antoine Stevens

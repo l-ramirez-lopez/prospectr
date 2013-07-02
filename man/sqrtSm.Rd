@@ -2,7 +2,7 @@
 \alias{sqrtSm}
 \title{Square root of (square) symetric matrices}
 \usage{
-  sqrtSm(X, method = c("svd", "eigen", "Schur"))
+  sqrtSm(X, method = c("svd", "eigen"))
 }
 \description{
   Square root of (square) symetric matrices

@@ -64,10 +64,6 @@ continuumRemoval <- function(X, wav, type = c("R", "A"), interpol = c("linear", 
       
       
       if (parallel) {
-          # copy-pasted from plyr:::llply
-          if (!require("foreach") & require("iterators")) {
-              stop("foreach and iterators package required for parallel operation", call. = FALSE)
-          }
           if (getDoParWorkers() == 1) {
               warning("No parallel backend registered", call. = TRUE)
           }

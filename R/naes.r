@@ -1,7 +1,7 @@
 #' @title k-means sampling
 #' @description Perform a k-means sampling on a \code{matrix} or \code{data.frame} for multivariate calibration
 #' @usage 
-#' naes(X,k,pc,iter.max = 10, method = 0)
+#' naes(X,k,pc,iter.max = 10, method = 0,.center = TRUE,.scale = FALSE)
 #' @param X numeric \code{matrix} or \code{data.frame}
 #' @param k either the number of calibration samples to select or a set of cluster centres to initiate the k-means clustering. 
 #' @param pc optional. If not specified, k-means is run directly on the variable (Euclidean) space. 
@@ -39,17 +39,17 @@
 #' @examples
 #' data(NIRsoil) 
 #' sel <- naes(NIRsoil$spc,k=5,p=.99,method=0)
-#' plot(sel$pc[,1],sel$pc[,2],col=sel$cluster+2) # clusters
+#' plot(sel$pc[,1:2],col=sel$cluster+2) # clusters
 #' # points selected for calibration with method = 0
-#' points(sel$pc[sel$model,1],sel$pc[sel$model,2],col=2,pch=19,cex=1)
+#' points(sel$pc[sel$model,1:2],col=2,pch=19,cex=1)
 #' sel2 <- naes(NIRsoil$spc,k=sel$centers,p=.99,method=1) # pre-defined centers can also be provided
 #' # points selected for calibration with method = 1 
-#' points(sel$pc[sel2$model,1],sel$pc[sel2$model,2],col=1,pch=15,cex=1) 
+#' points(sel$pc[sel2$model,1:2],col=1,pch=15,cex=1) 
 #' @author Antoine Stevens and Leonardo Ramirez-Lopez
 #' @seealso \code{\link{kenStone}}, \code{\link{honigs}}, \code{\link{duplex}}, \code{\link{shenkWest}}
 #' @export
 
-naes <- function(X, k, pc, iter.max = 10, method = 0,.center=TRUE,.scale=TRUE){
+naes <- function(X, k, pc, iter.max = 10, method = 0,.center=TRUE,.scale=FALSE){
     
   if(is.data.frame(X))
     X <- as.matrix(X)  

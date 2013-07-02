@@ -3,7 +3,7 @@
 #' @description
 #' Select calibration samples from multivariate data using the Puchwein algorithm
 #' @usage
-#' puchwein(X,pc=0.95,k,min.sel,details=FALSE)
+#' puchwein(X,pc=0.95,k,min.sel,details=FALSE,.center = TRUE,.scale = FALSE)
 #' @param X input \code{data.frame} or \code{matrix} from which to select calibration samples
 #' @param pc number of principal components retained in the computation of the distance in the standardized Principal Component space (Mahalanobis distance). 
 #' If \code{pc < 1}, the number of principal components kept corresponds to the number of components 
@@ -31,9 +31,9 @@
 #' @examples
 #' data(NIRsoil)
 #' sel <- puchwein(NIRsoil$spc,k=0.2,pc=.99)
-#' plot(sel$pc[,1],sel$pc[,2])
+#' plot(sel$pc[,1:2])
 #' # points selected for calibration 
-#' points(NIRsoil$spc[sel$model,1],NIRsoil$spc[sel$model,2],col=2,pch=2) 
+#' points(NIRsoil$spc[sel$model,1:2],col=2,pch=2) 
 #' # Leverage plot
 #' opar <- par(no.readonly=TRUE)
 #' par(mar=c(4,5,2,2))

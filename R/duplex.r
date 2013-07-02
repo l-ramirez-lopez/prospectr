@@ -1,7 +1,7 @@
 #' @title DUPLEX algorithm for calibration sampling
 #' @description Select calibration samples from a large multivariate data using the DUPLEX algorithm
 #' @usage 
-#' duplex(X,k,pc,group)
+#' duplex(X,k,method,pc,group,.center = TRUE,.scale = FALSE)
 #' @param X a \code{matrix}
 #' @param k number of calibration/validation samples
 #' @param method distance measure to be used: 'euclid' (Euclidean distance) or 'mahal' (Mahalanobis distance, default). 
@@ -41,20 +41,20 @@
 #' @author Antoine Stevens & Leonardo Ramirez--Lopez
 #' @examples
 #' data(NIRsoil) 
-#' sel <- duplex(NIRsoil$spc,k=30,pc=.999)
-#' plot(sel$pc[,1],sel$pc[,2],xlab="PC1",ylab="PC2")
-#' points(sel$pc[sel$model,1],sel$pc[sel$model,2],pch=19,col=2)  # points selected for calibration  
-#' points(sel$pc[sel$test,1],sel$pc[sel$test,2],pch=18,col=3) # points selected for validation
+#' sel <- duplex(NIRsoil$spc,k=30,method="mahal",pc=.99)
+#' plot(sel$pc[,1:2],xlab="PC1",ylab="PC2")
+#' points(sel$pc[sel$model,1:2],pch=19,col=2)  # points selected for calibration  
+#' points(sel$pc[sel$test,1:2],pch=18,col=3) # points selected for validation
 #' # Test on artificial data
 #' X <- expand.grid(1:20,1:20) + rnorm(1e5,0,.1)
 #' plot(X[,1],X[,2],xlab="VAR1",ylab="VAR2")
-#' sel <- duplex(X,k=25)
-#' points(X[sel$model,1],X[sel$model,2],pch=19,col=2) # points selected for calibration  
-#' points(X[sel$test,1],X[sel$test,2],pch=15,col=3) # points selected for validation  
+#' sel <- duplex(X,k=25,method="mahal")
+#' points(X[sel$model,],pch=19,col=2) # points selected for calibration  
+#' points(X[sel$test,],pch=15,col=3) # points selected for validation  
 #' @seealso \code{\link{kenStone}}, \code{\link{honigs}}, \code{\link{shenkWest}}, \code{\link{naes}}
 #' @export
 
-duplex <- function(X,k,method = c("mahal", "euclid"),pc,group,.center=TRUE,.scale=TRUE){
+duplex <- function(X,k,method = c("mahal", "euclid"),pc,group,.center=TRUE,.scale=FALSE){
   
   if(missing(k))
     stop("'k' must be specified")

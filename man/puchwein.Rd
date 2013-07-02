@@ -2,7 +2,8 @@
 \alias{puchwein}
 \title{Puchwein algorithm for calibration sampling}
 \usage{
-  puchwein(X,pc=0.95,k,min.sel,details=FALSE)
+  puchwein(X,pc=0.95,k,min.sel,details=FALSE,.center =
+    TRUE,.scale = FALSE)
 }
 \arguments{
   \item{X}{input \code{data.frame} or \code{matrix} from
@@ -101,9 +102,9 @@
 \examples{
 data(NIRsoil)
 sel <- puchwein(NIRsoil$spc,k=0.2,pc=.99)
-plot(sel$pc[,1],sel$pc[,2])
+plot(sel$pc[,1:2])
 # points selected for calibration
-points(NIRsoil$spc[sel$model,1],NIRsoil$spc[sel$model,2],col=2,pch=2)
+points(NIRsoil$spc[sel$model,1:2],col=2,pch=2)
 # Leverage plot
 opar <- par(no.readonly=TRUE)
 par(mar=c(4,5,2,2))

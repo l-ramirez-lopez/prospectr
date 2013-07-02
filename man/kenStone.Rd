@@ -2,7 +2,8 @@
 \alias{kenStone}
 \title{Kennard-Stone algorithm for calibration sampling}
 \usage{
-  kenStone(X,k,pc,group)
+  kenStone(X,k,method,pc,group,.center = TRUE,.scale =
+    FALSE)
 }
 \arguments{
   \item{X}{a numeric \code{matrix}}
@@ -89,14 +90,14 @@
 }
 \examples{
 data(NIRsoil)
-sel <- kenStone(NIRsoil$spc,k=30,pc=.999)
-plot(sel$pc[,1],sel$pc[,2],xlab="PC1",ylab="PC2")
-points(sel$pc[sel$model,1],sel$pc[sel$model,2],pch=19,col=2)  # points selected for calibration
+sel <- kenStone(NIRsoil$spc,k=30,pc=.99)
+plot(sel$pc[,1:2],xlab="PC1",ylab="PC2")
+points(sel$pc[sel$model,1:2],pch=19,col=2)  # points selected for calibration
 # Test on artificial data
 X <- expand.grid(1:20,1:20) + rnorm(1e5,0,.1)
-plot(X[,1],X[,2],xlab="VAR1",ylab="VAR2")
-sel <- kenStone(X,k=25)
-points(X[sel$model,1],X[sel$model,2],pch=19,col=2)
+plot(X,xlab="VAR1",ylab="VAR2")
+sel <- kenStone(X,k=25,method="euclid")
+points(X[sel$model,],pch=19,col=2)
 }
 \author{
   Antoine Stevens & Leonardo Ramirez-Lopez
