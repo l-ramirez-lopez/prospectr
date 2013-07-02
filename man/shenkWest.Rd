@@ -10,15 +10,24 @@
   \item{d.min}{minimum distance (default = 0.6)}
 
   \item{pc}{number of principal components retained in the
-  computation of the Mahalanobis distance. If \code{pc <
-  1}, the number of principal components kept corresponds
-  to the number of components explaining at least (\code{pc
-  * 100}) percent of the total variance (default = 0.95).}
+  computation distance in the standardized Principal
+  Component space (Mahalanobis distance). If \code{pc < 1},
+  the number of principal components kept corresponds to
+  the number of components explaining at least (\code{pc *
+  100}) percent of the total variance (default = 0.95).}
 
   \item{rm.outlier}{logical value. if \code{TRUE}, remove
   observations with a standardized mahalanobis distance to
   the center of the data greater than 3 (default =
   \code{FALSE})}
+
+  \item{.center}{logical value indicating whether the input
+  matrix should be centered before Principal Component
+  Analysis. Default set to TRUE.}
+
+  \item{.scale}{logical value indicating whether the input
+  matrix should be scaled before Principal Component
+  Analysis. Default set to FALSE.}
 }
 \value{
   a \code{list} with components: \itemize{

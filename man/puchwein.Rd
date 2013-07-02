@@ -9,11 +9,12 @@
   which to select calibration samples}
 
   \item{pc}{number of principal components retained in the
-  computation of the Mahalanobis distance. If \code{pc <
-  1}, the number of principal components kept corresponds
-  to the number of components explaining at least (\code{pc
-  * 100}) percent of the total variance (default = 0.95 as
-  in the Puchwein paper).}
+  computation of the distance in the standardized Principal
+  Component space (Mahalanobis distance). If \code{pc < 1},
+  the number of principal components kept corresponds to
+  the number of components explaining at least (\code{pc *
+  100}) percent of the total variance (default = 0.95 as in
+  the Puchwein paper).}
 
   \item{k}{initial limiting distance parameter, if not
   specified (default), set to 0.2. According to Puchwein, a
@@ -27,6 +28,14 @@
   \item{details}{logical value, if \code{TRUE}, adds a
   component in the output list with the indices of the
   objects kept in each loop (default to \code{FALSE})}
+
+  \item{.center}{logical value indicating whether the input
+  matrix should be centered before Principal Component
+  Analysis. Default set to TRUE.}
+
+  \item{.scale}{logical value indicating whether the input
+  matrix should be scaled before Principal Component
+  Analysis. Default set to FALSE.}
 }
 \value{
   a \code{list} with components: \itemize{

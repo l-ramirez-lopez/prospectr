@@ -28,6 +28,14 @@
   the cluster centers (\code{method = 0}, default), samples
   farthest away from the centre of the data (\code{method =
   1}) or random selection (\code{method = 2})}
+
+  \item{.center}{logical value indicating whether the input
+  matrix should be centered before Principal Component
+  Analysis. Default set to TRUE.}
+
+  \item{.scale}{logical value indicating whether the input
+  matrix should be scaled before Principal Component
+  Analysis. Default set to FALSE.}
 }
 \value{
   a \code{list} with components: \itemize{
@@ -50,7 +58,7 @@
   K-means sampling is a simple procedure based on cluster
   analysis to select calibration samples from large
   multivariate datasets. The method can be described in
-  three points (Naes et al. ,2001):
+  three points (Naes et al.,2001):
 
   \enumerate{ \item Perform a PCA and decide how many
   principal component to keep, \item Carry out a k-means

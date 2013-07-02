@@ -10,8 +10,9 @@
 
   \item{k}{number of samples to select for calibration}
 
-  \item{type}{type of data: 'A' for absorbance, 'CR' for
-  continuum-removed reflectance}
+  \item{type}{type of data: 'A' for absorbance (default),
+  'R' for reflectance, 'CR' for continuum-removed
+  reflectance}
 }
 \value{
   a \code{list} with components: \itemize{
@@ -29,11 +30,11 @@
 \details{
   The Honigs algorithm is a simple method to select
   calibration samples based on their absorption features.
-  Both absorbance and continuum-removed values (see
-  \code{\link{continuumRemoval}}) can be used (\code{type}
-  argument). The algorithm can be described as follows: let
-  \eqn{A} be a matrix of \eqn{(i \times j)} absorbance
-  values:
+  Absorbance, reflectance and continuum-removed reflectance
+  values (see \code{\link{continuumRemoval}}) can be used
+  (\code{type} argument). The algorithm can be described as
+  follows: let \eqn{A} be a matrix of \eqn{(i \times j)}
+  absorbance values:
 
   \enumerate{ \item the observation (row) with the maximum
   absolute absorbance (\eqn{max(|A|)}) is selected and
@@ -61,7 +62,9 @@
 }
 \note{
   The selection procedure is sensitive to noisy features in
-  the signal.
+  the signal. The number of samples selected \code{k}
+  selected by the algorithm cannot be greater than the
+  number of wavelengths.
 }
 \examples{
 data(NIRsoil)

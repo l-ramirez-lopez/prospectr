@@ -9,13 +9,17 @@
 
   \item{k}{number of desired calibration samples}
 
-  \item{pc}{optional. If not specified, the Euclidean
-  distance is used. Alternatively, \code{pc} is the number
-  of principal components retained in the computation of
-  the Mahalanobis distance. If \code{pc < 1}, the number of
-  principal components kept corresponds to the number of
-  components explaining at least (\code{pc * 100}) percent
-  of the total variance.}
+  \item{method}{distance measure to be used: 'euclid'
+  (Euclidean distance) or 'mahal' (Mahalanobis distance,
+  default).}
+
+  \item{pc}{optional. If not specified, distance are
+  computed in the Euclidean space. Alternatively, distance
+  are computed in the principal component score space and
+  \code{pc} is the number of principal components retained.
+  If \code{pc < 1}, the number of principal components kept
+  corresponds to the number of components explaining at
+  least (\code{pc * 100}) percent of the total variance.}
 
   \item{group}{An optional \code{factor} (or vector that
   can be coerced to a factor by \code{\link{as.factor}}) of
@@ -27,6 +31,14 @@
   together and assigned to the calibration set. This allows
   to select calibration points that are independent from
   the remaining points.}
+
+  \item{.center}{logical value indicating whether the input
+  matrix should be centered before Principal Component
+  Analysis. Default set to TRUE.}
+
+  \item{.scale}{logical value indicating whether the input
+  matrix should be scaled before Principal Component
+  Analysis. Default set to FALSE.}
 }
 \value{
   a \code{list} with components: \itemize{
@@ -77,7 +89,7 @@
 }
 \examples{
 data(NIRsoil)
-sel <- kenStone(NIRsoil$spc,k=30,pc=.99)
+sel <- kenStone(NIRsoil$spc,k=30,pc=.999)
 plot(sel$pc[,1],sel$pc[,2],xlab="PC1",ylab="PC2")
 points(sel$pc[sel$model,1],sel$pc[sel$model,2],pch=19,col=2)  # points selected for calibration
 # Test on artificial data

@@ -39,4 +39,4 @@ Other useful functions are also available:
 
 ## Bug report and development version
 
-You can send an email to the [package maintainer](<antoine.stevens@uclouvain.be>) or create an [issue](http://github.com/antoinestevens/prospect/issues) on github. To install the development version of `prospect`, simply install [`devtools`](http://cran.r-project.org/web/packages/devtools/index.html) from CRAN then run `install_github("prospect","antoinestevens")`.
+You can send an email to the package maintainer (<antoine.stevens@uclouvain.be>) or create an [issue](http://github.com/antoinestevens/prospect/issues) on github. To install the development version of `prospect`, simply install [`devtools`](http://cran.r-project.org/web/packages/devtools/index.html) from CRAN then run `install_github("prospect","antoinestevens")`.
