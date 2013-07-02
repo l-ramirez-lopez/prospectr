@@ -33,7 +33,7 @@
 #' @export
 #'
 detrend <- function(X, wav, parallel = FALSE) {
-    require(foreach);require(iterators)
+    
     if(missing(wav))
         stop("argument wav should be specified")
   

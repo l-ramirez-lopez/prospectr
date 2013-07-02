@@ -34,7 +34,7 @@
 
 continuumRemoval <- function(X, wav, type = c("R", "A"), interpol = c("linear", "spline"), method = c("division", "substraction"), 
     parallel = FALSE) {
-   require(foreach);require(iterators)
+   
    if (is.data.frame(X)) 
         X <- as.matrix(X)
       

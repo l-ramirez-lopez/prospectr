@@ -19,7 +19,7 @@
 #' @export
 
 spliceCorrection <- function(X, wav, splice = c(1000, 1830), interpol.bands = 10, parallel = FALSE){
-  require(foreach);require(iterators) 
+  
   if (is.data.frame(X)) 
         X <- as.matrix(X)
     
