@@ -127,7 +127,7 @@ A moving average filter is a column--wise operation which average contiguous wav
 <<movin, fig.cap="Effect of a moving average with window size of 10 bands on a raw spectrum",fig.height=6,fig.width=10, tidy=TRUE,dpi=300>>=
 noisy <- NIRsoil$spc + rnorm(length(NIRsoil$spc),0,0.001) # adding some noise
 # Plot the first spectrum
-plot(as.numeric(colnames(NIRsoil$spc)),noisy[1,],type="l",xlab="Wavelength",ylab="Absorbance") 
+plot(as.numeric(colnames(NIRsoil$spc)),noisy[1, ],type="l",xlab="Wavelength",ylab="Absorbance") 
 X <- movav(noisy,w=11) # window size of 11 bands
 # Note that the 5 first and last bands are lost in the process
 lines(as.numeric(colnames(X)),X[1,],col="red") 

@@ -5,7 +5,7 @@
 #' honigs(X,k,type)
 #' @param X numeric \code{data.frame} or \code{matrix} with absorbance or continuum-removed reflectance values
 #' @param k number of samples to select for calibration
-#' @param type type of data: 'A' for absorbance, 'CR' for continuum-removed reflectance
+#' @param type type of data: 'A' for absorbance (default), 'R' for reflectance, 'CR' for continuum-removed reflectance
 #' @author Antoine Stevens
 #' @return a \code{list} with components:
 #' \itemize{
@@ -24,8 +24,8 @@
 #' # add bands used during the selection process 
 #' abline(v=wav[sel$bands])
 #' @details 
-#' The Honigs algorithm is a simple method to select calibration samples based on their absorption features. Both absorbance
-#' and continuum-removed values (see \code{\link{continuumRemoval}}) can be used (\code{type} argument). 
+#' The Honigs algorithm is a simple method to select calibration samples based on their absorption features. Absorbance,
+#' reflectance and continuum-removed reflectance values (see \code{\link{continuumRemoval}}) can be used (\code{type} argument). 
 #' The algorithm can be described as follows: let \eqn{A} be a matrix of \eqn{(i \times j)} absorbance values:
 #' 
 #' \enumerate{
@@ -43,12 +43,13 @@
 #' related to this absorption will then have large negative absorption after the substraction step
 #' and hence will be likely to be selected rapidly by the selection procedure as well.
 #' 
-#' @note The selection procedure is sensitive to noisy features in the signal.
+#' @note The selection procedure is sensitive to noisy features in the signal. The number of samples selected \code{k} selected 
+#' by the algorithm cannot be greater than the number of wavelengths.
 #' @references Honigs D.E., Hieftje, G.M., Mark, H.L. and Hirschfeld, T.B. 1985. Unique-sample selection via Near-Infrared spectral substraction. Analytical Chemistry, 57, 2299-2303
 #' @seealso \code{\link{kenStone}}, \code{\link{naes}}, \code{\link{duplex}}, \code{\link{shenkWest}}
 #' @export
 #' 
-honigs <- function(X,k,type=c("A","CR")){
+honigs <- function(X,k,type=c("A","R","CR")){
   
   if(missing(k))
     stop("'k' must be specified")
@@ -57,13 +58,16 @@ honigs <- function(X,k,type=c("A","CR")){
   if(ncol(X)<2)
     stop("'X' must have at least 2 columns")
   if (k >= nrow(X)| k>=ncol(X))
-    stop("'k' should be lower than nrow(X) and ncol(X)")
+    stop("'k' should be lower than nrow(X) or ncol(X)")
   if (is.data.frame(X)) 
     X <- as.matrix(X)    
     
   type <- match.arg(type)
   if(type=="CR")
     X <- 1-X
+  if(type=="R")  # conversion to absorbance
+    X <- - log10(X)
+  
   
   n <- nini <- 1:nrow(X)
   p <-  1:ncol(X) 

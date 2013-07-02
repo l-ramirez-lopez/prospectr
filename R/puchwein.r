@@ -5,7 +5,7 @@
 #' @usage
 #' puchwein(X,pc=0.95,k,min.sel,details=FALSE)
 #' @param X input \code{data.frame} or \code{matrix} from which to select calibration samples
-#' @param pc number of principal components retained in the computation of the Mahalanobis distance.
+#' @param pc number of principal components retained in the computation of the distance in the standardized Principal Component space (Mahalanobis distance). 
 #' If \code{pc < 1}, the number of principal components kept corresponds to the number of components 
 #' explaining at least (\code{pc * 100}) percent of the total variance (default = 0.95 as in the Puchwein paper).
 #' @param k initial limiting distance parameter, if not specified (default), set to 0.2. 
@@ -13,6 +13,10 @@
 #' principal components 
 #' @param min.sel minimum number of samples to select for calibration (default = 5).
 #' @param details logical value, if \code{TRUE}, adds a component in the output list with the indices of the objects kept in each loop (default to \code{FALSE})
+#' @param .center logical value indicating whether the input matrix should be centered before Principal Component 
+#' Analysis. Default set to TRUE.
+#' @param .scale logical value indicating whether the input matrix should be scaled before Principal Component 
+#' Analysis. Default set to FALSE.
 #' @author Antoine Stevens
 #' @return a \code{list} with components:
 #' \itemize{
@@ -67,7 +71,7 @@
 #' @seealso \code{\link{kenStone}}, \code{\link{duplex}}, \code{\link{shenkWest}}, \code{\link{honigs}}
 #' @export
 
-puchwein <- function(X, pc = 0.95,k=0.2, min.sel = 5, details = FALSE) {
+puchwein <- function(X, pc = 0.95,k=0.2, min.sel = 5, details = FALSE,.center=TRUE,.scale=FALSE) {
     
     if (ncol(X) < 2) 
         stop("X should have at least 2 columns")
@@ -77,7 +81,7 @@ puchwein <- function(X, pc = 0.95,k=0.2, min.sel = 5, details = FALSE) {
         X <- as.data.frame(X)
     
     #Compute scores from PCA
-    pca <- prcomp(X,center=T,scale=F)    
+    pca <- prcomp(X,center=.center,scale=.scale)    
     if(pc<1){
       pvar<- pca$sdev^2/sum(pca$sdev^2) 
       pcsum <- cumsum(pvar)<pc

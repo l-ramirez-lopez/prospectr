@@ -11,6 +11,10 @@
 #' @param method the method used for selecting calibration samples within each cluster: either samples closest to the cluster
 #' centers (\code{method = 0}, default), samples farthest away from the centre of the data (\code{method = 1}) or
 #' random selection (\code{method = 2})
+#' @param .center logical value indicating whether the input matrix should be centered before Principal Component 
+#' Analysis. Default set to TRUE.
+#' @param .scale logical value indicating whether the input matrix should be scaled before Principal Component 
+#' Analysis. Default set to FALSE.
 #' @return a \code{list} with components:
 #' \itemize{
 #'  \item{"\code{model}"}{ numeric \code{vector} giving the row indices of the input data selected for calibration}
@@ -20,7 +24,7 @@
 #'  \item{"\code{centers}"}{ a \code{matrix} of cluster centres}
 #' }
 #' @details K-means sampling is a simple procedure based on cluster analysis to select calibration samples from large multivariate datasets.
-#' The method can be described in three points (Naes et al. ,2001):
+#' The method can be described in three points (Naes et al.,2001):
 #' 
 #' \enumerate{
 #'  \item Perform a PCA and decide how many principal component to keep, 
@@ -44,15 +48,14 @@
 #' @author Antoine Stevens and Leonardo Ramirez-Lopez
 #' @seealso \code{\link{kenStone}}, \code{\link{honigs}}, \code{\link{duplex}}, \code{\link{shenkWest}}
 #' @export
-#' 
 
-naes <- function(X, k, pc, iter.max = 10, method = 0){
+naes <- function(X, k, pc, iter.max = 10, method = 0,.center=TRUE,.scale=TRUE){
     
   if(is.data.frame(X))
     X <- as.matrix(X)  
   if(missing(k))
     stop("'k' must be a number or matrix")
-  
+  method <- match.arg(method)
   if(ncol(X)<2)
     stop("'X' must have at least 2 columns")  
   
@@ -60,7 +63,7 @@ naes <- function(X, k, pc, iter.max = 10, method = 0){
     stop("'method' should be 0, 1 or 2")
   
   if(!missing(pc)){
-    pca <- prcomp(X,center=T,scale=F)
+    pca <- prcomp(X,center=.center,scale=.scale)
     if(pc<1){
       pvar<- pca$sdev^2/sum(pca$sdev^2) 
       pcsum <- cumsum(pvar)<pc
