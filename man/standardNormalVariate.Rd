@@ -46,6 +46,6 @@ apply(snv,1,sd) # check
 }
 \seealso{
   \code{\link{detrend}}, \code{\link{blockScale}},
-  \code{\link{blockNorm}}, \code{\link{msc}}
+  \code{\link{blockNorm}}, \code{\link[pls]{msc}}
 }
 

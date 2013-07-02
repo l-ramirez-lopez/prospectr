@@ -10,10 +10,11 @@ Description: The package provides functions for pretreatment and sample
     selection of visible and near infrared diffuse reflectance spectra
 Repository: CRAN
 License: GPL (>=3)
+VignetteBuilder: knitr
 Suggests:
     hyperSpec,
     knitr,
-Depends:
+Imports:
     Rcpp (>= 0.10.0),
     RcppArmadillo (>= 0.3.4.4),
     foreach,

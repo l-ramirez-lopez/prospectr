@@ -9,6 +9,7 @@ using namespace Rcpp;
 //' @param new_wav a numeric \code{vector} giving the new band positions
 //' @param fwhm numeric \code{vector} giving the full width half maximums of the new band positions.
 //' @keywords internal
+//' @useDynLib prospect
 // [[Rcpp::export]]
 
 NumericMatrix ResampleCppM(NumericMatrix X, NumericVector wav, NumericVector new_wav, NumericVector fwhm) {

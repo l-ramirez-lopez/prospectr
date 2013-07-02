@@ -11,6 +11,7 @@
 #' @param parallel logical value. if \code{TRUE}, apply the function in parallel using the parallel backend 
 #' provided by \code{\link{foreach}}
 #' @author Antoine Stevens
+#' @import foreach iterators
 #' @return a \code{matrix} or \code{vector} with the filtered signal(s)
 #' @examples
 #' data(NIRsoil)

@@ -8,6 +8,7 @@
 #' @param wav wavelengths/ band centers
 #' @param parallel logical value. if \code{TRUE}, apply the function in parallel using the parallel backend provided by foreach
 #' @author Antoine Stevens
+#' @import foreach iterators
 #' @examples
 #' data(NIRsoil)
 #' wav <- as.numeric(colnames(NIRsoil$spc))

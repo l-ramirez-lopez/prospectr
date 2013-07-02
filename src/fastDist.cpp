@@ -10,6 +10,7 @@ using namespace Rcpp;
 //' @param method a \code{string} with possible values "euclid", "cor", "cosine"
 //' @return a distance \code{matrix}
 //' @keywords internal
+//' @useDynLib prospect
 //' @author Antoine Stevens and Leonardo Ramirez-Lopez
 // [[Rcpp::export]]   
 
@@ -42,6 +43,7 @@ arma::mat fastDist(NumericMatrix X, NumericMatrix Y, String method){
 //' @return a distance \code{vector}
 //' @author Antoine Stevens and Leonardo Ramirez-Lopez
 //' @keywords internal 
+//' @useDynLib prospect
 // [[Rcpp::export]]   
 
 NumericVector fastDistV(NumericMatrix X, NumericVector Y, String method){  

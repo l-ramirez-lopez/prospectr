@@ -23,7 +23,7 @@
 #' \deqn{SNV_i = \frac{x_i - \bar{x_i}}{s_i}}
 #' where \eqn{x_i} is the signal of a sample \eqn{i}, \eqn{\bar{x_i}} is its mean and
 #' \eqn{s_i} its standard deviation
-#' @seealso \code{\link{detrend}}, \code{\link{blockScale}}, \code{\link{blockNorm}}, \code{\link{msc}}
+#' @seealso \code{\link{detrend}}, \code{\link{blockScale}}, \code{\link{blockNorm}}, \code{\link[pls]{msc}}
 #' @references Barnes RJ, Dhanoa MS, Lister SJ. 1989. Standard normal variate transformation and de-trending of near-infrared diffuse reflectance spectra. Applied spectroscopy, 43(5): 772-777.
 #' @export
 #'

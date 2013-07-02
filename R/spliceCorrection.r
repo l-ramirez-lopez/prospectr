@@ -12,6 +12,7 @@
 #' provided by \code{\link{foreach}}
 #' @return a \code{matrix} with the splice corrected data
 #' @author Antoine Stevens
+#' @import foreach iterators
 #' @details
 #' Spectra acquired with an ASD FieldSpec Pro spectroradiometer usually exhibit steps at the splice of the three built-in sensors,
 #' positioned at 1000 and 1830 nm.
