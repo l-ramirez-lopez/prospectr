@@ -3,12 +3,10 @@
 #' Normalizes each row of an input \code{data.frame} or \code{matrix} by applying a SNV transformation
 #' followed by fitting a second order linear model and returning the fitted residuals.
 #' @usage
-#' detrend(X,wav,parallel=FALSE)
+#' detrend(X,wav)
 #' @param X numeric \code{data.frame}, \code{matrix} or \code{vector} to process
 #' @param wav wavelengths/ band centers
-#' @param parallel logical value. if \code{TRUE}, apply the function in parallel using the parallel backend provided by foreach
 #' @author Antoine Stevens
-#' @import foreach iterators
 #' @examples
 #' data(NIRsoil)
 #' wav <- as.numeric(colnames(NIRsoil$spc))
@@ -32,7 +30,7 @@
 #' @return a \code{matrix} or \code{vector} with detrend values
 #' @export
 #'
-detrend <- function(X, wav, parallel = FALSE) {
+detrend <- function(X, wav) {
     
     if(missing(wav))
         stop("argument wav should be specified")
@@ -52,15 +50,9 @@ detrend <- function(X, wav, parallel = FALSE) {
     X <- sweep(X, 1, rowMeans(X), "-")
     X <- sweep(X, 1, apply(X, 1, sd), "/")
     
-    if (parallel) {
-        if (getDoParWorkers() == 1) {
-            warning("No parallel backend registered", call. = TRUE)
-        }
-        output <- foreach(y = iter(X, by = "row"), .combine = "rbind") %dopar% lm.fit(x= xpoly,as.vector(y))$residuals  # get the residuals
-    } else {        
-        # get the residuals
-        output <- t(apply(X, 1, function(y) lm.fit(x= xpoly,y)$residuals))
-    }
+    # get the residuals
+    ##output <- t(apply(X, 1, function(y) lm.fit(x= xpoly,y)$residuals))
+    output <- residLm(X,xpoly) # using Rcpp ...
     
     if(was.vec) {
         output <- as.vector(output)
