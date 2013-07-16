@@ -2,23 +2,20 @@
 #' @description
 #' Corrects steps in an input spectral matrix by linear interpolation of the values of the edges of the middle sensor
 #' @usage
-#' spliceCorrection(X,wav,splice=c(1000,1830),interpol.bands=10,parallel=FALSE)
+#' spliceCorrection(X,wav,splice=c(1000,1830),interpol.bands=10)
 #' @param X numeric \code{data.frame}, \code{matrix} or \code{vector} to transform
 #' @param wav numeric \code{vector} with band positions
 #' @param splice numeric \code{vector} of the two positions of the splices, default = c(1000,1830)
 #' corresponding to the splices of the ASD FieldSpec Pro spectrometer.
 #' @param interpol.bands number of interpolation bands
-#' @param parallel logical value. If \code{TRUE}, apply the function in parallel using the parallel backend 
-#' provided by \code{\link{foreach}}
 #' @return a \code{matrix} with the splice corrected data
 #' @author Antoine Stevens
-#' @import foreach iterators
 #' @details
 #' Spectra acquired with an ASD FieldSpec Pro spectroradiometer usually exhibit steps at the splice of the three built-in sensors,
 #' positioned at 1000 and 1830 nm.
 #' @export
 
-spliceCorrection <- function(X, wav, splice = c(1000, 1830), interpol.bands = 10, parallel = FALSE){
+spliceCorrection <- function(X, wav, splice = c(1000, 1830), interpol.bands = 10){
   
   if (is.data.frame(X)) 
         X <- as.matrix(X)
@@ -50,17 +47,9 @@ spliceCorrection <- function(X, wav, splice = c(1000, 1830), interpol.bands = 10
         fit$coefficients[1] + fit$coefficients[2] * xout
     }
     
-    if (parallel) {
-        if (getDoParWorkers() == 1) {
-            warning("No parallel backend registered", call. = TRUE)
-        }
-        pred.X1 <- foreach(i = iter(tmp1, by = "row"), .combine = c) %dopar% extrapfun(x = w1, y = c(i), xout = splice[1])
-        pred.X2 <- foreach(i = iter(tmp2, by = "row"), .combine = c) %dopar% extrapfun(x = w2, y = c(i), xout = splice[2])
-    } else {
-        pred.X1 <- apply(tmp1, 1, function(y) extrapfun(x = w1, y = y, xout = splice[1]))
-        pred.X2 <- apply(tmp2, 1, function(y) extrapfun(x = w2, y = y, xout = splice[2]))
-    }
-    
+    pred.X1 <- apply(tmp1, 1, function(y) extrapfun(x = w1, y = y, xout = splice[1]))
+    pred.X2 <- apply(tmp2, 1, function(y) extrapfun(x = w2, y = y, xout = splice[2]))
+      
     offset1 <- X1[, ncol(X1)] - pred.X1
     offset2 <- X3[, 1] - pred.X2
     output <- cbind(sweep(X1, 1, offset1, "-"), X2, sweep(X3, 1, offset2, "-"))

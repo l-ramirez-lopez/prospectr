@@ -2,16 +2,13 @@
 #' @description
 #' Compute the continuum removed values of a data \code{matrix}, \code{data.frame}, or \code{vector} as implemented in ENVI
 #' @usage
-#' continuumRemoval(X,wav,type,interpol,method,parallel=FALSE)
+#' continuumRemoval(X,wav,type,interpol,method)
 #' @param X numeric \code{data.frame}, \code{matrix} or \code{vector} to process
 #' @param wav optional. numeric \code{vector} of band positions
 #' @param type type of data: 'R' for reflectance (default), 'A' for absorbance
 #' @param interpol interpolation method between points on the convex hull: 'linear' (default) or 'spline'
 #' @param method normalization method: 'division' (default) or 'substraction' (see details section)
-#' @param parallel logical value. if \code{TRUE}, apply the function in parallel using the parallel backend 
-#' provided by \code{\link{foreach}}
 #' @author Antoine Stevens
-#' @import foreach iterators
 #' @return a \code{matrix} or \code{vector} with the filtered signal(s)
 #' @examples
 #' data(NIRsoil)
@@ -32,8 +29,7 @@
 #' @references Clark, R.N., and Roush, T.L., 1984. Reflectance Spectroscopy: Quantitative Analysis Techniques for Remote Sensing Applications. J. Geophys. Res. 89, 6329-6340.
 #' @export
 
-continuumRemoval <- function(X, wav, type = c("R", "A"), interpol = c("linear", "spline"), method = c("division", "substraction"), 
-    parallel = FALSE) {
+continuumRemoval <- function(X, wav, type = c("R", "A"), interpol = c("linear", "spline"), method = c("division", "substraction")) {
    
    if (is.data.frame(X)) 
         X <- as.matrix(X)
@@ -61,18 +57,9 @@ continuumRemoval <- function(X, wav, type = c("R", "A"), interpol = c("linear", 
         wav <- seq_len(ncol(X))
       if (length(wav) != ncol(X)) 
         stop("length(wav) should be equal to ncol(X)")
-      
-      
-      if (parallel) {
-          if (getDoParWorkers() == 1) {
-              warning("No parallel backend registered", call. = TRUE)
-          }
-          cont <- foreach(i = iter(X, by = "row")) %dopar% crfun(i, wav, interpol)
-          cont <- do.call(rbind, cont)
-      } else {
-          cont <- t(apply(X, 1, function(x) crfun(x, wav, interpol)))
-      }
-      
+    
+      cont <- t(apply(X, 1, function(x) crfun(x, wav, interpol)))
+     
     } else {
         cont <- crfun(X,wav,interpol)
     }
