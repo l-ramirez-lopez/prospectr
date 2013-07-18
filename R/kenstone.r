@@ -1,10 +1,10 @@
 #' @title Kennard-Stone algorithm for calibration sampling
 #' @description Select calibration samples from a large multivariate data using the Kennard-Stone algorithm
 #' @usage 
-#' kenStone(X,k,method,pc,group,.center = TRUE,.scale = FALSE)
+#' kenStone(X,k,metric,pc,group,.center = TRUE,.scale = FALSE)
 #' @param X a numeric \code{matrix} 
 #' @param k number of desired calibration samples
-#' @param method distance measure to be used: 'euclid' (Euclidean distance) or 'mahal' (Mahalanobis distance, default). 
+#' @param metric distance metric to be used: 'euclid' (Euclidean distance) or 'mahal' (Mahalanobis distance, default). 
 #' @param pc optional. If not specified, distance are computed in the Euclidean space. Alternatively, distance are computed 
 #' in the principal component score space and  \code{pc} is the number of principal components retained. 
 #' If \code{pc < 1}, the number of principal components kept corresponds to the number of components 
@@ -34,7 +34,7 @@
 #' # Test on artificial data
 #' X <- expand.grid(1:20,1:20) + rnorm(1e5,0,.1)
 #' plot(X,xlab="VAR1",ylab="VAR2")
-#' sel <- kenStone(X,k=25,method="euclid")
+#' sel <- kenStone(X,k=25,metric="euclid")
 #' points(X[sel$model,],pch=19,col=2)
 #' @author Antoine Stevens & Leonardo Ramirez-Lopez
 #' @details 
@@ -59,7 +59,7 @@
 #' @seealso  \code{\link{duplex}}, \code{\link{shenkWest}}, \code{\link{naes}}, \code{\link{honigs}}
 #' @export
 #' 
-kenStone <- function(X,k,method=c("mahal","euclid"),pc,group,.center=TRUE,.scale=FALSE){
+kenStone <- function(X,k,metric=c("mahal","euclid"),pc,group,.center=TRUE,.scale=FALSE){
   
   if(missing(k))
     stop("'k' must be specified")
@@ -67,7 +67,7 @@ kenStone <- function(X,k,method=c("mahal","euclid"),pc,group,.center=TRUE,.scale
     stop("'X' must have at least 2 columns")
   if(k<2)
     stop("Invalid argument: 'k' should be higher than 2")
-  method <- match.arg(method)
+  metric <- match.arg(metric)
   if(is.data.frame(X))   
     x <- X <- as.matrix(X)
   if(!missing(pc)){
@@ -83,7 +83,7 @@ kenStone <- function(X,k,method=c("mahal","euclid"),pc,group,.center=TRUE,.scale
     scores <- X <- pca$x[,1:pc,drop=F]
   }
   
-  if(method == "mahal"){  # Project in the Mahalanobis distance space
+  if(metric == "mahal"){  # Project in the Mahalanobis distance space
       X <- e2m(X, sm.method = "svd")
       if(!missing(pc))
         scores <- X

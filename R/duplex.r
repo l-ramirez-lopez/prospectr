@@ -1,10 +1,10 @@
 #' @title DUPLEX algorithm for calibration sampling
 #' @description Select calibration samples from a large multivariate data using the DUPLEX algorithm
 #' @usage 
-#' duplex(X,k,method,pc,group,.center = TRUE,.scale = FALSE)
+#' duplex(X,k,metric,pc,group,.center = TRUE,.scale = FALSE)
 #' @param X a \code{matrix}
 #' @param k number of calibration/validation samples
-#' @param method distance measure to be used: 'euclid' (Euclidean distance) or 'mahal' (Mahalanobis distance, default). 
+#' @param metric distance metric to be used: 'euclid' (Euclidean distance) or 'mahal' (Mahalanobis distance, default). 
 #' @param pc optional. If not specified, distance are computed in the Euclidean space. Alternatively, distance are computed 
 #' in the principal component score space and  \code{pc} is the number of principal components retained. 
 #' If \code{pc < 1}, the number of principal components kept corresponds to the number of components 
@@ -41,20 +41,20 @@
 #' @author Antoine Stevens & Leonardo Ramirez--Lopez
 #' @examples
 #' data(NIRsoil) 
-#' sel <- duplex(NIRsoil$spc,k=30,method="mahal",pc=.99)
+#' sel <- duplex(NIRsoil$spc,k=30,metric="mahal",pc=.99)
 #' plot(sel$pc[,1:2],xlab="PC1",ylab="PC2")
 #' points(sel$pc[sel$model,1:2],pch=19,col=2)  # points selected for calibration  
 #' points(sel$pc[sel$test,1:2],pch=18,col=3) # points selected for validation
 #' # Test on artificial data
 #' X <- expand.grid(1:20,1:20) + rnorm(1e5,0,.1)
 #' plot(X[,1],X[,2],xlab="VAR1",ylab="VAR2")
-#' sel <- duplex(X,k=25,method="mahal")
+#' sel <- duplex(X,k=25,metric="mahal")
 #' points(X[sel$model,],pch=19,col=2) # points selected for calibration  
 #' points(X[sel$test,],pch=15,col=3) # points selected for validation  
 #' @seealso \code{\link{kenStone}}, \code{\link{honigs}}, \code{\link{shenkWest}}, \code{\link{naes}}
 #' @export
 
-duplex <- function(X,k,method = c("mahal", "euclid"),pc,group,.center=TRUE,.scale=FALSE){
+duplex <- function(X,k,metric = c("mahal", "euclid"),pc,group,.center=TRUE,.scale=FALSE){
   
   if(missing(k))
     stop("'k' must be specified")
@@ -62,11 +62,11 @@ duplex <- function(X,k,method = c("mahal", "euclid"),pc,group,.center=TRUE,.scal
     stop("'X' must have at least 2 columns")
   if(k<2)
     stop("Invalid argument: 'k' should be higher than 2")
-  method <- match.arg(method)
+  metric <- match.arg(metric)
   if(is.data.frame(X))   
     x <- X <- as.matrix(X)
   if(!missing(pc)){
-    pca <- prcomp(X,center=T,scale=F)
+    pca <- prcomp(X,center=.center,scale=.scale)
     if(pc<1){
       pvar<- pca$sdev^2/sum(pca$sdev^2) 
       pcsum <- cumsum(pvar)<pc
@@ -78,7 +78,7 @@ duplex <- function(X,k,method = c("mahal", "euclid"),pc,group,.center=TRUE,.scal
     scores <- X <- pca$x[,1:pc,drop=F]
   } 
   
-  if(method == "mahal"){  # Project in the Mahalanobis distance space
+  if(metric == "mahal"){  # Project in the Mahalanobis distance space
     X <- e2m(X, sm.method = "svd")
     if(!missing(pc))
       scores <- X
