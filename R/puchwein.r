@@ -68,7 +68,7 @@
 #' is considered as producing the optimal selection of points (the subset that best reproduces the variability of the predictor
 #' space).
 #' @note The Puchwein algorithm is an iterative method and can be very slow for large data matrices. 
-#' @seealso \code{\link{kenStone}}, \code{\link{duplex}}, \code{\link{shenkWest}}, \code{\link{honigs}}
+#' @seealso \code{\link{kenStone}}, \code{\link{duplex}}, \code{\link{shenkWest}}, \code{\link{honigs}}, \code{\link{naes}}
 #' @export
 
 puchwein <- function(X, pc = 0.95,k=0.2, min.sel = 5, details = FALSE,.center=TRUE,.scale=FALSE) {
