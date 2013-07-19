@@ -67,7 +67,7 @@
 #' The loop having the largest difference between the observed and theoretical sums
 #' is considered as producing the optimal selection of points (the subset that best reproduces the variability of the predictor
 #' space).
-#' @note The Puchwein algorithm is an iterative method and can be very slow for large data matrices. 
+#' @note The Puchwein algorithm is an iterative method and can be slow for large data matrices. 
 #' @seealso \code{\link{kenStone}}, \code{\link{duplex}}, \code{\link{shenkWest}}, \code{\link{honigs}}, \code{\link{naes}}
 #' @export
 
@@ -92,10 +92,10 @@ puchwein <- function(X, pc = 0.95,k=0.2, min.sel = 5, details = FALSE,.center=TR
     } 
     X <- sweep(pca$x[,1:pc,drop=F],2,pca$sdev[1:pc],"/")      # scaling of the scores  
     
-    H <- fastDistV(X, colMeans(X),"euclid")  # mahalanobis distance to the centre
+    H <- prospect:::fastDistV(X, colMeans(X),"euclid")  # mahalanobis distance to the centre
     lsel <- list()
     x <- data.frame(ID = 1:nrow(X), H)
-    x$d <- fastDist(X,X,"euclid")[, order(H, decreasing = T)]
+    x$d <- prospect:::fastDist(X,X,"euclid")[, order(H, decreasing = T)]
     x <- x[order(H, decreasing = T), ]
     
     d.ini <- k*max((ncol(X)-2),1)
@@ -103,20 +103,20 @@ puchwein <- function(X, pc = 0.95,k=0.2, min.sel = 5, details = FALSE,.center=TR
     m <- 1    
     repeat {            
         Dm <- m * d.ini
-        tmp <- x
-        sel <- NULL
-     
-        while (nrow(tmp) > 0) {          
-            sel <- c(sel, tmp$ID[1])
-            minD <- tmp$d[1, ] <= Dm
-            tmp <- tmp[!minD, ]
-            tmp$d <- tmp$d[, !minD, drop = F]
-        }
+        minD <- x$d[1,] <= Dm
+        sel <- x$ID[1]
+        for(i in 1:nrow(x)) {          
+           if(!i%in%which(minD)){
+              sel <- c(sel,x$ID[i])
+              minD <- minD | x$d[i,] <= Dm               
+           }           
+        }        
         lsel[[m]] <- sel
         if (length(sel) <= min.sel) 
             break
         m <- m + 1
     }
+    lsel[[length(lsel)]] <- NULL # Remove last iteration
     
     left <- sapply(lsel, length)  #number of samples left in each loop
     sel <- nrow(x) - left
