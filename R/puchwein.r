@@ -92,23 +92,25 @@ puchwein <- function(X, pc = 0.95,k=0.2, min.sel = 5, details = FALSE,.center=TR
     } 
     X <- sweep(pca$x[,1:pc,drop=F],2,pca$sdev[1:pc],"/")      # scaling of the scores  
     
-    H <- prospect:::fastDistV(X, colMeans(X),"euclid")  # mahalanobis distance to the centre
+    H <- fastDistV(X, colMeans(X),"euclid")  # mahalanobis distance to the centre
     lsel <- list()
     x <- data.frame(ID = 1:nrow(X), H)
-    x$d <- prospect:::fastDist(X,X,"euclid")[, order(H, decreasing = T)]
-    x <- x[order(H, decreasing = T), ]
+    ord <- order(H, decreasing = T)
+    d <- fastDist(X,X,"euclid")[ord, ord]
+    x <- x[ord, ]
     
     d.ini <- k*max((ncol(X)-2),1)
     
     m <- 1    
     repeat {            
         Dm <- m * d.ini
-        minD <- x$d[1,] <= Dm
+        minD <- d[1,] <= Dm
         sel <- x$ID[1]
+        
         for(i in 1:nrow(x)) {          
            if(!i%in%which(minD)){
               sel <- c(sel,x$ID[i])
-              minD <- minD | x$d[i,] <= Dm               
+              minD <- minD | d[i,] <= Dm               
            }           
         }        
         lsel[[m]] <- sel
@@ -128,7 +130,7 @@ puchwein <- function(X, pc = 0.95,k=0.2, min.sel = 5, details = FALSE,.center=TR
     oL <- sapply(lsel, function(x) sum(L[x]))  # observed leverage
     tL <- (sum(L)/length(L)) * left  # theoretical leverage
     
-    res2 <- data.frame(loop = 1:m,removed = sel, obs = oL, theor = tL, diff = oL - tL)
+    res2 <- data.frame(loop = 1:(m-1),removed = sel, obs = oL, theor = tL, diff = oL - tL)
     loop.optimal <- which.max(oL - tL)
     model <- lsel[[loop.optimal]]
     
