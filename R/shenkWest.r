@@ -60,7 +60,7 @@ shenkWest <- function(X,d.min=.6,pc=.95,rm.outlier=FALSE,.center=TRUE,.scale=FAL
   } 
   scores.ini <- scores <- sweep(pca$x[,1:pc,drop=F],2,pca$sdev[1:pc],"/")      # scaling of the scores  
   
-  n <- nini <- 1:nrow(X)
+  n <- nini <- 1:nrow(X)  
   model <- NULL
   
   if(rm.outlier){
@@ -73,14 +73,17 @@ shenkWest <- function(X,d.min=.6,pc=.95,rm.outlier=FALSE,.center=TRUE,.scale=FAL
   
   d <- fastDist(scores,scores,"euclid") # NH - Neighbour mahalanobis H distance
   d <- d/pc # standardized mahalanobis distance 
+  d <- d < d.min # distance treshold
   
-  while(ncol(d)>1){
-    idx <- which.max(colSums(d < d.min)) # index of the sample having the largest number of neighbours within the minimum distance
-    knn <- which(d[,idx] < d.min) # index of neighbours of idx within the minimum distance
-    if(length(knn)<2) break # break loop if there is no sample within the minimum distance
-    model <- c(model,n[idx])
+  while (ncol(d) > 1) {
+    idx <- which.max(colSums(d))
+    knn <- which(d[,idx])
+    if (length(knn) < 2) 
+      break
+    model <- c(model, n[idx])
     n <- n[-knn]
-    d <- d[-knn,-knn,drop=F]    
+    d <- d[-knn, -knn, drop = F]
   }
+  
   return(list(model=model,test=nini[-n],pc=scores.ini))
 }
