@@ -1,4 +1,4 @@
-Package: prospect
+Package: prospectr
 Type: Package
 Title: Miscellaneous functions for processing and sample selection of vis-NIR
     diffuse reflectance data
@@ -45,6 +45,6 @@ Collate:
     'resample.r'
     'resample2.r'
     'shenkWest.r'
-    'prospectpackage.r'
+    'prospectrpackage.r'
     'NIRsoil.r'
     'mTransformation.R'

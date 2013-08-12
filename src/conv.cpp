@@ -6,7 +6,7 @@ using namespace Rcpp;
 //' @param X matrix to convolve
 //' @param f filter
 //' @keywords internal
-//' @useDynLib prospect
+//' @useDynLib prospectr
 // [[Rcpp::export]]
 
 NumericMatrix convCppM(NumericMatrix X, NumericVector f) {

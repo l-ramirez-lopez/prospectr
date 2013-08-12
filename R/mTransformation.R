@@ -6,7 +6,7 @@
 #' md1 <- sqrt(mahalanobis(X, center = colMeans(X), cov = cov(X)))
 #' # Projection approach for computing the Mahalanobis distance
 #' #1. Projecting from the Euclidean to the Mahalanobis space
-#' Xm <- prospect:::e2m(X, sm.method = "svd")
+#' Xm <- e2m(X, sm.method = "svd")
 #' #2. Use the normal Euclidean distance on the Mahalanobis space
 #' md2 <- sqrt(rowSums((sweep(Xm, 2, colMeans(Xm), "-"))^2))
 #' # Plot the results of both methods
@@ -15,7 +15,7 @@
 #' #Mahalanobis in the spectral space
 #' data(NIRsoil)
 #' X <- NIRsoil$spc
-#' Xm <- prospect:::e2m(X, sm.method = "svd")
+#' Xm <- e2m(X, sm.method = "svd")
 #' md2 <- sqrt(rowSums((sweep(Xm, 2, colMeans(Xm), "-"))^2))
 #' \dontrun{
 #' md1 <- sqrt(mahalanobis(X, center = colMeans(X), cov = cov(X))) # does not work
@@ -25,7 +25,6 @@
 #' pca <- prcomp(X, center=TRUE,scale=TRUE)
 #' X <- pca$x[, 1:pc]
 #' X2 <- sweep(pca$x[,1:pc,drop=FALSE],2,pca$sdev[1:pc],"/")
-#' Xm <- prospect:::e2m(X, sm.method = "svd")
 #' md4 <- sqrt(rowSums((sweep(Xm, 2, colMeans(Xm), "-"))^2))
 #' md5 <- sqrt(rowSums((sweep(X2, 2, colMeans(X2), "-"))^2))
 #' md3 <- sqrt(mahalanobis(X, center = colMeans(X), cov = cov(X))) # does work

@@ -1,6 +1,6 @@
 %\VignetteEngine{knitr}
-%\VignetteIndexEntry{prospect: a R package for processing and calibration sampling of vis-NIR spectroscopic data}
-%\VignettePackage{prospect}
+%\VignetteIndexEntry{prospectr: a R package for processing and calibration sampling of vis-NIR spectroscopic data}
+%\VignettePackage{prospectr}
 \documentclass[12pt]{article}
 \usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
@@ -22,7 +22,7 @@
 \newcommand{\Rpackage}[1]{{\mbox{\normalfont\textsf{#1}}}}
 
 \hypersetup{  
-  pdftitle = {An Introduction to the \Rpackage{prospect} package},
+  pdftitle = {An Introduction to the \Rpackage{prospectr} package},
   pdfsubject = {Manuscript},
   pdfauthor = {Antoine Stevens},
   colorlinks = {true},
@@ -33,7 +33,7 @@
   linktocpage = {true},
 }
 
-\title{An introduction to the \Rpackage{prospect} package}
+\title{An introduction to the \Rpackage{prospectr} package}
 \author[1]{Antoine Stevens}
 \author[2]{Leonardo Ramirez--Lopez}
 
@@ -76,7 +76,7 @@ Package Name & Description  \\
 \label{tab:pck}
 \end{table}
 
-The prospect package gathers algorithms commonly--used in spectroscopy for pre--treating spectra and select calibration samples. Some of the algorithms are already available in other package, like the Savitzky--Golay algorithm \cite{savitzky1964} but our functions works indifferently on \Robject{vector}, \Robject{data.frame} or \Robject{matrix} input. 
+The prospectr package gathers algorithms commonly--used in spectroscopy for pre--treating spectra and select calibration samples. Some of the algorithms are already available in other package, like the Savitzky--Golay algorithm \cite{savitzky1964} but our functions works indifferently on \Robject{vector}, \Robject{data.frame} or \Robject{matrix} input. 
 
 \section{Signal Processing}
 
@@ -107,7 +107,7 @@ Function Name & Description  \\
 We show below how they can be used, using the NIRsoil dataset included in the package \cite{fernandez2008}. Observations should be arranged row--wise.
 
 <<NIRsoil, tidy=TRUE, message=FALSE>>=
-library(prospect)
+library(prospectr)
 data(NIRsoil)
 # NIRsoil is a data.frame with 825 obs and 5 variables: 
 # Nt (Total Nitrogen), Ciso (Carbon), CEC (Cation Exchange Capacity), 
@@ -331,7 +331,7 @@ Calibration models are usually developed on a \emph{representative} portion of t
   \item  use the spectral data. 
 \end{itemize}
 
-For selecting representative samples, the \Rpackage{prospect} package provides functions that use the third solution. The following functions are available: \Rfunction{kenStone} \cite{kennard1969}, \Rfunction{duplex} \cite{snee1977}, \Rfunction{puchwein} \cite{puchwein1988}, \Rfunction{shenkWest} \cite{shenk1991}, \Rfunction{naes} \cite{naes2002}, \Rfunction{honigs} \cite{honigs1985}.
+For selecting representative samples, the \Rpackage{prospectr} package provides functions that use the third solution. The following functions are available: \Rfunction{kenStone} \cite{kennard1969}, \Rfunction{duplex} \cite{snee1977}, \Rfunction{puchwein} \cite{puchwein1988}, \Rfunction{shenkWest} \cite{shenk1991}, \Rfunction{naes} \cite{naes2002}, \Rfunction{honigs} \cite{honigs1985}.
 
 \subsection{Kennard-Stone sampling (\Rfunction{kenStone})}
 
@@ -473,6 +473,6 @@ abline(v=as.numeric(colnames(NIRsoil$spc))[ho$bands],lty=2)
 @
   
 \bibliographystyle{plain}
-\bibliography{prospect-intro}
+\bibliography{prospectr-intro}
 
 \end{document}

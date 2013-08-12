@@ -5,7 +5,7 @@
 //' @param a integer 
 //' @param b integer
 //' @keywords internal
-//' @useDynLib prospect
+//' @useDynLib prospectr
 // [[Rcpp::export]]
 int bitAND(int aa, int bb) { 
    return (aa & bb);

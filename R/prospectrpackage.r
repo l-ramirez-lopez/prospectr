@@ -38,10 +38,10 @@
 #'  } 
 #'   
 #'@docType package
-#'@name prospect
-#'@title prospect package
+#'@name prospectr
+#'@title prospectr package
 #'@import Rcpp RcppArmadillo foreach iterators 
-#'@useDynLib prospect
+#'@useDynLib prospectr
 #'@author Antoine Stevens & Leonardo Ramirez-Lopez
 #'
 NULL
