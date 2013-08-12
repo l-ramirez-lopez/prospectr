@@ -32,11 +32,11 @@
 }
 \value{
   a \code{list} with components: \itemize{
-  \item{"\code{model}"}{ numeric \code{vector} giving the
+  \item{'\code{model}'}{ numeric \code{vector} giving the
   row indices of the input data selected for calibration}
-  \item{"\code{test}"}{ numeric \code{vector} giving the
+  \item{'\code{test}'}{ numeric \code{vector} giving the
   row indices of the remaining observations}
-  \item{"\code{pc}"}{a numeric \code{matrix} of the scaled
+  \item{'\code{pc}'}{a numeric \code{matrix} of the scaled
   pc scores} }
 }
 \description{
@@ -61,11 +61,11 @@
 \examples{
 data(NIRsoil)
 sel <- shenkWest(NIRsoil$spc,pc=.99,d.min=.3,rm.outlier=FALSE)
-plot(sel$pc[,1:2],xlab="PC1",ylab="PC2")
+plot(sel$pc[,1:2],xlab='PC1',ylab='PC2')
 points(sel$pc[sel$model,1:2],pch=19,col=2)  # points selected for calibration
 # without outliers
 sel <- shenkWest(NIRsoil$spc,pc=.99,d.min=.3,rm.outlier=TRUE)
-plot(sel$pc[,1:2],xlab="PC1",ylab="PC2")
+plot(sel$pc[,1:2],xlab='PC1',ylab='PC2')
 points(sel$pc[sel$model,1:2],pch=15,col=3)  # points selected for calibration
 }
 \author{

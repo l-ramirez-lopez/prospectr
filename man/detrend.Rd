@@ -2,17 +2,13 @@
 \alias{detrend}
 \title{Detrend transformation}
 \usage{
-  detrend(X,wav,parallel=FALSE)
+  detrend(X,wav)
 }
 \arguments{
   \item{X}{numeric \code{data.frame}, \code{matrix} or
   \code{vector} to process}
 
   \item{wav}{wavelengths/ band centers}
-
-  \item{parallel}{logical value. if \code{TRUE}, apply the
-  function in parallel using the parallel backend provided
-  by foreach}
 }
 \value{
   a \code{matrix} or \code{vector} with detrend values
@@ -41,11 +37,11 @@ wav <- as.numeric(colnames(NIRsoil$spc))
 spc <- 1/10^NIRsoil$spc # conversion to reflectance
 opar <- par(no.readonly = TRUE)
 par(mfrow=c(2,1),mar=c(4,4,2,2))
-matplot(wav,t(spc[1:10,]),type="l",xlab="",ylab="Reflectance") # plot of the 10 first spectra
-mtext("Raw spectra")
+matplot(wav,t(spc[1:10,]),type='l',xlab='',ylab='Reflectance') # plot of the 10 first spectra
+mtext('Raw spectra')
 det <- detrend(spc,wav)
-matplot(wav,t(det[1:10,]),type="l",xlab="Wavelength /nm",ylab="Reflectance")
-mtext("Detrend spectra")
+matplot(wav,t(det[1:10,]),type='l',xlab='Wavelength /nm',ylab='Reflectance')
+mtext('Detrend spectra')
 par(opar)
 }
 \author{

@@ -8,7 +8,7 @@ using namespace Rcpp;
 
 // bitAND
 int bitAND(int aa, int bb);
-RcppExport SEXP prospect_bitAND(SEXP aaSEXP, SEXP bbSEXP) {
+RcppExport SEXP prospectr_bitAND(SEXP aaSEXP, SEXP bbSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope __rngScope;
     int aa = Rcpp::as<int >(aaSEXP);
@@ -19,7 +19,7 @@ END_RCPP
 }
 // bitSR
 int bitSR(int a, int b);
-RcppExport SEXP prospect_bitSR(SEXP aSEXP, SEXP bSEXP) {
+RcppExport SEXP prospectr_bitSR(SEXP aSEXP, SEXP bSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope __rngScope;
     int a = Rcpp::as<int >(aSEXP);
@@ -30,7 +30,7 @@ END_RCPP
 }
 // convCppM
 NumericMatrix convCppM(NumericMatrix X, NumericVector f);
-RcppExport SEXP prospect_convCppM(SEXP XSEXP, SEXP fSEXP) {
+RcppExport SEXP prospectr_convCppM(SEXP XSEXP, SEXP fSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope __rngScope;
     NumericMatrix X = Rcpp::as<NumericMatrix >(XSEXP);
@@ -41,7 +41,7 @@ END_RCPP
 }
 // convCppV
 NumericVector convCppV(NumericVector X, NumericVector f);
-RcppExport SEXP prospect_convCppV(SEXP XSEXP, SEXP fSEXP) {
+RcppExport SEXP prospectr_convCppV(SEXP XSEXP, SEXP fSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope __rngScope;
     NumericVector X = Rcpp::as<NumericVector >(XSEXP);
@@ -52,7 +52,7 @@ END_RCPP
 }
 // fastDist
 arma::mat fastDist(NumericMatrix X, NumericMatrix Y, String method);
-RcppExport SEXP prospect_fastDist(SEXP XSEXP, SEXP YSEXP, SEXP methodSEXP) {
+RcppExport SEXP prospectr_fastDist(SEXP XSEXP, SEXP YSEXP, SEXP methodSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope __rngScope;
     NumericMatrix X = Rcpp::as<NumericMatrix >(XSEXP);
@@ -64,7 +64,7 @@ END_RCPP
 }
 // fastDistV
 NumericVector fastDistV(NumericMatrix X, NumericVector Y, String method);
-RcppExport SEXP prospect_fastDistV(SEXP XSEXP, SEXP YSEXP, SEXP methodSEXP) {
+RcppExport SEXP prospectr_fastDistV(SEXP XSEXP, SEXP YSEXP, SEXP methodSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope __rngScope;
     NumericMatrix X = Rcpp::as<NumericMatrix >(XSEXP);
@@ -76,7 +76,7 @@ END_RCPP
 }
 // ResampleCppM
 NumericMatrix ResampleCppM(NumericMatrix X, NumericVector wav, NumericVector new_wav, NumericVector fwhm);
-RcppExport SEXP prospect_ResampleCppM(SEXP XSEXP, SEXP wavSEXP, SEXP new_wavSEXP, SEXP fwhmSEXP) {
+RcppExport SEXP prospectr_ResampleCppM(SEXP XSEXP, SEXP wavSEXP, SEXP new_wavSEXP, SEXP fwhmSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope __rngScope;
     NumericMatrix X = Rcpp::as<NumericMatrix >(XSEXP);
@@ -89,7 +89,7 @@ END_RCPP
 }
 // ResampleCppV
 NumericVector ResampleCppV(NumericVector X, NumericVector wav, NumericVector new_wav, NumericVector fwhm);
-RcppExport SEXP prospect_ResampleCppV(SEXP XSEXP, SEXP wavSEXP, SEXP new_wavSEXP, SEXP fwhmSEXP) {
+RcppExport SEXP prospectr_ResampleCppV(SEXP XSEXP, SEXP wavSEXP, SEXP new_wavSEXP, SEXP fwhmSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope __rngScope;
     NumericVector X = Rcpp::as<NumericVector >(XSEXP);
@@ -97,6 +97,17 @@ BEGIN_RCPP
     NumericVector new_wav = Rcpp::as<NumericVector >(new_wavSEXP);
     NumericVector fwhm = Rcpp::as<NumericVector >(fwhmSEXP);
     NumericVector __result = ResampleCppV(X, wav, new_wav, fwhm);
+    return Rcpp::wrap(__result);
+END_RCPP
+}
+// residLm
+NumericMatrix residLm(NumericMatrix Yr, NumericMatrix Xr);
+RcppExport SEXP prospectr_residLm(SEXP YrSEXP, SEXP XrSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope __rngScope;
+    NumericMatrix Yr = Rcpp::as<NumericMatrix >(YrSEXP);
+    NumericMatrix Xr = Rcpp::as<NumericMatrix >(XrSEXP);
+    NumericMatrix __result = residLm(Yr, Xr);
     return Rcpp::wrap(__result);
 END_RCPP
 }

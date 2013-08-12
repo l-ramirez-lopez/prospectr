@@ -2,7 +2,7 @@
 \alias{kenStone}
 \title{Kennard-Stone algorithm for calibration sampling}
 \usage{
-  kenStone(X,k,method,pc,group,.center = TRUE,.scale =
+  kenStone(X,k,metric,pc,group,.center = TRUE,.scale =
     FALSE)
 }
 \arguments{
@@ -10,7 +10,7 @@
 
   \item{k}{number of desired calibration samples}
 
-  \item{method}{distance measure to be used: 'euclid'
+  \item{metric}{distance metric to be used: 'euclid'
   (Euclidean distance) or 'mahal' (Mahalanobis distance,
   default).}
 
@@ -43,11 +43,11 @@
 }
 \value{
   a \code{list} with components: \itemize{
-  \item{"\code{model}"}{ numeric \code{vector} giving the
+  \item{'\code{model}'}{ numeric \code{vector} giving the
   row indices of the input data selected for calibration}
-  \item{"\code{test}"}{ numeric \code{vector} giving the
+  \item{'\code{test}'}{ numeric \code{vector} giving the
   row indices of the remaining observations}
-  \item{"\code{pc}"}{ if the \code{pc} argument is
+  \item{'\code{pc}'}{ if the \code{pc} argument is
   specified, a numeric \code{matrix} of the scaled pc
   scores} }
 }
@@ -91,12 +91,12 @@
 \examples{
 data(NIRsoil)
 sel <- kenStone(NIRsoil$spc,k=30,pc=.99)
-plot(sel$pc[,1:2],xlab="PC1",ylab="PC2")
+plot(sel$pc[,1:2],xlab='PC1',ylab='PC2')
 points(sel$pc[sel$model,1:2],pch=19,col=2)  # points selected for calibration
 # Test on artificial data
 X <- expand.grid(1:20,1:20) + rnorm(1e5,0,.1)
-plot(X,xlab="VAR1",ylab="VAR2")
-sel <- kenStone(X,k=25,method="euclid")
+plot(X,xlab='VAR1',ylab='VAR2')
+sel <- kenStone(X,k=25,metric='euclid')
 points(X[sel$model,],pch=19,col=2)
 }
 \author{

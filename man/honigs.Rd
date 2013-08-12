@@ -16,11 +16,11 @@
 }
 \value{
   a \code{list} with components: \itemize{
-  \item{"\code{model}"}{ numeric \code{vector} giving the
+  \item{'\code{model}'}{ numeric \code{vector} giving the
   row indices of the input data selected for calibration}
-  \item{"\code{test}"}{ numeric \code{vector} giving the
+  \item{'\code{test}'}{ numeric \code{vector} giving the
   row indices of the remaining observations}
-  \item{"\code{bands}"}{ indices of the columns used during
+  \item{'\code{bands}'}{ indices of the columns used during
   the selection procedure} }
 }
 \description{
@@ -68,12 +68,12 @@
 }
 \examples{
 data(NIRsoil)
-sel <- honigs(NIRsoil$spc,k=10,type="A")
+sel <- honigs(NIRsoil$spc,k=10,type='A')
 wav <- as.numeric(colnames(NIRsoil$spc))
 # spectral library
-matplot(wav,t(NIRsoil$spc),type="l",xlab="wavelength /nm",ylab="Abs",col="grey50")
+matplot(wav,t(NIRsoil$spc),type='l',xlab='wavelength /nm',ylab='Abs',col='grey50')
 # plot calibration spectra
-matlines(wav,t(NIRsoil$spc[sel$model,]),type="l",xlab="wavelength /nm",ylab="Abs",lwd=2,lty=1)
+matlines(wav,t(NIRsoil$spc[sel$model,]),type='l',xlab='wavelength /nm',ylab='Abs',lwd=2,lty=1)
 # add bands used during the selection process
 abline(v=wav[sel$bands])
 }

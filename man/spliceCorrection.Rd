@@ -2,7 +2,7 @@
 \alias{spliceCorrection}
 \title{Splice correction of a spectral matrix acquired with an ASD spectrometer}
 \usage{
-  spliceCorrection(X,wav,splice=c(1000,1830),interpol.bands=10,parallel=FALSE)
+  spliceCorrection(X,wav,splice=c(1000,1830),interpol.bands=10)
 }
 \arguments{
   \item{X}{numeric \code{data.frame}, \code{matrix} or
@@ -15,10 +15,6 @@
   the splices of the ASD FieldSpec Pro spectrometer.}
 
   \item{interpol.bands}{number of interpolation bands}
-
-  \item{parallel}{logical value. If \code{TRUE}, apply the
-  function in parallel using the parallel backend provided
-  by \code{\link{foreach}}}
 }
 \value{
   a \code{matrix} with the splice corrected data

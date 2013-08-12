@@ -32,7 +32,7 @@
 \references{
   Fernandez Pierna, J.A., and Dardenne, P., 2008. Soil
   parameter quantification by NIRS as a Chemometric
-  challenge at "Chimiometrie 2006". Chemometrics and
+  challenge at 'Chimiometrie 2006'. Chemometrics and
   Intelligent Laboratory Systems 91, 94-98.
 
   Minasny, B., and McBratney, A.B., 2008. Regression rules

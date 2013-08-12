@@ -40,18 +40,18 @@
 }
 \value{
   a \code{list} with components: \itemize{
-  \item{"\code{model}"}{ indices of the observations (row
+  \item{'\code{model}'}{ indices of the observations (row
   indices of the input data) selected for calibration}
-  \item{"\code{test}"}{ indices of the remaining
+  \item{'\code{test}'}{ indices of the remaining
   observations (row indices of the input data)}
-  \item{"\code{pc}"}{a numeric \code{matrix} of the scaled
-  pc scores} \item{"\code{loop.optimal}"}{ index of the
+  \item{'\code{pc}'}{a numeric \code{matrix} of the scaled
+  pc scores} \item{'\code{loop.optimal}'}{ index of the
   loop producing the maximum difference between the
   observed and theoretical sum of leverages of the selected
-  samples} \item{"\code{leverage}"}{ \code{data.frame}
+  samples} \item{'\code{leverage}'}{ \code{data.frame}
   giving the observed and theoretical cumulative sums of
   leverage of the points selected in each loop}
-  \item{"\code{details}"}{ list with the indices of the
+  \item{'\code{details}'}{ list with the indices of the
   observations kept in each loop} }
 }
 \description{
@@ -97,7 +97,7 @@
 }
 \note{
   The Puchwein algorithm is an iterative method and can be
-  very slow for large data matrices.
+  slow for large data matrices.
 }
 \examples{
 data(NIRsoil)
@@ -108,8 +108,8 @@ points(NIRsoil$spc[sel$model,1:2],col=2,pch=2)
 # Leverage plot
 opar <- par(no.readonly=TRUE)
 par(mar=c(4,5,2,2))
-plot(sel$leverage$loop,sel$leverage$diff,type="l",
-     xlab="# loops",ylab="Difference between theoretical and \\n observed sum of leverages")
+plot(sel$leverage$loop,sel$leverage$diff,type='l',
+     xlab='# loops',ylab='Difference between theoretical and \\n observed sum of leverages')
 par(opar)
 }
 \author{
@@ -128,6 +128,7 @@ par(opar)
 }
 \seealso{
   \code{\link{kenStone}}, \code{\link{duplex}},
-  \code{\link{shenkWest}}, \code{\link{honigs}}
+  \code{\link{shenkWest}}, \code{\link{honigs}},
+  \code{\link{naes}}
 }
 

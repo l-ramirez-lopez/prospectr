@@ -16,9 +16,9 @@
 }
 \value{
   a \code{list} with components: \itemize{
-  \item{"\code{X}"}{ input \code{matrix} from which
+  \item{'\code{X}'}{ input \code{matrix} from which
   outlying observations (rows) have been removed}
-  \item{"\code{outliers}"}{ numeric \code{vector} giving
+  \item{'\code{outliers}'}{ numeric \code{vector} giving
   the row indices of the input data that have been flagged
   as outliers} }
 }

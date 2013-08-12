@@ -2,7 +2,7 @@
 \alias{continuumRemoval}
 \title{Continuum Removal}
 \usage{
-  continuumRemoval(X,wav,type,interpol,method,parallel=FALSE)
+  continuumRemoval(X,wav,type,interpol,method)
 }
 \arguments{
   \item{X}{numeric \code{data.frame}, \code{matrix} or
@@ -19,10 +19,6 @@
 
   \item{method}{normalization method: 'division' (default)
   or 'substraction' (see details section)}
-
-  \item{parallel}{logical value. if \code{TRUE}, apply the
-  function in parallel using the parallel backend provided
-  by \code{\link{foreach}}}
 }
 \value{
   a \code{matrix} or \code{vector} with the filtered
@@ -48,9 +44,9 @@
 data(NIRsoil)
 wav <- as.numeric(colnames(NIRsoil$spc))
 # plot of the 10 first abs spectra
-matplot(wav,t(NIRsoil$spc[1:10,]),type="l",ylim=c(0,.6),xlab="Wavelength /nm",ylab="Abs")
+matplot(wav,t(NIRsoil$spc[1:10,]),type='l',ylim=c(0,.6),xlab='Wavelength /nm',ylab='Abs')
 # type = 'A' is used for absorbance spectra
-cr <- continuumRemoval(NIRsoil$spc,wav,type="A")
+cr <- continuumRemoval(NIRsoil$spc,wav,type='A')
 matlines(wav,t(cr[1:10,]))
 }
 \author{

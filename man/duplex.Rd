@@ -2,14 +2,14 @@
 \alias{duplex}
 \title{DUPLEX algorithm for calibration sampling}
 \usage{
-  duplex(X,k,method,pc,group,.center = TRUE,.scale = FALSE)
+  duplex(X,k,metric,pc,group,.center = TRUE,.scale = FALSE)
 }
 \arguments{
   \item{X}{a \code{matrix}}
 
   \item{k}{number of calibration/validation samples}
 
-  \item{method}{distance measure to be used: 'euclid'
+  \item{metric}{distance metric to be used: 'euclid'
   (Euclidean distance) or 'mahal' (Mahalanobis distance,
   default).}
 
@@ -42,11 +42,11 @@
 }
 \value{
   a \code{list} with components: \itemize{
-  \item{"\code{model}"}{ numeric \code{vector} giving the
+  \item{'\code{model}'}{ numeric \code{vector} giving the
   row indices of the input data selected for calibration}
-  \item{"\code{test}"}{ numeric \code{vector} giving the
+  \item{'\code{test}'}{ numeric \code{vector} giving the
   row indices of the input data selected for validation}
-  \item{"\code{pc}"}{ if the \code{pc} argument is
+  \item{'\code{pc}'}{ if the \code{pc} argument is
   specified, a numeric \code{matrix} of the scaled pc
   scores} }
 }
@@ -75,14 +75,14 @@
 }
 \examples{
 data(NIRsoil)
-sel <- duplex(NIRsoil$spc,k=30,method="mahal",pc=.99)
-plot(sel$pc[,1:2],xlab="PC1",ylab="PC2")
+sel <- duplex(NIRsoil$spc,k=30,metric='mahal',pc=.99)
+plot(sel$pc[,1:2],xlab='PC1',ylab='PC2')
 points(sel$pc[sel$model,1:2],pch=19,col=2)  # points selected for calibration
 points(sel$pc[sel$test,1:2],pch=18,col=3) # points selected for validation
 # Test on artificial data
 X <- expand.grid(1:20,1:20) + rnorm(1e5,0,.1)
-plot(X[,1],X[,2],xlab="VAR1",ylab="VAR2")
-sel <- duplex(X,k=25,method="mahal")
+plot(X[,1],X[,2],xlab='VAR1',ylab='VAR2')
+sel <- duplex(X,k=25,metric='mahal')
 points(X[sel$model,],pch=19,col=2) # points selected for calibration
 points(X[sel$test,],pch=15,col=3) # points selected for validation
 }

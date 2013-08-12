@@ -40,15 +40,15 @@
 }
 \value{
   a \code{list} with components: \itemize{
-  \item{"\code{model}"}{ numeric \code{vector} giving the
+  \item{'\code{model}'}{ numeric \code{vector} giving the
   row indices of the input data selected for calibration}
-  \item{"\code{test}"}{ numeric \code{vector} giving the
+  \item{'\code{test}'}{ numeric \code{vector} giving the
   row indices of the remaining observations}
-  \item{"\code{pc}"}{ if the \code{pc} argument is
+  \item{'\code{pc}'}{ if the \code{pc} argument is
   specified, a numeric \code{matrix} of the scaled pc
-  scores} \item{"\code{cluster}"}{ integer vector
+  scores} \item{'\code{cluster}'}{ integer vector
   indicating the cluster to which each point was assigned}
-  \item{"\code{centers}"}{ a \code{matrix} of cluster
+  \item{'\code{centers}'}{ a \code{matrix} of cluster
   centres} }
 }
 \description{
