@@ -20,13 +20,13 @@
 #' @author Antoine Stevens
 #' @return a \code{list} with components:
 #' \itemize{
-#'  \item{"\code{model}"}{ indices of the observations (row indices of the input data) selected for calibration}
-#'  \item{"\code{test}"}{ indices of the remaining observations (row indices of the input data)}
-#'  \item{"\code{pc}"}{a numeric \code{matrix} of the scaled pc scores}
-#'  \item{"\code{loop.optimal}"}{ index of the loop producing the maximum difference between the observed and 
+#'  \item{'\code{model}'}{ indices of the observations (row indices of the input data) selected for calibration}
+#'  \item{'\code{test}'}{ indices of the remaining observations (row indices of the input data)}
+#'  \item{'\code{pc}'}{a numeric \code{matrix} of the scaled pc scores}
+#'  \item{'\code{loop.optimal}'}{ index of the loop producing the maximum difference between the observed and 
 #'  theoretical sum of leverages of the selected samples}
-#'  \item{"\code{leverage}"}{ \code{data.frame} giving the observed and theoretical cumulative sums of leverage of the points selected in each loop}
-#'  \item{"\code{details}"}{ list with the indices of the observations kept in each loop}
+#'  \item{'\code{leverage}'}{ \code{data.frame} giving the observed and theoretical cumulative sums of leverage of the points selected in each loop}
+#'  \item{'\code{details}'}{ list with the indices of the observations kept in each loop}
 #' }
 #' @examples
 #' data(NIRsoil)
@@ -37,8 +37,8 @@
 #' # Leverage plot
 #' opar <- par(no.readonly=TRUE)
 #' par(mar=c(4,5,2,2))
-#' plot(sel$leverage$loop,sel$leverage$diff,type="l",
-#'      xlab="# loops",ylab="Difference between theoretical and \n observed sum of leverages")
+#' plot(sel$leverage$loop,sel$leverage$diff,type='l',
+#'      xlab='# loops',ylab='Difference between theoretical and \n observed sum of leverages')
 #' par(opar)
 #' @references 
 #' Puchwein, G., 1988. Selection of calibration samples for near-infrared spectrometry by factor analysis of spectra. Analytical Chemystry 60, 569-573. 
@@ -71,72 +71,68 @@
 #' @seealso \code{\link{kenStone}}, \code{\link{duplex}}, \code{\link{shenkWest}}, \code{\link{honigs}}, \code{\link{naes}}
 #' @export
 
-puchwein <- function(X, pc = 0.95,k=0.2, min.sel = 5, details = FALSE,.center=TRUE,.scale=FALSE) {
+puchwein <- function(X, pc = 0.95, k = 0.2, min.sel = 5, details = FALSE, .center = TRUE, .scale = FALSE) {
     
     if (ncol(X) < 2) 
         stop("X should have at least 2 columns")
-    if (min.sel >= nrow(X))
+    if (min.sel >= nrow(X)) 
         stop("min.sel should be lower than nrow(X)")
     if (!is.data.frame(X)) 
         X <- as.data.frame(X)
     
-    #Compute scores from PCA
-    pca <- prcomp(X,center=.center,scale=.scale)    
-    if(pc<1){
-      pvar<- pca$sdev^2/sum(pca$sdev^2) 
-      pcsum <- cumsum(pvar)<pc
-      if(any(pcsum))
-        pc <- max(which(pcsum))+1
-      else 
-        pc <- 1
-    } 
-    X <- sweep(pca$x[,1:pc,drop=F],2,pca$sdev[1:pc],"/")      # scaling of the scores  
+    # Compute scores from PCA
+    pca <- prcomp(X, center = .center, scale = .scale)
+    if (pc < 1) {
+        pvar <- pca$sdev^2/sum(pca$sdev^2)
+        pcsum <- cumsum(pvar) < pc
+        if (any(pcsum)) 
+            pc <- max(which(pcsum)) + 1 else pc <- 1
+    }
+    X <- sweep(pca$x[, 1:pc, drop = F], 2, pca$sdev[1:pc], "/")  # scaling of the scores  
     
-    H <- fastDistV(X, colMeans(X),"euclid")  # mahalanobis distance to the centre
+    H <- fastDistV(X, colMeans(X), "euclid")  # mahalanobis distance to the centre
     lsel <- list()
     x <- data.frame(ID = 1:nrow(X), H)
     ord <- order(H, decreasing = T)
-    d <- fastDist(X,X,"euclid")[ord, ord]
+    d <- fastDist(X, X, "euclid")[ord, ord]
     x <- x[ord, ]
     
-    d.ini <- k*max((ncol(X)-2),1)
+    d.ini <- k * max((ncol(X) - 2), 1)
     
-    m <- 1    
-    repeat {            
+    m <- 1
+    repeat {
         Dm <- m * d.ini
-        minD <- d[1,] <= Dm
+        minD <- d[1, ] <= Dm
         sel <- x$ID[1]
         
-        for(i in 1:nrow(x)) {          
-           if(!i%in%which(minD)){
-              sel <- c(sel,x$ID[i])
-              minD <- minD | d[i,] <= Dm               
-           }           
-        }        
+        for (i in 1:nrow(x)) {
+            if (!i %in% which(minD)) {
+                sel <- c(sel, x$ID[i])
+                minD <- minD | d[i, ] <= Dm
+            }
+        }
         lsel[[m]] <- sel
         if (length(sel) <= min.sel) 
             break
         m <- m + 1
     }
-    lsel[[length(lsel)]] <- NULL # Remove last iteration
+    lsel[[length(lsel)]] <- NULL  # Remove last iteration
     
     left <- sapply(lsel, length)  #number of samples left in each loop
     sel <- nrow(x) - left
-    #rem <- diff(c(0, sel))  # number of samples removed in each loop
-    #res <- data.frame(left = left, removed = rem, loop = 1:m)
+    # rem <- diff(c(0, sel)) # number of samples removed in each loop res <- data.frame(left = left, removed = rem, loop
+    # = 1:m)
     
     x.mat <- as.matrix(X)
     L <- diag(x.mat %*% solve(t(x.mat) %*% x.mat) %*% t(x.mat))  # Leverage
     oL <- sapply(lsel, function(x) sum(L[x]))  # observed leverage
     tL <- (sum(L)/length(L)) * left  # theoretical leverage
     
-    res2 <- data.frame(loop = 1:(m-1),removed = sel, obs = oL, theor = tL, diff = oL - tL)
+    res2 <- data.frame(loop = 1:(m - 1), removed = sel, obs = oL, theor = tL, diff = oL - tL)
     loop.optimal <- which.max(oL - tL)
     model <- lsel[[loop.optimal]]
     
     if (details) 
-        return(list(model = model, test = (1:nrow(X))[-model], pc = X,loop.optimal = loop.optimal, leverage = res2, details = lsel)) 
-    else
-        return(list(model = model, test = (1:nrow(X))[-model], pc= X,loop.optimal = loop.optimal, leverage = res2))
+        return(list(model = model, test = (1:nrow(X))[-model], pc = X, loop.optimal = loop.optimal, leverage = res2, details = lsel)) else return(list(model = model, test = (1:nrow(X))[-model], pc = X, loop.optimal = loop.optimal, leverage = res2))
 }
  

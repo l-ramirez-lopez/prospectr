@@ -21,16 +21,16 @@
 #' This is a \R port of the \file{MBnorm.m} function of the MB matlab toolbox by Fran van den Berg (\url{http://www.models.life.ku.dk/~courses/MBtoolbox/mbtmain.htm})
 #' @export
 blockNorm <- function(X, targetnorm = 1) {
-  
-  if (!class(X) %in% c("matrix", "data.frame")) 
-    stop("X should be a matrix or data.frame")
-  
-  if(is.data.frame(X))
-    X <- as.matrix(X)
-  
-  if (targetnorm == 1) {
+    
+    if (!class(X) %in% c("matrix", "data.frame")) 
+        stop("X should be a matrix or data.frame")
+    
+    if (is.data.frame(X)) 
+        X <- as.matrix(X)
+    
+    if (targetnorm == 1) {
         f <- sum(X^2, na.rm = T)^0.5
-  } else {
+    } else {
         fmax <- sum(X^2, na.rm = T)
         fmaxn <- sum((X/fmax)^2, na.rm = T)
         if (fmaxn > targetnorm) {

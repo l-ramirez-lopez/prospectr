@@ -44,4 +44,4 @@
 #'@useDynLib prospectr
 #'@author Antoine Stevens & Leonardo Ramirez-Lopez
 #'
-NULL
+NULL 

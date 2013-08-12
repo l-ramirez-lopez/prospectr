@@ -26,28 +26,28 @@ resample <- function(X, wav, new.wav, interpol = c("linear", "spline")) {
         X <- as.matrix(X)
     if (missing(wav)) 
         stop("wav argument should be specified")
-        
+    
     interpol <- match.arg(interpol)
     
-    resfun <- function(x,interpol) {
-        if(interpol=="linear"){
-          approx(x = wav, y = x, xout = new.wav, method = "linear")$y
+    resfun <- function(x, interpol) {
+        if (interpol == "linear") {
+            approx(x = wav, y = x, xout = new.wav, method = "linear")$y
         } else {
-          splinefun(x = wav, y = x)(new.wav)
+            splinefun(x = wav, y = x)(new.wav)
         }
     }
     
-    if(is.matrix(X)){    
+    if (is.matrix(X)) {
         if (length(wav) != ncol(X)) 
             stop("length(wav) should be equal to ncol(X)")
-      
+        
         output <- t(apply(X, 1, resfun, interpol))
         rownames(output) <- rownames(X)
         colnames(output) <- new.wav
     } else {
         if (length(wav) != length(X)) 
-           stop("length(wav) should be equal to length(X)")
-        output <- resfun(X,interpol)
+            stop("length(wav) should be equal to length(X)")
+        output <- resfun(X, interpol)
         names(output) <- new.wav
     }
     

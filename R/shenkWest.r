@@ -18,9 +18,9 @@
 #' @author Antoine Stevens
 #' @return a \code{list} with components:
 #' \itemize{
-#'  \item{"\code{model}"}{ numeric \code{vector} giving the row indices of the input data selected for calibration}
-#'  \item{"\code{test}"}{ numeric \code{vector} giving the row indices of the remaining observations}
-#'  \item{"\code{pc}"}{a numeric \code{matrix} of the scaled pc scores}
+#'  \item{'\code{model}'}{ numeric \code{vector} giving the row indices of the input data selected for calibration}
+#'  \item{'\code{test}'}{ numeric \code{vector} giving the row indices of the remaining observations}
+#'  \item{'\code{pc}'}{a numeric \code{matrix} of the scaled pc scores}
 #' }
 #' @details
 #' The SELECT algorithm is an iterative procedure based on the standardized Mahalanobis distance between observations. 
@@ -32,58 +32,56 @@
 #' @examples
 #' data(NIRsoil)
 #' sel <- shenkWest(NIRsoil$spc,pc=.99,d.min=.3,rm.outlier=FALSE)
-#' plot(sel$pc[,1:2],xlab="PC1",ylab="PC2")
+#' plot(sel$pc[,1:2],xlab='PC1',ylab='PC2')
 #' points(sel$pc[sel$model,1:2],pch=19,col=2)  # points selected for calibration 
 #' # without outliers
 #' sel <- shenkWest(NIRsoil$spc,pc=.99,d.min=.3,rm.outlier=TRUE)
-#' plot(sel$pc[,1:2],xlab="PC1",ylab="PC2")
+#' plot(sel$pc[,1:2],xlab='PC1',ylab='PC2')
 #' points(sel$pc[sel$model,1:2],pch=15,col=3)  # points selected for calibration 
 #' @references Shenk, J.S., and Westerhaus, M.O., 1991. Population Definition, Sample Selection, and Calibration Procedures for Near Infrared Reflectance Spectroscopy. Crop Science 31, 469-474.
 #' @seealso \code{\link{kenStone}}, \code{\link{duplex}}, \code{\link{puchwein}}
 #' @export
 #' 
 
-shenkWest <- function(X,d.min=.6,pc=.95,rm.outlier=FALSE,.center=TRUE,.scale=FALSE){
-  
-  if (is.data.frame(X)) 
-    X <- as.matrix(X)  
-  
-  #Compute scores of PCA
-  pca <- prcomp(X,center=.center,scale=.scale)    
-  if(pc<1){
-    pvar<- pca$sdev^2/sum(pca$sdev^2) 
-    pcsum <- cumsum(pvar)<pc
-    if(any(pcsum))
-      pc <- max(which(pcsum))+1
-    else 
-      pc <- 1
-  } 
-  scores.ini <- scores <- sweep(pca$x[,1:pc,drop=F],2,pca$sdev[1:pc],"/")      # scaling of the scores  
-  
-  n <- nini <- 1:nrow(X)  
-  model <- NULL
-  
-  if(rm.outlier){
-    m <- fastDistV(scores,colMeans(scores),"euclid") # squared mahalanobis distance 
-    m <- m/pc # standardized mahalanobis distance (also called GH, Global H distance)
-    idx <- m <= 3
-    scores <- scores[idx,] # remove samples with H > 3
-    n <- n[idx]
-  }
-  
-  d <- fastDist(scores,scores,"euclid") # NH - Neighbour mahalanobis H distance
-  d <- d/pc # standardized mahalanobis distance 
-  d <- d < d.min # distance treshold
-  
-  while (ncol(d) > 1) {
-    idx <- which.max(colSums(d))
-    knn <- which(d[,idx])
-    if (length(knn) < 2) 
-      break
-    model <- c(model, n[idx])
-    n <- n[-knn]
-    d <- d[-knn, -knn, drop = F]
-  }
-  
-  return(list(model=model,test=nini[-n],pc=scores.ini))
-}
+shenkWest <- function(X, d.min = 0.6, pc = 0.95, rm.outlier = FALSE, .center = TRUE, .scale = FALSE) {
+    
+    if (is.data.frame(X)) 
+        X <- as.matrix(X)
+    
+    # Compute scores of PCA
+    pca <- prcomp(X, center = .center, scale = .scale)
+    if (pc < 1) {
+        pvar <- pca$sdev^2/sum(pca$sdev^2)
+        pcsum <- cumsum(pvar) < pc
+        if (any(pcsum)) 
+            pc <- max(which(pcsum)) + 1 else pc <- 1
+    }
+    scores.ini <- scores <- sweep(pca$x[, 1:pc, drop = F], 2, pca$sdev[1:pc], "/")  # scaling of the scores  
+    
+    n <- nini <- 1:nrow(X)
+    model <- NULL
+    
+    if (rm.outlier) {
+        m <- fastDistV(scores, colMeans(scores), "euclid")  # squared mahalanobis distance 
+        m <- m/pc  # standardized mahalanobis distance (also called GH, Global H distance)
+        idx <- m <= 3
+        scores <- scores[idx, ]  # remove samples with H > 3
+        n <- n[idx]
+    }
+    
+    d <- fastDist(scores, scores, "euclid")  # NH - Neighbour mahalanobis H distance
+    d <- d/pc  # standardized mahalanobis distance 
+    d <- d < d.min  # distance treshold
+    
+    while (ncol(d) > 1) {
+        idx <- which.max(colSums(d))
+        knn <- which(d[, idx])
+        if (length(knn) < 2) 
+            break
+        model <- c(model, n[idx])
+        n <- n[-knn]
+        d <- d[-knn, -knn, drop = F]
+    }
+    
+    return(list(model = model, test = nini[-n], pc = scores.ini))
+} 

@@ -20,9 +20,9 @@
 #' Analysis. Default set to FALSE.
 #' @return a \code{list} with components:
 #' \itemize{
-#'  \item{"\code{model}"}{ numeric \code{vector} giving the row indices of the input data selected for calibration}
-#'  \item{"\code{test}"}{ numeric \code{vector} giving the row indices of the input data selected for validation}
-#'  \item{"\code{pc}"}{ if the \code{pc} argument is specified, a numeric \code{matrix} of the scaled pc scores}
+#'  \item{'\code{model}'}{ numeric \code{vector} giving the row indices of the input data selected for calibration}
+#'  \item{'\code{test}'}{ numeric \code{vector} giving the row indices of the input data selected for validation}
+#'  \item{'\code{pc}'}{ if the \code{pc} argument is specified, a numeric \code{matrix} of the scaled pc scores}
 #' }
 #' @references
 #' Kennard, R.W., and Stone, L.A., 1969. Computer aided design of experiments. Technometrics 11, 137-148. 
@@ -41,142 +41,139 @@
 #' @author Antoine Stevens & Leonardo Ramirez--Lopez
 #' @examples
 #' data(NIRsoil) 
-#' sel <- duplex(NIRsoil$spc,k=30,metric="mahal",pc=.99)
-#' plot(sel$pc[,1:2],xlab="PC1",ylab="PC2")
+#' sel <- duplex(NIRsoil$spc,k=30,metric='mahal',pc=.99)
+#' plot(sel$pc[,1:2],xlab='PC1',ylab='PC2')
 #' points(sel$pc[sel$model,1:2],pch=19,col=2)  # points selected for calibration  
 #' points(sel$pc[sel$test,1:2],pch=18,col=3) # points selected for validation
 #' # Test on artificial data
 #' X <- expand.grid(1:20,1:20) + rnorm(1e5,0,.1)
-#' plot(X[,1],X[,2],xlab="VAR1",ylab="VAR2")
-#' sel <- duplex(X,k=25,metric="mahal")
+#' plot(X[,1],X[,2],xlab='VAR1',ylab='VAR2')
+#' sel <- duplex(X,k=25,metric='mahal')
 #' points(X[sel$model,],pch=19,col=2) # points selected for calibration  
 #' points(X[sel$test,],pch=15,col=3) # points selected for validation  
 #' @seealso \code{\link{kenStone}}, \code{\link{honigs}}, \code{\link{shenkWest}}, \code{\link{naes}}
 #' @export
 
-duplex <- function(X,k,metric = c("mahal", "euclid"),pc,group,.center=TRUE,.scale=FALSE){
-  
-  if(missing(k))
-    stop("'k' must be specified")
-  if(ncol(X)<2)
-    stop("'X' must have at least 2 columns")
-  if(k<2)
-    stop("Invalid argument: 'k' should be higher than 2")
-  metric <- match.arg(metric)
-  if(is.data.frame(X))   
-    x <- X <- as.matrix(X)
-  if(!missing(pc)){
-    pca <- prcomp(X,center=.center,scale=.scale)
-    if(pc<1){
-      pvar<- pca$sdev^2/sum(pca$sdev^2) 
-      pcsum <- cumsum(pvar)<pc
-      if(any(pcsum))
-        pc <- max(which(pcsum))+1
-      else 
-        pc <- 1
-    } 
-    scores <- X <- pca$x[,1:pc,drop=F]
-  } 
-  
-  if(metric == "mahal"){  # Project in the Mahalanobis distance space
-    X <- e2m(X, sm.method = "svd")
-    if(!missing(pc))
-      scores <- X
-  }  
-  
-  m <- nrow(X)
-  n <- 1:nrow(X)
-  half <- floor(m/2)
-  if(k > half) 
-    k <- half 
-  
-  if(!missing(group)){ 
-    if(length(group)!=nrow(X))
-      stop("length(group) should be equal to nrow(X)")
-    if(!is.factor(group)) {
-      group <- as.factor(group)
-      warning("group has been coerced to a factor")  
-    }
-    if(k > nlevels(group)/2) 
-      k <- floor(nlevels(group)/2) 
-  }  
-  
-  # Fist two most distant points to model set
-  D <- fastDist(X,X,"euclid")
-  id<- c(arrayInd(which.max(D),rep(m,2)))
-  
-  if(!missing(group)){
-    id <- which(group %in% group[id])
-    group <- group[-id]
-  }
-  
-  model <- n[id]  
-  n <- n[-id]
-  
-  # Another two most distant points to test set
-  id<- c(arrayInd(which.max(D[,-id]),rep(m-2,2)))
-  
-  if(!missing(group)){
-    id <- which(group %in% group[id])
-    group <- group[-id]
-  }
-  
-  test <- n[id]
-  n <- n[-id]
-  
-  ini <- i <- length(model)
-  
-  while(i<k) {
-    # cal
-    if(i == ini) {
-      d <- D[model,-c(model,test)]
-      mins_cal <- do.call(pmin.int,lapply(1:nrow(d),function(i)d[i,]))
-    } else {
-      d <- rbind(D[nid_cal,-c(model,test)],mins_cal)
-      mins_cal <- do.call(pmin.int, lapply(1:nrow(d), function(i)d[i,]))
-    }      
+duplex <- function(X, k, metric = c("mahal", "euclid"), pc, group, .center = TRUE, .scale = FALSE) {
     
-    id <- which.max(mins_cal)     
-    
-    if(!missing(group)){
-      id <- which(group %in% group[id])
-      group <- group[-id]
+    if (missing(k)) 
+        stop("'k' must be specified")
+    if (ncol(X) < 2) 
+        stop("'X' must have at least 2 columns")
+    if (k < 2) 
+        stop("Invalid argument: 'k' should be higher than 2")
+    metric <- match.arg(metric)
+    if (is.data.frame(X)) 
+        x <- X <- as.matrix(X)
+    if (!missing(pc)) {
+        pca <- prcomp(X, center = .center, scale = .scale)
+        if (pc < 1) {
+            pvar <- pca$sdev^2/sum(pca$sdev^2)
+            pcsum <- cumsum(pvar) < pc
+            if (any(pcsum)) 
+                pc <- max(which(pcsum)) + 1 else pc <- 1
+        }
+        scores <- X <- pca$x[, 1:pc, drop = F]
     }
     
-    nid_cal <- n[id]
-    model <- c(model,nid_cal)
+    if (metric == "mahal") {
+        # Project in the Mahalanobis distance space
+        X <- e2m(X, sm.method = "svd")
+        if (!missing(pc)) 
+            scores <- X
+    }
+    
+    m <- nrow(X)
+    n <- 1:nrow(X)
+    half <- floor(m/2)
+    if (k > half) 
+        k <- half
+    
+    if (!missing(group)) {
+        if (length(group) != nrow(X)) 
+            stop("length(group) should be equal to nrow(X)")
+        if (!is.factor(group)) {
+            group <- as.factor(group)
+            warning("group has been coerced to a factor")
+        }
+        if (k > nlevels(group)/2) 
+            k <- floor(nlevels(group)/2)
+    }
+    
+    # Fist two most distant points to model set
+    D <- fastDist(X, X, "euclid")
+    id <- c(arrayInd(which.max(D), rep(m, 2)))
+    
+    if (!missing(group)) {
+        id <- which(group %in% group[id])
+        group <- group[-id]
+    }
+    
+    model <- n[id]
     n <- n[-id]
     
-    mins_cal <- mins_cal[-id]
-    if(i != ini)
-      mins_val <- mins_val[-id]
+    # Another two most distant points to test set
+    id <- c(arrayInd(which.max(D[, -id]), rep(m - 2, 2)))
     
-    # test     
-    if(i == ini) {
-      d <- D[test,-c(model,test)]
-      mins_val <- do.call(pmin.int,lapply(1:nrow(d),function(i)d[i,]))
-    } else {
-      d <- rbind(D[nid_val,-c(model,test)],mins_val)
-      mins_val <- do.call(pmin.int, lapply(1:nrow(d), function(i)d[i,]))
+    if (!missing(group)) {
+        id <- which(group %in% group[id])
+        group <- group[-id]
     }
     
-    id <- which.max(mins_val)     
+    test <- n[id]
+    n <- n[-id]
     
-    if(!missing(group)){
-      id <- which(group %in% group[id])
-      group <- group[-id]
+    ini <- i <- length(model)
+    
+    while (i < k) {
+        # cal
+        if (i == ini) {
+            d <- D[model, -c(model, test)]
+            mins_cal <- do.call(pmin.int, lapply(1:nrow(d), function(i) d[i, ]))
+        } else {
+            d <- rbind(D[nid_cal, -c(model, test)], mins_cal)
+            mins_cal <- do.call(pmin.int, lapply(1:nrow(d), function(i) d[i, ]))
+        }
+        
+        id <- which.max(mins_cal)
+        
+        if (!missing(group)) {
+            id <- which(group %in% group[id])
+            group <- group[-id]
+        }
+        
+        nid_cal <- n[id]
+        model <- c(model, nid_cal)
+        n <- n[-id]
+        
+        mins_cal <- mins_cal[-id]
+        if (i != ini) 
+            mins_val <- mins_val[-id]
+        
+        # test
+        if (i == ini) {
+            d <- D[test, -c(model, test)]
+            mins_val <- do.call(pmin.int, lapply(1:nrow(d), function(i) d[i, ]))
+        } else {
+            d <- rbind(D[nid_val, -c(model, test)], mins_val)
+            mins_val <- do.call(pmin.int, lapply(1:nrow(d), function(i) d[i, ]))
+        }
+        
+        id <- which.max(mins_val)
+        
+        if (!missing(group)) {
+            id <- which(group %in% group[id])
+            group <- group[-id]
+        }
+        
+        nid_val <- n[id]
+        test <- c(test, nid_val)
+        n <- n[-id]
+        mins_val <- mins_val[-id]
+        mins_cal <- mins_cal[-id]
+        i <- length(model)
     }
     
-    nid_val <- n[id]
-    test <- c(test,nid_val)
-    n <- n[-id]   
-    mins_val <- mins_val[-id]
-    mins_cal <- mins_cal[-id]    
-    i <- length(model)
-  }
-  
-  if(missing(pc))
-    return(list(model=model, test=test))
-  else
-    return(list(model=model, test=test,pc=scores))
-}
+    if (missing(pc)) 
+        return(list(model = model, test = test)) else return(list(model = model, test = test, pc = scores))
+} 

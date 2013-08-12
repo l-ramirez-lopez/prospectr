@@ -20,21 +20,21 @@
 #' Analysis. Default set to FALSE.
 #' @return a \code{list} with components:
 #' \itemize{
-#'  \item{"\code{model}"}{ numeric \code{vector} giving the row indices of the input data selected for calibration}
-#'  \item{"\code{test}"}{ numeric \code{vector} giving the row indices of the remaining observations}
-#'  \item{"\code{pc}"}{ if the \code{pc} argument is specified, a numeric \code{matrix} of the scaled pc scores}
+#'  \item{'\code{model}'}{ numeric \code{vector} giving the row indices of the input data selected for calibration}
+#'  \item{'\code{test}'}{ numeric \code{vector} giving the row indices of the remaining observations}
+#'  \item{'\code{pc}'}{ if the \code{pc} argument is specified, a numeric \code{matrix} of the scaled pc scores}
 #'  }
 #' @references 
 #' Kennard, R.W., and Stone, L.A., 1969. Computer aided design of experiments. Technometrics 11, 137-148.
 #' @examples
 #' data(NIRsoil) 
 #' sel <- kenStone(NIRsoil$spc,k=30,pc=.99)
-#' plot(sel$pc[,1:2],xlab="PC1",ylab="PC2")
+#' plot(sel$pc[,1:2],xlab='PC1',ylab='PC2')
 #' points(sel$pc[sel$model,1:2],pch=19,col=2)  # points selected for calibration  
 #' # Test on artificial data
 #' X <- expand.grid(1:20,1:20) + rnorm(1e5,0,.1)
-#' plot(X,xlab="VAR1",ylab="VAR2")
-#' sel <- kenStone(X,k=25,metric="euclid")
+#' plot(X,xlab='VAR1',ylab='VAR2')
+#' sel <- kenStone(X,k=25,metric='euclid')
 #' points(X[sel$model,],pch=19,col=2)
 #' @author Antoine Stevens & Leonardo Ramirez-Lopez
 #' @details 
@@ -59,90 +59,89 @@
 #' @seealso  \code{\link{duplex}}, \code{\link{shenkWest}}, \code{\link{naes}}, \code{\link{honigs}}
 #' @export
 #' 
-kenStone <- function(X,k,metric=c("mahal","euclid"),pc,group,.center=TRUE,.scale=FALSE){
-  
-  if(missing(k))
-    stop("'k' must be specified")
-  if(ncol(X)<2)
-    stop("'X' must have at least 2 columns")
-  if(k<2)
-    stop("Invalid argument: 'k' should be higher than 2")
-  metric <- match.arg(metric)
-  if(is.data.frame(X))   
-    x <- X <- as.matrix(X)
-  if(!missing(pc)){
-    pca <- prcomp(X,center=.center,scale=.scale)
-    if(pc<1){
-      pvar<- pca$sdev^2/sum(pca$sdev^2) 
-      pcsum <- cumsum(pvar)<pc
-      if(any(pcsum))
-        pc <- max(which(pcsum))+1
-      else 
-        pc <- 1
-    } 
-    scores <- X <- pca$x[,1:pc,drop=F]
-  }
-  
-  if(metric == "mahal"){  # Project in the Mahalanobis distance space
-      X <- e2m(X, sm.method = "svd")
-      if(!missing(pc))
-        scores <- X
-  }  
+kenStone <- function(X, k, metric = c("mahal", "euclid"), pc, group, .center = TRUE, .scale = FALSE) {
     
-  m <- nrow(X)  
-  n <- 1:m
-  
-  if (k >= m) 
-    k <- m-1
-  
-  if(!missing(group)){ 
-    if(length(group)!=nrow(X))
-      stop("length(group) should be equal to nrow(X)")
-    if(!is.factor(group)) {
-      group <- as.factor(group)
-      warning("group has been coerced to a factor")  
+    if (missing(k)) 
+        stop("'k' must be specified")
+    if (ncol(X) < 2) 
+        stop("'X' must have at least 2 columns")
+    if (k < 2) 
+        stop("Invalid argument: 'k' should be higher than 2")
+    metric <- match.arg(metric)
+    if (is.data.frame(X)) 
+        x <- X <- as.matrix(X)
+    if (!missing(pc)) {
+        pca <- prcomp(X, center = .center, scale = .scale)
+        if (pc < 1) {
+            pvar <- pca$sdev^2/sum(pca$sdev^2)
+            pcsum <- cumsum(pvar) < pc
+            if (any(pcsum)) 
+                pc <- max(which(pcsum)) + 1 else pc <- 1
+        }
+        scores <- X <- pca$x[, 1:pc, drop = F]
     }
-    if(k > nlevels(group)) 
-      k <- nlevels(group) - 1
-  }
-  
-  # Fist two most distant points to model set
-  D <- fastDist(X,X,"euclid")
-  id<- c(arrayInd(which.max(D),rep(m,2)))
-  rm(X);gc()
-  if(!missing(group)){
-    id <- which(group %in% group[id])
-    group <- group[-id]
-  }
-  
-  model <- n[id]
-  n <- n[-id]
-  ini <- i <- length(model)
-  
-  while(i<k){        
-    if(i == ini){ # first loop
-      d <- D[model,-model]
-      mins <- do.call(pmin.int,lapply(1:nrow(d),function(i)d[i,]))
-    } else {
-      d <- rbind(mins,D[nid,-model])
-      mins <- do.call(pmin.int,lapply(1:nrow(d),function(i)d[i,]))
+    
+    if (metric == "mahal") {
+        # Project in the Mahalanobis distance space
+        X <- e2m(X, sm.method = "svd")
+        if (!missing(pc)) 
+            scores <- X
     }
-    id <- which.max(mins) 
     
-    if(!missing(group)){
-      id <- which(group %in% group[id])
-      group <- group[-id]
-    }    
+    m <- nrow(X)
+    n <- 1:m
     
-    nid <- n[id]
-    model <- c(model,nid)
-    n <- n[-id]        
-    mins <- mins[-id]
-    i <- length(model)
-  } 
-  
-  if(missing(pc))
-    return(list(model=model,test=(1:m)[-model]))
-  else
-    return(list(model=model,test=(1:m)[-model],pc=scores))
-}
+    if (k >= m) 
+        k <- m - 1
+    
+    if (!missing(group)) {
+        if (length(group) != nrow(X)) 
+            stop("length(group) should be equal to nrow(X)")
+        if (!is.factor(group)) {
+            group <- as.factor(group)
+            warning("group has been coerced to a factor")
+        }
+        if (k > nlevels(group)) 
+            k <- nlevels(group) - 1
+    }
+    
+    # Fist two most distant points to model set
+    D <- fastDist(X, X, "euclid")
+    id <- c(arrayInd(which.max(D), rep(m, 2)))
+    rm(X)
+    gc()
+    if (!missing(group)) {
+        id <- which(group %in% group[id])
+        group <- group[-id]
+    }
+    
+    model <- n[id]
+    n <- n[-id]
+    ini <- i <- length(model)
+    
+    while (i < k) {
+        if (i == ini) {
+            # first loop
+            d <- D[model, -model]
+            mins <- do.call(pmin.int, lapply(1:nrow(d), function(i) d[i, ]))
+        } else {
+            d <- rbind(mins, D[nid, -model])
+            mins <- do.call(pmin.int, lapply(1:nrow(d), function(i) d[i, ]))
+        }
+        id <- which.max(mins)
+        
+        if (!missing(group)) {
+            id <- which(group %in% group[id])
+            group <- group[-id]
+        }
+        
+        nid <- n[id]
+        model <- c(model, nid)
+        n <- n[-id]
+        mins <- mins[-id]
+        i <- length(model)
+    }
+    
+    if (missing(pc)) 
+        return(list(model = model, test = (1:m)[-model])) else return(list(model = model, test = (1:m)[-model], pc = scores))
+} 

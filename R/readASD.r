@@ -34,7 +34,7 @@
 #' all versions. Please report any bugs to the package maintainer.
 #' @export
 #'
-readASD <- function(fnames, in_format = c("binary", "txt"), out_format = c("matrix","list")) {
+readASD <- function(fnames, in_format = c("binary", "txt"), out_format = c("matrix", "list")) {
     
     format <- match.arg(in_format)
     out_format <- match.arg(out_format)
@@ -67,17 +67,16 @@ readASD <- function(fnames, in_format = c("binary", "txt"), out_format = c("matr
             seek(con, 181)
             DC <- readBin(con, "integer", size = 1)
             if (DC == 1) 
-                VNIRDarkSubtraction <- T 
-            else if (DC == 0) 
-                VNIRDarkSubtraction <- F
-            else
-                VNIRDarkSubtraction <- NA
+                VNIRDarkSubtraction <- T else if (DC == 0) 
+                VNIRDarkSubtraction <- F else VNIRDarkSubtraction <- NA
             
-            # Read the dark spectrum datetime. The date and time are represented as the number of seconds since midnight on 1st January 1970.
+            # Read the dark spectrum datetime. The date and time are represented as the number of seconds since midnight on 1st
+            # January 1970.
             DarkMeasurementsDateTime <- as.POSIXct(readBin(con, "integer", size = 4), origin = "1970-01-01")
             
             # Read the spectrum data type. The type code is in range 0-8.
-            DataType <- c("Raw", "Reflectance", "Radiance", "No_Units", "Irradiance", "QI", "Transmittance", "Unknown", "Absorbance")
+            DataType <- c("Raw", "Reflectance", "Radiance", "No_Units", "Irradiance", "QI", "Transmittance", "Unknown", 
+                "Absorbance")
             seek(con, 186)
             DataType <- DataType[readBin(con, "integer", size = 1) + 1]
             
@@ -146,8 +145,8 @@ readASD <- function(fnames, in_format = c("binary", "txt"), out_format = c("matr
             if (sum(smartDetectorData)) 
                 warning(paste("There appears to be data from a smart detector in the file:", f, "\nThis function does not support importing smart detector data"))
             
-            # Read spectra data. First reads some relevent information from the file header, then builds the wavelength scale and reads the
-            # spectrum data values. If a reference spectrum is also present it will read that too.
+            # Read spectra data. First reads some relevent information from the file header, then builds the wavelength scale and
+            # reads the spectrum data values. If a reference spectrum is also present it will read that too.
             
             # Read the number of channels on the detector.
             seek(con, 204)
@@ -172,21 +171,21 @@ readASD <- function(fnames, in_format = c("binary", "txt"), out_format = c("matr
             seek(con, 418)
             instrumentDynamicRange <- readBin(con, "integer", size = 2)
             
-            # Read the target spectrum.  The 'Indico Version 8 File Format' document specifies that the spectrum starts at byte 485. However
-            # it appears to actually start at byte 484.
+            # Read the target spectrum.  The 'Indico Version 8 File Format' document specifies that the spectrum starts at byte
+            # 485. However it appears to actually start at byte 484.
             seek(con, 484)
-            # The file format appears to have changed with file version and even file pre-processing (raw and ref)
-            # The following code guess the size argument based on the number of channels it should retrieve
-            if(length(readBin(con, dataFormat, n = numberOfChannels)) != numberOfChannels){
-               seek(con, 484)            
-               data <- readBin(con, dataFormat, n = numberOfChannels, size = 4)  
+            # The file format appears to have changed with file version and even file pre-processing (raw and ref) The following
+            # code guess the size argument based on the number of channels it should retrieve
+            if (length(readBin(con, dataFormat, n = numberOfChannels)) != numberOfChannels) {
+                seek(con, 484)
+                data <- readBin(con, dataFormat, n = numberOfChannels, size = 4)
             } else {
-               seek(con, 484)
-               data <- readBin(con, dataFormat, n = numberOfChannels)
+                seek(con, 484)
+                data <- readBin(con, dataFormat, n = numberOfChannels)
             }
             
-            # If any target spectrum data values lie outside the dynamic range of the instrument this probably indicates that something has
-            # gone wrong. This could be due to an incorrect offset or data type when reading the binary file.
+            # If any target spectrum data values lie outside the dynamic range of the instrument this probably indicates that
+            # something has gone wrong. This could be due to an incorrect offset or data type when reading the binary file.
             if (any(abs(data) > 2^instrumentDynamicRange)) 
                 warning(paste("It appears that the spectrum data from the file:", f, "\nwere not read correctly."))
             
@@ -194,42 +193,42 @@ readASD <- function(fnames, in_format = c("binary", "txt"), out_format = c("matr
             normalizedData <- data
             if (DataType == "Raw") {
                 normalizedData[wavelength <= Join1Wavelength] <- data[wavelength <= Join1Wavelength]/VNIRIntegrationTime
-                normalizedData[wavelength > Join1Wavelength & wavelength <= Join2Wavelength] <- data[wavelength > Join1Wavelength & wavelength <= Join2Wavelength] * SWIR1Gain/2048
+                normalizedData[wavelength > Join1Wavelength & wavelength <= Join2Wavelength] <- data[wavelength > Join1Wavelength & 
+                  wavelength <= Join2Wavelength] * SWIR1Gain/2048
                 normalizedData[wavelength > Join2Wavelength] <- data[wavelength > Join2Wavelength] * SWIR2Gain/2048
             }
             # Read the reference spectrum.
             referenceFlag <- readBin(con, "integer", n = 2, size = 1)
-            # The 'Indico Version 8 File Format' documents the reference and spectrum times as well as the spectrum description. However it
-            # is not clear what these data are, or how they are formatted. They are not used here.
+            # The 'Indico Version 8 File Format' documents the reference and spectrum times as well as the spectrum description.
+            # However it is not clear what these data are, or how they are formatted. They are not used here.
             referenceTime <- readBin(con, "integer", n = 8, size = 1)
             spectrumTime <- readBin(con, "integer", n = 8, size = 1)
             descriptionLength <- readBin(con, "integer", size = 2)
             if (as.numeric(FileVersion) < 6) 
-              referenceData <- readBin(con, dataFormat, n = numberOfChannels, size = 4) 
-            else if (as.numeric(FileVersion) < 7) 
-              referenceData <- readBin(con, dataFormat, n = numberOfChannels)
-            else # it seems that for version > 7 the two first data points are wrong!
-              referenceData <- readBin(con, dataFormat, n = numberOfChannels+2)[-c(1:2)]
+                referenceData <- readBin(con, dataFormat, n = numberOfChannels, size = 4) else if (as.numeric(FileVersion) < 7) 
+                referenceData <- readBin(con, dataFormat, n = numberOfChannels) else referenceData <- readBin(con, dataFormat, n = numberOfChannels + 2)[-c(1:2)]  # it seems that for version > 7 the two first data points are wrong!
             
             # Normalize the reference spectrum
             normalizedReferenceData <- referenceData
             if (DataType == "Raw") {
-              normalizedReferenceData[wavelength <= Join1Wavelength] <- referenceData[wavelength <= Join1Wavelength]/VNIRIntegrationTime
-              normalizedReferenceData[wavelength > Join1Wavelength & wavelength <= Join2Wavelength] <- referenceData[wavelength > 
-                Join1Wavelength & wavelength <= Join2Wavelength] * SWIR1Gain/2048
-              normalizedReferenceData[wavelength > Join2Wavelength] <- referenceData[wavelength > Join2Wavelength] * SWIR2Gain/2048
+                normalizedReferenceData[wavelength <= Join1Wavelength] <- referenceData[wavelength <= Join1Wavelength]/VNIRIntegrationTime
+                normalizedReferenceData[wavelength > Join1Wavelength & wavelength <= Join2Wavelength] <- referenceData[wavelength > 
+                  Join1Wavelength & wavelength <= Join2Wavelength] * SWIR1Gain/2048
+                normalizedReferenceData[wavelength > Join2Wavelength] <- referenceData[wavelength > Join2Wavelength] * 
+                  SWIR2Gain/2048
             }
             # Collect reference data into a list
             reference <- normalizedReferenceData
-           
+            
             # Collect header information into a list
             H <- list(name = Name, Comments = Comments, ProgramVersion = ProgramVersion, FileVersion = FileVersion, InstrumentSerialNumber = InstrumentSerialNumber, 
                 DataType = DataType, GPS = list(latitude = latitude, longitude = longitude, altitude = altitude), VNIRIntegrationTime = VNIRIntegrationTime, 
                 VNIRIntegrationTimeUnits = VNIRIntegrationTimeUnits, ForeOptic = ForeOptic, VNIRDarkSubtraction = VNIRDarkSubtraction, 
-                DarkMeasurementsDateTime = DarkMeasurementsDateTime, DarkCurrentCorrectionValue = DarkCurrentCorrectionValue, WhiteReferenceMeasurementsDateTime = WhiteReferenceMeasurementsDateTime, 
-                DarkCurrentAveraging = DarkCurrentAveraging, WhiteReferenceAveraging = WhiteReferenceAveraging, Averaging = Averaging, 
-                SWIR1Gain = SWIR1Gain, SWIR2Gain = SWIR2Gain, SWIR1Offset = SWIR1Offset, SWIR2Offset = SWIR2Offset, Join1Wavelength = Join1Wavelength, 
-                Join1WavelengthUnits = Join1WavelengthUnits, Join2Wavelength = Join2Wavelength, Join2WavelengthUnits = Join2WavelengthUnits)
+                DarkMeasurementsDateTime = DarkMeasurementsDateTime, DarkCurrentCorrectionValue = DarkCurrentCorrectionValue, 
+                WhiteReferenceMeasurementsDateTime = WhiteReferenceMeasurementsDateTime, DarkCurrentAveraging = DarkCurrentAveraging, 
+                WhiteReferenceAveraging = WhiteReferenceAveraging, Averaging = Averaging, SWIR1Gain = SWIR1Gain, SWIR2Gain = SWIR2Gain, 
+                SWIR1Offset = SWIR1Offset, SWIR2Offset = SWIR2Offset, Join1Wavelength = Join1Wavelength, Join1WavelengthUnits = Join1WavelengthUnits, 
+                Join2Wavelength = Join2Wavelength, Join2WavelengthUnits = Join2WavelengthUnits)
             
             # Collect spectral data and header into a single list
             target <- normalizedData
@@ -247,8 +246,7 @@ readASD <- function(fnames, in_format = c("binary", "txt"), out_format = c("matr
             data <- read.table(f, sep = sep, skip = max(pos - 1, 1), dec = ".", header = T)
             
             if (pos > 2) {
-                # Check if there is a header or not
-                # Check that the file is actually an FieldSpec text file.
+                # Check if there is a header or not Check that the file is actually an FieldSpec text file.
                 if (!any(grepl("ASD spectrum file", fileRaw[1:(pos - 1)]))) 
                   stop(paste("The file:", f, "\nwas not a recognized Analytical Spectral Devices text file."))
                 
@@ -256,21 +254,24 @@ readASD <- function(fnames, in_format = c("binary", "txt"), out_format = c("matr
                 fhead <- fileRaw[1:(pos - 1)]
                 if (any(grepl("Spectrum file is raw data", fhead))) {
                   DataType <- "Raw"
-                } else if (any(grepl("Spectrum file is reflectance data",fhead))) {
+                } else if (any(grepl("Spectrum file is reflectance data", fhead))) {
                   DataType <- "Reflectance"
                 } else {
                   DataType <- "Unknown"
                 }
                 Comments <- fhead[(grep("--------", fhead) + 1)]
-                InstrumentSerialNumber <- sub(".+instrument number.+ ([[:digit:]].+)", "\\1", fhead[grep("instrument number", fhead)])  #...serial number is not necessarily numeric as it sometimes contains a forward slash character.
-                ProgramVersion <- sub(".+file version = ([[:digit:]]+\\.[[:digit:]]+).+", "\\1", fhead[grep("file version", fhead)])
+                InstrumentSerialNumber <- sub(".+instrument number.+ ([[:digit:]].+)", "\\1", fhead[grep("instrument number", 
+                  fhead)])  #...serial number is not necessarily numeric as it sometimes contains a forward slash character.
+                ProgramVersion <- sub(".+file version = ([[:digit:]]+\\.[[:digit:]]+).+", "\\1", fhead[grep("file version", 
+                  fhead)])
                 FileVersion <- sub(".+Program version = ([[:digit:]]+\\.[[:digit:]]+).+", "\\1", fhead[grep("Program version", 
                   fhead)])
                 dateString1 <- sub(".+ ([[:digit:]]+)/([[:digit:]]+)/([[:digit:]]+) .+", "\\1-\\2", fhead[grep("Spectrum saved", 
                   fhead)])
-                dateString2 <- as.character(as.numeric(sub(".+ ([[:digit:]]+)/([[:digit:]]+)/([[:digit:]]+) .+", "\\3", fhead[grep("Spectrum saved", 
-                  fhead)])) + 1900)  # Years begin in 1900
-                timeString <- sub(".+at ([[:digit:]]+:[[:digit:]]+:[[:digit:]]+)", "\\1", fhead[grep("Spectrum saved", fhead)])
+                dateString2 <- as.character(as.numeric(sub(".+ ([[:digit:]]+)/([[:digit:]]+)/([[:digit:]]+) .+", "\\3", 
+                  fhead[grep("Spectrum saved", fhead)])) + 1900)  # Years begin in 1900
+                timeString <- sub(".+at ([[:digit:]]+:[[:digit:]]+:[[:digit:]]+)", "\\1", fhead[grep("Spectrum saved", 
+                  fhead)])
                 DateTime <- as.POSIXlt(paste(dateString1, "-", dateString2, " ", timeString, sep = ""), format = "%m-%d-%Y %H:%M:%S")
                 Averaging <- as.numeric(sub(".+ ([[:digit:]]+).+", "\\1", fhead[grep("samples per data value", fhead)]))
                 VNIRIntegrationTime <- as.numeric(sub(".+ ([[:digit:]]+)", "\\1", fhead[grep("VNIR integration", fhead)]))
@@ -285,7 +286,8 @@ readASD <- function(fnames, in_format = c("binary", "txt"), out_format = c("matr
                 Join2WavelengthUnits <- "nm"
                 if (any(grepl("VNIR dark signal subtracted", fhead))) {
                   VNIRDarkSubtraction <- T
-                  DarkCurrentAveraging <- as.numeric(sub("([[:digit:]]+) dark meas.+", "\\1", fhead[grep("dark meas", fhead)]))
+                  DarkCurrentAveraging <- as.numeric(sub("([[:digit:]]+) dark meas.+", "\\1", fhead[grep("dark meas", 
+                    fhead)]))
                   DarkDateTimeString <- sub(".+dark measurements taken (.+)", "\\1", fhead[grep("dark meas", fhead)])
                   DarkMeasurementsDateTime <- as.POSIXlt(DarkDateTimeString, format = "%a %B %d %H:%M:%S %Y")  #...a very odd way to write the date!
                   DarkCurrentCorrectionValue <- as.numeric(sub("DCC value was ([[:digit:]]+)", "\\1", fhead[grep("DCC value was", 
@@ -298,8 +300,10 @@ readASD <- function(fnames, in_format = c("binary", "txt"), out_format = c("matr
                 }
                 if (any(grepl("Data is compared to a white reference", fhead))) {
                   WhiteReferenceMode <- T
-                  WhiteReferenceAveraging <- as.numeric(sub("([[:digit:]]+) white meas.+", "\\1", fhead[grep("white meas", fhead)]))
-                  WhiteReferenceDateTimeString <- sub(".+white measurements taken (.+)", "\\1", fhead[grep("white meas", fhead)])
+                  WhiteReferenceAveraging <- as.numeric(sub("([[:digit:]]+) white meas.+", "\\1", fhead[grep("white meas", 
+                    fhead)]))
+                  WhiteReferenceDateTimeString <- sub(".+white measurements taken (.+)", "\\1", fhead[grep("white meas", 
+                    fhead)])
                   WhiteReferenceMeasurementsDateTime <- as.POSIXlt(WhiteReferenceDateTimeString, format = "%a %B %d %H:%M:%S %Y")  #...a very odd way to write the date!
                 } else {
                   WhiteReferenceMode <- F
@@ -310,7 +314,8 @@ readASD <- function(fnames, in_format = c("binary", "txt"), out_format = c("matr
                 if (any(grep("There was no foreoptic attached", fhead))) {
                   ForeOptic <- "None"
                 } else {
-                  ForeOptic <- as.numeric(sub("There was a ([[:digit:]]+).+", "\\1", fhead[grep("foreoptic attached", fhead)]))
+                  ForeOptic <- as.numeric(sub("There was a ([[:digit:]]+).+", "\\1", fhead[grep("foreoptic attached", 
+                    fhead)]))
                 }
                 
                 latitude <- as.numeric(sub(".+([[:digit:]]+)", "\\1", fhead[grep("GPS-Lat", fhead)]))
@@ -318,20 +323,20 @@ readASD <- function(fnames, in_format = c("binary", "txt"), out_format = c("matr
                 altitude <- as.numeric(sub(".+([[:digit:]]+)", "\\1", fhead[grep("GPS-Alt", fhead)]))
                 
                 # Collect header information into a list
-                H <- list(name = Name, Comments = Comments, ProgramVersion = ProgramVersion, FileVersion = FileVersion, InstrumentSerialNumber = InstrumentSerialNumber, 
-                  DataType = DataType, GPS = list(latitude = latitude, longitude = longitude, altitude = altitude), VNIRIntegrationTime = VNIRIntegrationTime, 
-                  VNIRIntegrationTimeUnits = VNIRIntegrationTimeUnits, ForeOptic = ForeOptic, VNIRDarkSubtraction = VNIRDarkSubtraction, 
-                  DarkMeasurementsDateTime = DarkMeasurementsDateTime, DarkCurrentCorrectionValue = DarkCurrentCorrectionValue, WhiteReferenceMode = WhiteReferenceMode, 
-                  WhiteReferenceMeasurementsDateTime = WhiteReferenceMeasurementsDateTime, DarkCurrentAveraging = DarkCurrentAveraging, 
-                  WhiteReferenceAveraging = WhiteReferenceAveraging, Averaging = Averaging, SWIR1Gain = SWIR1Gain, SWIR2Gain = SWIR2Gain, 
-                  SWIR1Offset = SWIR1Offset, SWIR2Offset = SWIR2Offset, Join1Wavelength = Join1Wavelength, Join1WavelengthUnits = Join1WavelengthUnits, 
-                  Join2Wavelength = Join2Wavelength, Join2WavelengthUnits = Join2WavelengthUnits)
+                H <- list(name = Name, Comments = Comments, ProgramVersion = ProgramVersion, FileVersion = FileVersion, 
+                  InstrumentSerialNumber = InstrumentSerialNumber, DataType = DataType, GPS = list(latitude = latitude, 
+                    longitude = longitude, altitude = altitude), VNIRIntegrationTime = VNIRIntegrationTime, VNIRIntegrationTimeUnits = VNIRIntegrationTimeUnits, 
+                  ForeOptic = ForeOptic, VNIRDarkSubtraction = VNIRDarkSubtraction, DarkMeasurementsDateTime = DarkMeasurementsDateTime, 
+                  DarkCurrentCorrectionValue = DarkCurrentCorrectionValue, WhiteReferenceMode = WhiteReferenceMode, WhiteReferenceMeasurementsDateTime = WhiteReferenceMeasurementsDateTime, 
+                  DarkCurrentAveraging = DarkCurrentAveraging, WhiteReferenceAveraging = WhiteReferenceAveraging, Averaging = Averaging, 
+                  SWIR1Gain = SWIR1Gain, SWIR2Gain = SWIR2Gain, SWIR1Offset = SWIR1Offset, SWIR2Offset = SWIR2Offset, Join1Wavelength = Join1Wavelength, 
+                  Join1WavelengthUnits = Join1WavelengthUnits, Join2Wavelength = Join2Wavelength, Join2WavelengthUnits = Join2WavelengthUnits)
                 
                 # NORMALISE DATA if applicable
                 # 
-                # if DataType != 'Reflectance', data from ASD FieldSpec 3 and FieldSpec Pro spectroradiometers needs to be normalized by the
-                # detectors gains or integration times. The normalization method is described in the 'Guidelines for the FSF Post Processing
-                # Toolbox' (Matlab).
+                # if DataType != 'Reflectance', data from ASD FieldSpec 3 and FieldSpec Pro spectroradiometers needs to be normalized
+                # by the detectors gains or integration times. The normalization method is described in the 'Guidelines for the FSF
+                # Post Processing Toolbox' (Matlab).
                 normalizedData <- data[, 2]
                 if (DataType == "Raw") {
                   normalizedData[wavelength <= Join1Wavelength] <- data[wavelength <= Join1Wavelength]/VNIRIntegrationTime
@@ -351,23 +356,22 @@ readASD <- function(fnames, in_format = c("binary", "txt"), out_format = c("matr
             wavelength <- data[, 1]
         }
         # Copy data into a list
-        if (length(reference)){
+        if (length(reference)) {
             reflectance <- target
             reflectance <- reflectance/reference
             spc[[i]] <- list(name = Name, datetime = DateTime, header = H, radiance = target, reference = reference, reflectance = reflectance, 
                 wavelength = wavelength)
         } else {
-            if(pos<=2 & in_format == "txt")
-              spc[[i]] <- list(name = Name, reflectance = target, reference = "Missing reference spectrum", wavelength = wavelength)
-            else
-              spc[[i]] <- list(name = Name, datetime = DateTime, header = H, reflectance = target, reference = "Missing reference spectrum", wavelength = wavelength)
+            if (pos <= 2 & in_format == "txt") 
+                spc[[i]] <- list(name = Name, reflectance = target, reference = "Missing reference spectrum", wavelength = wavelength) else spc[[i]] <- list(name = Name, datetime = DateTime, header = H, reflectance = target, reference = "Missing reference spectrum", 
+                wavelength = wavelength)
         }
         i <- i + 1
     }
     names(spc) <- sub(".+/(.+)", "\\1", fnames)
-    if(out_format=="matrix"){
-      spc <- do.call(rbind,lapply(spc,function(x)x$reflectance))
-      colnames(spc) <- wavelength
+    if (out_format == "matrix") {
+        spc <- do.call(rbind, lapply(spc, function(x) x$reflectance))
+        colnames(spc) <- wavelength
     }
     return(spc)
 } 

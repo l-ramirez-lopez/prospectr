@@ -13,11 +13,11 @@
 #' spc <- 1/10^NIRsoil$spc # conversion to reflectance
 #' opar <- par(no.readonly = TRUE)
 #' par(mfrow=c(2,1),mar=c(4,4,2,2))
-#' matplot(wav,t(spc[1:10,]),type="l",xlab="",ylab="Reflectance") # plot of the 10 first spectra
-#' mtext("Raw spectra")
+#' matplot(wav,t(spc[1:10,]),type='l',xlab='',ylab='Reflectance') # plot of the 10 first spectra
+#' mtext('Raw spectra')
 #' det <- detrend(spc,wav)
-#' matplot(wav,t(det[1:10,]),type="l",xlab="Wavelength /nm",ylab="Reflectance") 
-#' mtext("Detrend spectra")
+#' matplot(wav,t(det[1:10,]),type='l',xlab='Wavelength /nm',ylab='Reflectance') 
+#' mtext('Detrend spectra')
 #' par(opar)
 #' @details The detrend is a row-wise transformation that allows to correct for wavelength-dependent 
 #' scattering effects (variations in curvilinearity). A second-degree polynomial is fit through each spectrum:
@@ -32,33 +32,32 @@
 #'
 detrend <- function(X, wav) {
     
-    if(missing(wav))
+    if (missing(wav)) 
         stop("argument wav should be specified")
-  
+    
     if (is.data.frame(X)) 
         X <- as.matrix(X)
     
     was.vec <- is.vector(X)
     
-    if (is.vector(X)){
-         nms <- names(X)
-         X <- matrix(X,ncol=length(X))        
+    if (is.vector(X)) {
+        nms <- names(X)
+        X <- matrix(X, ncol = length(X))
     }
     
-    xpoly <- stats:::poly(wav,2)
+    xpoly <- stats:::poly(wav, 2)
     # SNV transformation
     X <- sweep(X, 1, rowMeans(X), "-")
     X <- sweep(X, 1, apply(X, 1, sd), "/")
     
-    # get the residuals
-    ##output <- t(apply(X, 1, function(y) lm.fit(x= xpoly,y)$residuals))
-    output <- residLm(X,xpoly) # using Rcpp ...
+    # get the residuals output <- t(apply(X, 1, function(y) lm.fit(x= xpoly,y)$residuals))
+    output <- residLm(X, xpoly)  # using Rcpp ...
     
-    if(was.vec) {
+    if (was.vec) {
         output <- as.vector(output)
         names(output) <- nms
-    } else {       
-        dimnames(output) <- list(rownames(X),colnames(X))
+    } else {
+        dimnames(output) <- list(rownames(X), colnames(X))
     }
     return(output)
 } 

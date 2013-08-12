@@ -9,18 +9,18 @@
 #' @author Antoine Stevens
 #' @return a \code{list} with components:
 #' \itemize{
-#'  \item{"\code{model}"}{ numeric \code{vector} giving the row indices of the input data selected for calibration}
-#'  \item{"\code{test}"}{ numeric \code{vector} giving the row indices of the remaining observations}
-#'  \item{"\code{bands}"}{ indices of the columns used during the selection procedure}
+#'  \item{'\code{model}'}{ numeric \code{vector} giving the row indices of the input data selected for calibration}
+#'  \item{'\code{test}'}{ numeric \code{vector} giving the row indices of the remaining observations}
+#'  \item{'\code{bands}'}{ indices of the columns used during the selection procedure}
 #' }
 #' @examples
 #' data(NIRsoil)
-#' sel <- honigs(NIRsoil$spc,k=10,type="A")
+#' sel <- honigs(NIRsoil$spc,k=10,type='A')
 #' wav <- as.numeric(colnames(NIRsoil$spc))
 #' # spectral library
-#' matplot(wav,t(NIRsoil$spc),type="l",xlab="wavelength /nm",ylab="Abs",col="grey50")
+#' matplot(wav,t(NIRsoil$spc),type='l',xlab='wavelength /nm',ylab='Abs',col='grey50')
 #' # plot calibration spectra
-#' matlines(wav,t(NIRsoil$spc[sel$model,]),type="l",xlab="wavelength /nm",ylab="Abs",lwd=2,lty=1)
+#' matlines(wav,t(NIRsoil$spc[sel$model,]),type='l',xlab='wavelength /nm',ylab='Abs',lwd=2,lty=1)
 #' # add bands used during the selection process 
 #' abline(v=wav[sel$bands])
 #' @details 
@@ -49,51 +49,50 @@
 #' @seealso \code{\link{kenStone}}, \code{\link{naes}}, \code{\link{duplex}}, \code{\link{shenkWest}}
 #' @export
 #' 
-honigs <- function(X,k,type=c("A","R","CR")){
-  
-  if(missing(k))
-    stop("'k' must be specified")
-  if(k<2)
-    stop("'k' should be higher than 2")
-  if(ncol(X)<2)
-    stop("'X' must have at least 2 columns")
-  if (k >= nrow(X)| k>=ncol(X))
-    stop("'k' should be lower than nrow(X) or ncol(X)")
-  if (is.data.frame(X)) 
-    X <- as.matrix(X)    
+honigs <- function(X, k, type = c("A", "R", "CR")) {
     
-  type <- match.arg(type)
-  if(type=="CR")
-    X <- 1-X
-  if(type=="R")  # conversion to absorbance
-    X <- - log10(X)
-  
-  
-  n <- nini <- 1:nrow(X)
-  p <-  1:ncol(X) 
-  model <- rep(NA,k)
-  psel <- rep(NA,k)
-  #pdf("test.pdf")
-  for(i in seq_along(model)){    
-    aX <- abs(X)
-    maxx <- max(aX)
-    idx <- c(which(aX==maxx,arr.ind=T))
-    model[i] <- n[idx[1]]
-    psel[i] <- p[idx[2]]
-    n <- n[-idx[1]]
-    weight <- X[,idx[2]]/X[idx[1],idx[2]]   # weighting factor
-    x <- t(X[idx[1],] %o% weight) 
+    if (missing(k)) 
+        stop("'k' must be specified")
+    if (k < 2) 
+        stop("'k' should be higher than 2")
+    if (ncol(X) < 2) 
+        stop("'X' must have at least 2 columns")
+    if (k >= nrow(X) | k >= ncol(X)) 
+        stop("'k' should be lower than nrow(X) or ncol(X)")
+    if (is.data.frame(X)) 
+        X <- as.matrix(X)
     
-    #matplot(t(X),type="l")
-    #lines(X[idx[1]],col=0,cex=1)
-    #abline(v=p[idx[2]])
+    type <- match.arg(type)
+    if (type == "CR") 
+        X <- 1 - X
+    # conversion to absorbance
+    if (type == "R") 
+        X <- -log10(X)
     
-    X <- X-x  # substraction        
-    p <- p[-idx[2]] 
-    X <- X[-idx[1],-idx[2]]
-
-  }
-  model <- model[!is.na(model)]
-  psel <- psel[!is.na(psel)]
-  return(list(model=model,test = nini[-model],bands=psel))
-}
+    
+    n <- nini <- 1:nrow(X)
+    p <- 1:ncol(X)
+    model <- rep(NA, k)
+    psel <- rep(NA, k)
+    # pdf('test.pdf')
+    for (i in seq_along(model)) {
+        aX <- abs(X)
+        maxx <- max(aX)
+        idx <- c(which(aX == maxx, arr.ind = T))
+        model[i] <- n[idx[1]]
+        psel[i] <- p[idx[2]]
+        n <- n[-idx[1]]
+        weight <- X[, idx[2]]/X[idx[1], idx[2]]  # weighting factor
+        x <- t(X[idx[1], ] %o% weight)
+        
+        # matplot(t(X),type='l') lines(X[idx[1]],col=0,cex=1) abline(v=p[idx[2]])
+        
+        X <- X - x  # substraction        
+        p <- p[-idx[2]]
+        X <- X[-idx[1], -idx[2]]
+        
+    }
+    model <- model[!is.na(model)]
+    psel <- psel[!is.na(psel)]
+    return(list(model = model, test = nini[-model], bands = psel))
+} 

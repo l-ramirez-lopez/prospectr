@@ -20,17 +20,17 @@
 #' opar <- par(no.readonly = TRUE)
 #' par(mfrow=c(2,2),mar=c(4,4,2,2))
 #' # plot of the 10 first spectra
-#' matplot(as.numeric(colnames(spc)),t(spc[1:10,]),type="l",xlab="",ylab="Reflectance") 
-#' mtext("Raw spectra")
+#' matplot(as.numeric(colnames(spc)),t(spc[1:10,]),type='l',xlab='',ylab='Reflectance') 
+#' mtext('Raw spectra')
 #' der <- gapDer(spc,m=1,w=1,s = 1,delta.wav=2)
-#' matplot(as.numeric(colnames(der)),t(der[1:10,]),type="l",xlab="Wavelength /nm",ylab="gap derivative") 
-#' mtext("1st derivative spectra")
+#' matplot(as.numeric(colnames(der)),t(der[1:10,]),type='l',xlab='Wavelength /nm',ylab='gap derivative') 
+#' mtext('1st derivative spectra')
 #' der <- gapDer(spc,m=1,w=11,s = 1,delta.wav=2)
-#' matplot(as.numeric(colnames(der)),t(der[1:10,]),type="l",xlab="Wavelength /nm",ylab="gap derivative") 
-#' mtext("1st derivative spectra with a window size = 11 nm")
+#' matplot(as.numeric(colnames(der)),t(der[1:10,]),type='l',xlab='Wavelength /nm',ylab='gap derivative') 
+#' mtext('1st derivative spectra with a window size = 11 nm')
 #' der <- gapDer(spc,m=1,w=11,s = 10,delta.wav=2)
-#' matplot(as.numeric(colnames(der)),t(der[1:10,]),type="l",xlab="Wavelength /nm",ylab="gap derivative") 
-#' mtext("1st derivative spectra with a window size = 11 nm, smoothing of 10 nm")
+#' matplot(as.numeric(colnames(der)),t(der[1:10,]),type='l',xlab='Wavelength /nm',ylab='gap derivative') 
+#' mtext('1st derivative spectra with a window size = 11 nm, smoothing of 10 nm')
 #' par(opar)
 
 #' @references Hopkins (2002). NIR News 14(5), 10.
@@ -68,23 +68,23 @@ gapDer <- function(X, m = 1, w = 1, s = 1, delta.wav) {
     nf <- 1/nmr * sum((j^m) * fp)
     f <- fp/nf  # filter
     
-    if(is.matrix(X)){
-      if (w >= ncol(X)) 
-        stop("filter length w should be lower than ncol(X)")
-      output <- convCppM(X, f)  # Convolution
-      g <- (length(f) - 1)/2
-      colnames(output) <- colnames(X)[(g + 1):(ncol(X) - g)]
-      rownames(output) <- rownames(X)
+    if (is.matrix(X)) {
+        if (w >= ncol(X)) 
+            stop("filter length w should be lower than ncol(X)")
+        output <- convCppM(X, f)  # Convolution
+        g <- (length(f) - 1)/2
+        colnames(output) <- colnames(X)[(g + 1):(ncol(X) - g)]
+        rownames(output) <- rownames(X)
     }
     
-    if(is.vector(X)){
-      if (w >= length(X)) 
-        stop("filter length w should be lower than length(X)")
-      output <- convCppV(X, f)  # Convolution
-      g <- (w - 1)/2
-      names(output) <- names(X)[((g + 1):(length(X) - g))]
-    }   
-  
+    if (is.vector(X)) {
+        if (w >= length(X)) 
+            stop("filter length w should be lower than length(X)")
+        output <- convCppV(X, f)  # Convolution
+        g <- (w - 1)/2
+        names(output) <- names(X)[((g + 1):(length(X) - g))]
+    }
+    
     if (!missing(delta.wav)) 
         output <- output/delta.wav^m
     

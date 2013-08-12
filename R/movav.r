@@ -12,7 +12,7 @@
 #' wav <- as.numeric(colnames(NIRsoil$spc))
 #' spc <- 1/10^NIRsoil$spc # conversion to reflectance
 #' spc <- spc + rnorm(length(spc),0,0.001) # adding some noise
-#' matplot(wav,t(spc[1:10,]),type="l",xlab="Wavelength /nm",ylab="Reflectance")
+#' matplot(wav,t(spc[1:10,]),type='l',xlab='Wavelength /nm',ylab='Reflectance')
 #' mov <- movav(spc,w=11) # window size of 11 bands
 #' matlines(as.numeric(colnames(mov)),t(mov[1:10,])) # smoothed data
 #' @return a \code{matrix} or \code{vector} with the filtered signal(s)
@@ -32,22 +32,22 @@ movav <- function(X, w) {
     
     f <- rep(1, w)/w  # filter
     
-    if(is.matrix(X)){
-      if (w >= ncol(X)) 
-        stop("filter length w should be lower than ncol(X)")
-      output <- convCppM(X, f)  # Convolution
-      g <- ceiling((w - 1)/2)
-      colnames(output) <- colnames(X)[((g + w%%2):(ncol(X) - g))]
-      rownames(output) <- rownames(X)
+    if (is.matrix(X)) {
+        if (w >= ncol(X)) 
+            stop("filter length w should be lower than ncol(X)")
+        output <- convCppM(X, f)  # Convolution
+        g <- ceiling((w - 1)/2)
+        colnames(output) <- colnames(X)[((g + w%%2):(ncol(X) - g))]
+        rownames(output) <- rownames(X)
     }
     
-    if(is.vector(X)){
-      if (w >= length(X)) 
-        stop("filter length w should be lower than length(X)")
-      output <- convCppV(X, f)  # Convolution
-      g <- (w - 1)/2
-      names(output) <- names(X)[((g + w%%2):(length(X) - g))]
-    }    
+    if (is.vector(X)) {
+        if (w >= length(X)) 
+            stop("filter length w should be lower than length(X)")
+        output <- convCppV(X, f)  # Convolution
+        g <- (w - 1)/2
+        names(output) <- names(X)[((g + w%%2):(length(X) - g))]
+    }
     
     return(output)
 } 

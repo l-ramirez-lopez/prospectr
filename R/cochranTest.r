@@ -10,8 +10,8 @@
 #' @author Antoine Stevens
 #' @return a \code{list} with components:
 #' \itemize{
-#'  \item{"\code{X}"}{ input \code{matrix} from which outlying observations (rows) have been removed}
-#'  \item{"\code{outliers}"}{ numeric \code{vector} giving the row indices of the input data that have been flagged as outliers}
+#'  \item{'\code{X}'}{ input \code{matrix} from which outlying observations (rows) have been removed}
+#'  \item{'\code{outliers}'}{ numeric \code{vector} giving the row indices of the input data that have been flagged as outliers}
 #' }
 #' @details 
 #' The Cochran \emph{C} test is test whether a single estimate of variance is significantly larger than a a group of variances.

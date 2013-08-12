@@ -17,11 +17,11 @@
 #' Analysis. Default set to FALSE.
 #' @return a \code{list} with components:
 #' \itemize{
-#'  \item{"\code{model}"}{ numeric \code{vector} giving the row indices of the input data selected for calibration}
-#'  \item{"\code{test}"}{ numeric \code{vector} giving the row indices of the remaining observations}
-#'  \item{"\code{pc}"}{ if the \code{pc} argument is specified, a numeric \code{matrix} of the scaled pc scores}
-#'  \item{"\code{cluster}"}{ integer vector indicating the cluster to which each point was assigned}
-#'  \item{"\code{centers}"}{ a \code{matrix} of cluster centres}
+#'  \item{'\code{model}'}{ numeric \code{vector} giving the row indices of the input data selected for calibration}
+#'  \item{'\code{test}'}{ numeric \code{vector} giving the row indices of the remaining observations}
+#'  \item{'\code{pc}'}{ if the \code{pc} argument is specified, a numeric \code{matrix} of the scaled pc scores}
+#'  \item{'\code{cluster}'}{ integer vector indicating the cluster to which each point was assigned}
+#'  \item{'\code{centers}'}{ a \code{matrix} of cluster centres}
 #' }
 #' @details K-means sampling is a simple procedure based on cluster analysis to select calibration samples from large multivariate datasets.
 #' The method can be described in three points (Naes et al.,2001):
@@ -49,66 +49,62 @@
 #' @seealso \code{\link{kenStone}}, \code{\link{honigs}}, \code{\link{duplex}}, \code{\link{shenkWest}}
 #' @export
 
-naes <- function(X, k, pc, iter.max = 10, method = 0,.center=TRUE,.scale=FALSE){
+naes <- function(X, k, pc, iter.max = 10, method = 0, .center = TRUE, .scale = FALSE) {
     
-  if(is.data.frame(X))
-    X <- as.matrix(X)  
-  if(missing(k))
-    stop("'k' must be a number or matrix")
-  
-  if(ncol(X)<2)
-    stop("'X' must have at least 2 columns")  
-  
-  if(!method %in% 0:2)
-    stop("'method' should be 0, 1 or 2")
-  
-  if(!missing(pc)){
-    pca <- prcomp(X,center=.center,scale=.scale)
-    if(pc<1){
-      pvar<- pca$sdev^2/sum(pca$sdev^2) 
-      pcsum <- cumsum(pvar)<pc
-      if(any(pcsum))
-        pc <- max(which(pcsum))+1
-      else 
-        pc <- 1
-    } 
-      X <- sweep(pca$x[,1:pc,drop=F],2,pca$sdev[1:pc],"/")      # scaling of the scores
-  }
-  
-  if(length(k)>1){
-    if(ncol(k)!=ncol(X))
-      stop("number of columns in 'k' must be equal to the number of columns in 'X'")
-    n <- nrow(k)
-  } else {
-    if(k<2)
-      stop("'k' has to be higher than 2")
-    if (k >= nrow(X))
-      stop("'k' should be lower than nrow(X)")    
-    n <- k
-  }
-  
-  kM <- kmeans(x = X, centers = k, iter.max = iter.max, nstart = 1)    
-  id <- 1:nrow(X) 
-  
-  if(method==0){
-    # select sample within each cluster the closest to the center of the cluster
-    model <- rep(NA,n)
-    for(i in 1:n){
-      idx <- kM$cluster==i
-      d <- fastDistV(X[idx,,drop=F],kM$center[i,],"euclid") # Euclidean distance to the centre of the cluster
-      model[i] <- id[idx][which.min(d)]      
+    if (is.data.frame(X)) 
+        X <- as.matrix(X)
+    if (missing(k)) 
+        stop("'k' must be a number or matrix")
+    
+    if (ncol(X) < 2) 
+        stop("'X' must have at least 2 columns")
+    
+    if (!method %in% 0:2) 
+        stop("'method' should be 0, 1 or 2")
+    
+    if (!missing(pc)) {
+        pca <- prcomp(X, center = .center, scale = .scale)
+        if (pc < 1) {
+            pvar <- pca$sdev^2/sum(pca$sdev^2)
+            pcsum <- cumsum(pvar) < pc
+            if (any(pcsum)) 
+                pc <- max(which(pcsum)) + 1 else pc <- 1
+        }
+        X <- sweep(pca$x[, 1:pc, drop = F], 2, pca$sdev[1:pc], "/")  # scaling of the scores
     }
-  } else if (method==1){
-    # select sample within each cluster the farthest apart from the center of the data
-    d <- fastDistV(X,colMeans(X),"euclid") # Euclidean distance to the centre
-    model <- by(data.frame(id=id,d=d),kM$cluster,function(x)x$id[which.max(x$d)])
-    attributes(model) <- NULL # delete attributes
-  } else { #method==2
-    # random sampling within each cluster
-    model <- tapply(id,kM$cluster,function(x)sample(x,1)) 
-  }  
-  if(missing(pc))  
-    return(list(model = model, test = id[-model], cluster = kM$cluster, centers=kM$centers))  
-  else
-    return(list(model = model, test = id[-model], pc = X, cluster = kM$cluster, centers=kM$centers))  
-}
+    
+    if (length(k) > 1) {
+        if (ncol(k) != ncol(X)) 
+            stop("number of columns in 'k' must be equal to the number of columns in 'X'")
+        n <- nrow(k)
+    } else {
+        if (k < 2) 
+            stop("'k' has to be higher than 2")
+        if (k >= nrow(X)) 
+            stop("'k' should be lower than nrow(X)")
+        n <- k
+    }
+    
+    kM <- kmeans(x = X, centers = k, iter.max = iter.max, nstart = 1)
+    id <- 1:nrow(X)
+    
+    if (method == 0) {
+        # select sample within each cluster the closest to the center of the cluster
+        model <- rep(NA, n)
+        for (i in 1:n) {
+            idx <- kM$cluster == i
+            d <- fastDistV(X[idx, , drop = F], kM$center[i, ], "euclid")  # Euclidean distance to the centre of the cluster
+            model[i] <- id[idx][which.min(d)]
+        }
+    } else if (method == 1) {
+        # select sample within each cluster the farthest apart from the center of the data
+        d <- fastDistV(X, colMeans(X), "euclid")  # Euclidean distance to the centre
+        model <- by(data.frame(id = id, d = d), kM$cluster, function(x) x$id[which.max(x$d)])
+        attributes(model) <- NULL  # delete attributes
+    } else {
+        # method==2 random sampling within each cluster
+        model <- tapply(id, kM$cluster, function(x) sample(x, 1))
+    }
+    if (missing(pc)) 
+        return(list(model = model, test = id[-model], cluster = kM$cluster, centers = kM$centers)) else return(list(model = model, test = id[-model], pc = X, cluster = kM$cluster, centers = kM$centers))
+} 

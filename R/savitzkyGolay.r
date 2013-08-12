@@ -15,11 +15,11 @@
 #' opar <- par(no.readonly = TRUE)
 #' par(mfrow=c(2,1),mar=c(4,4,2,2))
 #' # plot of the 10 first spectra
-#' matplot(as.numeric(colnames(spc)),t(spc[1:10,]),type="l",xlab="",ylab="Reflectance") 
-#' mtext("Raw spectra") 
+#' matplot(as.numeric(colnames(spc)),t(spc[1:10,]),type='l',xlab='',ylab='Reflectance') 
+#' mtext('Raw spectra') 
 #' sg <- savitzkyGolay(X = spc,1,3,11,delta.wav=2)
-#' matplot(as.numeric(colnames(sg)),t(sg[1:10,]),type="l",xlab="Wavelength /nm",ylab="1st derivative") 
-#' mtext("1st derivative spectra")
+#' matplot(as.numeric(colnames(sg)),t(sg[1:10,]),type='l',xlab='Wavelength /nm',ylab='1st derivative') 
+#' mtext('1st derivative spectra')
 #' par(opar)
 #' @details
 #' The Savitzky-Golay algorithm fits a local polynomial regression on the signal. It requires evenly spaced data points.
@@ -40,37 +40,37 @@
 
 savitzkyGolay <- function(X, m, p, w, delta.wav) {
     
-    if (is.data.frame(X))
+    if (is.data.frame(X)) 
         X <- as.matrix(X)
-        
+    
     if (w%%2 != 1) 
         stop("needs an odd filter length w")
     if (p >= w) 
         stop("filter length w should be greater than polynomial order p")
-        
+    
     gap <- (w - 1)/2
     basis <- outer(-gap:gap, 0:p, "^")
-    A <- solve(crossprod(basis, basis),tol=1e-1000) %*% t(basis)
+    A <- solve(crossprod(basis, basis), tol = 0) %*% t(basis)
     
-    if(is.matrix(X)){
-      if (w >= ncol(X)) 
-        stop("filter length w should be lower than ncol(X)")
-      output <- factorial(m) * convCppM(X, A[m + 1, ])
-      g <- (w - 1)/2
-      colnames(output) <- colnames(X)[(g + 1):(ncol(X) - g)]
-      rownames(output) <- rownames(X)
+    if (is.matrix(X)) {
+        if (w >= ncol(X)) 
+            stop("filter length w should be lower than ncol(X)")
+        output <- factorial(m) * convCppM(X, A[m + 1, ])
+        g <- (w - 1)/2
+        colnames(output) <- colnames(X)[(g + 1):(ncol(X) - g)]
+        rownames(output) <- rownames(X)
     }
     
-    if(is.vector(X)){
-      if (w >= length(X)) 
-        stop("filter length w should be lower than length(X)")
-      output <- factorial(m) * convCppV(X, A[m + 1, ])
-      g <- (w - 1)/2
-      names(output) <- names(X)[(g + 1):(length(X) - g)]
-    }   
-    
-    if (!missing(delta.wav)) # scaling
+    if (is.vector(X)) {
+        if (w >= length(X)) 
+            stop("filter length w should be lower than length(X)")
+        output <- factorial(m) * convCppV(X, A[m + 1, ])
+        g <- (w - 1)/2
+        names(output) <- names(X)[(g + 1):(length(X) - g)]
+    }
+    # scaling
+    if (!missing(delta.wav)) 
         output <- output/delta.wav^m
-
+    
     return(output)
 } 
