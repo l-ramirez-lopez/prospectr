@@ -242,7 +242,7 @@ Undesired spectral variations due to light \emph{scatter} effects and variations
 
 \subsubsection{Standard Normal Variate (SNV)}
 
-SNV is another simple way for normalizing spectra that intends to correct for light scatter. It operates row--wise:
+Standard Normal Variate (SNV) is another simple way for normalizing spectra that intends to correct for light scatter. It operates row--wise:
 
 $$ SNV_i = \frac{x_i - \bar{x_i}}{s_i}$$
 
