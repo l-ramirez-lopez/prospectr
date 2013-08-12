@@ -3,21 +3,13 @@
 \title{Convolve}
 \usage{
   convCppM(X, f)
-
-  convCppM(X, f)
 }
 \arguments{
   \item{X}{matrix to convolve}
 
   \item{f}{filter}
-
-  \item{X}{matrix to convolve}
-
-  \item{f}{filter}
 }
 \description{
-  Convolution, written in C++
-
   Convolution, written in C++
 }
 \keyword{internal}
