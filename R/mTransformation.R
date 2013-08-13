@@ -1,6 +1,7 @@
 #' @title A function for transforming a matrix from its Euclidean space to its Mahalanobis space
 #' @examples
 #' # test data
+#' \dontrun{
 #' X <- matrix(rnorm(500),ncol=5)
 #' # Normal way to compute the Mahalanobis distance
 #' md1 <- sqrt(mahalanobis(X, center = colMeans(X), cov = cov(X)))
@@ -17,9 +18,8 @@
 #' X <- NIRsoil$spc
 #' Xm <- e2m(X, sm.method = 'svd')
 #' md2 <- sqrt(rowSums((sweep(Xm, 2, colMeans(Xm), '-'))^2))
-#' \dontrun{
-#' md1 <- sqrt(mahalanobis(X, center = colMeans(X), cov = cov(X))) # does not work
-#' }
+#' 
+#' md1 <- sqrt(mahalanobis(X, center = colMeans(X), cov = cov(X))) # does not work#' 
 #' #Mahalanobis in the PC space
 #' pc <- 20
 #' pca <- prcomp(X, center=TRUE,scale=TRUE)
@@ -28,6 +28,7 @@
 #' md4 <- sqrt(rowSums((sweep(Xm, 2, colMeans(Xm), '-'))^2))
 #' md5 <- sqrt(rowSums((sweep(X2, 2, colMeans(X2), '-'))^2))
 #' md3 <- sqrt(mahalanobis(X, center = colMeans(X), cov = cov(X))) # does work
+#' }
 #' @keywords internal
 e2m <- function(X, sm.method = c("svd", "eigen")) {
     

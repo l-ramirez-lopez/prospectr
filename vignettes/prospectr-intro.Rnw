@@ -2,7 +2,7 @@
 %\VignetteIndexEntry{prospectr: a R package for processing and calibration sampling of vis-NIR spectroscopic data}
 %\VignettePackage{prospectr}
 \documentclass[12pt]{article}
-\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
