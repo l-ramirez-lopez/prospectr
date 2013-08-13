@@ -363,14 +363,9 @@ points(X[ken$model,],col=2,pch=19,cex=1.4) # plot selected points
 <<ken2, fig.cap="Kennard-Stone sampling on the NIRsoil dataset", tidy=FALSE, dpi=300, out.height='10cm', out.width='10cm',fig.align='center'>>=                          
 
 # Test with the NIRsoil dataset
-# one can use the mahalanobis distance
-# The mahalanobis distance is computed by taking the Euclidean distance 
-# in the normalized principal component score space 
-# (see Maesschalck et al. 2000, Chemo. Int. Lab. Syst. 50, 1-18)
-# If the 'pc' argument is set, the Mahalanobis distance will be used
-# The 'pc' argument is the number of pc's retained in the computation of the distance
-# if 'pc' < 1, then it corresponds to a treshold in terms of explained variance
-ken_mahal <- kenStone(X = NIRsoil$spc, k = 20, pc= .999)
+# one can use the mahalanobis distance (metric argument)
+# computed in the pc space (pc argument)
+ken_mahal <- kenStone(X = NIRsoil$spc, k = 20, metric = "mahal", pc = 2)
 # The pc components in the output list stores the pc scores
 plot(ken_mahal$pc[,1],ken_mahal$pc[,2],xlab="PC1",ylab="PC2") 
 # This is the selected points in the pc space
