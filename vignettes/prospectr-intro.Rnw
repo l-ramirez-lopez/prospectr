@@ -29,7 +29,7 @@
   citecolor = {blue},
   urlcolor = {red},
   hyperindex = {true},
-  linktocpage = {true},
+  linktocpage = {true}
 }
 
 \title{An introduction to the \Rpackage{prospectr} package}
@@ -42,7 +42,6 @@
 \date{\today}
 
 \begin{document}
-\SweaveOpts{concordance=TRUE}
 
 \maketitle
 
