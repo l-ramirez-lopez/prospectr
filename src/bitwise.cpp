@@ -1,4 +1,5 @@
 #include <Rcpp.h> 
+
 //' @title bitwise operations 
 //' @description
 //' bitwise operations  in C++

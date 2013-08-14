@@ -28,7 +28,6 @@
   linkcolor = {blue},
   citecolor = {blue},
   urlcolor = {red},
-  hyperindex = {true},
   linktocpage = {true}
 }
 
@@ -472,6 +471,95 @@ abline(v=as.numeric(colnames(NIRsoil$spc))[ho$bands],lty=2)
 @
   
 \bibliographystyle{plain}
-\bibliography{prospectr-intro}
+\begin{thebibliography}{10}
+
+\bibitem{barnes1989}
+R.J. Barnes, M.S. Dhanoa, and S.J. Lister.
+\newblock Standard normal variate transformation and de-trending of
+  near-infrared diffuse reflectance spectra.
+\newblock {\em Applied spectroscopy}, 43(5):772--777, 1989.
+
+\bibitem{clark1984}
+Roger~N. Clark and Ted~L. Roush.
+\newblock Reflectance spectroscopy: Quantitative analysis techniques for remote
+  sensing applications.
+\newblock {\em Journal of Geophysical Research}, 89(B7):PP. 6329--6340, 1984.
+
+\bibitem{eriksson2006}
+Lennart Eriksson, Erik Johansson, Nouna Kettaneh, Johan Trygg, C.~Wikstrom, and
+  Svante Wold.
+\newblock {\em Multi- and Megavariate Data Analysis}.
+\newblock {MKS} Umetrics {AB}, 2006.
+
+\bibitem{fearn2008}
+Tom Fearn.
+\newblock The interaction between standard normal variate and derivatives.
+\newblock {\em {NIR} news}, 19(7):16, 2008.
+
+\bibitem{fearn2010}
+Tom Fearn.
+\newblock Combining other predictors with {NIR} spectra.
+\newblock {\em {NIR} news}, 21(2):13, 2010.
+
+\bibitem{fernandez2008}
+J.~A. Fernandez~Pierna and P.~Dardenne.
+\newblock Soil parameter quantification by {NIRS} as a chemometric challenge at
+  chimiometrie 2006.
+\newblock {\em Chemometrics and Intelligent Laboratory Systems}, 91(1):94--98,
+  2008.
+
+\bibitem{honigs1985}
+D.~E. Honigs, Gary~M. Hieftje, H.~L. Mark, and T.~B. Hirschfeld.
+\newblock Unique-sample selection via near-infrared spectral subtraction.
+\newblock {\em Analytical Chemistry}, 57(12):2299--2303, October 1985.
+
+\bibitem{kennard1969}
+R.~W. Kennard and L.~A. Stone.
+\newblock Computer aided design of experiments.
+\newblock {\em Technometrics}, 11(1):137--148, February 1969.
+
+\bibitem{mullen2007}
+Katharine~M. Mullen and Ivo~{HM} van Stokkum.
+\newblock An introduction to the special volume spectroscopy and chemometrics
+  in r.
+\newblock {\em Journal of Statistical Software}, 18(1):1--5, 2007.
+
+\bibitem{naes2002}
+T.~Naes, T.~Isaksson, T.~Fearn, and T.~Davies.
+\newblock {\em A user friendly guide to multivariate calibration and
+  classification}.
+\newblock {NIR} Publications, Chichester, United Kingdom, 2002.
+
+\bibitem{puchwein1988}
+Gerd Puchwein.
+\newblock Selection of calibration samples for near-infrared spectrometry by
+  factor analysis of spectra.
+\newblock {\em Analytical Chemistry}, 60(6):569--573, 1988.
+
+\bibitem{savitzky1964}
+Abraham. Savitzky and M.~J.~E. Golay.
+\newblock Smoothing and differentiation of data by simplified least squares
+  procedures.
+\newblock {\em Anal. Chem.}, 36(8):1627--1639, 1964.
+
+\bibitem{shenk1991}
+J.~S. Shenk and M.~O. Westerhaus.
+\newblock Population definition, sample selection, and calibration procedures
+  for near infrared reflectance spectroscopy.
+\newblock {\em Crop Science}, 31(2):469--474, 1991.
+
+\bibitem{shetty2012}
+Nisha Shetty, Asmund Rinnan, and Rene Gislum.
+\newblock Selection of representative calibration sample sets for near-infrared
+  reflectance spectroscopy to predict nitrogen concentration in grasses.
+\newblock {\em Chemometrics and Intelligent Laboratory Systems}, 111(1):59--65,
+  February 2012.
+
+\bibitem{snee1977}
+R.~D. Snee.
+\newblock Validation of regression models: methods and examples.
+\newblock {\em Technometrics}, 19(4):415--428, 1977.
+
+\end{thebibliography}
 
 \end{document}

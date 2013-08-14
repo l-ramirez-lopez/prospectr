@@ -3,12 +3,11 @@ Type: Package
 Title: Miscellaneous functions for processing and sample selection of vis-NIR
     diffuse reflectance data
 Version: 0.1
-Date: 2013-08-13
+Date: 2013-08-14
 Author: Antoine Stevens and Leonardo Ramirez-Lopez
 Maintainer: Antoine Stevens <antoine.stevens@uclouvain.be>
 Description: The package provides functions for pretreatment and sample
     selection of visible and near infrared diffuse reflectance spectra
-Repository: CRAN
 License: GPL (>=3)
 URL: https://github.com/antoinestevens/prospectr
 VignetteBuilder: knitr
@@ -16,36 +15,35 @@ Suggests:
     hyperSpec,
     knitr
 Depends:
-    Rcpp (>= 0.10.0),
-    RcppArmadillo (>= 0.3.4.4)
-LinkingTo: Rcpp,
-    RcppArmadillo
+    Rcpp (>= 0.10.3),
+    RcppArmadillo (>= 0.3.900.7)
+LinkingTo: Rcpp, RcppArmadillo
 Imports:
     foreach,
     iterators
 Collate:
     'RcppExports.R'
+    'Cul.r'
+    'NIRsoil.r'
+    'binning.r'
     'blockNorm.r'
     'blockScale.r'
     'cochranTest.r'
     'continuumRemoval.r'
     'detrend.r'
-    'puchwein.r'
-    'readASD.r'
-    'savitzkyGolay.r'
-    'spliceCorrection.r'
-    'standardNormalVariate.r'
-    'Cul.r'
-    'binning.r'
     'duplex.r'
     'gapDer.r'
     'honigs.r'
     'kenstone.r'
+    'mTransformation.R'
     'movav.r'
     'naes.r'
+    'prospectrpackage.r'
+    'puchwein.r'
+    'readASD.r'
     'resample.r'
     'resample2.r'
+    'savitzkyGolay.r'
     'shenkWest.r'
-    'prospectrpackage.r'
-    'NIRsoil.r'
-    'mTransformation.R'
+    'spliceCorrection.r'
+    'standardNormalVariate.r'
