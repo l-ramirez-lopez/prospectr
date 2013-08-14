@@ -1,5 +1,6 @@
 #include <RcppArmadillo.h>
 // [[Rcpp::depends(RcppArmadillo)]]
+
 using namespace Rcpp;
 
 //' @title A fast distance algorithm for two matrices written in C++ 
@@ -13,7 +14,6 @@ using namespace Rcpp;
 //' @useDynLib prospectr
 //' @author Antoine Stevens and Leonardo Ramirez-Lopez
 // [[Rcpp::export]]   
-
 arma::mat fastDist(NumericMatrix X, NumericMatrix Y, String method){  
    int nX = X.nrow(), kX = X.ncol(), nY = Y.nrow(), kY = Y.ncol();
    arma::mat XX(X.begin(), nX, kX, false); // reuses memory and avoids extra copy
@@ -45,7 +45,6 @@ arma::mat fastDist(NumericMatrix X, NumericMatrix Y, String method){
 //' @keywords internal 
 //' @useDynLib prospectr
 // [[Rcpp::export]]   
-
 NumericVector fastDistV(NumericMatrix X, NumericVector Y, String method){  
    int nX = X.nrow(), kX = X.ncol(),  kY = Y.size();
    arma::mat XX(X.begin(), nX, kX, false); // reuses memory and avoids extra copy

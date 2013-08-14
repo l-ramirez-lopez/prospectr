@@ -1,5 +1,5 @@
-PKG_LIBS = $(BLAS_LIBS) $(FLIBS) $(LAPACK_LIBS) \
-           $(shell $(R_HOME)/bin${R_ARCH_BIN}/Rscript.exe -e "Rcpp:::LdFlags()")
 
-PKG_CPPFLAGS = -I${R_HOME}/include -I${R_HOME}/library/Rcpp/include \
-               -I${R_HOME}/library/RcppArmadillo/include  -I. -DNDEBUG
+## This assume that we can call Rscript to ask Rcpp about its locations
+## Use the R_HOME indirection to support installations of multiple R version
+PKG_LIBS = $(shell $(R_HOME)/bin${R_ARCH_BIN}/Rscript.exe -e "Rcpp:::LdFlags()") $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
+
