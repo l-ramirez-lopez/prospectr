@@ -45,7 +45,7 @@ detrend <- function(X, wav) {
         X <- matrix(X, ncol = length(X))
     }
     
-    xpoly <- stats:::poly(wav, 2)
+    xpoly <- stats::poly(wav, 2)
     # SNV transformation
     X <- sweep(X, 1, rowMeans(X), "-")
     X <- sweep(X, 1, apply(X, 1, sd), "/")
