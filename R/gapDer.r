@@ -51,6 +51,8 @@ gapDer <- function(X, m = 1, w = 1, s = 1, delta.wav) {
     if (s < 1) 
         stop("s should be  >=1")
     
+    if (is.data.frame(X))
+      X <- as.matrix(X)
     zw <- rep(0, w)
     os <- rep(1, s)
     
