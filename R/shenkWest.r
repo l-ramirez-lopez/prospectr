@@ -65,7 +65,7 @@ shenkWest <- function(X, d.min = 0.6, pc = 0.95, rm.outlier = FALSE, .center = T
         m <- fastDistV(scores, colMeans(scores), "euclid")  # squared mahalanobis distance 
         m <- m/pc  # standardized mahalanobis distance (also called GH, Global H distance)
         idx <- m <= 3
-        scores <- scores[idx, ]  # remove samples with H > 3
+        scores <- scores[idx, ,drop=F]  # remove samples with H > 3
         n <- n[idx]
     }
     
