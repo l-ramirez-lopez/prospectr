@@ -120,14 +120,14 @@ kenStone <- function(X, k, metric = c("mahal", "euclid"), pc, group, .center = T
     ini <- i <- length(model)
     
     while (i < k) {
-        if (i == ini) {
-            # first loop
-            d <- D[model, -model]
-            mins <- do.call(pmin.int, lapply(1:nrow(d), function(i) d[i, ]))
-        } else {
-            d <- rbind(mins, D[nid, -model])
-            mins <- do.call(pmin.int, lapply(1:nrow(d), function(i) d[i, ]))
-        }
+      
+        if (i == ini)             
+            d <- D[model, -model] # first loop
+        else
+          d <- rbind(mins, D[nid, -model])
+        
+        mins <- do.call(pmin.int, lapply(1:nrow(d), function(i) d[i, ]))        
+        
         id <- which.max(mins)
         
         if (!missing(group)) {
