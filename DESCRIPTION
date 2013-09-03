@@ -2,8 +2,8 @@ Package: prospectr
 Type: Package
 Title: Miscellaneous functions for processing and sample selection of vis-NIR
     diffuse reflectance data
-Version: 0.1
-Date: 2013-08-14
+Version: 0.1.1
+Date: 2013-09-03
 Author: Antoine Stevens and Leonardo Ramirez-Lopez
 Maintainer: Antoine Stevens <antoine.stevens@uclouvain.be>
 Description: The package provides functions for pretreatment and sample

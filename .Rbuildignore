@@ -1,2 +1,8 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^README\.md
+.Rhistory
+.gitignore
+prospectr-intro\.html
+prospectr-intro\.bib
+prospectr-intro\.md

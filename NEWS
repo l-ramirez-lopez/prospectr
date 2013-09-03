@@ -1,4 +1,9 @@
+prospectr 0.1.1
+===============
+* bug fix for shenkWest when rm.outlier = T 
+* bug fix for gapDer when input is a data.frame
+
 prospectr 0.1
-==============
+===============
 
 Initial release of the package
