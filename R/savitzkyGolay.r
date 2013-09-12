@@ -47,6 +47,8 @@ savitzkyGolay <- function(X, m, p, w, delta.wav) {
         stop("needs an odd filter length w")
     if (p >= w) 
         stop("filter length w should be greater than polynomial order p")
+    if (p < m)
+        stop("polynomial order p should be geater or equal to differentiation order m")
     
     gap <- (w - 1)/2
     basis <- outer(-gap:gap, 0:p, "^")
