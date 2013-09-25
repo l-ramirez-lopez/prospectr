@@ -5,4 +5,5 @@ src/*.o
 src/*.so
 src/*.dll
 .Rbuildignore
-prospectr.Rproj
+ShinySpec.Rproj
+todo.md
