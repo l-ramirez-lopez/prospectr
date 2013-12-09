@@ -17,7 +17,7 @@ NumericMatrix ResampleCppM(NumericMatrix X, NumericVector wav, NumericVector new
   NumericMatrix output(nX,np);
   
   for(int j = 0; j < np; j++){
-    double sdx = fwhm[j]/(2*sqrt(2*log(2)));
+    double sdx = fwhm[j]/(2*sqrt(2*log((double)2)));
     if(new_wav[j] - (3*sdx) >= min(wav)&&new_wav[j] + (3*sdx) <= max(wav)) { // Bad interpolation
       double sdx2 = 2*pow(sdx,2);
       NumericVector dn = exp(-pow(wav-new_wav[j],2)/sdx2);  //gaussian density
@@ -36,7 +36,7 @@ NumericVector ResampleCppV(NumericVector X, NumericVector wav, NumericVector new
   NumericVector output(np);
   
   for(int i = 0; i < np; i++){
-    double sdx = fwhm[i]/(2*sqrt(2*log(2)));
+    double sdx = fwhm[i]/(2*sqrt(2*log((double)2)));
     if(new_wav[i] - (3*sdx) >= min(wav)&&new_wav[i] + (3*sdx) <= max(wav)) { // Bad interpolation
       double sdx2 = 2*pow(sdx,2);
       NumericVector dn = exp(-pow(wav-new_wav[i],2)/sdx2);  //gaussian density
