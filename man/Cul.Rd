@@ -2,7 +2,7 @@
 \alias{Cul}
 \title{Cochran C critical value}
 \usage{
-  Cul(a,n,N)
+Cul(a,n,N)
 }
 \arguments{
   \item{a}{significance level}
@@ -12,14 +12,14 @@
   \item{N}{number of data series}
 }
 \description{
-  Upper limit critical value Cul for one-sided test on
-  balanced design
+Upper limit critical value Cul for one-sided test on
+balanced design
 }
 \author{
-  Antoine Stevens
+Antoine Stevens
 }
 \references{
-  \url{http://www.en.wikipedia.org/wiki/Cochran's_C_test}
+\url{http://www.en.wikipedia.org/wiki/Cochran's_C_test}
 }
 \keyword{internal}
 

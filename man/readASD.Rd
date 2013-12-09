@@ -2,7 +2,7 @@
 \alias{readASD}
 \title{Read ASD FieldSpec Pro binary and ASCII files}
 \usage{
-  readASD(fnames,in_format,out_format)
+readASD(fnames,in_format,out_format)
 }
 \arguments{
   \item{fnames}{character \code{vector} of the name(s)
@@ -15,51 +15,50 @@
   (default) or \code{'list'} (see below)}
 }
 \value{
-  if \code{out_format} = \code{'matrix'}, reflectance
-  values of the input file(s) in a single \code{matrix}.
+if \code{out_format} = \code{'matrix'}, reflectance values
+of the input file(s) in a single \code{matrix}.
 
-  if \code{out_format} = \code{'list'}, a \code{list} of
-  the input file(s) data consisting of a \code{list} with
-  components: \itemize{ \item{\code{Name}}{ name of the
-  file imported} \item{\code{datetime}}{ date and time of
-  acquisition in \code{POSIXct} format}
-  \item{\code{header}}{ \code{list} with information from
-  the header file} \item{\code{radiance}}{ if applicable, a
-  numeric \code{vector} of radiance values}
-  \item{\code{reference}}{ if applicable, a numeric
-  \code{vector} of radiance values of the white reference}
-  \item{\code{reflectance}}{ numeric \code{vector} of
-  reflectance values} \item{\code{wavelength}}{ numeric
-  \code{vector} of the band positions} }
+if \code{out_format} = \code{'list'}, a \code{list} of the
+input file(s) data consisting of a \code{list} with
+components: \itemize{ \item{\code{Name}}{ name of the file
+imported} \item{\code{datetime}}{ date and time of
+acquisition in \code{POSIXct} format} \item{\code{header}}{
+\code{list} with information from the header file}
+\item{\code{radiance}}{ if applicable, a numeric
+\code{vector} of radiance values} \item{\code{reference}}{
+if applicable, a numeric \code{vector} of radiance values
+of the white reference} \item{\code{reflectance}}{ numeric
+\code{vector} of reflectance values}
+\item{\code{wavelength}}{ numeric \code{vector} of the band
+positions} }
 }
 \description{
-  Read single or multiple binary and ASCII files acquired
-  with an ASD FieldSpec Pro
-  (\href{http://www.asdi.com/}{ASDi}, Boulder, CO)
-  spectroradiometer
+Read single or multiple binary and ASCII files acquired
+with an ASD FieldSpec Pro
+(\href{http://www.asdi.com/}{ASDi}, Boulder, CO)
+spectroradiometer
 }
 \note{
-  The is a \R port of the \file{importasd.m} function from
-  the \sQuote{FSFPostProcessing} Matlab toolbox by Iain
-  Robinson (University of Edinburgh), which is based on
-  some Java code provided by Andreas Hunei (University of
-  Zurich)
+The is a \R port of the \file{importasd.m} function from
+the \sQuote{FSFPostProcessing} Matlab toolbox by Iain
+Robinson (University of Edinburgh), which is based on some
+Java code provided by Andreas Hunei (University of Zurich)
 
-  It seems that ASD file format has changed quite a lot
-  with file versions. The function will possibly not work
-  as expected for all versions. Please report any bugs to
-  the package maintainer.
+It seems that ASD file format has changed quite a lot with
+file versions. The function will possibly not work as
+expected for all versions. Please report any bugs to the
+package maintainer.
 }
 \author{
-  Antoine Stevens (\R port) and Iain Robinson (matlab
-  function)
+Antoine Stevens (\R port) and Iain Robinson (matlab
+function)
 }
 \references{
-  \url{http://fsf.nerc.ac.uk/user_group/user_group.shtml}
+\url{http://fsf.nerc.ac.uk/user_group/user_group.shtml}
 
-  \url{http://www.mathworks.com/matlabcentral/fileexchange/31547}
+\url{http://www.mathworks.com/matlabcentral/fileexchange/31547}
 
-  Indico Version 8 file format
-  (\url{http://support.asdi.com/Document/Documents.aspx})
+Indico Version 8 file format
+(\url{http://support.asdi.com/Document/Documents.aspx})
 }
 

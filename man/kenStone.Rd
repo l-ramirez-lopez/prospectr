@@ -2,8 +2,7 @@
 \alias{kenStone}
 \title{Kennard-Stone algorithm for calibration sampling}
 \usage{
-  kenStone(X,k,metric,pc,group,.center = TRUE,.scale =
-    FALSE)
+kenStone(X,k,metric,pc,group,.center = TRUE,.scale = FALSE)
 }
 \arguments{
   \item{X}{a numeric \code{matrix}}
@@ -42,51 +41,48 @@
   Analysis. Default set to FALSE.}
 }
 \value{
-  a \code{list} with components: \itemize{
-  \item{'\code{model}'}{ numeric \code{vector} giving the
-  row indices of the input data selected for calibration}
-  \item{'\code{test}'}{ numeric \code{vector} giving the
-  row indices of the remaining observations}
-  \item{'\code{pc}'}{ if the \code{pc} argument is
-  specified, a numeric \code{matrix} of the scaled pc
-  scores} }
+a \code{list} with components: \itemize{
+\item{'\code{model}'}{ numeric \code{vector} giving the row
+indices of the input data selected for calibration}
+\item{'\code{test}'}{ numeric \code{vector} giving the row
+indices of the remaining observations} \item{'\code{pc}'}{
+if the \code{pc} argument is specified, a numeric
+\code{matrix} of the scaled pc scores} }
 }
 \description{
-  Select calibration samples from a large multivariate data
-  using the Kennard-Stone algorithm
+Select calibration samples from a large multivariate data
+using the Kennard-Stone algorithm
 }
 \details{
-  The Kennard--Stone algorithm allows to select samples
-  with a uniform distribution over the predictor space
-  (Kennard and Stone, 1969). It starts by selecting the
-  pair of points that are the farthest apart. They are
-  assigned to the calibration set and removed from the list
-  of points. Then, the procedure assigns remaining points
-  to the calibration set by computing the distance between
-  each unassigned points \eqn{i_0} and selected points
-  \eqn{i} and finding the point \eqn{i_0} for which: \deqn{
-  d_{selected} =
-  \max\limits_{i_0}(\min\limits_{i}(d_{i,i_{0}})) } This
-  essentially selects point \eqn{i_0} which is the farthest
-  apart from its closest neighbors \eqn{i} in the
-  calibration set. The algorithm uses the Euclidean
-  distance to select the points. However, the Mahalanobis
-  distance can also be used. This can be achieved by
-  performing a PCA analysis on the input data and computing
-  the Euclidean distance on the truncated score matrix
-  according to the following definition of the Mahalanobis
-  \eqn{H} distance:
+The Kennard--Stone algorithm allows to select samples with
+a uniform distribution over the predictor space (Kennard
+and Stone, 1969). It starts by selecting the pair of points
+that are the farthest apart. They are assigned to the
+calibration set and removed from the list of points. Then,
+the procedure assigns remaining points to the calibration
+set by computing the distance between each unassigned
+points \eqn{i_0} and selected points \eqn{i} and finding
+the point \eqn{i_0} for which: \deqn{ d_{selected} =
+\max\limits_{i_0}(\min\limits_{i}(d_{i,i_{0}})) } This
+essentially selects point \eqn{i_0} which is the farthest
+apart from its closest neighbors \eqn{i} in the calibration
+set. The algorithm uses the Euclidean distance to select
+the points. However, the Mahalanobis distance can also be
+used. This can be achieved by performing a PCA analysis on
+the input data and computing the Euclidean distance on the
+truncated score matrix according to the following
+definition of the Mahalanobis \eqn{H} distance:
 
-  \deqn{ H^{2}_{ij} =
-  \sum\limits_{a=1}^{A}{(\hat{t}_{ia}-\hat{t}_{ja})^{2}/\hat{\lambda}_{a}}
-  }
+\deqn{ H^{2}_{ij} =
+\sum\limits_{a=1}^{A}{(\hat{t}_{ia}-\hat{t}_{ja})^{2}/\hat{\lambda}_{a}}
+}
 
-  where \eqn{\hat{t}_{ia}} is the a^th principal component
-  score of point \eqn{i}, \eqn{\hat{t}_{ja}} is the
-  corresponding value for point \eqn{j},
-  \eqn{\hat{\lambda}_a} is the eigenvalue of principal
-  component \eqn{a} and \eqn{A} is the number of principal
-  components included in the computation.
+where \eqn{\hat{t}_{ia}} is the a^th principal component
+score of point \eqn{i}, \eqn{\hat{t}_{ja}} is the
+corresponding value for point \eqn{j},
+\eqn{\hat{\lambda}_a} is the eigenvalue of principal
+component \eqn{a} and \eqn{A} is the number of principal
+components included in the computation.
 }
 \examples{
 data(NIRsoil)
@@ -100,14 +96,14 @@ sel <- kenStone(X,k=25,metric='euclid')
 points(X[sel$model,],pch=19,col=2)
 }
 \author{
-  Antoine Stevens & Leonardo Ramirez-Lopez
+Antoine Stevens & Leonardo Ramirez-Lopez
 }
 \references{
-  Kennard, R.W., and Stone, L.A., 1969. Computer aided
-  design of experiments. Technometrics 11, 137-148.
+Kennard, R.W., and Stone, L.A., 1969. Computer aided design
+of experiments. Technometrics 11, 137-148.
 }
 \seealso{
-  \code{\link{duplex}}, \code{\link{shenkWest}},
-  \code{\link{naes}}, \code{\link{honigs}}
+\code{\link{duplex}}, \code{\link{shenkWest}},
+\code{\link{naes}}, \code{\link{honigs}}
 }
 

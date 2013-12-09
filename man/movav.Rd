@@ -2,7 +2,7 @@
 \alias{movav}
 \title{Moving average}
 \usage{
-  movav(X,w)
+movav(X,w)
 }
 \arguments{
   \item{X}{numeric \code{data.frame}, \code{matrix} or
@@ -11,13 +11,13 @@
   \item{w}{filter length}
 }
 \value{
-  a \code{matrix} or \code{vector} with the filtered
-  signal(s)
+a \code{matrix} or \code{vector} with the filtered
+signal(s)
 }
 \description{
-  A simple moving average of a \code{vector},
-  \code{data.frame} or \code{matrix} using a convolution
-  function written in C++/Rcpp for fast computing
+A simple moving average of a \code{vector},
+\code{data.frame} or \code{matrix} using a convolution
+function written in C++/Rcpp for fast computing
 }
 \examples{
 data(NIRsoil)
@@ -29,11 +29,11 @@ mov <- movav(spc,w=11) # window size of 11 bands
 matlines(as.numeric(colnames(mov)),t(mov[1:10,])) # smoothed data
 }
 \author{
-  Antoine Stevens
+Antoine Stevens
 }
 \seealso{
-  \code{\link[signal]{sgolayfilt}},
-  \code{\link{savitzkyGolay}}, \code{\link{gapDer}},
-  \code{\link{binning}}, \code{\link{continuumRemoval}}
+\code{\link[signal]{sgolayfilt}},
+\code{\link{savitzkyGolay}}, \code{\link{gapDer}},
+\code{\link{binning}}, \code{\link{continuumRemoval}}
 }
 

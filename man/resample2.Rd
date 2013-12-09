@@ -2,7 +2,7 @@
 \alias{resample2}
 \title{Resample a high resolution signal to a low resolution signal using full width half maximum (FWHM) values}
 \usage{
-  resample2(X,wav,new.wav,fwhm)
+resample2(X,wav,new.wav,fwhm)
 }
 \arguments{
   \item{X}{numeric \code{data.frame}, \code{matrix} or
@@ -22,21 +22,21 @@
   spectral range}
 }
 \value{
-  a \code{matrix} or \code{vector} with resampled values
+a \code{matrix} or \code{vector} with resampled values
 }
 \description{
-  Resample a data \code{matrix}, \code{data.frame} or
-  \code{vector} to match the response of another instrument
-  using full width half maximum (FWHM) values
+Resample a data \code{matrix}, \code{data.frame} or
+\code{vector} to match the response of another instrument
+using full width half maximum (FWHM) values
 }
 \details{
-  The function uses gaussian models defined by fwhm values
-  to resample the high resolution data to new band
-  positions and resolution. It assumes that band spacing
-  and fwhm of the input data is constant over the spectral
-  range. The interpolated values are set to 0 if input data
-  fall outside by 3 standard deviations of the gaussian
-  densities defined by fwhm.
+The function uses gaussian models defined by fwhm values to
+resample the high resolution data to new band positions and
+resolution. It assumes that band spacing and fwhm of the
+input data is constant over the spectral range. The
+interpolated values are set to 0 if input data fall outside
+by 3 standard deviations of the gaussian densities defined
+by fwhm.
 }
 \examples{
 data(NIRsoil)
@@ -52,9 +52,9 @@ aster <- resample2(spc,wav,new.wav,fwhm)
 matpoints(as.numeric(colnames(aster)),t(aster[1:10,]),pch=1:5)
 }
 \author{
-  Antoine Stevens
+Antoine Stevens
 }
 \seealso{
-  \code{\link{resample}}
+\code{\link{resample}}
 }
 

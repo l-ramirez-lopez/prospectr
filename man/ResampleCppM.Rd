@@ -2,7 +2,7 @@
 \alias{ResampleCppM}
 \title{Resample to given band position and fwhm}
 \usage{
-  ResampleCppM(X, wav, new_wav, fwhm)
+ResampleCppM(X, wav, new_wav, fwhm)
 }
 \arguments{
   \item{X}{matrix to resample}
@@ -17,7 +17,7 @@
   half maximums of the new band positions.}
 }
 \description{
-  Resample, written in C++
+Resample, written in C++
 }
 \keyword{internal}
 

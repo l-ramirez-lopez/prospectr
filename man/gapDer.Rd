@@ -2,7 +2,7 @@
 \alias{gapDer}
 \title{Gap-Segment Derivative}
 \usage{
-  gapDer(X, m = 1, w = 1, s = 1, delta.wav)
+gapDer(X, m = 1, w = 1, s = 1, delta.wav)
 }
 \arguments{
   \item{X}{numeric \code{matrix} , \code{data.frame} or
@@ -22,20 +22,20 @@
   \item{delta.wav}{sampling interval (or band spacing)}
 }
 \value{
-  a \code{matrix} or \code{vector} with the filtered
-  signal(s)
+a \code{matrix} or \code{vector} with the filtered
+signal(s)
 }
 \description{
-  Gap-Segment derivatives of a data \code{matrix},
-  \code{data.frame} or \code{vector}
+Gap-Segment derivatives of a data \code{matrix},
+\code{data.frame} or \code{vector}
 }
 \details{
-  The sampling interval specified with the \code{delta.wav}
-  argument is used for scaling and get numerically correct
-  derivatives.
+The sampling interval specified with the \code{delta.wav}
+argument is used for scaling and get numerically correct
+derivatives.
 
-  The convolution function is written in C++/Rcpp for
-  faster computations.
+The convolution function is written in C++/Rcpp for faster
+computations.
 }
 \examples{
 data(NIRsoil)
@@ -61,14 +61,14 @@ mtext('1st derivative spectra with a window size = 11 nm, smoothing of 10 nm')
 par(opar)
 }
 \author{
-  Antoine Stevens
+Antoine Stevens
 }
 \references{
-  Hopkins (2002). NIR News 14(5), 10.
+Hopkins (2002). NIR News 14(5), 10.
 }
 \seealso{
-  \code{\link[signal]{sgolayfilt}},
-  \code{\link{savitzkyGolay}}, \code{\link{movav}},
-  \code{\link{binning}}, \code{\link{continuumRemoval}}
+\code{\link[signal]{sgolayfilt}},
+\code{\link{savitzkyGolay}}, \code{\link{movav}},
+\code{\link{binning}}, \code{\link{continuumRemoval}}
 }
 

@@ -2,11 +2,11 @@
 \alias{e2m}
 \title{A function for transforming a matrix from its Euclidean space to its Mahalanobis space}
 \usage{
-  e2m(X, sm.method = c("svd", "eigen"))
+e2m(X, sm.method = c("svd", "eigen"))
 }
 \description{
-  A function for transforming a matrix from its Euclidean
-  space to its Mahalanobis space
+A function for transforming a matrix from its Euclidean
+space to its Mahalanobis space
 }
 \examples{
 # test data

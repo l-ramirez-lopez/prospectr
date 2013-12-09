@@ -2,7 +2,7 @@
 \alias{spliceCorrection}
 \title{Splice correction of a spectral matrix acquired with an ASD spectrometer}
 \usage{
-  spliceCorrection(X,wav,splice=c(1000,1830),interpol.bands=10)
+spliceCorrection(X,wav,splice=c(1000,1830),interpol.bands=10)
 }
 \arguments{
   \item{X}{numeric \code{data.frame}, \code{matrix} or
@@ -17,20 +17,19 @@
   \item{interpol.bands}{number of interpolation bands}
 }
 \value{
-  a \code{matrix} with the splice corrected data
+a \code{matrix} with the splice corrected data
 }
 \description{
-  Corrects steps in an input spectral matrix by linear
-  interpolation of the values of the edges of the middle
-  sensor
+Corrects steps in an input spectral matrix by linear
+interpolation of the values of the edges of the middle
+sensor
 }
 \details{
-  Spectra acquired with an ASD FieldSpec Pro
-  spectroradiometer usually exhibit steps at the splice of
-  the three built-in sensors, positioned at 1000 and 1830
-  nm.
+Spectra acquired with an ASD FieldSpec Pro
+spectroradiometer usually exhibit steps at the splice of
+the three built-in sensors, positioned at 1000 and 1830 nm.
 }
 \author{
-  Antoine Stevens
+Antoine Stevens
 }
 

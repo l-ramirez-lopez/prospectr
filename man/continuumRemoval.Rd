@@ -2,7 +2,7 @@
 \alias{continuumRemoval}
 \title{Continuum Removal}
 \usage{
-  continuumRemoval(X,wav,type,interpol,method)
+continuumRemoval(X,wav,type,interpol,method)
 }
 \arguments{
   \item{X}{numeric \code{data.frame}, \code{matrix} or
@@ -21,24 +21,23 @@
   or 'substraction' (see details section)}
 }
 \value{
-  a \code{matrix} or \code{vector} with the filtered
-  signal(s)
+a \code{matrix} or \code{vector} with the filtered
+signal(s)
 }
 \description{
-  Compute the continuum removed values of a data
-  \code{matrix}, \code{data.frame}, or \code{vector} as
-  implemented in ENVI
+Compute the continuum removed values of a data
+\code{matrix}, \code{data.frame}, or \code{vector} as
+implemented in ENVI
 }
 \details{
-  The continuum removal technique was introduced by Clark
-  and Roush (1984) as a method to highlight energy
-  absorption features of minerals. It can be viewed as a
-  way to perform albedo normalization. The algorithm find
-  points lying on the convex hull (local maxima or
-  envelope) of a spectrum, connects the points by linear or
-  spline interpolation and normalizes the spectrum by
-  dividing (or substracting) the input data by the
-  interpolated line.
+The continuum removal technique was introduced by Clark and
+Roush (1984) as a method to highlight energy absorption
+features of minerals. It can be viewed as a way to perform
+albedo normalization. The algorithm find points lying on
+the convex hull (local maxima or envelope) of a spectrum,
+connects the points by linear or spline interpolation and
+normalizes the spectrum by dividing (or substracting) the
+input data by the interpolated line.
 }
 \examples{
 data(NIRsoil)
@@ -50,16 +49,16 @@ cr <- continuumRemoval(NIRsoil$spc,wav,type='A')
 matlines(wav,t(cr[1:10,]))
 }
 \author{
-  Antoine Stevens
+Antoine Stevens
 }
 \references{
-  Clark, R.N., and Roush, T.L., 1984. Reflectance
-  Spectroscopy: Quantitative Analysis Techniques for Remote
-  Sensing Applications. J. Geophys. Res. 89, 6329-6340.
+Clark, R.N., and Roush, T.L., 1984. Reflectance
+Spectroscopy: Quantitative Analysis Techniques for Remote
+Sensing Applications. J. Geophys. Res. 89, 6329-6340.
 }
 \seealso{
-  \code{\link[signal]{sgolayfilt}},
-  \code{\link{savitzkyGolay}}, \code{\link{movav}},
-  \code{\link{gapDer}}, \code{\link{binning}}
+\code{\link[signal]{sgolayfilt}},
+\code{\link{savitzkyGolay}}, \code{\link{movav}},
+\code{\link{gapDer}}, \code{\link{binning}}
 }
 

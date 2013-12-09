@@ -2,8 +2,7 @@
 \alias{shenkWest}
 \title{SELECT algorithm for calibration sampling}
 \usage{
-  shenkWest(X,d.min=0.6,pc=0.95,rm.outlier=FALSE,.center =
-    TRUE,.scale = FALSE)
+shenkWest(X,d.min=0.6,pc=0.95,rm.outlier=FALSE,.center = TRUE,.scale = FALSE)
 }
 \arguments{
   \item{X}{numeric \code{data.frame} or \code{matrix}}
@@ -31,32 +30,31 @@
   Analysis. Default set to FALSE.}
 }
 \value{
-  a \code{list} with components: \itemize{
-  \item{'\code{model}'}{ numeric \code{vector} giving the
-  row indices of the input data selected for calibration}
-  \item{'\code{test}'}{ numeric \code{vector} giving the
-  row indices of the remaining observations}
-  \item{'\code{pc}'}{a numeric \code{matrix} of the scaled
-  pc scores} }
+a \code{list} with components: \itemize{
+\item{'\code{model}'}{ numeric \code{vector} giving the row
+indices of the input data selected for calibration}
+\item{'\code{test}'}{ numeric \code{vector} giving the row
+indices of the remaining observations} \item{'\code{pc}'}{a
+numeric \code{matrix} of the scaled pc scores} }
 }
 \description{
-  Select calibration samples from a large multivariate data
-  using the SELECT algorithm as described in Shenk and
-  Westerhaus (1991).
+Select calibration samples from a large multivariate data
+using the SELECT algorithm as described in Shenk and
+Westerhaus (1991).
 }
 \details{
-  The SELECT algorithm is an iterative procedure based on
-  the standardized Mahalanobis distance between
-  observations. First, the observation having the highest
-  number of neighbours within a given minimum distance is
-  selected and its neighbours are discarded. The procedure
-  is repeated until there is no observation left.
+The SELECT algorithm is an iterative procedure based on the
+standardized Mahalanobis distance between observations.
+First, the observation having the highest number of
+neighbours within a given minimum distance is selected and
+its neighbours are discarded. The procedure is repeated
+until there is no observation left.
 
-  If the \code{rm.outlier} argument is set to \code{TRUE},
-  outliers will be removed before running the SELECT
-  algorithm, using the CENTER algorithm of Shenk and
-  Westerhaus (1991), i.e. samples with a standardized
-  Mahalanobis distance \code{>3} are removed.
+If the \code{rm.outlier} argument is set to \code{TRUE},
+outliers will be removed before running the SELECT
+algorithm, using the CENTER algorithm of Shenk and
+Westerhaus (1991), i.e. samples with a standardized
+Mahalanobis distance \code{>3} are removed.
 }
 \examples{
 data(NIRsoil)
@@ -69,16 +67,16 @@ plot(sel$pc[,1:2],xlab='PC1',ylab='PC2')
 points(sel$pc[sel$model,1:2],pch=15,col=3)  # points selected for calibration
 }
 \author{
-  Antoine Stevens
+Antoine Stevens
 }
 \references{
-  Shenk, J.S., and Westerhaus, M.O., 1991. Population
-  Definition, Sample Selection, and Calibration Procedures
-  for Near Infrared Reflectance Spectroscopy. Crop Science
-  31, 469-474.
+Shenk, J.S., and Westerhaus, M.O., 1991. Population
+Definition, Sample Selection, and Calibration Procedures
+for Near Infrared Reflectance Spectroscopy. Crop Science
+31, 469-474.
 }
 \seealso{
-  \code{\link{kenStone}}, \code{\link{duplex}},
-  \code{\link{puchwein}}
+\code{\link{kenStone}}, \code{\link{duplex}},
+\code{\link{puchwein}}
 }
 

@@ -2,8 +2,7 @@
 \alias{naes}
 \title{k-means sampling}
 \usage{
-  naes(X,k,pc,iter.max = 10, method = 0,.center =
-    TRUE,.scale = FALSE)
+naes(X,k,pc,iter.max = 10, method = 0,.center = TRUE,.scale = FALSE)
 }
 \arguments{
   \item{X}{numeric \code{matrix} or \code{data.frame}}
@@ -39,34 +38,34 @@
   Analysis. Default set to FALSE.}
 }
 \value{
-  a \code{list} with components: \itemize{
-  \item{'\code{model}'}{ numeric \code{vector} giving the
-  row indices of the input data selected for calibration}
-  \item{'\code{test}'}{ numeric \code{vector} giving the
-  row indices of the remaining observations}
-  \item{'\code{pc}'}{ if the \code{pc} argument is
-  specified, a numeric \code{matrix} of the scaled pc
-  scores} \item{'\code{cluster}'}{ integer vector
-  indicating the cluster to which each point was assigned}
-  \item{'\code{centers}'}{ a \code{matrix} of cluster
-  centres} }
+a \code{list} with components: \itemize{
+\item{'\code{model}'}{ numeric \code{vector} giving the row
+indices of the input data selected for calibration}
+\item{'\code{test}'}{ numeric \code{vector} giving the row
+indices of the remaining observations} \item{'\code{pc}'}{
+if the \code{pc} argument is specified, a numeric
+\code{matrix} of the scaled pc scores}
+\item{'\code{cluster}'}{ integer vector indicating the
+cluster to which each point was assigned}
+\item{'\code{centers}'}{ a \code{matrix} of cluster
+centres} }
 }
 \description{
-  Perform a k-means sampling on a \code{matrix} or
-  \code{data.frame} for multivariate calibration
+Perform a k-means sampling on a \code{matrix} or
+\code{data.frame} for multivariate calibration
 }
 \details{
-  K-means sampling is a simple procedure based on cluster
-  analysis to select calibration samples from large
-  multivariate datasets. The method can be described in
-  three points (Naes et al.,2001):
+K-means sampling is a simple procedure based on cluster
+analysis to select calibration samples from large
+multivariate datasets. The method can be described in three
+points (Naes et al.,2001):
 
-  \enumerate{ \item Perform a PCA and decide how many
-  principal component to keep, \item Carry out a k-means
-  clustering on the principal component scores and choose
-  the number of resulting clusters to be equal to the
-  number of desired calibration samples, \item Select one
-  sample from each cluster. }
+\enumerate{ \item Perform a PCA and decide how many
+principal component to keep, \item Carry out a k-means
+clustering on the principal component scores and choose the
+number of resulting clusters to be equal to the number of
+desired calibration samples, \item Select one sample from
+each cluster. }
 }
 \examples{
 data(NIRsoil)
@@ -79,20 +78,20 @@ sel2 <- naes(NIRsoil$spc,k=sel$centers,p=.99,method=1) # pre-defined centers can
 points(sel$pc[sel2$model,1:2],col=1,pch=15,cex=1)
 }
 \author{
-  Antoine Stevens and Leonardo Ramirez-Lopez
+Antoine Stevens and Leonardo Ramirez-Lopez
 }
 \references{
-  Naes, T., 1987. The design of calibration in near
-  infra-red reflectance analysis by clustering. Journal of
-  Chemometrics 1, 121-134.
+Naes, T., 1987. The design of calibration in near infra-red
+reflectance analysis by clustering. Journal of Chemometrics
+1, 121-134.
 
-  Naes, T., Isaksson, T., Fearn, T., and Davies, T., 2002.
-  A user friendly guide to multivariate calibration and
-  classification. NIR Publications, Chichester, United
-  Kingdom.
+Naes, T., Isaksson, T., Fearn, T., and Davies, T., 2002. A
+user friendly guide to multivariate calibration and
+classification. NIR Publications, Chichester, United
+Kingdom.
 }
 \seealso{
-  \code{\link{kenStone}}, \code{\link{honigs}},
-  \code{\link{duplex}}, \code{\link{shenkWest}}
+\code{\link{kenStone}}, \code{\link{honigs}},
+\code{\link{duplex}}, \code{\link{shenkWest}}
 }
 

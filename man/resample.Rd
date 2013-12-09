@@ -2,7 +2,7 @@
 \alias{resample}
 \title{Resample spectral data}
 \usage{
-  resample(X,wav,new.wav,interpol)
+resample(X,wav,new.wav,interpol)
 }
 \arguments{
   \item{X}{numeric \code{data.frame}, \code{matrix} or
@@ -18,14 +18,14 @@
   'spline'}
 }
 \value{
-  a \code{matrix} or \code{vector} with resampled values
+a \code{matrix} or \code{vector} with resampled values
 }
 \description{
-  Resample a data \code{matrix}, \code{data.frame} or
-  \code{vector} to new coordinates (e.g. band positions)
-  using spline or linear interpolation. This function is a
-  simple wrapper around \code{\link{approx}} and
-  \code{\link{splinefun}} in \pkg{base}.
+Resample a data \code{matrix}, \code{data.frame} or
+\code{vector} to new coordinates (e.g. band positions)
+using spline or linear interpolation. This function is a
+simple wrapper around \code{\link{approx}} and
+\code{\link{splinefun}} in \pkg{base}.
 }
 \examples{
 data(NIRsoil)
@@ -35,9 +35,9 @@ resampled <- resample(spc,wav,1100:2498) # increase spectral resolution by 2
 dim(spc);dim(resampled)
 }
 \author{
-  Antoine Stevens
+Antoine Stevens
 }
 \seealso{
-  \code{\link{resample2}}
+\code{\link{resample2}}
 }
 

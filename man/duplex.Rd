@@ -2,7 +2,7 @@
 \alias{duplex}
 \title{DUPLEX algorithm for calibration sampling}
 \usage{
-  duplex(X,k,metric,pc,group,.center = TRUE,.scale = FALSE)
+duplex(X,k,metric,pc,group,.center = TRUE,.scale = FALSE)
 }
 \arguments{
   \item{X}{a \code{matrix}}
@@ -41,37 +41,35 @@
   Analysis. Default set to FALSE.}
 }
 \value{
-  a \code{list} with components: \itemize{
-  \item{'\code{model}'}{ numeric \code{vector} giving the
-  row indices of the input data selected for calibration}
-  \item{'\code{test}'}{ numeric \code{vector} giving the
-  row indices of the input data selected for validation}
-  \item{'\code{pc}'}{ if the \code{pc} argument is
-  specified, a numeric \code{matrix} of the scaled pc
-  scores} }
+a \code{list} with components: \itemize{
+\item{'\code{model}'}{ numeric \code{vector} giving the row
+indices of the input data selected for calibration}
+\item{'\code{test}'}{ numeric \code{vector} giving the row
+indices of the input data selected for validation}
+\item{'\code{pc}'}{ if the \code{pc} argument is specified,
+a numeric \code{matrix} of the scaled pc scores} }
 }
 \description{
-  Select calibration samples from a large multivariate data
-  using the DUPLEX algorithm
+Select calibration samples from a large multivariate data
+using the DUPLEX algorithm
 }
 \details{
-  The DUPLEX algorithm is similar to the Kennard-Stone
-  algorithm (see \code{\link{kenStone}}) but allows to
-  select both calibration and validation points that are
-  independent. Similarly to the Kennard-Stone algorithm, it
-  starts by selecting the pair of points that are the
-  farthest apart. They are assigned to the calibration sets
-  and removed from the list of points. Then, the next pair
-  of points which are farthest apart are assigned to the
-  validation sets and removed from the list. In a third
-  step, the procedure assigns each remaining point
-  alternatively to the calibration and validation sets
-  based on the distance to the points already selected.
-  Similarly to the Kennard-Stone algorithm, the default
-  distance metric used by the procedure is the Euclidean
-  distance, but the Mahalanobis distance can be used as
-  well using the \code{pc} argument (see
-  \code{\link{kenStone}}).
+The DUPLEX algorithm is similar to the Kennard-Stone
+algorithm (see \code{\link{kenStone}}) but allows to select
+both calibration and validation points that are
+independent. Similarly to the Kennard-Stone algorithm, it
+starts by selecting the pair of points that are the
+farthest apart. They are assigned to the calibration sets
+and removed from the list of points. Then, the next pair of
+points which are farthest apart are assigned to the
+validation sets and removed from the list. In a third step,
+the procedure assigns each remaining point alternatively to
+the calibration and validation sets based on the distance
+to the points already selected. Similarly to the
+Kennard-Stone algorithm, the default distance metric used
+by the procedure is the Euclidean distance, but the
+Mahalanobis distance can be used as well using the
+\code{pc} argument (see \code{\link{kenStone}}).
 }
 \examples{
 data(NIRsoil)
@@ -87,17 +85,17 @@ points(X[sel$model,],pch=19,col=2) # points selected for calibration
 points(X[sel$test,],pch=15,col=3) # points selected for validation
 }
 \author{
-  Antoine Stevens & Leonardo Ramirez--Lopez
+Antoine Stevens & Leonardo Ramirez--Lopez
 }
 \references{
-  Kennard, R.W., and Stone, L.A., 1969. Computer aided
-  design of experiments. Technometrics 11, 137-148.
+Kennard, R.W., and Stone, L.A., 1969. Computer aided design
+of experiments. Technometrics 11, 137-148.
 
-  Snee, R.D., 1977. Validation of regression models:
-  methods and examples. Technometrics 19, 415-428.
+Snee, R.D., 1977. Validation of regression models: methods
+and examples. Technometrics 19, 415-428.
 }
 \seealso{
-  \code{\link{kenStone}}, \code{\link{honigs}},
-  \code{\link{shenkWest}}, \code{\link{naes}}
+\code{\link{kenStone}}, \code{\link{honigs}},
+\code{\link{shenkWest}}, \code{\link{naes}}
 }
 
