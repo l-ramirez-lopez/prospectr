@@ -1,3 +1,8 @@
+prospectr 0.1.2
+===============
+* bug fix for readASD when ASD file version = 7.0
+* add sanity check in spliceCorrection
+
 prospectr 0.1.1
 ===============
 * bug fix for shenkWest when rm.outlier = T 

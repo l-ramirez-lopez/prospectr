@@ -5,5 +5,12 @@ src/*.o
 src/*.so
 src/*.dll
 .Rbuildignore
-ShinySpec.Rproj
+prospectr\.Rproj
 todo.md
+src-i386/
+src-x64/
+figure/
+prospectr-intro\.Rmd
+prospectr-intro\.bib
+prospectr-intro\.html
+prospectr-intro\.md
