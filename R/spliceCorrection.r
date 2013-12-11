@@ -12,13 +12,13 @@
 #' @author Antoine Stevens
 #' @details
 #' Spectra acquired with an ASD FieldSpec Pro spectroradiometer usually exhibit steps at the splice of the three built-in sensors,
-#' positioned at 1000 and 1830 nm.
+#' positioned at 1000 nm (end of VNIR detector) and 1830 nm (end of SWIR1 detector).
 #' @export
 
 spliceCorrection <- function(X, wav, splice = c(1000, 1830), interpol.bands = 10) {
     
     if (is.data.frame(X)) 
-        X <- as.matrix(X)
+      X <- as.matrix(X)
     
     was.vec <- is.vector(X)
     if (is.vector(X)) {
@@ -27,10 +27,14 @@ spliceCorrection <- function(X, wav, splice = c(1000, 1830), interpol.bands = 10
     }
     if (missing(wav)) 
         wav <- seq_len(ncol(X))
+    
     if (length(wav) != ncol(X)) 
         stop("length(wav) should be equal to ncol(X)")
     
     index <- which(wav %in% splice)
+    
+    if(!length(index))
+        stop("splice positions not found in wav")
     
     X1 <- X[, 1:index[1], drop = F]
     X2 <- X[, (index[1] + 1):index[2], drop = F]
