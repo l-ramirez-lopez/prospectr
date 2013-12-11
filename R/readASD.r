@@ -36,7 +36,7 @@
 #'
 readASD <- function(fnames, in_format = c("binary", "txt"), out_format = c("matrix", "list")) {
     
-    format <- match.arg(in_format)
+    in_format <- match.arg(in_format)
     out_format <- match.arg(out_format)
     
     spc <- vector("list", length(fnames))
@@ -45,7 +45,7 @@ readASD <- function(fnames, in_format = c("binary", "txt"), out_format = c("matr
         
         Name <- sub(".+/(.+)", "\\1", f)  # retrieve name of the file without path
         
-        if (format == "binary") {
+        if (in_format == "binary") {
             # open a connection
             con <- file(f, "rb")
             # Retrieve comments
@@ -68,7 +68,7 @@ readASD <- function(fnames, in_format = c("binary", "txt"), out_format = c("matr
             DC <- readBin(con, "integer", size = 1)
             if (DC == 1) 
                 VNIRDarkSubtraction <- T else if (DC == 0) 
-                VNIRDarkSubtraction <- F else VNIRDarkSubtraction <- NA
+            NIRDarkSubtraction <- F else VNIRDarkSubtraction <- NA
             
             # Read the dark spectrum datetime. The date and time are represented as the number of seconds since midnight on 1st
             # January 1970.
@@ -204,9 +204,13 @@ readASD <- function(fnames, in_format = c("binary", "txt"), out_format = c("matr
             referenceTime <- readBin(con, "integer", n = 8, size = 1)
             spectrumTime <- readBin(con, "integer", n = 8, size = 1)
             descriptionLength <- readBin(con, "integer", size = 2)
+            
             if (as.numeric(FileVersion) < 6) 
-                referenceData <- readBin(con, dataFormat, n = numberOfChannels, size = 4) else if (as.numeric(FileVersion) < 7) 
-                referenceData <- readBin(con, dataFormat, n = numberOfChannels) else referenceData <- readBin(con, dataFormat, n = numberOfChannels + 2)[-c(1:2)]  # it seems that for version > 7 the two first data points are wrong!
+                referenceData <- readBin(con, dataFormat, n = numberOfChannels, size = 4) 
+            else if (as.numeric(FileVersion) <= 7) 
+                referenceData <- readBin(con, dataFormat, n = numberOfChannels) 
+            else 
+                referenceData <- readBin(con, dataFormat, n = numberOfChannels + 2)[-c(1:2)]  # it seems that for version > 7 the two first data points are wrong!
             
             # Normalize the reference spectrum
             normalizedReferenceData <- referenceData
@@ -355,6 +359,7 @@ readASD <- function(fnames, in_format = c("binary", "txt"), out_format = c("matr
             }
             wavelength <- data[, 1]
         }
+        
         # Copy data into a list
         if (length(reference)) {
             reflectance <- target
@@ -362,9 +367,13 @@ readASD <- function(fnames, in_format = c("binary", "txt"), out_format = c("matr
             spc[[i]] <- list(name = Name, datetime = DateTime, header = H, radiance = target, reference = reference, reflectance = reflectance, 
                 wavelength = wavelength)
         } else {
-            if (pos <= 2 & in_format == "txt") 
-                spc[[i]] <- list(name = Name, reflectance = target, reference = "Missing reference spectrum", wavelength = wavelength) else spc[[i]] <- list(name = Name, datetime = DateTime, header = H, reflectance = target, reference = "Missing reference spectrum", 
+            if (in_format == "txt"){ 
+              if(pos <= 2)
+                spc[[i]] <- list(name = Name, reflectance = target, reference = "Missing reference spectrum", wavelength = wavelength)
+            } else {
+              spc[[i]] <- list(name = Name, datetime = DateTime, header = H, reflectance = target, reference = "Missing reference spectrum", 
                 wavelength = wavelength)
+            }
         }
         i <- i + 1
     }
