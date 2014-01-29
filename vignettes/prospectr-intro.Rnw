@@ -36,7 +36,7 @@
 \author[2]{Leonardo Ramirez--Lopez}
 
 \affil[1]{\footnotesize Georges Lema\^{i}tre Centre for Earth and Climate Research, Earth and Life Institute, UCLouvain, Place Pasteur 3, 1348 Louvain--La--Neuve, Belgium. \Letter~\href{mailto:antoine.stevens@uclouvain.be}{antoine.stevens@uclouvain.be}}
-\affil[2]{\footnotesize Switzerland. \Letter~\href{mailto:leonardo.ramirez@wsl.ch}{leonardo.ramirez@wsl.ch}}
+\affil[2]{\footnotesize Swiss Federal Institute for Forest, Snow and Landscape Research WSL, Zürcherstrasse 111, 8903 Birmensdorf, Switzerland / Institute of Terrestrial Ecosystems, ETH Zurich, Universitätstrasse 16, 8092 Zurich, Switzerland. \Letter~\href{mailto:leonardo.ramirez@wsl.ch}{leonardo.ramirez@wsl.ch}}
 
 \date{\today}
 
