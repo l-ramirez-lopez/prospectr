@@ -27,7 +27,8 @@ sensor
 \details{
 Spectra acquired with an ASD FieldSpec Pro
 spectroradiometer usually exhibit steps at the splice of
-the three built-in sensors, positioned at 1000 and 1830 nm.
+the three built-in sensors, positioned at 1000 nm (end of
+VNIR detector) and 1830 nm (end of SWIR1 detector).
 }
 \author{
 Antoine Stevens
