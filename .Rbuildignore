@@ -4,6 +4,8 @@
 .Rhistory
 .gitignore
 figure
+whittaker.r
+logo_prospectr.xcf
 prospectr-intro\.html
 prospectr-intro\.bib
 prospectr-intro\.md

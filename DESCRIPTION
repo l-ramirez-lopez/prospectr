@@ -15,8 +15,10 @@ Suggests:
     hyperSpec,
     knitr
 LinkingTo: Rcpp, RcppArmadillo
+Depends:
+    R (>= 3.0.0),
+    RcppArmadillo (>= 0.4.000)
 Imports:
     foreach,
-    iterators
-    Rcpp (>= 0.11.0),
-    RcppArmadillo (>= 0.4.000.2)
+    iterators,
+    Rcpp (>= 0.11.0)
