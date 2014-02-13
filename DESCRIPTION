@@ -2,7 +2,7 @@ Package: prospectr
 Type: Package
 Title: Miscellaneous functions for processing and sample selection of vis-NIR
     diffuse reflectance data
-Version: 0.1.2
+Version: 0.1.3
 Date: 2013-12-11
 Author: Antoine Stevens and Leonardo Ramirez-Lopez
 Maintainer: Antoine Stevens <antoine.stevens@uclouvain.be>
@@ -14,10 +14,9 @@ VignetteBuilder: knitr
 Suggests:
     hyperSpec,
     knitr
-Depends:
-    Rcpp (>= 0.10.3),
-    RcppArmadillo (>= 0.3.900.7)
 LinkingTo: Rcpp, RcppArmadillo
 Imports:
     foreach,
     iterators
+    Rcpp (>= 0.11.0),
+    RcppArmadillo (>= 0.4.000.2)
