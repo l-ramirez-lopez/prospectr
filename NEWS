@@ -1,3 +1,7 @@
+prospectr 0.1.3
+===============
+* Fix in DESCRITPION and NAMESPACE as required by Rcpp 0.11
+
 prospectr 0.1.2
 ===============
 * bug fix for readASD when ASD file version = 7.0
