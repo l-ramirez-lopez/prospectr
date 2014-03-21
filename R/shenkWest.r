@@ -31,6 +31,7 @@
 #' using the CENTER algorithm of Shenk and Westerhaus (1991), i.e. samples with a standardized Mahalanobis distance \code{>3} are removed.
 #' @examples
 #' data(NIRsoil)
+#' NIRsoil$spc <- binning(X=NIRsoil$spc,bin.size=5) # reduce data size
 #' sel <- shenkWest(NIRsoil$spc,pc=.99,d.min=.3,rm.outlier=FALSE)
 #' plot(sel$pc[,1:2],xlab='PC1',ylab='PC2')
 #' points(sel$pc[sel$model,1:2],pch=19,col=2)  # points selected for calibration 
