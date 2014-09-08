@@ -100,9 +100,7 @@ kenStone <- function(X, k, metric = c("mahal", "euclid"), pc, group, .center = T
         if (!is.factor(group)) {
             group <- as.factor(group)
             warning("group has been coerced to a factor")
-        }
-        if (k > nlevels(group)) 
-            k <- nlevels(group) - 1
+        }        
     }
     
     # Fist two most distant points to model set

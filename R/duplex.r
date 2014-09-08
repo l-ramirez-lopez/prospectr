@@ -96,8 +96,6 @@ duplex <- function(X, k, metric = c("mahal", "euclid"), pc, group, .center = TRU
             group <- as.factor(group)
             warning("group has been coerced to a factor")
         }
-        if (k > nlevels(group)/2) 
-            k <- floor(nlevels(group)/2)
     }
     
     # Fist two most distant points to model set

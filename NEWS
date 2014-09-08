@@ -1,3 +1,7 @@
+prospectr 0.1.4
+===============
+* Fix bug in kenStone and duplex when the group parameter is used
+
 prospectr 0.1.3
 ===============
 * Fix in DESCRITPION and NAMESPACE as required by Rcpp 0.11
