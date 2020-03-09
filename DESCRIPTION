@@ -31,5 +31,6 @@ Imports:
     Rcpp (>= 0.11.0)
 RoxygenNote: 6.1.1
 NeedsCompilation: yes
+LazyData: true
 Repository: CRAN
 Encoding: UTF-8
