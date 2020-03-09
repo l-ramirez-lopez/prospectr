@@ -9,3 +9,7 @@ logo_prospectr.xcf
 prospectr-intro\.html
 prospectr-intro\.bib
 prospectr-intro\.md
+code_ex.R
+.travis.yml
+^packrat/
+^\.Rprofile$
