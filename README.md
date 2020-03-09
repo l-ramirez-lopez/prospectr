@@ -1,3 +1,9 @@
+[![Travis-CI Build Status](https://travis-ci.org/l-ramirez-lopez/prospectr.svg?branch=master)](https://travis-ci.org/l-ramirez-lopez/prospectr/)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/prospectr)](http://cran.r-project.org/web/packages/prospectr)
+[![Total_Downloads](http://cranlogs.r-pkg.org/badges/grand-total/prospectr)](http://cran.r-project.org/web/packages/prospectr)
+![alt text](https://raw.githubusercontent.com/antoinestevens/prospectr/gh-pages/logo_prospectr_color.png)
+
+
 # prospectr: Processing and sample selection for vis-NIR spectral data
 
 Visit the package website [here](http://antoinestevens.github.io/prospectr/) !
