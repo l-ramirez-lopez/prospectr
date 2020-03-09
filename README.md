@@ -47,4 +47,4 @@ Other useful functions are also available:
 
 ## Bug report and development version
 
-You can send an email to the package maintainer (<ramirez.lopez.leo@gmail.com>) or create an [issue](http://github.com/l-ramirez-lopez/prospectr/issues) on github. To install the development version of `prospectr`, simply install [`devtools`](http://cran.r-project.org/web/packages/devtools/index.html) from CRAN then run `install_github("prospectr","l-ramirez-lopez")`.
+You can send an email to the package maintainer (<ramirez.lopez.leo@gmail.com>) or create an [issue](http://github.com/l-ramirez-lopez/prospectr/issues) on github. To install the development version of `prospectr`, simply install [`devtools`](http://cran.r-project.org/web/packages/devtools/index.html) from CRAN then run `install_github("l-ramirez-lopez/prospectr")`.
