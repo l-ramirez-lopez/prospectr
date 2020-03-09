@@ -2,7 +2,7 @@
 #' @description
 #' Compute the continuum removed values of a data \code{matrix}, \code{data.frame}, or \code{vector} as implemented in ENVI
 #' @usage
-#' continuumRemoval(X,wav,type,interpol,method)
+#' continuumRemoval(X, wav, type, interpol, method)
 #' @param X numeric \code{data.frame}, \code{matrix} or \code{vector} to process
 #' @param wav optional. numeric \code{vector} of band positions
 #' @param type type of data: 'R' for reflectance (default), 'A' for absorbance
@@ -14,10 +14,15 @@
 #' data(NIRsoil)
 #' wav <- as.numeric(colnames(NIRsoil$spc)) 
 #' # plot of the 10 first abs spectra
-#' matplot(wav,t(NIRsoil$spc[1:10,]),type='l',ylim=c(0,.6),xlab='Wavelength /nm',ylab='Abs') 
-#' # type = 'A' is used for absorbance spectra
-#' cr <- continuumRemoval(NIRsoil$spc,wav,type='A') 
-#' matlines(wav,t(cr[1:10,])) 
+#' matplot(wav, 
+#'         t(NIRsoil$spc[1:10,]),
+#'         type = 'l', 
+#'         ylim = c(0,.6),
+#'         xlab = 'Wavelength /nm', 
+#'         ylab='Abs')
+#  # type = 'A' is used for absorbance spectra
+#' cr <- continuumRemoval(NIRsoil$spc, wav, type = 'A') 
+#' matlines(wav, t(cr[1:10,])) 
 #' @seealso \code{\link[signal]{sgolayfilt}}, \code{\link{savitzkyGolay}}, \code{\link{movav}}, \code{\link{gapDer}}, 
 #' \code{\link{binning}}
 #' @details  The continuum removal technique was introduced by Clark and Roush (1984)

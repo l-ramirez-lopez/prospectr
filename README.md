@@ -2,6 +2,10 @@
 
 Visit the package website [here](http://antoinestevens.github.io/prospectr/) !
 
+_Antoine Stevens & Leo Ramirez-Lopez_
+
+_Last update: 09.09.2020_
+
 `prospectr` provides various utilities for pre--processing and sample selection of visible and near infrared spectral data with [R](http://cran.r-project.org/). While similar functions are available in other packages, like [`signal`](http://cran.r-project.org/web/packages/signal/index.html), the functions in this package works indifferently for `data.frame`, `matrix` and `vector` inputs. Besides, several functions are optimized for speed and use C++ code through the [`Rcpp`](http://cran.r-project.org/web/packages/Rcpp/index.html) and [`RcppArmadillo`](http://cran.r-project.org/web/packages/RcppArmadillo/index.html) packages.
 
 A vignette gives an overview of the main functionalities of the package. Just type `vignette("prospectr-intro")` in the console to access it. Currently, the following preprocessing functions are available:
@@ -20,9 +24,9 @@ A vignette gives an overview of the main functionalities of the package. Just ty
 
 The selection of samples/observations for calibration of vis-NIR data can be achieved with one of the following functions
 
+ `naes`      : k-means sampling    
  `kenStone`  : CADEX (Kennard--Stone) algorithm                
  `duplex`    : DUPLEX algorithm                                
- `naes`      : k-means sampling                                
  `shenkWest` : SELECT algorithm                                
  `puchwein`  : Puchwein sampling                               
  `honigs`    : Unique-sample selection by spectral subtraction 

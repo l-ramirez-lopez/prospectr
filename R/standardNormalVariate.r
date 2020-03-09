@@ -14,7 +14,7 @@
 #' # 10 first snv spectra
 #' matplot(as.numeric(colnames(snv)),t(snv[1:10,]),type='l',xlab='wavelength /nm',ylab='snv') 
 #' \dontrun{
-#' apply(snv,1,sd) # check 
+#' apply(snv, 1, sd) # check 
 #' }
 #' @return a \code{matrix} of the transformed data
 #' @details 

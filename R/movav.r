@@ -3,7 +3,7 @@
 #' A simple moving average of a \code{vector}, \code{data.frame} or \code{matrix} using a convolution 
 #' function written in C++/Rcpp for fast computing
 #' @usage
-#' movav(X,w)
+#' movav(X, w)
 #' @param X numeric \code{data.frame}, \code{matrix} or \code{vector} to process
 #' @param w filter length
 #' @author Antoine Stevens
@@ -11,10 +11,10 @@
 #' data(NIRsoil)
 #' wav <- as.numeric(colnames(NIRsoil$spc))
 #' spc <- 1/10^NIRsoil$spc # conversion to reflectance
-#' spc <- spc + rnorm(length(spc),0,0.001) # adding some noise
-#' matplot(wav,t(spc[1:10,]),type='l',xlab='Wavelength /nm',ylab='Reflectance')
-#' mov <- movav(spc,w=11) # window size of 11 bands
-#' matlines(as.numeric(colnames(mov)),t(mov[1:10,])) # smoothed data
+#' spc <- spc + rnorm(length(spc), 0, 0.001) # adding some noise
+#' matplot(wav, t(spc[1:10, ]), type = 'l', xlab = 'Wavelength /nm', ylab = 'Reflectance')
+#' mov <- movav(spc, w = 11) # window size of 11 bands
+#' matlines(as.numeric(colnames(mov)), t(mov[1:10, ])) # smoothed data
 #' @return a \code{matrix} or \code{vector} with the filtered signal(s)
 #' @seealso \code{\link[signal]{sgolayfilt}}, \code{\link{savitzkyGolay}}, \code{\link{gapDer}}, \code{\link{binning}}, \code{\link{continuumRemoval}}
 #' @export

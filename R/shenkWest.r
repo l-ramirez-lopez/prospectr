@@ -3,7 +3,7 @@
 #' @description
 #' Select calibration samples from a large multivariate data using the SELECT algorithm as described in Shenk and Westerhaus (1991).
 #' @usage
-#' shenkWest(X,d.min=0.6,pc=0.95,rm.outlier=FALSE,.center = TRUE,.scale = FALSE)
+#' shenkWest(X, d.min = 0.6, pc = 0.95, rm.outlier = FALSE, .center = TRUE, .scale = FALSE)
 #' @param X numeric \code{data.frame} or \code{matrix} 
 #' @param d.min minimum distance (default = 0.6)
 #' @param pc number of principal components retained in the computation distance in the standardized Principal Component space (Mahalanobis distance).
@@ -31,14 +31,14 @@
 #' using the CENTER algorithm of Shenk and Westerhaus (1991), i.e. samples with a standardized Mahalanobis distance \code{>3} are removed.
 #' @examples
 #' data(NIRsoil)
-#' NIRsoil$spc <- binning(X=NIRsoil$spc,bin.size=5) # reduce data size
-#' sel <- shenkWest(NIRsoil$spc,pc=.99,d.min=.3,rm.outlier=FALSE)
-#' plot(sel$pc[,1:2],xlab='PC1',ylab='PC2')
-#' points(sel$pc[sel$model,1:2],pch=19,col=2)  # points selected for calibration 
+#' NIRsoil$spc <- binning(X=NIRsoil$spc, bin.size = 5) # reduce data size
+#' sel <- shenkWest(NIRsoil$spc, pc = .99, d.min = .3, rm.outlier = FALSE)
+#' plot(sel$pc[, 1:2], xlab = 'PC1', ylab = 'PC2')
+#' points(sel$pc[sel$model, 1:2], pch = 19, col = 2)  # points selected for calibration 
 #' # without outliers
-#' sel <- shenkWest(NIRsoil$spc,pc=.99,d.min=.3,rm.outlier=TRUE)
-#' plot(sel$pc[,1:2],xlab='PC1',ylab='PC2')
-#' points(sel$pc[sel$model,1:2],pch=15,col=3)  # points selected for calibration 
+#' sel <- shenkWest(NIRsoil$spc, pc = .99, d.min = .3, rm.outlier = TRUE)
+#' plot(sel$pc[, 1:2], xlab = 'PC1', ylab = 'PC2')
+#' points(sel$pc[sel$model, 1:2], pch = 15, col = 3)  # points selected for calibration 
 #' @references Shenk, J.S., and Westerhaus, M.O., 1991. Population Definition, Sample Selection, and Calibration Procedures for Near Infrared Reflectance Spectroscopy. Crop Science 31, 469-474.
 #' @seealso \code{\link{kenStone}}, \code{\link{duplex}}, \code{\link{puchwein}}
 #' @export

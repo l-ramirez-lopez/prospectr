@@ -3,15 +3,15 @@
 #' Sum of squares block weighting: allows to scale blocks of variables, 
 #' but keeping the relative weights of the variables inside a block.
 #' @usage
-#' blockNorm(X,targetnorm=1)
+#' blockNorm(X, targetnorm = 1)
 #' @param X \code{data.frame} or \code{matrix} to transform
 #' @param targetnorm desired sum of squares for a block of variables (default = 1)
 #' @return a \code{list} with components \code{Xscaled}, the scaled matrix and \code{f}, the scaling factor
 #' @author Antoine Stevens
 #' @examples
-#' X <- matrix(rnorm(100),ncol=10)
+#' X <- matrix(rnorm(100), ncol = 10)
 #' # Block normalize to sum of square = 1
-#' res <- blockNorm(X,1)
+#' res <- blockNorm(X, 1)
 #' sum(res$Xscaled^2) # check
 #' @seealso \code{\link{blockScale}}, \code{\link{standardNormalVariate}}, \code{\link{detrend}}
 #' @references Eriksson, L., Johansson, E., Kettaneh, N., Trygg, J., Wikstrom, C., and Wold, S., 2006. Multi- and Megavariate Data Analysis. MKS Umetrics AB.

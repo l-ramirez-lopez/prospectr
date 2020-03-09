@@ -2,7 +2,7 @@
 #' @description
 #' Select calibration samples from a data \code{matrix} or \code{data.frame} using the Honings et al. (1985) method
 #' @usage
-#' honigs(X,k,type)
+#' honigs(X, k, type)
 #' @param X numeric \code{data.frame} or \code{matrix} with absorbance or continuum-removed reflectance values
 #' @param k number of samples to select for calibration
 #' @param type type of data: 'A' for absorbance (default), 'R' for reflectance, 'CR' for continuum-removed reflectance
@@ -15,14 +15,25 @@
 #' }
 #' @examples
 #' data(NIRsoil)
-#' sel <- honigs(NIRsoil$spc,k=10,type='A')
+#' sel <- honigs(NIRsoil$spc, k = 10, type = 'A')
 #' wav <- as.numeric(colnames(NIRsoil$spc))
 #' # spectral library
-#' matplot(wav,t(NIRsoil$spc),type='l',xlab='wavelength /nm',ylab='Abs',col='grey50')
+#' matplot(wav, 
+#'         t(NIRsoil$spc), 
+#'         type = 'l',
+#'         xlab = 'wavelength /nm', 
+#'         ylab = 'Abs',
+#'         col = 'grey50')
 #' # plot calibration spectra
-#' matlines(wav,t(NIRsoil$spc[sel$model,]),type='l',xlab='wavelength /nm',ylab='Abs',lwd=2,lty=1)
-#' # add bands used during the selection process 
-#' abline(v=wav[sel$bands])
+#' matlines(wav, 
+#'          t(NIRsoil$spc[sel$model, ]), 
+#'          type = 'l', 
+#'          xlab = 'wavelength /nm', 
+#'          ylab = 'Abs', 
+#'          lwd = 2, 
+#'          lty = 1)
+#' # add bands used during the selection process
+#' abline(v = wav[sel$bands])
 #' @details 
 #' The Honigs algorithm is a simple method to select calibration samples based on their absorption features. Absorbance,
 #' reflectance and continuum-removed reflectance values (see \code{\link{continuumRemoval}}) can be used (\code{type} argument). 
