@@ -55,7 +55,7 @@
 #'        col = 1, 
 #'        pch = 15, 
 #'        cex = 1)
-#' @author Antoine Stevens and Leonardo Ramirez-Lopez
+#' @author Antoine Stevens & Leonardo Ramirez-Lopez
 #' @seealso \code{\link{kenStone}}, \code{\link{honigs}}, \code{\link{duplex}}, \code{\link{shenkWest}}
 #' @export
 

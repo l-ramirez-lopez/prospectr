@@ -26,7 +26,8 @@ is used, the variables are scaled such that the sum of variable variances is equ
 X <- matrix(rnorm(100),ncol=10)
 # Hard block scaling
 res <- blockScale(X)
-apply(res$Xscaled,2,var) # sum of column variances == 1
+# sum of column variances == 1
+apply(res$Xscaled, 2, var) 
 }
 \references{
 Eriksson, L., Johansson, E., Kettaneh, N., Trygg, J., Wikstrom, C., and Wold, S., 2006. Multi- and Megavariate Data Analysis. MKS Umetrics AB.

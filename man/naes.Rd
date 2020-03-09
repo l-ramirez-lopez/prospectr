@@ -80,5 +80,5 @@ Naes, T., Isaksson, T., Fearn, T., and Davies, T., 2002. A user friendly guide t
 \code{\link{kenStone}}, \code{\link{honigs}}, \code{\link{duplex}}, \code{\link{shenkWest}}
 }
 \author{
-Antoine Stevens and Leonardo Ramirez-Lopez
+Antoine Stevens & Leonardo Ramirez-Lopez
 }

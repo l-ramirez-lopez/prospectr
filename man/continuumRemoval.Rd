@@ -52,5 +52,5 @@ Clark, R.N., and Roush, T.L., 1984. Reflectance Spectroscopy: Quantitative Analy
 \code{\link{binning}}
 }
 \author{
-Antoine Stevens
+Antoine Stevens & Leonardo Ramirez-Lopez
 }

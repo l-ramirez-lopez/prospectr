@@ -8,7 +8,7 @@
 #' @param type type of data: 'R' for reflectance (default), 'A' for absorbance
 #' @param interpol interpolation method between points on the convex hull: 'linear' (default) or 'spline'
 #' @param method normalization method: 'division' (default) or 'substraction' (see details section)
-#' @author Antoine Stevens
+#' @author Antoine Stevens & Leonardo Ramirez-Lopez
 #' @return a \code{matrix} or \code{vector} with the filtered signal(s)
 #' @examples
 #' data(NIRsoil)
