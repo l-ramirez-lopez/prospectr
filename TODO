@@ -1,4 +1,4 @@
 Leo: Include functions for spectral data normalization
 Leo: include cassa function (for optimal sample set size estimation)
 Leo: replace of fun
-Leo: add functions from BUCHI pkg
+Leo: add some basic functions from BUCHI pkg
