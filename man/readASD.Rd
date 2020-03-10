@@ -42,8 +42,8 @@ all versions. Please report any bugs to the package maintainer.
 
 \url{http://www.mathworks.com/matlabcentral/fileexchange/31547}
 
-Indico Version 8 file format (\url{http://support.asdi.com/Document/Documents.aspx})
+Indico Version 8 file format (\url{http://www.malvernpanalytical.com/en/learn/knowledge-center/user-manuals/asd-file-format-v8})
 }
 \author{
-Antoine Stevens (\R port) and Iain Robinson (matlab function)
+Antoine Stevens (\R port), Iain Robinson (matlab function) & Leonardo Ramirez-Lopez (\R port)
 }
