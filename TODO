@@ -1,2 +1,3 @@
 Leo: Include functions for spectral data normalization
-Leo: Try to include cassa function (for optimal sample set size estimation)
+Leo: include cassa function (for optimal sample set size estimation)
+Leo: replace of fun
