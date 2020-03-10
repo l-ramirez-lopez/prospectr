@@ -12,7 +12,7 @@
 #' @references \url{http://www.en.wikipedia.org/wiki/Cochran's_C_test}
 #'
 Cul <- function(a, n, N) {
-    Fc <- qf(a/N, n - 1, (n - 1) * (N - 1), lower.tail = F)
+    Fc <- qf(a/N, n - 1, (n - 1) * (N - 1), lower.tail = FALSE)
     value <- 1/(1 + ((N - 1)/Fc))
     return(value)
 } 

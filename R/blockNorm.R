@@ -29,29 +29,29 @@ blockNorm <- function(X, targetnorm = 1) {
         X <- as.matrix(X)
     
     if (targetnorm == 1) {
-        f <- sum(X^2, na.rm = T)^0.5
+        f <- sum(X^2, na.rm = TRUE)^0.5
     } else {
-        fmax <- sum(X^2, na.rm = T)
-        fmaxn <- sum((X/fmax)^2, na.rm = T)
+        fmax <- sum(X^2, na.rm = TRUE)
+        fmaxn <- sum((X/fmax)^2, na.rm = TRUE)
         if (fmaxn > targetnorm) {
             fmin <- fmax
             fminn <- fmaxn
             while (fminn > targetnorm) {
                 fmin <- fmin * 10
-                fminn <- sum((X/fmin)^2, na.rm = T)
+                fminn <- sum((X/fmin)^2, na.rm = TRUE)
             }
         } else {
             fmin <- fmax
             fminn <- fmaxn
             while (fmaxn < targetnorm) {
                 fmax <- fmax/10
-                fmaxn <- sum((X/fmax)^2, na.rm = T)
+                fmaxn <- sum((X/fmax)^2, na.rm = TRUE)
             }
         }
         n <- fmaxn
         while ((targetnorm - n)^2 > 1e-12) {
             f <- (fmin + fmax)/2
-            n <- sum((X/f)^2, na.rm = T)
+            n <- sum((X/f)^2, na.rm = TRUE)
             if (n > targetnorm) 
                 fmax <- f else fmin <- f
         }

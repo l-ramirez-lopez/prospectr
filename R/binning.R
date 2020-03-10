@@ -56,7 +56,7 @@ binning <- function(X, bins, bin.size) {
     if (missing(bins) & !missing(bin.size)) {
         b <- findInterval(1:p1, seq(1, p1, bin.size))
     } else {
-        b <- findInterval(1:p1, seq(1, p1, length.out = bins + 1), rightmost.closed = T)
+        b <- findInterval(1:p1, seq(1, p1, length.out = bins + 1), rightmost.closed = TRUE)
     }
     
     p2 <- max(b)
@@ -66,11 +66,11 @@ binning <- function(X, bins, bin.size) {
         for (i in seq_len(p2)) {
             output[, i] <- rowMeans(X[, b == i, drop = F])
         }
-        colnames(output) <- colnames(X)[ceiling(tapply(b, b, function(x) mean(which(b == x[1]), na.rm = T)))]  # find colnames
+        colnames(output) <- colnames(X)[ceiling(tapply(b, b, function(x) mean(which(b == x[1]), na.rm = TRUE)))]  # find colnames
         rownames(output) <- rownames(X)
     } else {
         output <- tapply(X, b, mean)
-        names(output) <- names(X)[ceiling(tapply(b, b, function(x) mean(which(b == x[1]), na.rm = T)))]
+        names(output) <- names(X)[ceiling(tapply(b, b, function(x) mean(which(b == x[1]), na.rm = TRUE)))]
     }
     
     return(output)

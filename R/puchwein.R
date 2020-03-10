@@ -88,12 +88,12 @@ puchwein <- function(X, pc = 0.95, k = 0.2, min.sel = 5, details = FALSE, .cente
         if (any(pcsum)) 
             pc <- max(which(pcsum)) + 1 else pc <- 1
     }
-    X <- sweep(pca$x[, 1:pc, drop = F], 2, pca$sdev[1:pc], "/")  # scaling of the scores  
+    X <- sweep(pca$x[, 1:pc, drop = FALSE], 2, pca$sdev[1:pc], "/")  # scaling of the scores  
     
     H <- fastDistV(X, colMeans(X), "euclid")  # mahalanobis distance to the centre
     lsel <- list()
     x <- data.frame(ID = 1:nrow(X), H)
-    ord <- order(H, decreasing = T)
+    ord <- order(H, decreasing = TRUE)
     d <- fastDist(X, X, "euclid")[ord, ord]
     x <- x[ord, ]
     

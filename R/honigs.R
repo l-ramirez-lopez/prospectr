@@ -89,7 +89,7 @@ honigs <- function(X, k, type = c("A", "R", "CR")) {
     for (i in seq_along(model)) {
         aX <- abs(X)
         maxx <- max(aX)
-        idx <- c(which(aX == maxx, arr.ind = T))
+        idx <- c(which(aX == maxx, arr.ind = TRUE))
         model[i] <- n[idx[1]]
         psel[i] <- p[idx[2]]
         n <- n[-idx[1]]
