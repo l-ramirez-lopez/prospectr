@@ -17,3 +17,4 @@ code_ex.R
 ^\.Rprofile$c  
 TODO
 ^appveyor\.yml$
+cran-comments.md
