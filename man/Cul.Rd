@@ -17,7 +17,7 @@ Cul(a,n,N)
 Upper limit critical value Cul for one-sided test on balanced design
 }
 \references{
-\url{http://www.en.wikipedia.org/wiki/Cochran's_C_test}
+\url{https://en.wikipedia.org/wiki/Cochran's_C_test}
 }
 \author{
 Antoine Stevens

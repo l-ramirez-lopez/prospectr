@@ -1,7 +1,7 @@
 Package: prospectr
 Type: Package
-Title: Miscellaneous functions for processing 
-    and sample selection of spectroscopic data
+Title: Miscellaneous Functions for Processing 
+       and Sample Selection of Spectroscopic Data
 Version: 0.2.0
 Date: 2020-03-13
 Author: 
@@ -20,16 +20,19 @@ VignetteBuilder: knitr
 Suggests:
     resemble,
     hyperSpec,
-    knitr
-LinkingTo: Rcpp, RcppArmadillo
+    knitr,
+    rmarkdown,
+    formatR
+LinkingTo: 
+    Rcpp, 
+    RcppArmadillo
 Depends:
     R (>= 3.5.0),
-    RcppArmadillo (>= 0.4.000)
 Imports:
     foreach,
     iterators,
-    Rcpp (>= 0.11.0)
-RoxygenNote: 6.1.1
+    Rcpp (>= 1.0.3)
+RoxygenNote: 7.1.0
 NeedsCompilation: yes
 LazyData: true
 Repository: CRAN

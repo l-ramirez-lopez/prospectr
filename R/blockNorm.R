@@ -10,8 +10,8 @@
 #' @author Antoine Stevens
 #' @examples
 #' X <- matrix(rnorm(100), ncol = 10)
-#' # Block normalize to sum of square = 1
-#' res <- blockNorm(X, 1)
+#' # Block normalize to sum of square equals to 1
+#' res <- blockNorm(X, targetnorm = 1)
 #' sum(res$Xscaled^2) # check
 #' @seealso \code{\link{blockScale}}, \code{\link{standardNormalVariate}}, \code{\link{detrend}}
 #' @references Eriksson, L., Johansson, E., Kettaneh, N., Trygg, J., Wikstrom, C., and Wold, S., 2006. Multi- and Megavariate Data Analysis. MKS Umetrics AB.
@@ -20,15 +20,17 @@
 #' @note
 #' This is a \R port of the \file{MBnorm.m} function of the MB matlab toolbox by Fran van den Berg (\url{http://www.models.life.ku.dk/~courses/MBtoolbox/mbtmain.htm})
 #' @export
-blockNorm <- function(X, targetnorm = 1) {
+blockNorm <- function(X, targetnorm = 1){
     
-    if (!class(X) %in% c("matrix", "data.frame")) 
+    if(!any(class(X) %in% c("matrix", "data.frame"))){ 
         stop("X should be a matrix or data.frame")
+    }
     
-    if (is.data.frame(X)) 
+    if(is.data.frame(X)){
         X <- as.matrix(X)
+    }
     
-    if (targetnorm == 1) {
+    if(targetnorm == 1) {
         f <- sum(X^2, na.rm = TRUE)^0.5
     } else {
         fmax <- sum(X^2, na.rm = TRUE)
@@ -57,5 +59,5 @@ blockNorm <- function(X, targetnorm = 1) {
         }
     }
     Xn <- X/f
-    list(Xscaled = Xn, f = f)
+    return(list(Xscaled = Xn, f = f))
 } 

@@ -41,8 +41,7 @@
 #' 
 #' R.U.E. 't Lam (2010). Scrutiny of variance results for outliers: Cochran's test optimized. Analytica Chimica Acta 659, 68-84.
 #' 
-#' \url{http://en.wikipedia.org/wiki/Cochran's_C_test}
-#' 
+#' \url{https://en.wikipedia.org/wiki/Cochran's_C_test}
 #' @export
 
 cochranTest <- function(X, id, fun = "sum", alpha = 0.05) {

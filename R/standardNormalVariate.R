@@ -28,8 +28,9 @@
 #' @export
 #'
 standardNormalVariate <- function(X) {
-    if (!class(X) %in% c("matrix", "data.frame")) 
+    if(!any(class(X) %in% c("matrix", "data.frame"))){ 
         stop("X should be a matrix or data.frame")
+    }
     X <- sweep(X, 1, rowMeans(X, na.rm = TRUE), "-")
     X <- sweep(X, 1, apply(X, 1, sd, na.rm = TRUE), "/")
     return(X)

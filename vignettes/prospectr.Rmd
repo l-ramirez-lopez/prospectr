@@ -1,5 +1,5 @@
 ---
-title: "An introduction to the `prospectr` package"
+title: "AAn introduction to the prospectr package"
 author: 
  - name: Antoine Stevens and Leonardo Ramirez-Lopez
    email: ramirez.lopez.leo@gmail.com
@@ -9,16 +9,14 @@ biblio-style: "apalike"
 link-citations: true
 output: knitr:::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{knitr::knitr}
   %\VignetteEncoding{UTF-8}
   %\VignetteIndexEntry{An introduction to the prospectr package}
 ---
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
+  collapse = TRUE
 )
 ```
 
@@ -28,11 +26,11 @@ Near- and mid-infrared spectroscopy are high--troughput, non--destructive and ch
 
 Since the publication of the [special special Volume in Spectroscopy and Chemometrics in R](https://www.jstatsoft.org/issue/view/v018) [@mullen2007] many spectroscopy-related packages have been released. Most of these packages can be found at the following CRAN task views:
 
-- [Multivariate Statistics](http://cran.r-project.org/web/views/Multivariate.html) 
+- [Multivariate Statistics](https://CRAN.R-project.org/view=Multivariate) 
 
-- [Machine Learning & Statistical Learning](http://cran.r-project.org/web/views/MachineLearning.html) 
+- [Machine Learning & Statistical Learning](https://CRAN.R-project.org/view=MachineLearning) 
 
-- [Chemometrics and Computational Physics](http://cran.r-project.org/web/views/ChemPhys.html) 
+- [Chemometrics and Computational Physics](https://CRAN.R-project.org/view=ChemPhys) 
 
 In addition, [Bryan Hanson](https://github.com/bryanhanson?tab=followers) provides a list of Free Open Source Software (FOSS) dedictaed to Spectroscopic applications in gneral (see [https://bryanhanson.github.io/FOSS4Spectroscopy/](https://bryanhanson.github.io/FOSS4Spectroscopy/)). 
 

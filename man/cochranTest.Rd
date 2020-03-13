@@ -56,7 +56,7 @@ Centner, V., Massart, D.L., and De Noord, O.E., 1996. Detection of inhomogeneiti
 
 R.U.E. 't Lam (2010). Scrutiny of variance results for outliers: Cochran's test optimized. Analytica Chimica Acta 659, 68-84.
 
-\url{http://en.wikipedia.org/wiki/Cochran's_C_test}
+\url{https://en.wikipedia.org/wiki/Cochran's_C_test}
 }
 \author{
 Antoine Stevens

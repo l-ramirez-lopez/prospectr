@@ -41,7 +41,7 @@
 #' @name prospectr-package
 #' @aliases prospectr-package resemble
 #' @title Overview of the functions in the prospectr package
-#' @import Rcpp RcppArmadillo foreach iterators
+#' @import Rcpp foreach iterators
 #' @importFrom grDevices chull
 #' @importFrom graphics legend matplot 
 #' @importFrom stats approx cov kmeans lm prcomp qf sd splinefun var

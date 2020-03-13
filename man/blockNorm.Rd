@@ -27,8 +27,8 @@ This is a \R port of the \file{MBnorm.m} function of the MB matlab toolbox by Fr
 }
 \examples{
 X <- matrix(rnorm(100), ncol = 10)
-# Block normalize to sum of square = 1
-res <- blockNorm(X, 1)
+# Block normalize to sum of square equals to 1
+res <- blockNorm(X, targetnorm = 1)
 sum(res$Xscaled^2) # check
 }
 \references{
