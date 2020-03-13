@@ -4,9 +4,9 @@
 #' Upper limit critical value Cul for one-sided test on balanced design
 #' @usage
 #' Cul(a,n,N)
-#' @param a significance level
-#' @param n number of points per series
-#' @param N number of data series
+#' @param a significance level.
+#' @param n number of points per series.
+#' @param N number of data series.
 #' @keywords internal
 #' @author Antoine Stevens
 #' @references \url{https://en.wikipedia.org/wiki/Cochran's_C_test}

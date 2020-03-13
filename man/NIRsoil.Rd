@@ -4,7 +4,7 @@
 \name{NIRsoil}
 \alias{NIRsoil}
 \title{NIRSoil}
-\format{A data frame of 825 observations and 5 variables}
+\format{A \code{data.frame} of 825 observations and 5 variables (where the spectral data is embedded in one variable \code{NIRSoil$spc}).}
 \source{
 Pierre Dardenne from Walloon Agricultural Research Centre, Belgium.
 }

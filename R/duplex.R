@@ -2,10 +2,10 @@
 #' @description Select calibration samples from a large multivariate data using the DUPLEX algorithm
 #' @usage 
 #' duplex(X, k, metric, pc, group, .center = TRUE, .scale = FALSE)
-#' @param X a \code{matrix}
-#' @param k number of calibration/validation samples
-#' @param metric distance metric to be used: 'euclid' (Euclidean distance) or 'mahal' (Mahalanobis distance, default). 
-#' @param pc optional. If not specified, distance are computed in the Euclidean space. Alternatively, distance are computed 
+#' @param X a numeric \code{matrix}.
+#' @param k the number of calibration/validation samples.
+#' @param metric the distance metric to be used: 'euclid' (Euclidean distance) or 'mahal' (Mahalanobis distance, default). 
+#' @param pc optional. The number of Principal Components to be used to select the samples. If not specified, distance are computed in the Euclidean space. Alternatively, distance are computed.
 #' in the principal component score space and  \code{pc} is the number of principal components retained. 
 #' If \code{pc < 1}, the number of principal components kept corresponds to the number of components 
 #' explaining at least (\code{pc * 100}) percent of the total variance.
@@ -14,9 +14,9 @@
 #' , of the same origin, or of the same soil profile). When one observation is selected by the procedure all observations
 #'  of the same group are removed together and assigned to the calibration/validation sets. This allows to select calibration
 #'  and validation samples that are independent from each other.
-#' @param .center logical value indicating whether the input matrix should be centered before Principal Component 
+#' @param .center logical value indicating whether the input matrix should be centered before projecting \code{X} onto the Principal Component space. 
 #' Analysis. Default set to TRUE.
-#' @param .scale logical value indicating whether the input matrix should be scaled before Principal Component 
+#' @param .scale logical value indicating whether the input matrix should be scaled before \code{X} onto the Principal Component space. 
 #' Analysis. Default set to FALSE.
 #' @return a \code{list} with components:
 #' \itemize{

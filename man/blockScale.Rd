@@ -7,14 +7,14 @@
 blockScale(X, type = 'hard', sigma2 = 1)
 }
 \arguments{
-\item{X}{\code{data.frame} or \code{matrix} to transform}
+\item{X}{a \code{data.frame} or \code{matrix} to transform.}
 
-\item{type}{type of block scaling: 'hard' or 'soft'}
+\item{type}{the type of block scaling: 'hard' or 'soft'.}
 
-\item{sigma2}{desired total variance of a block (ie sum of the variances of all variables, default = 1), applicable when \code{type = 'hard'}}
+\item{sigma2}{the desired total variance of a block (ie sum of the variances of all variables, default = 1), applicable when \code{type = 'hard'}.}
 }
 \value{
-a \code{list} with \code{Xscaled}, the scaled matrix and \code{f}, the scaling factor
+a \code{list} with \code{Xscaled}, the scaled matrix and \code{f}, the scaling factor.
 }
 \description{
 Hard or soft block scaling of a spectral matrix to constant group variance.

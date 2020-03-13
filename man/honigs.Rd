@@ -7,9 +7,9 @@
 honigs(X, k, type)
 }
 \arguments{
-\item{X}{numeric \code{data.frame} or \code{matrix} with absorbance or continuum-removed reflectance values}
+\item{X}{a numeric \code{data.frame} or \code{matrix} with absorbance or continuum-removed reflectance values.}
 
-\item{k}{number of samples to select for calibration}
+\item{k}{the number of samples to select for calibration.}
 
 \item{type}{type of data: 'A' for absorbance (default), 'R' for reflectance, 'CR' for continuum-removed reflectance}
 }

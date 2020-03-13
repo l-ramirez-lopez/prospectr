@@ -3,8 +3,8 @@
 #' Select calibration samples from a data \code{matrix} or \code{data.frame} using the Honings et al. (1985) method
 #' @usage
 #' honigs(X, k, type)
-#' @param X numeric \code{data.frame} or \code{matrix} with absorbance or continuum-removed reflectance values
-#' @param k number of samples to select for calibration
+#' @param X a numeric \code{data.frame} or \code{matrix} with absorbance or continuum-removed reflectance values.
+#' @param k the number of samples to select for calibration.
 #' @param type type of data: 'A' for absorbance (default), 'R' for reflectance, 'CR' for continuum-removed reflectance
 #' @author Antoine Stevens
 #' @return a \code{list} with components:

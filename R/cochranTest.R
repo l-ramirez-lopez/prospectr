@@ -3,10 +3,10 @@
 #' Detects and removes replicate outliers in data series based on the Cochran \emph{C} test for homogeneity in variance.
 #' @usage
 #' cochranTest(X, id, fun = 'sum', alpha = 0.05)
-#' @param X input \code{data.frame} or \code{matrix}
-#' @param id \code{factor} of the replicate identifiers
-#' @param fun function to aggregate data: 'sum' (default), 'mean', 'PC1' or 'PC2'
-#' @param alpha \emph{p}-value of the Cochran \emph{C} test
+#' @param X a \code{data.frame} or \code{matrix}.
+#' @param id \code{factor} of the replicate identifiers.
+#' @param fun function to aggregate data: 'sum' (default), 'mean', 'PC1' or 'PC2'.
+#' @param alpha \emph{p}-value of the Cochran \emph{C} test.
 #' @author Antoine Stevens
 #' @return a \code{list} with components:
 #' \itemize{

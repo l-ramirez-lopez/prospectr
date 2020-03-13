@@ -7,7 +7,7 @@
 standardNormalVariate(X)
 }
 \arguments{
-\item{X}{numeric \code{data.frame} or \code{matrix} to transform}
+\item{X}{a numeric \code{data.frame} or \code{matrix} to transform.}
 }
 \value{
 a \code{matrix} of the transformed data
@@ -37,7 +37,7 @@ apply(snv, 1, sd) # check
 Barnes RJ, Dhanoa MS, Lister SJ. 1989. Standard normal variate transformation and de-trending of near-infrared diffuse reflectance spectra. Applied spectroscopy, 43(5): 772-777.
 }
 \seealso{
-\code{\link{detrend}}, \code{\link{blockScale}}, \code{\link{blockNorm}}, \code{\link[pls]{msc}}
+\code{\link{detrend}}, \code{\link{blockScale}}, \code{\link{blockNorm}}
 }
 \author{
 Antoine Stevens

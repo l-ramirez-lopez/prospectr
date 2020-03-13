@@ -3,9 +3,9 @@
 #' Read single or multiple binary and ASCII files acquired with an ASD FieldSpec Pro (\href{http://www.asdi.com/}{ASDi}, Boulder, CO) spectroradiometer
 #' @usage
 #' readASD(fnames, in_format, out_format)
-#' @param fnames character \code{vector} of the name(s) (with absolute path) of the file(s) to read
-#' @param in_format format of the input file: \code{'binary'} or \code{'txt'}
-#' @param out_format format of the output: \code{'matrix'} (default) or \code{'list'} (see below)
+#' @param fnames a character \code{vector} of the name(s) (with absolute path) of the file(s) to read.
+#' @param in_format the format of the input file: \code{'binary'} or \code{'txt'}.
+#' @param out_format the format of the output: \code{'matrix'} (default) or \code{'list'} (see below).
 #' @return 
 #' if \code{out_format} = \code{'matrix'}, reflectance values of the input file(s) in a single \code{matrix}.
 #' 

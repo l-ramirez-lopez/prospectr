@@ -7,11 +7,11 @@
 readASD(fnames, in_format, out_format)
 }
 \arguments{
-\item{fnames}{character \code{vector} of the name(s) (with absolute path) of the file(s) to read}
+\item{fnames}{a character \code{vector} of the name(s) (with absolute path) of the file(s) to read.}
 
-\item{in_format}{format of the input file: \code{'binary'} or \code{'txt'}}
+\item{in_format}{the format of the input file: \code{'binary'} or \code{'txt'}.}
 
-\item{out_format}{format of the output: \code{'matrix'} (default) or \code{'list'} (see below)}
+\item{out_format}{the format of the output: \code{'matrix'} (default) or \code{'list'} (see below).}
 }
 \value{
 if \code{out_format} = \code{'matrix'}, reflectance values of the input file(s) in a single \code{matrix}.

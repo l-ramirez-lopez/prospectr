@@ -2,8 +2,8 @@
 #' @description Select calibration samples from a large multivariate data using the Kennard-Stone algorithm
 #' @usage 
 #' kenStone(X, k, metric, pc, group, .center = TRUE, .scale = FALSE)
-#' @param X a numeric \code{matrix} 
-#' @param k number of desired calibration samples
+#' @param X a numeric \code{matrix} .
+#' @param k number of calibration samples to be selected.
 #' @param metric distance metric to be used: 'euclid' (Euclidean distance) or 'mahal' (Mahalanobis distance, default). 
 #' @param pc optional. If not specified, distance are computed in the Euclidean space. Alternatively, distance are computed 
 #' in the principal component score space and  \code{pc} is the number of principal components retained. 

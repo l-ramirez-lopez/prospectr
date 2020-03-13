@@ -7,9 +7,9 @@
 detrend(X, wav)
 }
 \arguments{
-\item{X}{numeric \code{data.frame}, \code{matrix} or \code{vector} to process}
+\item{X}{a numeric \code{data.frame}, \code{matrix} or \code{vector} to process.}
 
-\item{wav}{wavelengths/ band centers}
+\item{wav}{the wavelengths/ band centers.}
 }
 \value{
 a \code{matrix} or \code{vector} with detrend values

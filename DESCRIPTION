@@ -12,14 +12,12 @@ Maintainer:
 BugReports: 
     https://github.com/l-ramirez-lopez/prospectr/issues
 Description: Functions to pre-process spectroscopic data 
-    and conduct representative sample selection 
-    (e.g. calibration sampling).
+    and conduct (representative) sample selection/calibration sampling.
 License: GPL (>=3)
 URL: https://github.com/l-ramirez-lopez/prospectr
 VignetteBuilder: knitr
 Suggests:
     resemble,
-    hyperSpec,
     knitr,
     rmarkdown,
     formatR
@@ -31,7 +29,7 @@ Depends:
 Imports:
     foreach,
     iterators,
-    Rcpp (>= 1.0.3)
+    Rcpp (>= 1.0.1)
 RoxygenNote: 7.1.0
 NeedsCompilation: yes
 LazyData: true

@@ -7,18 +7,18 @@
 continuumRemoval(X, wav, type, interpol, method)
 }
 \arguments{
-\item{X}{numeric \code{data.frame}, \code{matrix} or \code{vector} to process}
+\item{X}{a numeric \code{data.frame}, \code{matrix} or \code{vector} to process.}
 
-\item{wav}{optional. numeric \code{vector} of band positions}
+\item{wav}{optional. A numeric \code{vector} of band positions.}
 
-\item{type}{type of data: 'R' for reflectance (default), 'A' for absorbance}
+\item{type}{the type of data: 'R' for reflectance (default), 'A' for absorbance.}
 
-\item{interpol}{interpolation method between points on the convex hull: 'linear' (default) or 'spline'}
+\item{interpol}{the interpolation method between points on the convex hull: 'linear' (default) or 'spline'.}
 
-\item{method}{normalization method: 'division' (default) or 'substraction' (see details section)}
+\item{method}{normalization method: 'division' (default) or 'substraction' (see details section).}
 }
 \value{
-a \code{matrix} or \code{vector} with the filtered signal(s)
+a \code{matrix} or \code{vector} with the filtered spectra.
 }
 \description{
 Compute the continuum removed values of a data \code{matrix}, \code{data.frame}, or \code{vector} as implemented in ENVI
@@ -48,8 +48,7 @@ matlines(wav, t(cr[1:10,]))
 Clark, R.N., and Roush, T.L., 1984. Reflectance Spectroscopy: Quantitative Analysis Techniques for Remote Sensing Applications. J. Geophys. Res. 89, 6329-6340.
 }
 \seealso{
-\code{\link[signal]{sgolayfilt}}, \code{\link{savitzkyGolay}}, \code{\link{movav}}, \code{\link{gapDer}}, 
-\code{\link{binning}}
+\code{\link{savitzkyGolay}}, \code{\link{movav}}, \code{\link{gapDer}}, \code{\link{binning}}
 }
 \author{
 Antoine Stevens & Leonardo Ramirez-Lopez

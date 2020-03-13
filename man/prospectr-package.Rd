@@ -7,8 +7,9 @@
 \title{Overview of the functions in the prospectr package}
 \description{
 This package implements a number of \code{R} functions useful for 
-pre-processing spectral spectra (e.g. NIR, IR) as well as for 
-selecting representaive samples/spectra .
+pre-processing spectral data well as for selecting representaive samples/spectra.
+The functions included here are particularly useful in Near-Infrarred and Infrared
+Spectroscopy applications.
 }
 \details{
 Currently, the following preprocessing functions are available:
@@ -27,7 +28,7 @@ Currently, the following preprocessing functions are available:
   \item{\code{\link{blockNorm}}}
  }
 
-The selection of samples/observations for calibration of \acronym{vis-NIR} data can be achieved with one of the following functions:
+For the selection of representative samples/observations for calibrating spectral models the following functions ca be used:
 
 \itemize{ 
   \item{\code{\link{naes}}} 

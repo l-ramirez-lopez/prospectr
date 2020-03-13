@@ -7,13 +7,13 @@
 duplex(X, k, metric, pc, group, .center = TRUE, .scale = FALSE)
 }
 \arguments{
-\item{X}{a \code{matrix}}
+\item{X}{a numeric \code{matrix}.}
 
-\item{k}{number of calibration/validation samples}
+\item{k}{the number of calibration/validation samples.}
 
-\item{metric}{distance metric to be used: 'euclid' (Euclidean distance) or 'mahal' (Mahalanobis distance, default).}
+\item{metric}{the distance metric to be used: 'euclid' (Euclidean distance) or 'mahal' (Mahalanobis distance, default).}
 
-\item{pc}{optional. If not specified, distance are computed in the Euclidean space. Alternatively, distance are computed 
+\item{pc}{optional. The number of Principal Components to be used to select the samples. If not specified, distance are computed in the Euclidean space. Alternatively, distance are computed.
 in the principal component score space and  \code{pc} is the number of principal components retained. 
 If \code{pc < 1}, the number of principal components kept corresponds to the number of components 
 explaining at least (\code{pc * 100}) percent of the total variance.}
@@ -24,10 +24,10 @@ equal to nrow(X), giving the identifier of related observations (e.g. samples of
  of the same group are removed together and assigned to the calibration/validation sets. This allows to select calibration
  and validation samples that are independent from each other.}
 
-\item{.center}{logical value indicating whether the input matrix should be centered before Principal Component 
+\item{.center}{logical value indicating whether the input matrix should be centered before projecting \code{X} onto the Principal Component space. 
 Analysis. Default set to TRUE.}
 
-\item{.scale}{logical value indicating whether the input matrix should be scaled before Principal Component 
+\item{.scale}{logical value indicating whether the input matrix should be scaled before \code{X} onto the Principal Component space. 
 Analysis. Default set to FALSE.}
 }
 \value{

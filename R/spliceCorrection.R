@@ -3,12 +3,12 @@
 #' Corrects steps in an input spectral matrix by linear interpolation of the values of the edges of the middle sensor
 #' @usage
 #' spliceCorrection(X, wav, splice = c(1000, 1830), interpol.bands = 10)
-#' @param X numeric \code{data.frame}, \code{matrix} or \code{vector} to transform
-#' @param wav numeric \code{vector} with band positions
-#' @param splice numeric \code{vector} of the two positions of the splices, default = c(1000,1830)
+#' @param X a numeric \code{data.frame}, \code{matrix} or \code{vector} to transform.
+#' @param wav a numeric \code{vector} with band positions.
+#' @param splice a numeric \code{vector} of the two positions of the splices, default = c(1000, 1830).
 #' corresponding to the splices of the ASD FieldSpec Pro spectrometer.
-#' @param interpol.bands number of interpolation bands
-#' @return a \code{matrix} with the splice corrected data
+#' @param interpol.bands the number of interpolation bands.
+#' @return a \code{matrix} with the splice corrected data.
 #' @author Antoine Stevens
 #' @details
 #' Spectra acquired with an ASD FieldSpec Pro spectroradiometer usually exhibit steps at the splice of the three built-in sensors,

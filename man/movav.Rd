@@ -7,9 +7,9 @@
 movav(X, w)
 }
 \arguments{
-\item{X}{numeric \code{data.frame}, \code{matrix} or \code{vector} to process}
+\item{X}{a numeric \code{data.frame}, \code{matrix} or \code{vector} to process.}
 
-\item{w}{filter length}
+\item{w}{filter length.}
 }
 \value{
 a \code{matrix} or \code{vector} with the filtered signal(s)
@@ -28,7 +28,7 @@ mov <- movav(spc, w = 11) # window size of 11 bands
 matlines(as.numeric(colnames(mov)), t(mov[1:10, ])) # smoothed data
 }
 \seealso{
-\code{\link[signal]{sgolayfilt}}, \code{\link{savitzkyGolay}}, \code{\link{gapDer}}, \code{\link{binning}}, \code{\link{continuumRemoval}}
+\code{\link{savitzkyGolay}}, \code{\link{gapDer}}, \code{\link{binning}}, \code{\link{continuumRemoval}}
 }
 \author{
 Antoine Stevens

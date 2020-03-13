@@ -4,10 +4,10 @@
 #' @usage
 #' savitzkyGolay(X, m, p, w, delta.wav)
 #' @param X a numeric \code{data.frame}, \code{matrix} or \code{vector} to transform
-#' @param m differentiation order
-#' @param p polynomial order
-#' @param w window size (must be odd)
-#' @param delta.wav optional sampling interval
+#' @param m the differentiation order.
+#' @param p the polynomial order.
+#' @param w a window size (must be odd).
+#' @param delta.wav (optional) sampling interval.
 #' @author Antoine Stevens
 #' @examples
 #' data(NIRsoil)
@@ -46,7 +46,6 @@
 #' @references Savitzky, A., and Golay, M.J.E., 1964. Smoothing and differentiation of data by simplified least squares procedures. Anal. Chem. 36, 1627-1639.
 #' 
 #' Wentzell, P.D., and Brown, C.D., 2000. Signal processing in analytical chemistry. Encyclopedia of Analytical Chemistry, 9764-9800.
-#' @seealso \code{\link[signal]{sgolayfilt}}
 #' @export
 #'
 

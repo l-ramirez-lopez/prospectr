@@ -4,8 +4,8 @@
 #' function written in C++/Rcpp for fast computing
 #' @usage
 #' movav(X, w)
-#' @param X numeric \code{data.frame}, \code{matrix} or \code{vector} to process
-#' @param w filter length
+#' @param X a numeric \code{data.frame}, \code{matrix} or \code{vector} to process.
+#' @param w filter length.
 #' @author Antoine Stevens
 #' @examples
 #' data(NIRsoil)
@@ -16,7 +16,7 @@
 #' mov <- movav(spc, w = 11) # window size of 11 bands
 #' matlines(as.numeric(colnames(mov)), t(mov[1:10, ])) # smoothed data
 #' @return a \code{matrix} or \code{vector} with the filtered signal(s)
-#' @seealso \code{\link[signal]{sgolayfilt}}, \code{\link{savitzkyGolay}}, \code{\link{gapDer}}, \code{\link{binning}}, \code{\link{continuumRemoval}}
+#' @seealso \code{\link{savitzkyGolay}}, \code{\link{gapDer}}, \code{\link{binning}}, \code{\link{continuumRemoval}}
 #' @export
 #'
 movav <- function(X, w) {

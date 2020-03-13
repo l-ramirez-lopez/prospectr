@@ -5,10 +5,10 @@
 #' and \code{\link{splinefun}} in \pkg{base}.
 #' @usage
 #' resample(X, wav, new.wav, interpol)
-#' @param X numeric \code{data.frame}, \code{matrix} or \code{vector} to resample
-#' @param wav a numeric vector giving the original band positions
-#' @param new.wav a numeric vector giving the new band positions
-#' @param interpol interpolation method: 'linear' or 'spline'
+#' @param X numeric \code{data.frame}, \code{matrix} or \code{vector} to resample.
+#' @param wav a numeric vector giving the original band positions.
+#' @param new.wav a numeric vector giving the new band positions.
+#' @param interpol the interpolation method: 'linear' or 'spline' (default).
 #' @author Antoine Stevens
 #' @examples
 #' data(NIRsoil)
@@ -18,18 +18,19 @@
 #' resampled <- resample(spc, wav, seq(1100, 2498, 2)) 
 #' dim(spc)
 #' dim(resampled)
-#' @return a \code{matrix} or \code{vector} with resampled values
+#' @return a \code{matrix} or \code{vector} with resampled values.
 #' @seealso \code{\link{resample2}}
 #' @export
 #'
-resample <- function(X, wav, new.wav, interpol = c("linear", "spline")) {
+resample <- function(X, wav, new.wav, interpol = "spline") {
     
     if (is.data.frame(X)) 
         X <- as.matrix(X)
     if (missing(wav)) 
         stop("wav argument should be specified")
     
-    interpol <- match.arg(interpol)
+    if(!interpol %in% c("linear", "spline"))
+        stop("Argument 'interpol' must be either 'linear or 'spline'")
     
     resfun <- function(x, interpol) {
         if (interpol == "linear") {

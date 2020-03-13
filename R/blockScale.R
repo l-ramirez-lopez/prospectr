@@ -7,10 +7,10 @@
 #' is used, the variables are scaled such that the sum of variable variances is equal to the square root of the number of variables in a particular block.
 #' @usage
 #' blockScale(X, type = 'hard', sigma2 = 1)
-#' @param X \code{data.frame} or \code{matrix} to transform
-#' @param type type of block scaling: 'hard' or 'soft'
-#' @param sigma2 desired total variance of a block (ie sum of the variances of all variables, default = 1), applicable when \code{type = 'hard'}
-#' @return a \code{list} with \code{Xscaled}, the scaled matrix and \code{f}, the scaling factor
+#' @param X a \code{data.frame} or \code{matrix} to transform.
+#' @param type the type of block scaling: 'hard' or 'soft'.
+#' @param sigma2 the desired total variance of a block (ie sum of the variances of all variables, default = 1), applicable when \code{type = 'hard'}.
+#' @return a \code{list} with \code{Xscaled}, the scaled matrix and \code{f}, the scaling factor.
 #' @author Antoine Stevens
 #' @examples
 #' X <- matrix(rnorm(100),ncol=10)

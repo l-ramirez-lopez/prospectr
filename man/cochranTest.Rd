@@ -7,13 +7,13 @@
 cochranTest(X, id, fun = 'sum', alpha = 0.05)
 }
 \arguments{
-\item{X}{input \code{data.frame} or \code{matrix}}
+\item{X}{a \code{data.frame} or \code{matrix}.}
 
-\item{id}{\code{factor} of the replicate identifiers}
+\item{id}{\code{factor} of the replicate identifiers.}
 
-\item{fun}{function to aggregate data: 'sum' (default), 'mean', 'PC1' or 'PC2'}
+\item{fun}{function to aggregate data: 'sum' (default), 'mean', 'PC1' or 'PC2'.}
 
-\item{alpha}{\emph{p}-value of the Cochran \emph{C} test}
+\item{alpha}{\emph{p}-value of the Cochran \emph{C} test.}
 }
 \value{
 a \code{list} with components:

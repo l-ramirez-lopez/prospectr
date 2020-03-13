@@ -4,8 +4,8 @@
 #' followed by fitting a second order linear model and returning the fitted residuals.
 #' @usage
 #' detrend(X, wav)
-#' @param X numeric \code{data.frame}, \code{matrix} or \code{vector} to process
-#' @param wav wavelengths/ band centers
+#' @param X a numeric \code{data.frame}, \code{matrix} or \code{vector} to process.
+#' @param wav the wavelengths/ band centers.
 #' @author Antoine Stevens
 #' @examples
 #' data(NIRsoil)

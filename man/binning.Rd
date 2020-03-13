@@ -7,14 +7,14 @@
 binning(X, bins, bin.size)
 }
 \arguments{
-\item{X}{numeric \code{data.frame}, \code{matrix} or \code{vector} to process}
+\item{X}{a numeric \code{data.frame}, \code{matrix} or \code{vector} to process.}
 
-\item{bins}{number of bins}
+\item{bins}{the number of bins.}
 
-\item{bin.size}{desired size of the bins}
+\item{bin.size}{the desired size of the bins.}
 }
 \value{
-a \code{matrix} or \code{vector} with average values per bin
+a \code{matrix} or \code{vector} with average values per bin.
 }
 \description{
 Compute average values of a signal in pre-determined bins (col-wise subsets).
@@ -50,8 +50,7 @@ matpoints(as.numeric(colnames(binned)),
           t(binned[1:5,]), pch = 1:5) 
 }
 \seealso{
-\code{\link[signal]{sgolayfilt}}, \code{\link{savitzkyGolay}}, \code{\link{movav}}, \code{\link{gapDer}}, 
-\code{\link{continuumRemoval}}
+\code{\link{savitzkyGolay}}, \code{\link{movav}}, \code{\link{gapDer}}, \code{\link{continuumRemoval}}
 }
 \author{
 Antoine Stevens & Leonardo Ramirez-Lopez

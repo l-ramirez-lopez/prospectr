@@ -7,15 +7,15 @@
 gapDer(X, m = 1, w = 1, s = 1, delta.wav)
 }
 \arguments{
-\item{X}{numeric \code{matrix} , \code{data.frame} or \code{vector} to transform}
+\item{X}{a numeric \code{matrix} , \code{data.frame} or \code{vector} to transform.}
 
-\item{m}{order of the derivative, between 1 and 4 (default = 1)}
+\item{m}{the order of the derivative, between 1 and 4 (default = 1).}
 
-\item{w}{filter length (should be odd and >=1), i.e. the spacing between points over which the derivative is computed}
+\item{w}{the filter length (should be odd and >=1), i.e. the spacing between points over which the derivative is computed.}
 
-\item{s}{segment size, i.e. the range over which the points are averaged (default = 1, i.e. no smoothing corresponding to 'Norris' Gap Derivative)}
+\item{s}{sthe egment size, i.e. the range over which the points are averaged (default = 1, i.e. no smoothing corresponding to 'Norris' Gap Derivative).}
 
-\item{delta.wav}{sampling interval (or band spacing)}
+\item{delta.wav}{the sampling interval (or band spacing).}
 }
 \value{
 a \code{matrix} or \code{vector} with the filtered signal(s)
@@ -56,7 +56,7 @@ par(opar)
 Hopkins (2002). NIR News 14(5), 10.
 }
 \seealso{
-\code{\link[signal]{sgolayfilt}}, \code{\link{savitzkyGolay}}, \code{\link{movav}}, \code{\link{binning}}, \code{\link{continuumRemoval}}
+\code{\link{savitzkyGolay}}, \code{\link{movav}}, \code{\link{binning}}, \code{\link{continuumRemoval}}
 }
 \author{
 Antoine Stevens

@@ -4,16 +4,16 @@
 #' Select calibration samples from a large multivariate data using the SELECT algorithm as described in Shenk and Westerhaus (1991).
 #' @usage
 #' shenkWest(X, d.min = 0.6, pc = 0.95, rm.outlier = FALSE, .center = TRUE, .scale = FALSE)
-#' @param X numeric \code{data.frame} or \code{matrix} 
-#' @param d.min minimum distance (default = 0.6)
-#' @param pc number of principal components retained in the computation distance in the standardized Principal Component space (Mahalanobis distance).
+#' @param X a numeric \code{data.frame} or \code{matrix}.
+#' @param d.min a minimum distance (default = 0.6).
+#' @param pc the number of principal components retained in the computation distance in the standardized Principal Component space (Mahalanobis distance).
 #' If \code{pc < 1}, the number of principal components kept corresponds to the number of components 
 #' explaining at least (\code{pc * 100}) percent of the total variance (default = 0.95).
-#' @param rm.outlier logical value. if \code{TRUE}, remove observations with a standardized mahalanobis distance
-#' to the center of the data greater than 3 (default = \code{FALSE})
-#' @param .center logical value indicating whether the input matrix should be centered before Principal Component 
+#' @param rm.outlier logical. If \code{TRUE}, remove observations with a standardized mahalanobis distance
+#' to the center of the data greater than 3 (default = \code{FALSE}).
+#' @param .center logical. Indicates whether the input matrix should be centered before Principal Component 
 #' Analysis. Default set to TRUE.
-#' @param .scale logical value indicating whether the input matrix should be scaled before Principal Component 
+#' @param .scale logical. Indicates whether the input matrix should be scaled before Principal Component 
 #' Analysis. Default set to FALSE.
 #' @author Antoine Stevens
 #' @return a \code{list} with components:

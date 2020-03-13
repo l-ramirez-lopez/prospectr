@@ -7,15 +7,15 @@
 resample2(X, wav, new.wav, fwhm)
 }
 \arguments{
-\item{X}{numeric \code{data.frame}, \code{matrix} or \code{vector} to resample}
+\item{X}{a numeric \code{data.frame}, \code{matrix} or \code{vector} to resample.}
 
-\item{wav}{a numeric \code{vector} giving the original band positions}
+\item{wav}{a numeric \code{vector} giving the original band positions.}
 
-\item{new.wav}{a numeric \code{vector} giving the new band positions}
+\item{new.wav}{a numeric \code{vector} giving the new band positions.}
 
-\item{fwhm}{numeric \code{vector} giving the full width half maximums of the new band positions. If no value is specified, it 
+\item{fwhm}{a numeric \code{vector} giving the full width half maximums of the new band positions. If no value is specified, it 
 is assumed that the fwhm is equal to the sampling interval (i.e. band spacing). If only one value is specified, the fwhm is
-assumed to be constant over the spectral range}
+assumed to be constant over the spectral range.}
 }
 \value{
 a \code{matrix} or \code{vector} with resampled values

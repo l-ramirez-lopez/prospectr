@@ -5,9 +5,9 @@
 #' Sometimes called boxcar transformation in signal processing
 #' @usage
 #' binning(X, bins, bin.size)
-#' @param X numeric \code{data.frame}, \code{matrix} or \code{vector} to process
-#' @param bins number of bins
-#' @param bin.size desired size of the bins
+#' @param X a numeric \code{data.frame}, \code{matrix} or \code{vector} to process.
+#' @param bins the number of bins.
+#' @param bin.size the desired size of the bins.
 #' @author Antoine Stevens & Leonardo Ramirez-Lopez
 #' @examples
 #' data(NIRsoil)
@@ -36,9 +36,8 @@
 #' # bin means
 #' matpoints(as.numeric(colnames(binned)), 
 #'           t(binned[1:5,]), pch = 1:5) 
-#' @return a \code{matrix} or \code{vector} with average values per bin
-#' @seealso \code{\link[signal]{sgolayfilt}}, \code{\link{savitzkyGolay}}, \code{\link{movav}}, \code{\link{gapDer}}, 
-#' \code{\link{continuumRemoval}}
+#' @return a \code{matrix} or \code{vector} with average values per bin.
+#' @seealso \code{\link{savitzkyGolay}}, \code{\link{movav}}, \code{\link{gapDer}}, \code{\link{continuumRemoval}}
 #' @export
 #'
 binning <- function(X, bins, bin.size) {

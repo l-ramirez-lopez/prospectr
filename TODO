@@ -3,3 +3,5 @@ Leo: include cassa function (for optimal sample set size estimation)
 Leo: replace of fun
 Leo: further update the readASD function for full compatibility with v8 files (re-organize it)
 Leo: add some basic functions from BUCHI pkg
+Leo: include msc
+Leo: pipes and tidy

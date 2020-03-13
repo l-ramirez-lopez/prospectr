@@ -7,17 +7,17 @@
 spliceCorrection(X, wav, splice = c(1000, 1830), interpol.bands = 10)
 }
 \arguments{
-\item{X}{numeric \code{data.frame}, \code{matrix} or \code{vector} to transform}
+\item{X}{a numeric \code{data.frame}, \code{matrix} or \code{vector} to transform.}
 
-\item{wav}{numeric \code{vector} with band positions}
+\item{wav}{a numeric \code{vector} with band positions.}
 
-\item{splice}{numeric \code{vector} of the two positions of the splices, default = c(1000,1830)
+\item{splice}{a numeric \code{vector} of the two positions of the splices, default = c(1000, 1830).
 corresponding to the splices of the ASD FieldSpec Pro spectrometer.}
 
-\item{interpol.bands}{number of interpolation bands}
+\item{interpol.bands}{the number of interpolation bands.}
 }
 \value{
-a \code{matrix} with the splice corrected data
+a \code{matrix} with the splice corrected data.
 }
 \description{
 Corrects steps in an input spectral matrix by linear interpolation of the values of the edges of the middle sensor

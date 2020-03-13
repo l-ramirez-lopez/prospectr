@@ -7,9 +7,9 @@
 kenStone(X, k, metric, pc, group, .center = TRUE, .scale = FALSE)
 }
 \arguments{
-\item{X}{a numeric \code{matrix}}
+\item{X}{a numeric \code{matrix} .}
 
-\item{k}{number of desired calibration samples}
+\item{k}{number of calibration samples to be selected.}
 
 \item{metric}{distance metric to be used: 'euclid' (Euclidean distance) or 'mahal' (Mahalanobis distance, default).}
 

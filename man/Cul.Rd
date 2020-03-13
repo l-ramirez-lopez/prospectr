@@ -7,11 +7,11 @@
 Cul(a,n,N)
 }
 \arguments{
-\item{a}{significance level}
+\item{a}{significance level.}
 
-\item{n}{number of points per series}
+\item{n}{number of points per series.}
 
-\item{N}{number of data series}
+\item{N}{number of data series.}
 }
 \description{
 Upper limit critical value Cul for one-sided test on balanced design

@@ -7,16 +7,16 @@
 resample(X, wav, new.wav, interpol)
 }
 \arguments{
-\item{X}{numeric \code{data.frame}, \code{matrix} or \code{vector} to resample}
+\item{X}{numeric \code{data.frame}, \code{matrix} or \code{vector} to resample.}
 
-\item{wav}{a numeric vector giving the original band positions}
+\item{wav}{a numeric vector giving the original band positions.}
 
-\item{new.wav}{a numeric vector giving the new band positions}
+\item{new.wav}{a numeric vector giving the new band positions.}
 
-\item{interpol}{interpolation method: 'linear' or 'spline'}
+\item{interpol}{the interpolation method: 'linear' or 'spline' (default).}
 }
 \value{
-a \code{matrix} or \code{vector} with resampled values
+a \code{matrix} or \code{vector} with resampled values.
 }
 \description{
 Resample a data \code{matrix}, \code{data.frame} or \code{vector} to new coordinates (e.g. band positions)

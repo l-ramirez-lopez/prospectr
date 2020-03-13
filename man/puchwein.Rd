@@ -7,21 +7,21 @@
 puchwein(X, pc = 0.95, k, min.sel, details = FALSE, .center = TRUE, .scale = FALSE)
 }
 \arguments{
-\item{X}{input \code{data.frame} or \code{matrix} from which to select calibration samples}
+\item{X}{a \code{data.frame} or \code{matrix} from which the calibration samples are to be selected.}
 
-\item{pc}{number of principal components retained in the computation of the distance in the standardized Principal Component space (Mahalanobis distance). 
+\item{pc}{the number of principal components retained in the computation of the distance in the standardized Principal Component space (Mahalanobis distance). 
 If \code{pc < 1}, the number of principal components kept corresponds to the number of components 
 explaining at least (\code{pc * 100}) percent of the total variance (default = 0.95 as in the Puchwein paper).}
 
-\item{k}{initial limiting distance parameter, if not specified (default), set to 0.2. 
+\item{k}{the initial limiting distance parameter, if not specified (default), set to 0.2. 
 According to Puchwein, a good starting value for the limiting distance is \eqn{d_{ini} = k(p-2)} where \eqn{p} is the number of
 principal components}
 
 \item{min.sel}{minimum number of samples to select for calibration (default = 5).}
 
-\item{details}{logical value, if \code{TRUE}, adds a component in the output list with the indices of the objects kept in each loop (default to \code{FALSE})}
+\item{details}{logical value, if \code{TRUE}, adds a component in the output list with the indices of the objects kept in each loop (default to \code{FALSE}).}
 
-\item{.center}{logical value indicating whether the input matrix should be centered before Principal Component 
+\item{.center}{logical value indicating whether the input matrix should be centered before Principal Component.
 Analysis. Default set to TRUE.}
 
 \item{.scale}{logical value indicating whether the input matrix should be scaled before Principal Component 

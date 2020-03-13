@@ -3,13 +3,13 @@
 #' Compute the continuum removed values of a data \code{matrix}, \code{data.frame}, or \code{vector} as implemented in ENVI
 #' @usage
 #' continuumRemoval(X, wav, type, interpol, method)
-#' @param X numeric \code{data.frame}, \code{matrix} or \code{vector} to process
-#' @param wav optional. numeric \code{vector} of band positions
-#' @param type type of data: 'R' for reflectance (default), 'A' for absorbance
-#' @param interpol interpolation method between points on the convex hull: 'linear' (default) or 'spline'
-#' @param method normalization method: 'division' (default) or 'substraction' (see details section)
+#' @param X a numeric \code{data.frame}, \code{matrix} or \code{vector} to process.
+#' @param wav optional. A numeric \code{vector} of band positions.
+#' @param type the type of data: 'R' for reflectance (default), 'A' for absorbance.
+#' @param interpol the interpolation method between points on the convex hull: 'linear' (default) or 'spline'.
+#' @param method normalization method: 'division' (default) or 'substraction' (see details section).
 #' @author Antoine Stevens & Leonardo Ramirez-Lopez
-#' @return a \code{matrix} or \code{vector} with the filtered signal(s)
+#' @return a \code{matrix} or \code{vector} with the filtered spectra.
 #' @examples
 #' data(NIRsoil)
 #' wav <- as.numeric(colnames(NIRsoil$spc)) 
@@ -23,8 +23,7 @@
 #  # type = 'A' is used for absorbance spectra
 #' cr <- continuumRemoval(NIRsoil$spc, wav, type = 'A') 
 #' matlines(wav, t(cr[1:10,])) 
-#' @seealso \code{\link[signal]{sgolayfilt}}, \code{\link{savitzkyGolay}}, \code{\link{movav}}, \code{\link{gapDer}}, 
-#' \code{\link{binning}}
+#' @seealso \code{\link{savitzkyGolay}}, \code{\link{movav}}, \code{\link{gapDer}}, \code{\link{binning}}
 #' @details  The continuum removal technique was introduced by Clark and Roush (1984)
 #' as a method to highlight energy absorption features of minerals. 
 #' It can be viewed as a way to perform albedo normalization.
