@@ -10,12 +10,12 @@ Author:
 Maintainer: 
     Leonardo Ramirez-Lopez <ramirez.lopez.leo@gmail.com>
 BugReports: 
-    https://github.com/antoinestevens/prospectr/issues 
+    https://github.com/l-ramirez-lopez/prospectr/issues
 Description: Functions to pre-process spectroscopic data 
     and conduct representative sample selection 
     (e.g. calibration sampling).
 License: GPL (>=3)
-URL: https://github.com/antoinestevens/prospectr
+URL: https://github.com/l-ramirez-lopez/prospectr
 VignetteBuilder: knitr
 Suggests:
     resemble,
