@@ -7,7 +7,6 @@ prospectr 0.2.0
 * The description of the continuum removal algorithm is was adjusted. Previously was indicated that the implemented algorithm was based on the search for a local minimum of
 the absorbance spectra the algorithm, however in fact it looks for the convex hull. Thanks to Peter Tillmann for noticing this.
 
-
 prospectr 0.1.4
 ===============
 * Fix bug in kenStone and duplex when the group parameter is used
@@ -28,5 +27,4 @@ prospectr 0.1.1
 
 prospectr 0.1
 ===============
-
-Initial release of the package
+* Initial release of the package
