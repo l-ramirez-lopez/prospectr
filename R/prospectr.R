@@ -32,6 +32,7 @@
 #'  Other useful functions are also available:
 #'  
 #'  \itemize{
+#'   \item{\code{\link{read_nircal}}} 
 #'   \item{\code{\link{readASD}}} 
 #'   \item{\code{\link{spliceCorrection}}}
 #'   \item{\code{\link{cochranTest}}}
@@ -44,7 +45,7 @@
 #' @importFrom grDevices chull
 #' @importFrom graphics legend matplot 
 #' @importFrom stats approx cov kmeans lm prcomp qf sd splinefun var
-#' @importFrom utils read.table
+#' @importFrom utils read.table txtProgressBar setTxtProgressBar
 #' @useDynLib prospectr
 #' @author 
 #' Antoine Stevens 

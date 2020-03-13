@@ -41,6 +41,7 @@ The selection of samples/observations for calibration of \acronym{vis-NIR} data 
  Other useful functions are also available:
  
  \itemize{
+  \item{\code{\link{read_nircal}}} 
   \item{\code{\link{readASD}}} 
   \item{\code{\link{spliceCorrection}}}
   \item{\code{\link{cochranTest}}}
