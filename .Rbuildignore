@@ -16,3 +16,4 @@ code_ex.R
 ^packrat/
 ^\.Rprofile$c  
 TODO
+^appveyor\.yml$
