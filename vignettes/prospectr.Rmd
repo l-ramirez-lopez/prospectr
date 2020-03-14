@@ -1,5 +1,5 @@
 ---
-title: "AAn introduction to the prospectr package"
+title: "An introduction to the prospectr package"
 author: 
  - name: Antoine Stevens and Leonardo Ramirez-Lopez
    email: ramirez.lopez.leo@gmail.com
