@@ -40,7 +40,6 @@
 #'  } 
 #' @docType package
 #' @name prospectr-package
-#' @aliases prospectr-package resemble
 #' @title Overview of the functions in the prospectr package
 #' @import Rcpp foreach iterators
 #' @importFrom grDevices chull
@@ -49,8 +48,7 @@
 #' @importFrom utils read.table txtProgressBar setTxtProgressBar
 #' @useDynLib prospectr
 #' @author 
-#' Antoine Stevens 
-#' Leonardo Ramirez-Lopez \email{ramirez.lopez.leo@@gmail.com}, 
+#' Antoine Stevens & Leonardo Ramirez-Lopez \email{ramirez.lopez.leo@@gmail.com}, 
 
 ######################################################################
 # prospectr

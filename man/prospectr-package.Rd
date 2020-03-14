@@ -3,7 +3,6 @@
 \docType{package}
 \name{prospectr-package}
 \alias{prospectr-package}
-\alias{resemble}
 \title{Overview of the functions in the prospectr package}
 \description{
 This package implements a number of \code{R} functions useful for 
@@ -49,6 +48,5 @@ For the selection of representative samples/observations for calibrating spectra
  }
 }
 \author{
-Antoine Stevens 
-Leonardo Ramirez-Lopez \email{ramirez.lopez.leo@gmail.com},
+Antoine Stevens & Leonardo Ramirez-Lopez \email{ramirez.lopez.leo@gmail.com},
 }

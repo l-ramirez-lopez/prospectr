@@ -3,7 +3,7 @@ Type: Package
 Title: Miscellaneous Functions for Processing 
        and Sample Selection of Spectroscopic Data
 Version: 0.2.0
-Date: 2020-03-13
+Date: 2020-03-14
 Author: 
     Antoine Stevens [aut, cre], 
     Leonardo Ramirez-Lopez [aut, cre]
@@ -11,7 +11,7 @@ Maintainer:
     Leonardo Ramirez-Lopez <ramirez.lopez.leo@gmail.com>
 BugReports: 
     https://github.com/l-ramirez-lopez/prospectr/issues
-Description: Functions to pre-process spectroscopic data 
+Description: Functions to preprocess spectroscopic data 
     and conduct (representative) sample selection/calibration sampling.
 License: GPL (>=3)
 URL: https://github.com/l-ramirez-lopez/prospectr

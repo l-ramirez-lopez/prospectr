@@ -24,8 +24,9 @@
 #'
 blockScale <- function(X, type = "hard", sigma2 = 1) {
     
-    if (!class(X) %in% c("matrix", "data.frame")) 
+    if(!any(class(X) %in% c("matrix", "data.frame"))){
         stop("X should be a matrix or data.frame")
+    }
     
     if (is.data.frame(X)) 
         X <- as.matrix(X)
