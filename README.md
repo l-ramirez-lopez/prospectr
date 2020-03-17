@@ -4,13 +4,13 @@
 ![alt text](https://raw.githubusercontent.com/antoinestevens/prospectr/gh-pages/logo_prospectr_color.png)
 
 
-# prospectr: Processing and sample selection for vis-NIR spectral data
+# `prospectr`: Misc. Functions for Processing and Sample Selection of Spectroscopic Data
 
 Visit the package website [here](http://antoinestevens.github.io/prospectr/) !
 
 _Antoine Stevens & Leo Ramirez-Lopez_
 
-_Last update: 13.03.2020_
+_Last update: 17.03.2020_
 
 `prospectr` provides various utilities for pre--processing and sample selection of visible and near infrared spectral data with [R](http://cran.r-project.org/). While similar functions are available in other packages, like [`signal`](http://cran.r-project.org/web/packages/signal/index.html), the functions in this package works indifferently for `data.frame`, `matrix` and `vector` inputs. Besides, several functions are optimized for speed and use C++ code through the [`Rcpp`](http://cran.r-project.org/web/packages/Rcpp/index.html) and [`RcppArmadillo`](http://cran.r-project.org/web/packages/RcppArmadillo/index.html) packages.
 
