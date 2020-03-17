@@ -22,3 +22,6 @@ There was 1 NOTE (in all test environments):
     data   4.0Mb
     libs   1.8Mb
 
+## Recommenations CRAN submission
+For the future:  Add some reference about the method in
+the Description field in the form Authors (year) <doi:.....>?

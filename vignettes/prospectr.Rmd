@@ -9,7 +9,7 @@ biblio-style: "apalike"
 link-citations: true
 output: knitr:::html_vignette
 vignette: >
-  %\VignetteEngine{knitr::knitr}
+  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
   %\VignetteIndexEntry{An introduction to the prospectr package}
 ---
