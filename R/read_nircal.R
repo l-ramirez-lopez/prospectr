@@ -374,7 +374,7 @@ read_nircal <- function(file,
     }
     
     idxdescription <- (spcinfo[1:n] - comment_f) > 2
-    i.description <- sapply(X = 1:n[idxdescription], 
+    i.description <- sapply(X = (1:n)[idxdescription], 
                             FUN = readd, 
                             rawf = x, 
                             comment_s = comment_s, 
