@@ -4,7 +4,7 @@
 #' using spline or linear interpolation. This function is a simple wrapper around \code{\link{approx}}
 #' and \code{\link{splinefun}} in \pkg{base}.
 #' @usage
-#' resample(X, wav, new.wav, interpol)
+#' resample(X, wav, new.wav, interpol = 'spline')
 #' @param X numeric \code{data.frame}, \code{matrix} or \code{vector} to resample.
 #' @param wav a numeric vector giving the original band positions.
 #' @param new.wav a numeric vector giving the new band positions.
