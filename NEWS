@@ -1,3 +1,7 @@
+prospectr 0.2.1
+===============
+* Bug fix: in read_nircal, the description filed was not being properly read
+
 prospectr 0.2.0
 ===============
 * New maintainer [Leo Ramirez-Lopez]
