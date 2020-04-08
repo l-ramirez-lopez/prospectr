@@ -4,7 +4,7 @@
 \alias{resample}
 \title{Resample spectral data}
 \usage{
-resample(X, wav, new.wav, interpol)
+resample(X, wav, new.wav, interpol = 'spline')
 }
 \arguments{
 \item{X}{numeric \code{data.frame}, \code{matrix} or \code{vector} to resample.}
