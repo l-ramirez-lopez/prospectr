@@ -45,6 +45,7 @@
 ##                   Any "/" in a property name will be replaced with "_"
 ## 13.03.2020 (leo): using now connections in conjuctioon with raw vectors (hexView no longer used). Code for reading responsevars, spectra and metadata has been vectorized (significantly). 
 ##                   Function compartmentalization.
+## 13.03.2020 (leo): bug fix. from 1:n[idxdescription] to (1:n)[idxdescription]
 read_nircal <- function(file, 
                         responsevar = TRUE, 
                         spectra = TRUE, 
