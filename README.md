@@ -10,7 +10,7 @@ Visit the package website [here](http://antoinestevens.github.io/prospectr/) !
 
 _Antoine Stevens & Leo Ramirez-Lopez_
 
-_Last update: 08.04.2020_
+_Last update: 16.04.2020_
 
 `prospectr` provides various utilities for pre--processing and sample selection of visible and near infrared spectral data with [R](http://cran.r-project.org/). While similar functions are available in other packages, like [`signal`](http://cran.r-project.org/web/packages/signal/index.html), the functions in this package works indifferently for `data.frame`, `matrix` and `vector` inputs. Besides, several functions are optimized for speed and use C++ code through the [`Rcpp`](http://cran.r-project.org/web/packages/Rcpp/index.html) and [`RcppArmadillo`](http://cran.r-project.org/web/packages/RcppArmadillo/index.html) packages.
 
@@ -28,7 +28,7 @@ A vignette gives an overview of the main functionalities of the package. Just ty
  `blockScale`            : block scaling                                                           
  `blockNorm`             : sum of squares block weighting                                         
 
-The selection of samples/observations for calibration of vis-NIR data can be achieved with one of the following functions
+The selection of representative samples/observations for calibration of spectral models can be achieved with one of the following functions:
 
  `naes`      : k-means sampling    
  `kenStone`  : CADEX (Kennard--Stone) algorithm                
@@ -39,6 +39,7 @@ The selection of samples/observations for calibration of vis-NIR data can be ach
 
 Other useful functions are also available:
 
+ `read_nircal`      : read binary files of the BUCHI NIRCal software  
  `readASD`          : read binary or text files from an ASD instrument (Indico Pro format)         
  `spliceCorrection` : correct spectra for steps at the splice of detectors in an ASD FieldSpec Pro  
  `cochranTest`      : detects replicate outliers with the Cochran _C_ test                         
