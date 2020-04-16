@@ -4,7 +4,8 @@
 \alias{.get_nircal_comments}
 \title{get the comments of the spectra in the nircal file}
 \usage{
-.get_nircal_comments(connection, metanumbers, begin_s, comment_s, comment_f, n)
+.get_nircal_comments(connection, metanumbers, begin_s, comment_s,
+  comment_f, n)
 }
 \description{
 internal

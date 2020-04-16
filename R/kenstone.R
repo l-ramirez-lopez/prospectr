@@ -1,7 +1,7 @@
 #' @title Kennard-Stone algorithm for calibration sampling
 #' @description Select calibration samples from a large multivariate data using the Kennard-Stone algorithm
 #' @usage 
-#' kenStone(X, k, metric, pc, group, .center = TRUE, .scale = FALSE)
+#' kenStone(X, k, metric = "mahal", pc, group, .center = TRUE, .scale = FALSE)
 #' @param X a numeric \code{matrix} .
 #' @param k number of calibration samples to be selected.
 #' @param metric distance metric to be used: 'euclid' (Euclidean distance) or 'mahal' (Mahalanobis distance, default). 
@@ -59,7 +59,7 @@
 #' @seealso  \code{\link{duplex}}, \code{\link{shenkWest}}, \code{\link{naes}}, \code{\link{honigs}}
 #' @export
 #' 
-kenStone <- function(X, k, metric = c("mahal", "euclid"), pc, group, .center = TRUE, .scale = FALSE) {
+kenStone <- function(X, k, metric = c("mahal"), pc, group, .center = TRUE, .scale = FALSE) {
     
     if (missing(k)) 
         stop("'k' must be specified")
