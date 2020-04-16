@@ -59,15 +59,15 @@
 #' @seealso  \code{\link{duplex}}, \code{\link{shenkWest}}, \code{\link{naes}}, \code{\link{honigs}}
 #' @export
 #' 
-kenStone <- function(X, k, metric = c("mahal"), pc, group, .center = TRUE, .scale = FALSE) {
+kenStone <- function(X, k, metric = "mahal", pc, group, .center = TRUE, .scale = FALSE) {
     
     if (missing(k)) 
         stop("'k' must be specified")
     if (ncol(X) < 2) 
         stop("'X' must have at least 2 columns")
     if (k < 2) 
-        stop("Invalid argument: 'k' should be higher than 2")
-    metric <- match.arg(metric)
+        stop("Invalid argument: 'k' must be larger than 2")
+    metric <- match.arg(metric, c("mahal", "euclid"))
     if (is.data.frame(X)) 
         x <- X <- as.matrix(X)
     if (!missing(pc)) {
