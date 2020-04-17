@@ -315,11 +315,10 @@ read_nircal <- function(file,
 #' @description internal
 #' @keywords internal
 .get_nircal_comments <- function(connection, metanumbers, begin_s, comment_s, comment_f, n){
-  
-  seek(connection, where = metanumbers) 
-  metanumbersinfo <- readChar(connection, 
-                              nchars = begin_s[sum(metanumbers > begin_s) + 1])
-  
+
+
+  seek(connection, where = metanumbers + begin_s[sum(metanumbers > begin_s) + 1])
+
   readb <- function(..i.., connection,  comment_s, comment_f){
     seek(connection, where = comment_s[..i..])
     i.comment <- readChar(connection, nchars = comment_f[..i..] - comment_s[..i..])
@@ -509,10 +508,11 @@ read_nircal <- function(file,
     
     ## read just the segment with the info (including binary data for numeric info)
     seek(connection, where = spcinfo[i])
-    charinfo <- readChar(connection, nchars = (spctra_start[i] - spcinfo[i]))
-    ac <- strsplit(charinfo, "\n")[[1]]
-    ac <- iconv(ac[-length(ac)], from = "ASCII", to = "UTF-8", sub = "byte")
-    
+    ac <- readChar(connection, nchars = (spctra_start[i] - spcinfo[i]), useBytes = TRUE)
+    ac <- iconv(ac, from = "latin1", to = "UTF-8", sub = "byte")
+    ac <- strsplit(ac, "\n")[[1]]
+    ac <- ac[-length(ac)]
+
     ncac <- 10 + grep("1/cm", ac)
     ncac2 <- grep("NIRCal", ac)
     ncac2 <- ncac2[length(ncac2)]
