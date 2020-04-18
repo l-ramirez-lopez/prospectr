@@ -11,8 +11,8 @@ naes(X, k, pc, iter.max = 10, method = 0, .center = TRUE, .scale = FALSE)
 
 \item{k}{either the number of calibration samples to select or a set of cluster centres to initiate the k-means clustering.}
 
-\item{pc}{optional. If not specified, k-means is run directly on the variable (Euclidean) space. 
-Alternatively, a PCA is performed before k-means and \code{pc} is the number of principal components kept. If \code{pc < 1}, 
+\item{pc}{optional. If not specified, k-means is run directly on the variable (Euclidean) space.
+Alternatively, a PCA is performed before k-means and \code{pc} is the number of principal components kept. If \code{pc < 1},
 the number of principal components kept corresponds to the number of components explaining at least (\code{pc * 100}) percent of the total variance.}
 
 \item{iter.max}{maximum number of iterations allowed for the k-means clustering. Default is \code{iter.max = 10} (see \code{?kmeans}).}
@@ -21,20 +21,20 @@ the number of principal components kept corresponds to the number of components 
 centers (\code{method = 0}, default), samples farthest away from the centre of the data (\code{method = 1}) or
 random selection (\code{method = 2}).}
 
-\item{.center}{logical value indicating whether the input matrix should be centered before Principal Component 
+\item{.center}{logical value indicating whether the input matrix should be centered before Principal Component
 Analysis. Default set to TRUE.}
 
-\item{.scale}{logical value indicating whether the input matrix should be scaled before Principal Component 
+\item{.scale}{logical value indicating whether the input matrix should be scaled before Principal Component
 Analysis. Default set to FALSE.}
 }
 \value{
 a \code{list} with components:
 \itemize{
- \item{'\code{model}'}{ numeric \code{vector} giving the row indices of the input data selected for calibration}
- \item{'\code{test}'}{ numeric \code{vector} giving the row indices of the remaining observations}
- \item{'\code{pc}'}{ if the \code{pc} argument is specified, a numeric \code{matrix} of the scaled pc scores}
- \item{'\code{cluster}'}{ integer vector indicating the cluster to which each point was assigned}
- \item{'\code{centers}'}{ a \code{matrix} of cluster centres}
+\item{'\code{model}'}{ numeric \code{vector} giving the row indices of the input data selected for calibration}
+\item{'\code{test}'}{ numeric \code{vector} giving the row indices of the remaining observations}
+\item{'\code{pc}'}{ if the \code{pc} argument is specified, a numeric \code{matrix} of the scaled pc scores}
+\item{'\code{cluster}'}{ integer vector indicating the cluster to which each point was assigned}
+\item{'\code{centers}'}{ a \code{matrix} of cluster centres}
 }
 }
 \description{
@@ -45,10 +45,10 @@ K-means sampling is a simple procedure based on cluster analysis to select calib
 The method can be described in three points (Naes et al.,2001):
 
 \enumerate{
- \item Perform a PCA and decide how many principal component to keep, 
- \item Carry out a k-means clustering on the principal component scores and choose the number of resulting clusters to be equal to
-the number of desired calibration samples, 
- \item Select one sample from each cluster.
+\item Perform a PCA and decide how many principal component to keep,
+\item Carry out a k-means clustering on the principal component scores and choose the number of resulting clusters to be equal to
+the number of desired calibration samples,
+\item Select one sample from each cluster.
 }
 }
 \examples{
@@ -72,7 +72,7 @@ points(sel$pc[sel2$model, 1:2],
        cex = 1)
 }
 \references{
-Naes, T., 1987. The design of calibration in near infra-red reflectance analysis by clustering. Journal of Chemometrics 1, 121-134. 
+Naes, T., 1987. The design of calibration in near infra-red reflectance analysis by clustering. Journal of Chemometrics 1, 121-134.
 
 Naes, T., Isaksson, T., Fearn, T., and Davies, T., 2002. A user friendly guide to multivariate calibration and classification. NIR Publications, Chichester, United Kingdom.
 }

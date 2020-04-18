@@ -1,13 +1,13 @@
 #' @title Resample a high resolution signal to a low resolution signal using full width half maximum (FWHM) values
 #' @description
-#' Resample a data \code{matrix}, \code{data.frame} or \code{vector} to match the response of another instrument 
+#' Resample a data `matrix`, `data.frame` or `vector` to match the response of another instrument 
 #' using full width half maximum (FWHM) values
 #' @usage
 #' resample2(X, wav, new.wav, fwhm)
-#' @param X a numeric \code{data.frame}, \code{matrix} or \code{vector} to resample.
-#' @param wav a numeric \code{vector} giving the original band positions.
-#' @param new.wav a numeric \code{vector} giving the new band positions.
-#' @param fwhm a numeric \code{vector} giving the full width half maximums of the new band positions. If no value is specified, it 
+#' @param X a numeric `data.frame`, `matrix` or `vector` to resample.
+#' @param wav a numeric `vector` giving the original band positions.
+#' @param new.wav a numeric `vector` giving the new band positions.
+#' @param fwhm a numeric `vector` giving the full width half maximums of the new band positions. If no value is specified, it 
 #' is assumed that the fwhm is equal to the sampling interval (i.e. band spacing). If only one value is specified, the fwhm is
 #' assumed to be constant over the spectral range.
 #' @author Antoine Stevens
@@ -27,7 +27,7 @@
 #' # Resample NIRsoil to ASTER band positions
 #' aster <- resample2(spc, wav, new.wav, fwhm)
 #' matpoints(as.numeric(colnames(aster)), t(aster[1:10, ]), pch = 1:5)
-#' @return a \code{matrix} or \code{vector} with resampled values
+#' @return a `matrix` or `vector` with resampled values
 #' @seealso \code{\link{resample}}
 #' @export
 #'

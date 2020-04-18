@@ -1,31 +1,31 @@
 #' @title Read ASD FieldSpec Pro binary and ASCII files
 #' @description
-#' Read single or multiple binary and ASCII files acquired with an ASD FieldSpec Pro (\href{http://www.asdi.com/}{ASDi}, Boulder, CO) spectroradiometer
+#' Read single or multiple binary and ASCII files acquired with an ASD FieldSpec Pro ([ASDi](http://www.asdi.com/), Boulder, CO) spectroradiometer
 #' @usage
 #' readASD(fnames, in_format, out_format)
-#' @param fnames a character \code{vector} of the name(s) (with absolute path) of the file(s) to read.
-#' @param in_format the format of the input file: \code{'binary'} or \code{'txt'}.
-#' @param out_format the format of the output: \code{'matrix'} (default) or \code{'list'} (see below).
+#' @param fnames a character `vector` of the name(s) (with absolute path) of the file(s) to read.
+#' @param in_format the format of the input file: `'binary'` or `'txt'`.
+#' @param out_format the format of the output: `'matrix'` (default) or `'list'` (see below).
 #' @return 
-#' if \code{out_format} = \code{'matrix'}, reflectance values of the input file(s) in a single \code{matrix}.
+#' if `out_format` = `'matrix'`, reflectance values of the input file(s) in a single `matrix`.
 #' 
-#' if \code{out_format} = \code{'list'}, a \code{list} of the input file(s) data consisting of a \code{list} with components:
+#' if `out_format` = `'list'`, a `list` of the input file(s) data consisting of a `list` with components:
 #' \itemize{
-#'  \item{\code{Name}}{ name of the file imported}
-#'  \item{\code{datetime}}{ date and time of acquisition in \code{POSIXct} format}
-#'  \item{\code{header}}{ \code{list} with information from the header file}
-#'  \item{\code{radiance}}{ if applicable, a numeric \code{vector} of radiance values}
-#'  \item{\code{reference}}{ if applicable, a numeric \code{vector} of radiance values of the white reference}
-#'  \item{\code{reflectance}}{ numeric \code{vector} of reflectance values}
-#'  \item{\code{wavelength}}{ numeric \code{vector} of the band positions}
+#'  \item{`Name`}{ name of the file imported}
+#'  \item{`datetime`}{ date and time of acquisition in `POSIXct` format}
+#'  \item{`header`}{ `list` with information from the header file}
+#'  \item{`radiance`}{ if applicable, a numeric `vector` of radiance values}
+#'  \item{`reference`}{ if applicable, a numeric `vector` of radiance values of the white reference}
+#'  \item{`reflectance`}{ numeric `vector` of reflectance values}
+#'  \item{`wavelength`}{ numeric `vector` of the band positions}
 #' } 
 #' @author Antoine Stevens (\R port), Iain Robinson (matlab function) & Leonardo Ramirez-Lopez (\R port)
 #' @references 
-#' \url{http://fsf.nerc.ac.uk/user_group/user_group.shtml} 
+#' <http://fsf.nerc.ac.uk/user_group/user_group.shtml> 
 #' 
-#' \url{http://www.mathworks.com/matlabcentral/fileexchange/31547}
+#' <http://www.mathworks.com/matlabcentral/fileexchange/31547>
 #' 
-#' Indico Version 8 file format (\url{http://www.malvernpanalytical.com/en/learn/knowledge-center/user-manuals/asd-file-format-v8})
+#' Indico Version 8 file format (<http://www.malvernpanalytical.com/en/learn/knowledge-center/user-manuals/asd-file-format-v8>)
 #' @note 
 #' The is a \R port of the \file{importasd.m} function from the \sQuote{FSFPostProcessing} Matlab toolbox by Iain Robinson
 #' (University of Edinburgh), which is based on some Java code provided by Andreas Hunei (University of Zurich)

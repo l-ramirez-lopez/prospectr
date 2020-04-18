@@ -1,17 +1,17 @@
 #' @title Honigs algorithm for calibration sampling
 #' @description
-#' Select calibration samples from a data \code{matrix} or \code{data.frame} using the Honings et al. (1985) method
+#' Select calibration samples from a data `matrix` or `data.frame` using the Honings et al. (1985) method
 #' @usage
 #' honigs(X, k, type)
-#' @param X a numeric \code{data.frame} or \code{matrix} with absorbance or continuum-removed reflectance values.
+#' @param X a numeric `data.frame` or `matrix` with absorbance or continuum-removed reflectance values.
 #' @param k the number of samples to select for calibration.
 #' @param type type of data: 'A' for absorbance (default), 'R' for reflectance, 'CR' for continuum-removed reflectance
 #' @author Antoine Stevens
-#' @return a \code{list} with components:
+#' @return a `list` with components:
 #' \itemize{
-#'  \item{'\code{model}'}{ numeric \code{vector} giving the row indices of the input data selected for calibration}
-#'  \item{'\code{test}'}{ numeric \code{vector} giving the row indices of the remaining observations}
-#'  \item{'\code{bands}'}{ indices of the columns used during the selection procedure}
+#'  \item{'`model`'}{ numeric `vector` giving the row indices of the input data selected for calibration}
+#'  \item{'`test`'}{ numeric `vector` giving the row indices of the remaining observations}
+#'  \item{'`bands`'}{ indices of the columns used during the selection procedure}
 #' }
 #' @examples
 #' data(NIRsoil)
@@ -36,7 +36,7 @@
 #' abline(v = wav[sel$bands])
 #' @details 
 #' The Honigs algorithm is a simple method to select calibration samples based on their absorption features. Absorbance,
-#' reflectance and continuum-removed reflectance values (see \code{\link{continuumRemoval}}) can be used (\code{type} argument). 
+#' reflectance and continuum-removed reflectance values (see \code{\link{continuumRemoval}}) can be used (`type` argument). 
 #' The algorithm can be described as follows: let \eqn{A} be a matrix of \eqn{(i \times j)} absorbance values:
 #' 
 #' \enumerate{
@@ -54,7 +54,7 @@
 #' related to this absorption will then have large negative absorption after the substraction step
 #' and hence will be likely to be selected rapidly by the selection procedure as well.
 #' 
-#' @note The selection procedure is sensitive to noisy features in the signal. The number of samples selected \code{k} selected 
+#' @note The selection procedure is sensitive to noisy features in the signal. The number of samples selected `k` selected 
 #' by the algorithm cannot be greater than the number of wavelengths.
 #' @references Honigs D.E., Hieftje, G.M., Mark, H.L. and Hirschfeld, T.B. 1985. Unique-sample selection via Near-Infrared spectral substraction. Analytical Chemistry, 57, 2299-2303
 #' @seealso \code{\link{kenStone}}, \code{\link{naes}}, \code{\link{duplex}}, \code{\link{shenkWest}}

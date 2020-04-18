@@ -1,10 +1,10 @@
 #' @title Moving average
 #' @description
-#' A simple moving average of a \code{vector}, \code{data.frame} or \code{matrix} using a convolution 
+#' A simple moving average of a `vector`, `data.frame` or `matrix` using a convolution 
 #' function written in C++/Rcpp for fast computing
 #' @usage
 #' movav(X, w)
-#' @param X a numeric \code{data.frame}, \code{matrix} or \code{vector} to process.
+#' @param X a numeric `data.frame`, `matrix` or `vector` to process.
 #' @param w filter length.
 #' @author Antoine Stevens
 #' @examples
@@ -15,7 +15,7 @@
 #' matplot(wav, t(spc[1:10, ]), type = 'l', xlab = 'Wavelength /nm', ylab = 'Reflectance')
 #' mov <- movav(spc, w = 11) # window size of 11 bands
 #' matlines(as.numeric(colnames(mov)), t(mov[1:10, ])) # smoothed data
-#' @return a \code{matrix} or \code{vector} with the filtered signal(s)
+#' @return a `matrix` or `vector` with the filtered signal(s)
 #' @seealso \code{\link{savitzkyGolay}}, \code{\link{gapDer}}, \code{\link{binning}}, \code{\link{continuumRemoval}}
 #' @export
 #'

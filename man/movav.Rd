@@ -15,7 +15,7 @@ movav(X, w)
 a \code{matrix} or \code{vector} with the filtered signal(s)
 }
 \description{
-A simple moving average of a \code{vector}, \code{data.frame} or \code{matrix} using a convolution 
+A simple moving average of a \code{vector}, \code{data.frame} or \code{matrix} using a convolution
 function written in C++/Rcpp for fast computing
 }
 \examples{

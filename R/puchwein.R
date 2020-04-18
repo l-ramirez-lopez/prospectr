@@ -4,29 +4,29 @@
 #' Select calibration samples from multivariate data using the Puchwein algorithm
 #' @usage
 #' puchwein(X, pc = 0.95, k, min.sel, details = FALSE, .center = TRUE, .scale = FALSE)
-#' @param X a \code{data.frame} or \code{matrix} from which the calibration samples are to be selected.
+#' @param X a `data.frame` or `matrix` from which the calibration samples are to be selected.
 #' @param pc the number of principal components retained in the computation of the distance in the standardized Principal Component space (Mahalanobis distance). 
-#' If \code{pc < 1}, the number of principal components kept corresponds to the number of components 
-#' explaining at least (\code{pc * 100}) percent of the total variance (default = 0.95 as in the Puchwein paper).
+#' If `pc < 1`, the number of principal components kept corresponds to the number of components 
+#' explaining at least (`pc * 100`) percent of the total variance (default = 0.95 as in the Puchwein paper).
 #' @param k the initial limiting distance parameter, if not specified (default), set to 0.2. 
 #' According to Puchwein, a good starting value for the limiting distance is \eqn{d_{ini} = k(p-2)} where \eqn{p} is the number of
 #' principal components 
 #' @param min.sel minimum number of samples to select for calibration (default = 5).
-#' @param details logical value, if \code{TRUE}, adds a component in the output list with the indices of the objects kept in each loop (default to \code{FALSE}).
+#' @param details logical value, if `TRUE`, adds a component in the output list with the indices of the objects kept in each loop (default to `FALSE`).
 #' @param .center logical value indicating whether the input matrix should be centered before Principal Component.
 #' Analysis. Default set to TRUE.
 #' @param .scale logical value indicating whether the input matrix should be scaled before Principal Component 
 #' Analysis. Default set to FALSE.
 #' @author Antoine Stevens
-#' @return a \code{list} with components:
+#' @return a `list` with components:
 #' \itemize{
-#'  \item{'\code{model}'}{ indices of the observations (row indices of the input data) selected for calibration}
-#'  \item{'\code{test}'}{ indices of the remaining observations (row indices of the input data)}
-#'  \item{'\code{pc}'}{a numeric \code{matrix} of the scaled pc scores}
-#'  \item{'\code{loop.optimal}'}{ index of the loop producing the maximum difference between the observed and 
+#'  \item{'`model`'}{ indices of the observations (row indices of the input data) selected for calibration}
+#'  \item{'`test`'}{ indices of the remaining observations (row indices of the input data)}
+#'  \item{'`pc`'}{a numeric `matrix` of the scaled pc scores}
+#'  \item{'`loop.optimal`'}{ index of the loop producing the maximum difference between the observed and 
 #'  theoretical sum of leverages of the selected samples}
-#'  \item{'\code{leverage}'}{ \code{data.frame} giving the observed and theoretical cumulative sums of leverage of the points selected in each loop}
-#'  \item{'\code{details}'}{ list with the indices of the observations kept in each loop}
+#'  \item{'`leverage`'}{ `data.frame` giving the observed and theoretical cumulative sums of leverage of the points selected in each loop}
+#'  \item{'`details`'}{ list with the indices of the observations kept in each loop}
 #' }
 #' @examples
 #' data(NIRsoil)
@@ -46,7 +46,7 @@
 #' Shetty, N., Rinnan, A., and Gislum, R., 2012. Selection of representative calibration sample sets for near-infrared reflectance spectroscopy to predict nitrogen concentration in grasses. Chemometrics and Intelligent Laboratory Systems 111, 59-65.
 #' @details 
 #' The Puchwein algorithm select samples from a data matrix by iteratively eliminating similar samples using the Mahalanobis distance.
-#' It starts by performing a PCA on the input \code{matrix} and extracts the score matrix truncated to \eqn{A}, 
+#' It starts by performing a PCA on the input `matrix` and extracts the score matrix truncated to \eqn{A}, 
 #' the number of principal components. The score matrix is then normalized to unit variance and the Euclidean distance of each sample
 #' to the centre of the data is computed, which is identical to the Mahalanobis distance \eqn{H}.
 #' Additionally, the Mahalanobis distances between samples are comptuted.
@@ -61,7 +61,7 @@
 #' }
 #' 
 #' It is not possible to obtain a pre-defined number of samples selected by the method. To choose the adequate number of 
-#' samples, a \code{data.frame} is returned by \code{puchwein} function (\code{leverage}) giving the observed and theoretical
+#' samples, a `data.frame` is returned by `puchwein` function (`leverage`) giving the observed and theoretical
 #' cumulative sum of leverages of the points selected in each iteration. The theoretical cumulative sum of leverage is computed
 #' such as each point has the same leverage (the sum of leverages divided by the number of observations). 
 #' The loop having the largest difference between the observed and theoretical sums

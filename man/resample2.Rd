@@ -13,7 +13,7 @@ resample2(X, wav, new.wav, fwhm)
 
 \item{new.wav}{a numeric \code{vector} giving the new band positions.}
 
-\item{fwhm}{a numeric \code{vector} giving the full width half maximums of the new band positions. If no value is specified, it 
+\item{fwhm}{a numeric \code{vector} giving the full width half maximums of the new band positions. If no value is specified, it
 is assumed that the fwhm is equal to the sampling interval (i.e. band spacing). If only one value is specified, the fwhm is
 assumed to be constant over the spectral range.}
 }
@@ -21,7 +21,7 @@ assumed to be constant over the spectral range.}
 a \code{matrix} or \code{vector} with resampled values
 }
 \description{
-Resample a data \code{matrix}, \code{data.frame} or \code{vector} to match the response of another instrument 
+Resample a data \code{matrix}, \code{data.frame} or \code{vector} to match the response of another instrument
 using full width half maximum (FWHM) values
 }
 \details{

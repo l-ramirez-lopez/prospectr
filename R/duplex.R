@@ -2,27 +2,27 @@
 #' @description Select calibration samples from a large multivariate data using the DUPLEX algorithm
 #' @usage 
 #' duplex(X, k, metric, pc, group, .center = TRUE, .scale = FALSE)
-#' @param X a numeric \code{matrix}.
+#' @param X a numeric `matrix`.
 #' @param k the number of calibration/validation samples.
 #' @param metric the distance metric to be used: 'euclid' (Euclidean distance) or 'mahal' (Mahalanobis distance, default). 
 #' @param pc optional. The number of Principal Components to be used to select the samples. If not specified, distance are computed in the Euclidean space. Alternatively, distance are computed.
-#' in the principal component score space and  \code{pc} is the number of principal components retained. 
-#' If \code{pc < 1}, the number of principal components kept corresponds to the number of components 
-#' explaining at least (\code{pc * 100}) percent of the total variance.
-#' @param group An optional \code{factor} (or vector that can be coerced to a factor by \code{\link{as.factor}}) of length
+#' in the principal component score space and  `pc` is the number of principal components retained. 
+#' If `pc < 1`, the number of principal components kept corresponds to the number of components 
+#' explaining at least (`pc * 100`) percent of the total variance.
+#' @param group An optional `factor` (or vector that can be coerced to a factor by \code{\link{as.factor}}) of length
 #' equal to nrow(X), giving the identifier of related observations (e.g. samples of the same batch of measurements, 
 #' , of the same origin, or of the same soil profile). When one observation is selected by the procedure all observations
 #'  of the same group are removed together and assigned to the calibration/validation sets. This allows to select calibration
 #'  and validation samples that are independent from each other.
-#' @param .center logical value indicating whether the input matrix should be centered before projecting \code{X} onto the Principal Component space. 
+#' @param .center logical value indicating whether the input matrix should be centered before projecting `X` onto the Principal Component space. 
 #' Analysis. Default set to TRUE.
-#' @param .scale logical value indicating whether the input matrix should be scaled before \code{X} onto the Principal Component space. 
+#' @param .scale logical value indicating whether the input matrix should be scaled before `X` onto the Principal Component space. 
 #' Analysis. Default set to FALSE.
-#' @return a \code{list} with components:
+#' @return a `list` with components:
 #' \itemize{
-#'  \item{'\code{model}'}{ numeric \code{vector} giving the row indices of the input data selected for calibration}
-#'  \item{'\code{test}'}{ numeric \code{vector} giving the row indices of the input data selected for validation}
-#'  \item{'\code{pc}'}{ if the \code{pc} argument is specified, a numeric \code{matrix} of the scaled pc scores}
+#'  \item{'`model`'}{ numeric `vector` giving the row indices of the input data selected for calibration}
+#'  \item{'`test`'}{ numeric `vector` giving the row indices of the input data selected for validation}
+#'  \item{'`pc`'}{ if the `pc` argument is specified, a numeric `matrix` of the scaled pc scores}
 #' }
 #' @references
 #' Kennard, R.W., and Stone, L.A., 1969. Computer aided design of experiments. Technometrics 11, 137-148. 
@@ -36,7 +36,7 @@
 #' and removed from the list. In a third step, the procedure assigns each remaining point alternatively to the calibration
 #' and validation sets based on the distance to the points already selected. Similarly to the Kennard-Stone algorithm, 
 #' the default distance metric used by the procedure is the Euclidean distance, but the Mahalanobis distance can be 
-#' used as well using the \code{pc} argument (see \code{\link{kenStone}}).
+#' used as well using the `pc` argument (see \code{\link{kenStone}}).
 #' 
 #' @author Antoine Stevens & Leonardo Ramirez--Lopez
 #' @examples

@@ -1,27 +1,27 @@
 #' @title k-means sampling
-#' @description Perform a k-means sampling on a \code{matrix} or \code{data.frame} for multivariate calibration
+#' @description Perform a k-means sampling on a `matrix` or `data.frame` for multivariate calibration
 #' @usage 
 #' naes(X, k, pc, iter.max = 10, method = 0, .center = TRUE, .scale = FALSE)
-#' @param X a numeric \code{matrix} or \code{data.frame}.
+#' @param X a numeric `matrix` or `data.frame`.
 #' @param k either the number of calibration samples to select or a set of cluster centres to initiate the k-means clustering. 
 #' @param pc optional. If not specified, k-means is run directly on the variable (Euclidean) space. 
-#' Alternatively, a PCA is performed before k-means and \code{pc} is the number of principal components kept. If \code{pc < 1}, 
-#' the number of principal components kept corresponds to the number of components explaining at least (\code{pc * 100}) percent of the total variance.
-#' @param iter.max maximum number of iterations allowed for the k-means clustering. Default is \code{iter.max = 10} (see \code{?kmeans}).
+#' Alternatively, a PCA is performed before k-means and `pc` is the number of principal components kept. If `pc < 1`, 
+#' the number of principal components kept corresponds to the number of components explaining at least (`pc * 100`) percent of the total variance.
+#' @param iter.max maximum number of iterations allowed for the k-means clustering. Default is `iter.max = 10` (see `?kmeans`).
 #' @param method the method used for selecting calibration samples within each cluster: either samples closest to the cluster.
-#' centers (\code{method = 0}, default), samples farthest away from the centre of the data (\code{method = 1}) or
-#' random selection (\code{method = 2}).
+#' centers (`method = 0`, default), samples farthest away from the centre of the data (`method = 1`) or
+#' random selection (`method = 2`).
 #' @param .center logical value indicating whether the input matrix should be centered before Principal Component 
 #' Analysis. Default set to TRUE.
 #' @param .scale logical value indicating whether the input matrix should be scaled before Principal Component 
 #' Analysis. Default set to FALSE.
-#' @return a \code{list} with components:
+#' @return a `list` with components:
 #' \itemize{
-#'  \item{'\code{model}'}{ numeric \code{vector} giving the row indices of the input data selected for calibration}
-#'  \item{'\code{test}'}{ numeric \code{vector} giving the row indices of the remaining observations}
-#'  \item{'\code{pc}'}{ if the \code{pc} argument is specified, a numeric \code{matrix} of the scaled pc scores}
-#'  \item{'\code{cluster}'}{ integer vector indicating the cluster to which each point was assigned}
-#'  \item{'\code{centers}'}{ a \code{matrix} of cluster centres}
+#'  \item{'`model`'}{ numeric `vector` giving the row indices of the input data selected for calibration}
+#'  \item{'`test`'}{ numeric `vector` giving the row indices of the remaining observations}
+#'  \item{'`pc`'}{ if the `pc` argument is specified, a numeric `matrix` of the scaled pc scores}
+#'  \item{'`cluster`'}{ integer vector indicating the cluster to which each point was assigned}
+#'  \item{'`centers`'}{ a `matrix` of cluster centres}
 #' }
 #' @details K-means sampling is a simple procedure based on cluster analysis to select calibration samples from large multivariate datasets.
 #' The method can be described in three points (Naes et al.,2001):

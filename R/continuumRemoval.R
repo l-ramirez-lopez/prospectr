@@ -1,15 +1,15 @@
 #' @title Continuum Removal
 #' @description
-#' Compute the continuum removed values of a data \code{matrix}, \code{data.frame}, or \code{vector} as implemented in ENVI
+#' Compute the continuum removed values of a data `matrix`, `data.frame`, or `vector` as implemented in ENVI
 #' @usage
 #' continuumRemoval(X, wav, type, interpol, method)
-#' @param X a numeric \code{data.frame}, \code{matrix} or \code{vector} to process.
-#' @param wav optional. A numeric \code{vector} of band positions.
+#' @param X a numeric `data.frame`, `matrix` or `vector` to process.
+#' @param wav optional. A numeric `vector` of band positions.
 #' @param type the type of data: 'R' for reflectance (default), 'A' for absorbance.
 #' @param interpol the interpolation method between points on the convex hull: 'linear' (default) or 'spline'.
 #' @param method normalization method: 'division' (default) or 'substraction' (see details section).
 #' @author Antoine Stevens & Leonardo Ramirez-Lopez
-#' @return a \code{matrix} or \code{vector} with the filtered spectra.
+#' @return a `matrix` or `vector` with the filtered spectra.
 #' @examples
 #' data(NIRsoil)
 #' wav <- as.numeric(colnames(NIRsoil$spc)) 

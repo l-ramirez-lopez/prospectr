@@ -5,7 +5,7 @@
 #' Sometimes called boxcar transformation in signal processing
 #' @usage
 #' binning(X, bins, bin.size)
-#' @param X a numeric \code{data.frame}, \code{matrix} or \code{vector} to process.
+#' @param X a numeric `data.frame`, `matrix` or `vector` to process.
 #' @param bins the number of bins.
 #' @param bin.size the desired size of the bins.
 #' @author Antoine Stevens & Leonardo Ramirez-Lopez
@@ -36,7 +36,7 @@
 #' # bin means
 #' matpoints(as.numeric(colnames(binned)), 
 #'           t(binned[1:5,]), pch = 1:5) 
-#' @return a \code{matrix} or \code{vector} with average values per bin.
+#' @return a `matrix` or `vector` with average values per bin.
 #' @seealso \code{\link{savitzkyGolay}}, \code{\link{movav}}, \code{\link{gapDer}}, \code{\link{continuumRemoval}}
 #' @export
 #'

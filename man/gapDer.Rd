@@ -24,8 +24,8 @@ a \code{matrix} or \code{vector} with the filtered signal(s)
 Gap-Segment derivatives of a data \code{matrix}, \code{data.frame} or \code{vector}
 }
 \details{
-The sampling interval specified with the \code{delta.wav} argument is used for scaling and 
-get numerically correct derivatives. 
+The sampling interval specified with the \code{delta.wav} argument is used for scaling and
+get numerically correct derivatives.
 
 The convolution function is written in C++/Rcpp for faster computations.
 }

@@ -19,10 +19,10 @@ Normalizes each row of an input \code{data.frame} or \code{matrix} by applying a
 followed by fitting a second order linear model and returning the fitted residuals.
 }
 \details{
-The detrend is a row-wise transformation that allows to correct for wavelength-dependent 
+The detrend is a row-wise transformation that allows to correct for wavelength-dependent
 scattering effects (variations in curvilinearity). A second-degree polynomial is fit through each spectrum:
 \deqn{x_i = a\lambda^2 + b\lambda + c + e_i}
-were \eqn{x_i} is the spectrum, \eqn{\lambda} is the wavelength vector, a, b, c are estimated by least square, 
+were \eqn{x_i} is the spectrum, \eqn{\lambda} is the wavelength vector, a, b, c are estimated by least square,
 and \eqn{e_i} are the residuals of the least square fit. Then, a detrend spectrum corresponds to:
 \deqn{x\ast_i = x_i - (a\lambda^2 + b\lambda + c = e_i)}
 }

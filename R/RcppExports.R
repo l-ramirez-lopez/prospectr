@@ -5,9 +5,9 @@
 #' @description
 #' Resample, written in C++
 #' @param X matrix to resample
-#' @param wav a numeric \code{vector} giving the original band positions
-#' @param new_wav a numeric \code{vector} giving the new band positions
-#' @param fwhm numeric \code{vector} giving the full width half maximums of the new band positions.
+#' @param wav a numeric `vector` giving the original band positions
+#' @param new_wav a numeric `vector` giving the new band positions
+#' @param fwhm numeric `vector` giving the full width half maximums of the new band positions.
 #' @keywords internal
 #' @useDynLib prospectr
 ResampleCppM <- function(X, wav, new_wav, fwhm) {
@@ -51,10 +51,10 @@ convCppV <- function(X, f) {
 #' @title A fast distance algorithm for two matrices written in C++ 
 #' @usage 
 #' fastDist(X,Y,method)
-#' @param X a \code{matrix}
-#' @param Y a \code{matrix}
-#' @param method a \code{string} with possible values "euclid", "cor", "cosine"
-#' @return a distance \code{matrix}
+#' @param X a `matrix`
+#' @param Y a `matrix`
+#' @param method a `string` with possible values "euclid", "cor", "cosine"
+#' @return a distance `matrix`
 #' @keywords internal
 #' @useDynLib prospectr
 #' @author Antoine Stevens and Leonardo Ramirez-Lopez
@@ -65,10 +65,10 @@ fastDist <- function(X, Y, method) {
 #' @title A fast distance algorithm for a matrix and a vector written in C++ 
 #' @usage 
 #' fastDistV(X,Y,method)
-#' @param X a \code{matrix}
-#' @param Y a \code{vector}
-#' @param method a \code{string} with possible values "euclid", "cor", "cosine"
-#' @return a distance \code{vector}
+#' @param X a `matrix`
+#' @param Y a `vector`
+#' @param method a `string` with possible values "euclid", "cor", "cosine"
+#' @return a distance `vector`
 #' @author Antoine Stevens and Leonardo Ramirez-Lopez
 #' @keywords internal 
 #' @useDynLib prospectr

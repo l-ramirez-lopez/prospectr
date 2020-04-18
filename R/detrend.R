@@ -1,10 +1,10 @@
 #' @title Detrend transformation
 #' @description
-#' Normalizes each row of an input \code{data.frame} or \code{matrix} by applying a SNV transformation
+#' Normalizes each row of an input `data.frame` or `matrix` by applying a SNV transformation
 #' followed by fitting a second order linear model and returning the fitted residuals.
 #' @usage
 #' detrend(X, wav)
-#' @param X a numeric \code{data.frame}, \code{matrix} or \code{vector} to process.
+#' @param X a numeric `data.frame`, `matrix` or `vector` to process.
 #' @param wav the wavelengths/ band centers.
 #' @author Antoine Stevens
 #' @examples
@@ -35,7 +35,7 @@
 #' \deqn{x\ast_i = x_i - (a\lambda^2 + b\lambda + c = e_i)}
 #' @seealso \code{\link{standardNormalVariate}}, \code{\link{blockScale}}, \code{\link{blockNorm}}
 #' @references Barnes RJ, Dhanoa MS, Lister SJ. 1989. Standard normal variate transformation and de-trending of near-infrared diffuse reflectance spectra. Applied spectroscopy, 43(5): 772-777.
-#' @return a \code{matrix} or \code{vector} with detrend values
+#' @return a `matrix` or `vector` with detrend values
 #' @export
 #'
 detrend <- function(X, wav) {

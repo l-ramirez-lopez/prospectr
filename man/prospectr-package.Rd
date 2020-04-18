@@ -5,7 +5,7 @@
 \alias{prospectr-package}
 \title{Overview of the functions in the prospectr package}
 \description{
-This package implements a number of \code{R} functions useful for 
+This package implements a number of \code{R} functions useful for
 pre-processing spectral data well as for selecting representaive samples/spectra.
 The functions included here are particularly useful in Near-Infrarred and Infrared
 Spectroscopy applications.
@@ -13,39 +13,39 @@ Spectroscopy applications.
 \details{
 Currently, the following preprocessing functions are available:
 
-\itemize{ 
-  \item{\code{\link{continuumRemoval}}} 
-  \item{\code{\link{savitzkyGolay}}} 
-  \item{\code{\link{detrend}}} 
-  \item{\code{\link{gapDer}}} 
-  \item{\code{\link{movav}}} 
-  \item{\code{\link{standardNormalVariate}}}
-  \item{\code{\link{binning}}}   
-  \item{\code{\link{resample}}} 
-  \item{\code{\link{resample2}}} 
-  \item{\code{\link{blockScale}}}  
-  \item{\code{\link{blockNorm}}}
- }
+\itemize{
+\item{\code{\link{continuumRemoval}}}
+\item{\code{\link{savitzkyGolay}}}
+\item{\code{\link{detrend}}}
+\item{\code{\link{gapDer}}}
+\item{\code{\link{movav}}}
+\item{\code{\link{standardNormalVariate}}}
+\item{\code{\link{binning}}}
+\item{\code{\link{resample}}}
+\item{\code{\link{resample2}}}
+\item{\code{\link{blockScale}}}
+\item{\code{\link{blockNorm}}}
+}
 
 For the selection of representative samples/observations for calibrating spectral models the following functions ca be used:
 
-\itemize{ 
-  \item{\code{\link{naes}}} 
-  \item{\code{\link{honigs}}} 
-  \item{\code{\link{shenkWest}}}   
-  \item{\code{\link{kenStone}}} 
-  \item{\code{\link{duplex}}} 
-  \item{\code{\link{puchwein}}}  
- } 
- 
- Other useful functions are also available:
- 
- \itemize{
-  \item{\code{\link{read_nircal}}} 
-  \item{\code{\link{readASD}}} 
-  \item{\code{\link{spliceCorrection}}}
-  \item{\code{\link{cochranTest}}}
- }
+\itemize{
+\item{\code{\link{naes}}}
+\item{\code{\link{honigs}}}
+\item{\code{\link{shenkWest}}}
+\item{\code{\link{kenStone}}}
+\item{\code{\link{duplex}}}
+\item{\code{\link{puchwein}}}
+}
+
+Other useful functions are also available:
+
+\itemize{
+\item{\code{\link{read_nircal}}}
+\item{\code{\link{readASD}}}
+\item{\code{\link{spliceCorrection}}}
+\item{\code{\link{cochranTest}}}
+}
 }
 \author{
 Antoine Stevens & Leonardo Ramirez-Lopez \email{ramirez.lopez.leo@gmail.com},

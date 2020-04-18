@@ -35,3 +35,4 @@ NeedsCompilation: yes
 LazyData: true
 Repository: CRAN
 Encoding: UTF-8
+Roxygen: list(markdown = TRUE)

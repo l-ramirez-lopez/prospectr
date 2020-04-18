@@ -2,7 +2,7 @@
 #' @name NIRsoil
 #' @aliases NIRsoil
 #' @title NIRSoil
-#' @format A \code{data.frame} of 825 observations and 5 variables (where the spectral data is embedded in one variable \code{NIRSoil$spc}).
+#' @format A `data.frame` of 825 observations and 5 variables (where the spectral data is embedded in one variable `NIRSoil$spc`).
 #' @usage
 #' data(NIRsoil)
 #' @description
@@ -14,8 +14,8 @@
 #' and Ciso (Carbon in g/100 g of dry soil). Carbon content has been measured following the ISO14235 method.
 #' @details
 #' The dataset includes 618 training and 207 test samples with 5 variables: Nt (Total Nitrogen), Ciso (Carbon), 
-#' CEC (Cation Exchange Capacity), train (\code{vector} of {0,1} indicating training (1) and validation (0) samples)
-#' and spc (a \code{matrix} with absorbance NIR data and band positions as \code{colnames}).
+#' CEC (Cation Exchange Capacity), train (`vector` of {0,1} indicating training (1) and validation (0) samples)
+#' and spc (a `matrix` with absorbance NIR data and band positions as `colnames`).
 #' Nt, Ciso and CEC have respectively 22 \%, 11 \% and 46 \% of the observations with missing values.
 #' @source Pierre Dardenne from Walloon Agricultural Research Centre, Belgium.
 #' @references 

@@ -12,36 +12,36 @@ shenkWest(X, d.min = 0.6, pc = 0.95, rm.outlier = FALSE, .center = TRUE, .scale 
 \item{d.min}{a minimum distance (default = 0.6).}
 
 \item{pc}{the number of principal components retained in the computation distance in the standardized Principal Component space (Mahalanobis distance).
-If \code{pc < 1}, the number of principal components kept corresponds to the number of components 
+If \code{pc < 1}, the number of principal components kept corresponds to the number of components
 explaining at least (\code{pc * 100}) percent of the total variance (default = 0.95).}
 
 \item{rm.outlier}{logical. If \code{TRUE}, remove observations with a standardized mahalanobis distance
 to the center of the data greater than 3 (default = \code{FALSE}).}
 
-\item{.center}{logical. Indicates whether the input matrix should be centered before Principal Component 
+\item{.center}{logical. Indicates whether the input matrix should be centered before Principal Component
 Analysis. Default set to TRUE.}
 
-\item{.scale}{logical. Indicates whether the input matrix should be scaled before Principal Component 
+\item{.scale}{logical. Indicates whether the input matrix should be scaled before Principal Component
 Analysis. Default set to FALSE.}
 }
 \value{
 a \code{list} with components:
 \itemize{
- \item{'\code{model}'}{ numeric \code{vector} giving the row indices of the input data selected for calibration}
- \item{'\code{test}'}{ numeric \code{vector} giving the row indices of the remaining observations}
- \item{'\code{pc}'}{a numeric \code{matrix} of the scaled pc scores}
+\item{'\code{model}'}{ numeric \code{vector} giving the row indices of the input data selected for calibration}
+\item{'\code{test}'}{ numeric \code{vector} giving the row indices of the remaining observations}
+\item{'\code{pc}'}{a numeric \code{matrix} of the scaled pc scores}
 }
 }
 \description{
 Select calibration samples from a large multivariate data using the SELECT algorithm as described in Shenk and Westerhaus (1991).
 }
 \details{
-The SELECT algorithm is an iterative procedure based on the standardized Mahalanobis distance between observations. 
+The SELECT algorithm is an iterative procedure based on the standardized Mahalanobis distance between observations.
 First, the observation having the highest number of neighbours within a given minimum distance is selected and its neighbours
 are discarded. The procedure is repeated until there is no observation left.
 
 If the \code{rm.outlier} argument is set to \code{TRUE}, outliers will be removed before running the SELECT algorithm,
-using the CENTER algorithm of Shenk and Westerhaus (1991), i.e. samples with a standardized Mahalanobis distance \code{>3} are removed.
+using the CENTER algorithm of Shenk and Westerhaus (1991), i.e. samples with a standardized Mahalanobis distance \verb{>3} are removed.
 }
 \examples{
 data(NIRsoil)

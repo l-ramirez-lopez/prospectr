@@ -1,9 +1,9 @@
 #' @title Savitzky-Golay transformation
 #' @description
-#' Savitzky-Golay smoothing and derivative of a data \code{matrix}, \code{data.frame} or \code{vector}.
+#' Savitzky-Golay smoothing and derivative of a data `matrix`, `data.frame` or `vector`.
 #' @usage
 #' savitzkyGolay(X, m, p, w, delta.wav)
-#' @param X a numeric \code{data.frame}, \code{matrix} or \code{vector} to transform
+#' @param X a numeric `data.frame`, `matrix` or `vector` to transform
 #' @param m the differentiation order.
 #' @param p the polynomial order.
 #' @param w a window size (must be odd).
@@ -41,7 +41,7 @@
 #' \eqn{k} is the gap size on each side of \eqn{j} and \eqn{c_h}
 #' are pre-computed coefficients, that depends on the chosen polynomial order and degree.
 #' 
-#' The sampling interval specified with the \code{delta.wav} argument is used for scaling and get numerically correct derivatives.
+#' The sampling interval specified with the `delta.wav` argument is used for scaling and get numerically correct derivatives.
 #' The convolution function is written in C++/Rcpp for faster computations.
 #' @references Savitzky, A., and Golay, M.J.E., 1964. Smoothing and differentiation of data by simplified least squares procedures. Anal. Chem. 36, 1627-1639.
 #' 

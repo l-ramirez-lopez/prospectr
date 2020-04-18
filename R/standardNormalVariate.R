@@ -1,11 +1,11 @@
 #' @title Standard normal variate transformation
 #'
 #' @description
-#' \code{standardNormalVariate} normalizes each row of an input \code{data.frame} or \code{matrix} by substracting
+#' `standardNormalVariate` normalizes each row of an input `data.frame` or `matrix` by substracting
 #' each row by its mean and dividing by its standard deviation
 #' @usage
 #' standardNormalVariate(X)
-#' @param X a numeric \code{data.frame} or \code{matrix} to transform.
+#' @param X a numeric `data.frame` or `matrix` to transform.
 #' @author Antoine Stevens
 #' @examples
 #' data(NIRsoil)
@@ -16,7 +16,7 @@
 #' \dontrun{
 #' apply(snv, 1, sd) # check 
 #' }
-#' @return a \code{matrix} of the transformed data
+#' @return a `matrix` of the transformed data
 #' @details 
 #' SNV is simple way for normalizing spectral data that intends to correct for light scatter. 
 #' It operates row-wise:

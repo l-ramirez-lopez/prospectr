@@ -25,9 +25,9 @@ Compute the continuum removed values of a data \code{matrix}, \code{data.frame},
 }
 \details{
 The continuum removal technique was introduced by Clark and Roush (1984)
-as a method to highlight energy absorption features of minerals. 
+as a method to highlight energy absorption features of minerals.
 It can be viewed as a way to perform albedo normalization.
-The algorithm find points lying on the convex hull (local maxima or envelope) of a spectrum, 
+The algorithm find points lying on the convex hull (local maxima or envelope) of a spectrum,
 connects the points by linear or spline interpolation and
 normalizes the spectrum by dividing (or substracting) the input data by the interpolated line.
 }

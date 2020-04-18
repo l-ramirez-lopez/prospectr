@@ -17,7 +17,7 @@ a \code{matrix} of the transformed data
 each row by its mean and dividing by its standard deviation
 }
 \details{
-SNV is simple way for normalizing spectral data that intends to correct for light scatter. 
+SNV is simple way for normalizing spectral data that intends to correct for light scatter.
 It operates row-wise:
 \deqn{SNV_i = \frac{x_i - \bar{x_i}}{s_i}}
 where \eqn{x_i} is the signal of a sample \eqn{i}, \eqn{\bar{x_i}} is its mean and
