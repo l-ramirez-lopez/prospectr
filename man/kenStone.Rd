@@ -45,10 +45,10 @@ Select calibration samples from a large multivariate data using the Kennard-Ston
 The Kennard--Stone algorithm allows to select samples with a uniform distribution over the predictor space (Kennard and Stone, 1969).
 It starts by selecting the pair of points that are the farthest apart.
 They are assigned to the calibration set and removed from the list of points. Then, the procedure assigns remaining points to the calibration set
-by computing the distance between each unassigned points \eqn{i_0} and selected points \eqn{i} and finding the point \eqn{i_0} for which:
-\deqn{
-  d_{selected} = \max\limits_{i_0}(\min\limits_{i}(d_{i,i_{0}}))
-}
+by computing the distance between each unassigned points \ifelse{html}{ \out{i<sub>0</sub>}}{\eqn{i_0}} and selected points \eqn{i} and finding the point for which:
+
+\deqn{ d_{selected} = \max\limits_{i_0}(\min\limits_{i}(d_{i,i_{0}})) }
+
 This essentially selects point \eqn{i_0} which is the farthest apart from its closest neighbors \eqn{i} in the calibration set.
 The algorithm uses the Euclidean distance to select the points. However, the Mahalanobis distance can also be used. This
 can be achieved by performing a PCA analysis on the input data and computing the Euclidean distance on the truncated score
