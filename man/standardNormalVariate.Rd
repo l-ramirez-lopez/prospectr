@@ -7,7 +7,7 @@
 standardNormalVariate(X)
 }
 \arguments{
-\item{X}{a numeric \code{data.frame} or \code{matrix} to transform.}
+\item{X}{a numeric \code{matrix} of spectral data.}
 }
 \value{
 a \code{matrix} of the transformed data

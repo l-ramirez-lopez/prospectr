@@ -5,7 +5,7 @@
 #' each row by its mean and dividing by its standard deviation
 #' @usage
 #' standardNormalVariate(X)
-#' @param X a numeric `data.frame` or `matrix` to transform.
+#' @param X a numeric `matrix` of spectral data.
 #' @author Antoine Stevens
 #' @examples
 #' data(NIRsoil)
