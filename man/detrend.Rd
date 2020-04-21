@@ -30,21 +30,23 @@ and \eqn{e_i} are the residuals of the least square fit. Then, a detrend spectru
 data(NIRsoil)
 wav <- as.numeric(colnames(NIRsoil$spc))
 # conversion to reflectance
-spc <- 1/10^NIRsoil$spc 
+spc <- 1 / 10^NIRsoil$spc
 opar <- par(no.readonly = TRUE)
-par(mfrow = c(2,1), mar = c(4, 4, 2, 2))
-#plot of the 10 first spectra
-matplot(wav, t(spc[1:10,]),
-        type = 'l', 
-        xlab = '',
-        ylab = 'Reflectance')
-mtext('Raw spectra')
+par(mfrow = c(2, 1), mar = c(4, 4, 2, 2))
+# plot of the 10 first spectra
+matplot(wav, t(spc[1:10, ]),
+  type = "l",
+  xlab = "",
+  ylab = "Reflectance"
+)
+mtext("Raw spectra")
 det <- detrend(spc, wav)
-matplot(wav, t(det[1:10,]), 
-        type = 'l', 
-        xlab = 'Wavelength /nm', 
-        ylab = 'Reflectance')
-mtext('Detrend spectra')
+matplot(wav, t(det[1:10, ]),
+  type = "l",
+  xlab = "Wavelength /nm",
+  ylab = "Reflectance"
+)
+mtext("Detrend spectra")
 par(opar)
 }
 \references{

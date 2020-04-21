@@ -13,26 +13,29 @@
 #' @return a `list` with `Xscaled`, the scaled matrix and `f`, the scaling factor.
 #' @author Antoine Stevens
 #' @examples
-#' X <- matrix(rnorm(100),ncol=10)
+#' X <- matrix(rnorm(100), ncol = 10)
 #' # Hard block scaling
 #' res <- blockScale(X)
 #' # sum of column variances == 1
-#' apply(res$Xscaled, 2, var) 
+#' apply(res$Xscaled, 2, var)
 #' @seealso \code{\link{blockNorm}}, \code{\link{standardNormalVariate}}, \code{\link{detrend}}
 #' @references Eriksson, L., Johansson, E., Kettaneh, N., Trygg, J., Wikstrom, C., and Wold, S., 2006. Multi- and Megavariate Data Analysis. MKS Umetrics AB.
 #' @export
 #'
 blockScale <- function(X, type = "hard", sigma2 = 1) {
-    
-    if(!any(class(X) %in% c("matrix", "data.frame"))){
-        stop("X should be a matrix or data.frame")
-    }
-    
-    if (is.data.frame(X)) 
-        X <- as.matrix(X)
-    
-    w <- apply(X, 2, sd)
-    if (type == "soft") 
-        f <- w * (length(w)^0.25) else f <- w * (length(w)^0.5)/sigma2^0.5
-    list(Xscaled = t(t(X)/f), f = f)
-} 
+  if (!any(class(X) %in% c("matrix", "data.frame"))) {
+    stop("X should be a matrix or data.frame")
+  }
+
+  if (is.data.frame(X)) {
+    X <- as.matrix(X)
+  }
+
+  w <- apply(X, 2, sd)
+  if (type == "soft") {
+    f <- w * (length(w)^0.25)
+  } else {
+    f <- w * (length(w)^0.5) / sigma2^0.5
+  }
+  list(Xscaled = t(t(X) / f), f = f)
+}

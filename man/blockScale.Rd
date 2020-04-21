@@ -23,11 +23,11 @@ With hard block scaling, the variables in a block are scaled so that the sum of 
 is used, the variables are scaled such that the sum of variable variances is equal to the square root of the number of variables in a particular block.
 }
 \examples{
-X <- matrix(rnorm(100),ncol=10)
+X <- matrix(rnorm(100), ncol = 10)
 # Hard block scaling
 res <- blockScale(X)
 # sum of column variances == 1
-apply(res$Xscaled, 2, var) 
+apply(res$Xscaled, 2, var)
 }
 \references{
 Eriksson, L., Johansson, E., Kettaneh, N., Trygg, J., Wikstrom, C., and Wold, S., 2006. Multi- and Megavariate Data Analysis. MKS Umetrics AB.

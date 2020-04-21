@@ -33,16 +33,18 @@ normalizes the spectrum by dividing (or substracting) the input data by the inte
 }
 \examples{
 data(NIRsoil)
-wav <- as.numeric(colnames(NIRsoil$spc)) 
+wav <- as.numeric(colnames(NIRsoil$spc))
 # plot of the 10 first abs spectra
-matplot(wav, 
-        t(NIRsoil$spc[1:10,]),
-        type = 'l', 
-        ylim = c(0,.6),
-        xlab = 'Wavelength /nm', 
-        ylab='Abs')
-cr <- continuumRemoval(NIRsoil$spc, wav, type = 'A') 
-matlines(wav, t(cr[1:10,])) 
+matplot(wav,
+  t(NIRsoil$spc[1:10, ]),
+  type = "l",
+  ylim = c(0, .6),
+  xlab = "Wavelength /nm",
+  ylab = "Abs"
+)
+#  # type = 'A' is used for absorbance spectra
+cr <- continuumRemoval(NIRsoil$spc, wav, type = "A")
+matlines(wav, t(cr[1:10, ]))
 }
 \references{
 Clark, R.N., and Roush, T.L., 1984. Reflectance Spectroscopy: Quantitative Analysis Techniques for Remote Sensing Applications. J. Geophys. Res. 89, 6329-6340.

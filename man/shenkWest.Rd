@@ -45,14 +45,14 @@ using the CENTER algorithm of Shenk and Westerhaus (1991), i.e. samples with a s
 }
 \examples{
 data(NIRsoil)
-NIRsoil$spc <- binning(X=NIRsoil$spc, bin.size = 5) # reduce data size
+NIRsoil$spc <- binning(X = NIRsoil$spc, bin.size = 5) # reduce data size
 sel <- shenkWest(NIRsoil$spc, pc = .99, d.min = .3, rm.outlier = FALSE)
-plot(sel$pc[, 1:2], xlab = 'PC1', ylab = 'PC2')
-points(sel$pc[sel$model, 1:2], pch = 19, col = 2)  # points selected for calibration 
+plot(sel$pc[, 1:2], xlab = "PC1", ylab = "PC2")
+points(sel$pc[sel$model, 1:2], pch = 19, col = 2) # points selected for calibration
 # without outliers
 sel <- shenkWest(NIRsoil$spc, pc = .99, d.min = .3, rm.outlier = TRUE)
-plot(sel$pc[, 1:2], xlab = 'PC1', ylab = 'PC2')
-points(sel$pc[sel$model, 1:2], pch = 15, col = 3)  # points selected for calibration 
+plot(sel$pc[, 1:2], xlab = "PC1", ylab = "PC2")
+points(sel$pc[sel$model, 1:2], pch = 15, col = 3) # points selected for calibration
 }
 \references{
 Shenk, J.S., and Westerhaus, M.O., 1991. Population Definition, Sample Selection, and Calibration Procedures for Near Infrared Reflectance Spectroscopy. Crop Science 31, 469-474.

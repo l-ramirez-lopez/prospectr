@@ -4,7 +4,7 @@
 \alias{read_nircal}
 \title{Import BUCHI NIRCal files}
 \usage{
-read_nircal(file, responsevar = TRUE, spectra = TRUE, 
+read_nircal(file, responsevar = TRUE, spectra = TRUE,
             metadata = TRUE, progress = TRUE, verbose = TRUE)
 }
 \arguments{

@@ -52,24 +52,27 @@ the number of desired calibration samples,
 }
 }
 \examples{
-data(NIRsoil) 
-sel <- naes(NIRsoil$spc,k = 5,p = .99, method = 0)
+data(NIRsoil)
+sel <- naes(NIRsoil$spc, k = 5, p = .99, method = 0)
 # clusters
-plot(sel$pc[, 1:2], col = sel$cluster + 2) 
+plot(sel$pc[, 1:2], col = sel$cluster + 2)
 # points selected for calibration with method = 0
-points(sel$pc[sel$model, 1:2], 
-       col = 2, 
-       pch = 19, 
-       cex = 1)
+points(sel$pc[sel$model, 1:2],
+  col = 2,
+  pch = 19,
+  cex = 1
+)
 # pre-defined centers can also be provided
 sel2 <- naes(NIRsoil$spc,
-           k = sel$centers, 
-           p = .99, method = 1) 
-# points selected for calibration with method = 1 
-points(sel$pc[sel2$model, 1:2], 
-       col = 1, 
-       pch = 15, 
-       cex = 1)
+  k = sel$centers,
+  p = .99, method = 1
+)
+# points selected for calibration with method = 1
+points(sel$pc[sel2$model, 1:2],
+  col = 1,
+  pch = 15,
+  cex = 1
+)
 }
 \references{
 Naes, T., 1987. The design of calibration in near infra-red reflectance analysis by clustering. Journal of Chemometrics 1, 121-134.
