@@ -39,7 +39,7 @@ The selection of representative samples/observations for calibration of spectral
 
 Other useful functions are also available:
 
- `read_nircal`      : read binary files of the BUCHI NIRCal software  
+ `read_nircal`      : read binary files exported from BUCHI NIRCal software  
  `readASD`          : read binary or text files from an ASD instrument (Indico Pro format)         
  `spliceCorrection` : correct spectra for steps at the splice of detectors in an ASD FieldSpec Pro  
  `cochranTest`      : detects replicate outliers with the Cochran _C_ test                         
