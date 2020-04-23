@@ -7,7 +7,7 @@
 standardNormalVariate(X)
 }
 \arguments{
-\item{X}{a numeric \code{data.frame} or \code{matrix} to transform.}
+\item{X}{a numeric \code{matrix} of spectral data.}
 }
 \value{
 a \code{matrix} of the transformed data
@@ -17,7 +17,7 @@ a \code{matrix} of the transformed data
 each row by its mean and dividing by its standard deviation
 }
 \details{
-SNV is simple way for normalizing spectral data that intends to correct for light scatter. 
+SNV is simple way for normalizing spectral data that intends to correct for light scatter.
 It operates row-wise:
 \deqn{SNV_i = \frac{x_i - \bar{x_i}}{s_i}}
 where \eqn{x_i} is the signal of a sample \eqn{i}, \eqn{\bar{x_i}} is its mean and
@@ -25,12 +25,16 @@ where \eqn{x_i} is the signal of a sample \eqn{i}, \eqn{\bar{x_i}} is its mean a
 }
 \examples{
 data(NIRsoil)
-spc <- 1/10^NIRsoil$spc # conversion to reflectance
+spc <- 1 / 10^NIRsoil$spc # conversion to reflectance
 snv <- standardNormalVariate(X = spc)
 # 10 first snv spectra
-matplot(as.numeric(colnames(snv)),t(snv[1:10,]),type='l',xlab='wavelength /nm',ylab='snv') 
+matplot(x = as.numeric(colnames(snv)),
+        y = t(snv[1:10, ]), 
+        type = "l", 
+        xlab = "wavelength, nm", 
+        ylab = "snv")
 \dontrun{
-apply(snv, 1, sd) # check 
+apply(snv, 1, sd) # check
 }
 }
 \references{

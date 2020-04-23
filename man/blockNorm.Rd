@@ -15,7 +15,7 @@ blockNorm(X, targetnorm = 1)
 a \code{list} with components \code{Xscaled}, the scaled matrix and \code{f}, the scaling factor
 }
 \description{
-Sum of squares block weighting: allows to scale blocks of variables, 
+Sum of squares block weighting: allows to scale blocks of variables,
 but keeping the relative weights of the variables inside a block.
 }
 \details{

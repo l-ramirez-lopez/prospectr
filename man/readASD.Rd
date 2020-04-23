@@ -18,13 +18,13 @@ if \code{out_format} = \code{'matrix'}, reflectance values of the input file(s) 
 
 if \code{out_format} = \code{'list'}, a \code{list} of the input file(s) data consisting of a \code{list} with components:
 \itemize{
- \item{\code{Name}}{ name of the file imported}
- \item{\code{datetime}}{ date and time of acquisition in \code{POSIXct} format}
- \item{\code{header}}{ \code{list} with information from the header file}
- \item{\code{radiance}}{ if applicable, a numeric \code{vector} of radiance values}
- \item{\code{reference}}{ if applicable, a numeric \code{vector} of radiance values of the white reference}
- \item{\code{reflectance}}{ numeric \code{vector} of reflectance values}
- \item{\code{wavelength}}{ numeric \code{vector} of the band positions}
+\item{\code{Name}}{ name of the file imported}
+\item{\code{datetime}}{ date and time of acquisition in \code{POSIXct} format}
+\item{\code{header}}{ \code{list} with information from the header file}
+\item{\code{radiance}}{ if applicable, a numeric \code{vector} of radiance values}
+\item{\code{reference}}{ if applicable, a numeric \code{vector} of radiance values of the white reference}
+\item{\code{reflectance}}{ numeric \code{vector} of reflectance values}
+\item{\code{wavelength}}{ numeric \code{vector} of the band positions}
 }
 }
 \description{
@@ -38,7 +38,7 @@ It seems that ASD file format has changed quite a lot with file versions. The fu
 all versions. Please report any bugs to the package maintainer.
 }
 \references{
-\url{http://fsf.nerc.ac.uk/user_group/user_group.shtml} 
+\url{http://fsf.nerc.ac.uk/user_group/user_group.shtml}
 
 \url{http://www.mathworks.com/matlabcentral/fileexchange/31547}
 

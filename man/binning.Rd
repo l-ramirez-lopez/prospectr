@@ -24,30 +24,34 @@ Sometimes called boxcar transformation in signal processing
 \examples{
 data(NIRsoil)
 # conversion to reflectance
-spc <- 1/10^NIRsoil$spc 
+spc <- 1 / 10^NIRsoil$spc
 wav <- as.numeric(colnames(spc))
 
 # 5 first spectra
-matplot(wav, t(spc[1:5,]), 
-        type = 'l', 
-        xlab = 'Wavelength /nm', 
-        ylab = 'Reflectance') 
+matplot(wav, t(spc[1:5, ]),
+  type = "l",
+  xlab = "Wavelength /nm",
+  ylab = "Reflectance"
+)
 binned <- binning(spc, bin.size = 20)
 
 # bin means
-matpoints(as.numeric(colnames(binned)), t(binned[1:5,]), pch = 1:5) 
+matpoints(as.numeric(colnames(binned)), t(binned[1:5, ]), pch = 1:5)
 
 binned <- binning(spc, bins = 20)
 dim(binned) # 20 bins
 
 # 5 first spectra
-matplot(wav, t(spc[1:5,]), 
-        type = 'l', 
-        xlab = 'Wavelength /nm', 
-        ylab = 'Reflectance') 
+matplot(wav, t(spc[1:5, ]),
+  type = "l",
+  xlab = "Wavelength /nm",
+  ylab = "Reflectance"
+)
 # bin means
-matpoints(as.numeric(colnames(binned)), 
-          t(binned[1:5,]), pch = 1:5) 
+matpoints(as.numeric(colnames(binned)),
+  t(binned[1:5, ]),
+  pch = 1:5
+)
 }
 \seealso{
 \code{\link{savitzkyGolay}}, \code{\link{movav}}, \code{\link{gapDer}}, \code{\link{continuumRemoval}}

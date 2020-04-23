@@ -10,7 +10,7 @@ Visit the package website [here](http://antoinestevens.github.io/prospectr/) !
 
 _Antoine Stevens & Leo Ramirez-Lopez_
 
-_Last update: 17.04.2020_
+_Last update: 22.04.2020_
 
 `prospectr` provides various utilities for pre--processing and sample selection of visible and near infrared spectral data with [R](http://cran.r-project.org/). While similar functions are available in other packages, like [`signal`](http://cran.r-project.org/web/packages/signal/index.html), the functions in this package works indifferently for `data.frame`, `matrix` and `vector` inputs. Besides, several functions are optimized for speed and use C++ code through the [`Rcpp`](http://cran.r-project.org/web/packages/Rcpp/index.html) and [`RcppArmadillo`](http://cran.r-project.org/web/packages/RcppArmadillo/index.html) packages.
 
@@ -39,7 +39,7 @@ The selection of representative samples/observations for calibration of spectral
 
 Other useful functions are also available:
 
- `read_nircal`      : read binary files of the BUCHI NIRCal software  
+ `read_nircal`      : read binary files exported from BUCHI NIRCal software  
  `readASD`          : read binary or text files from an ASD instrument (Indico Pro format)         
  `spliceCorrection` : correct spectra for steps at the splice of detectors in an ASD FieldSpec Pro  
  `cochranTest`      : detects replicate outliers with the Cochran _C_ test                         
