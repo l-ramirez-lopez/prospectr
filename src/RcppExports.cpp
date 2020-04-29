@@ -6,9 +6,9 @@
 
 using namespace Rcpp;
 
-// ResampleCppM
-NumericMatrix ResampleCppM(NumericMatrix X, NumericVector wav, NumericVector new_wav, NumericVector fwhm);
-RcppExport SEXP _prospectr_ResampleCppM(SEXP XSEXP, SEXP wavSEXP, SEXP new_wavSEXP, SEXP fwhmSEXP) {
+// resample_fwhm
+NumericMatrix resample_fwhm(NumericMatrix X, NumericVector wav, NumericVector new_wav, NumericVector fwhm);
+RcppExport SEXP _prospectr_resample_fwhm(SEXP XSEXP, SEXP wavSEXP, SEXP new_wavSEXP, SEXP fwhmSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -16,13 +16,13 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< NumericVector >::type wav(wavSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type new_wav(new_wavSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type fwhm(fwhmSEXP);
-    rcpp_result_gen = Rcpp::wrap(ResampleCppM(X, wav, new_wav, fwhm));
+    rcpp_result_gen = Rcpp::wrap(resample_fwhm(X, wav, new_wav, fwhm));
     return rcpp_result_gen;
 END_RCPP
 }
-// ResampleCppV
-NumericVector ResampleCppV(NumericVector X, NumericVector wav, NumericVector new_wav, NumericVector fwhm);
-RcppExport SEXP _prospectr_ResampleCppV(SEXP XSEXP, SEXP wavSEXP, SEXP new_wavSEXP, SEXP fwhmSEXP) {
+// resample_fwhm_vec
+NumericVector resample_fwhm_vec(NumericVector X, NumericVector wav, NumericVector new_wav, NumericVector fwhm);
+RcppExport SEXP _prospectr_resample_fwhm_vec(SEXP XSEXP, SEXP wavSEXP, SEXP new_wavSEXP, SEXP fwhmSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -30,7 +30,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< NumericVector >::type wav(wavSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type new_wav(new_wavSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type fwhm(fwhmSEXP);
-    rcpp_result_gen = Rcpp::wrap(ResampleCppV(X, wav, new_wav, fwhm));
+    rcpp_result_gen = Rcpp::wrap(resample_fwhm_vec(X, wav, new_wav, fwhm));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -122,8 +122,8 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_prospectr_ResampleCppM", (DL_FUNC) &_prospectr_ResampleCppM, 4},
-    {"_prospectr_ResampleCppV", (DL_FUNC) &_prospectr_ResampleCppV, 4},
+    {"_prospectr_resample_fwhm", (DL_FUNC) &_prospectr_resample_fwhm, 4},
+    {"_prospectr_resample_fwhm_vec", (DL_FUNC) &_prospectr_resample_fwhm_vec, 4},
     {"_prospectr_bitAND", (DL_FUNC) &_prospectr_bitAND, 2},
     {"_prospectr_bitSR", (DL_FUNC) &_prospectr_bitSR, 2},
     {"_prospectr_convCppM", (DL_FUNC) &_prospectr_convCppM, 2},

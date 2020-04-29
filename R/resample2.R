@@ -55,14 +55,14 @@ resample2 <- function(X, wav, new.wav, fwhm) {
     if (length(wav) != ncol(X)) {
       stop("length(wav) should be equal to ncol(X)")
     }
-    output <- ResampleCppM(X, wav, new.wav, fwhm)
+    output <- resample_fwhm(X, wav, new.wav, fwhm)
     rownames(output) <- rownames(X)
     colnames(output) <- new.wav
   } else {
     if (length(wav) != length(X)) {
       stop("length(wav) should be equal to length(X)")
     }
-    output <- ResampleCppV(X, wav, new.wav, fwhm)
+    output <- resample_fwhm_vec(X, wav, new.wav, fwhm)
     names(output) <- new.wav
   }
   return(output)

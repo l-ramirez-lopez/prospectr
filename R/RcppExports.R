@@ -10,12 +10,12 @@
 #' @param fwhm numeric \code{vector} giving the full width half maximums of the new band positions.
 #' @keywords internal
 #' @useDynLib prospectr
-ResampleCppM <- function(X, wav, new_wav, fwhm) {
-    .Call('_prospectr_ResampleCppM', PACKAGE = 'prospectr', X, wav, new_wav, fwhm)
+resample_fwhm <- function(X, wav, new_wav, fwhm) {
+    .Call('_prospectr_resample_fwhm', PACKAGE = 'prospectr', X, wav, new_wav, fwhm)
 }
 
-ResampleCppV <- function(X, wav, new_wav, fwhm) {
-    .Call('_prospectr_ResampleCppV', PACKAGE = 'prospectr', X, wav, new_wav, fwhm)
+resample_fwhm_vec <- function(X, wav, new_wav, fwhm) {
+    .Call('_prospectr_resample_fwhm_vec', PACKAGE = 'prospectr', X, wav, new_wav, fwhm)
 }
 
 #' @title bitwise operations 
