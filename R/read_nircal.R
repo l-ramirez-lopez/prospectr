@@ -69,9 +69,9 @@ read_nircal <- function(file,
     stop("Ups! This does not look like a BUCHI NIRCal file")
   }
 
-  rawcoords <- .get_nircal_indices(x = nircalraw)
+  rawcoords <- get_nircal_indices(x = nircalraw)
 
-  ids <- .get_nircal_ids(connection = con, from = rawcoords$values_s[5], to = rawcoords$values_s2)
+  ids <- get_nircal_ids(connection = con, from = rawcoords$values_s[5], to = rawcoords$values_s2)
   nd <- length(ids)
 
   nms <- c(
@@ -88,7 +88,7 @@ read_nircal <- function(file,
   dextracted$ID <- ids
 
   if (responsevar) {
-    responses <- .get_nircal_response(x = nircalraw, n = nd)
+    responses <- get_nircal_response(x = nircalraw, n = nd)
     dextracted <- cbind(dextracted, responses$properties)
     nms <- colnames(dextracted)
     if (!is.null(responses$warning)) {
@@ -128,7 +128,7 @@ read_nircal <- function(file,
     setTxtProgressBar(pb, g1)
   }
 
-  .comment <- .get_nircal_comments(
+  .comment <- get_nircal_comments(
     connection = con,
     metanumbers = rawcoords$metanumbers,
     begin_s = rawcoords$begin_s,
@@ -137,7 +137,7 @@ read_nircal <- function(file,
     n = nd
   )
 
-  description <- .get_nircal_description(
+  description <- get_nircal_description(
     x = nircalraw,
     begin_s = rawcoords$begin_s,
     spcinfo = rawcoords$spcinfo,
@@ -153,7 +153,7 @@ read_nircal <- function(file,
     setTxtProgressBar(pb, g1 + g2)
   }
 
-  speclength <- .get_nircal_lengthspc(
+  speclength <- get_nircal_lengthspc(
     connection = con,
     from = rawcoords$values_s[6],
     to = rawcoords$values_s[7] - rawcoords$values_s[6]
@@ -169,7 +169,7 @@ read_nircal <- function(file,
 
   ## -- Collect the spectra  --
   if (spectra) {
-    dspectra <- .get_nircal_spectra(
+    dspectra <- get_nircal_spectra(
       x = nircalraw,
       values_s = rawcoords$values_s,
       spctra_start = spctra_start,
@@ -191,7 +191,7 @@ read_nircal <- function(file,
   }
 
   if (metadata) {
-    metda <- .get_nircal_metadata(
+    metda <- get_nircal_metadata(
       connection = con,
       n = nd,
       spctra_start = spctra_start,
@@ -277,7 +277,7 @@ read_nircal <- function(file,
 #' @title get the positions of relevant data witihi the nircal file
 #' @description internal
 #' @keywords internal
-.get_nircal_indices <- function(x) {
+get_nircal_indices <- function(x) {
   beginchr <- "begin"
   endchr <- "end"
 
@@ -319,7 +319,7 @@ read_nircal <- function(file,
   ))
 }
 
-.get_nircal_ids <- function(connection, from, to) {
+get_nircal_ids <- function(connection, from, to) {
   seek(connection, where = from)
   ids <- readChar(connection, nchars = to - from)
   ids <- iconv(ids, from = "ASCII", to = "UTF-8", sub = "byte")
@@ -334,7 +334,7 @@ read_nircal <- function(file,
 #' @title get the comments of the spectra in the nircal file
 #' @description internal
 #' @keywords internal
-.get_nircal_comments <- function(connection, metanumbers, begin_s, comment_s, comment_f, n) {
+get_nircal_comments <- function(connection, metanumbers, begin_s, comment_s, comment_f, n) {
   seek(connection, where = metanumbers + begin_s[sum(metanumbers > begin_s) + 1])
 
   readb <- function(..i.., connection, comment_s, comment_f) {
@@ -364,7 +364,7 @@ read_nircal <- function(file,
 #' @title get the description of the spectra in the nircal file
 #' @description internal
 #' @keywords internal
-.get_nircal_description <- function(x, begin_s, spcinfo, comment_s, comment_f, n) {
+get_nircal_description <- function(x, begin_s, spcinfo, comment_s, comment_f, n) {
 
   ## The numbers in NIRCal files preceeding the files comment and description (e.g 11/ or 7/)
   metanumbers <- grepRaw("[[0-9]]{0,}\\/Comment\n[[0-9]{0,}\\/Description", x, all = TRUE)[1]
@@ -419,7 +419,7 @@ read_nircal <- function(file,
 #' @title get the number of spectral variables in the nircaa file
 #' @description internal
 #' @keywords internal
-.get_nircal_lengthspc <- function(connection, from, to) {
+get_nircal_lengthspc <- function(connection, from, to) {
   seek(connection, where = from)
   speclength <- readChar(connection, nchars = to)
   speclength <- strsplit(speclength, "\n", useBytes = TRUE)[[1]]
@@ -431,8 +431,7 @@ read_nircal <- function(file,
 #' @title get the response variables in the nircal file
 #' @description internal
 #' @keywords internal
-.get_nircal_response <- function(x, n) {
-
+get_nircal_response <- function(x, n) {
   ## get the data of the response variables
   properties_info <- grepRaw("10/Properties\n18/Property Selection",
     x,
@@ -536,7 +535,7 @@ read_nircal <- function(file,
 #' @title get the metadata of the samples in the nircal file
 #' @description internal
 #' @keywords internal
-.get_nircal_metadata <- function(connection, n, spctra_start, spcinfo, progress, pb, progress.start, progress.steps) {
+get_nircal_metadata <- function(connection, n, spctra_start, spcinfo, progress, pb, progress.start, progress.steps) {
   metadata <- matrix(NA, nrow = n, ncol = 32)
   iprogress <- progress.start
   for (i in 1:n) {
@@ -700,7 +699,7 @@ read_nircal <- function(file,
 #' @title get the spectra in the nircal file
 #' @description internal
 #' @keywords internal
-.get_nircal_spectra <- function(x, values_s, spctra_start, speclength, n) {
+get_nircal_spectra <- function(x, values_s, spctra_start, speclength, n) {
   spcidx <- unlist(lapply(spctra_start[1:n],
     FUN = function(x, l) x:(x + l),
     l = 8 * speclength - 1
