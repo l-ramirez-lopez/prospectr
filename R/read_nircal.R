@@ -65,14 +65,25 @@
 ##                   ac <- unlist(strsplit(x = ab[1], 
 ##                   split = "\n", useBytes = TRUE))); Warning in 
 ##                   strsplit(ab[1], "\n") :
-##                   input string 1 is invalid in this locale. Now the function uses the argument useBytes = TRUE to avoid this issue. If TRUE the matching is done byte-by-byte
-##                   rather than character-by-character, and inputs with marked encodings are not converted. Now useBytes = TRUE is used whenever the strsplit() is used.
-## 20.02.2019 (leo): The metadata was collected based on the position of the InstrumentType info (assuming it was NIRFlex). Now this is not asumed as it is possible that this information is missing or
-##                   that a different sensor is registered in the file. Now the only reference is the name of the software used to create the file (which is always nircal)
+##                   input string 1 is invalid in this locale. Now the function 
+##                   uses the argument useBytes = TRUE to avoid this issue. 
+##                   If TRUE the matching is done byte-by-byte
+##                   rather than character-by-character, and inputs with marked 
+##                   encodings are not converted. Now useBytes = TRUE is used 
+##                   whenever the strsplit() is used.
+## 20.02.2019 (leo): The metadata was collected based on the position of the 
+##                   InstrumentType info (assuming it was NIRFlex). Now this is 
+##                   not asumed as it is possible that this information is 
+##                   missing or that a different sensor is registered in the 
+##                   file. Now the only reference is the name of the software 
+##                   used to create the file (which is always nircal)
 ## 20.02.2019 (leo): The device name is now an output (e.g. NIRFlex)
-## 13.06.2019 (leo): Property names with a slash character "/" (e.g. TMA/ABVT) were causing the function to crash. This was fixed
+## 13.06.2019 (leo): Property names with a slash character "/" (e.g. TMA/ABVT) 
+##                   were causing the function to crash. This was fixed
 ##                   Any "/" in a property name will be replaced with "_"
-## 13.03.2020 (leo): using now connections in conjuctioon with raw vectors (hexView no longer used). Code for reading responses, spectra and metadata has been vectorized (significantly).
+## 13.03.2020 (leo): using now connections in conjuctioon with raw vectors 
+##                   (hexView no longer used). Code for reading responses, 
+##                   spectra and metadata has been vectorized (significantly).
 ##                   Function compartmentalization.
 ## 13.03.2020 (leo): bug fix. from 1:n[idxdescription] to (1:n)[idxdescription]
 read_nircal <- function(file,
