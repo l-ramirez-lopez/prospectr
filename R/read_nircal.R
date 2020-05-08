@@ -49,12 +49,22 @@
 ##                   package
 ## 08.08.2018 (leo): A new argument was added: preschedule
 ## 17.09.2018 (leo): A bug when repeated property names was corrected
-## 19.09.2018 (leo): A new argument was added (metadata = TRUE). This is a workaround to avoid errors in reading metadata of files which are
-##                   created in NIRCal which are the result of NIRCal computations and do not store metadata of the original measurements
-## 10.01.2019 (leo): Function was crashing when property names contained special characters
-## 23.01.2019 (leo): The collection of the description filed was failing since not all nircal files have the description right on top of the sample GUID.
-##                   This is now corrected by extracting the description info from anoher place in the file
-## 11.02.2019 (leo): The code was releasing the following warning (now at at ac <- unlist(strsplit(x = ab[1], split = "\n", useBytes = TRUE))); Warning in strsplit(ab[1], "\n") :
+## 19.09.2018 (leo): A new argument was added (metadata = TRUE). This is a 
+##                   workaround to avoid errors in reading metadata of files 
+##                   which are
+##                   created in NIRCal which are the result of NIRCal computations 
+##                   and do not store metadata of the original measurements
+## 10.01.2019 (leo): Function was crashing when property names contained special 
+##                   characters
+## 23.01.2019 (leo): The collection of the description filed was failing since 
+##                   not all nircal files have the description right on top of 
+##                   the sample GUID.
+##                   This is now corrected by extracting the description info 
+##                   from anoher place in the file
+## 11.02.2019 (leo): The code was releasing the following warning (now at at 
+##                   ac <- unlist(strsplit(x = ab[1], 
+##                   split = "\n", useBytes = TRUE))); Warning in 
+##                   strsplit(ab[1], "\n") :
 ##                   input string 1 is invalid in this locale. Now the function uses the argument useBytes = TRUE to avoid this issue. If TRUE the matching is done byte-by-byte
 ##                   rather than character-by-character, and inputs with marked encodings are not converted. Now useBytes = TRUE is used whenever the strsplit() is used.
 ## 20.02.2019 (leo): The metadata was collected based on the position of the InstrumentType info (assuming it was NIRFlex). Now this is not asumed as it is possible that this information is missing or
