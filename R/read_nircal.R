@@ -571,7 +571,8 @@ get_nircal_metadata <- function(connection, n, spctra_start, spcinfo, progress, 
 
     ## read just the segment with the info (including binary data for numeric info)
     seek(connection, where = spcinfo[i])
-    ac <- readChar(connection, nchars = (spctra_start[i] - spcinfo[i]), useBytes = TRUE)
+    
+    suppressWarnings(ac <- readChar(connection, nchars = (spctra_start[i] - spcinfo[i]), useBytes = TRUE))
     ac <- iconv(ac, from = "latin1", to = "UTF-8", sub = "byte")
     ac <- strsplit(ac, "\n")[[1]]
     ac <- ac[-length(ac)]
@@ -648,10 +649,12 @@ get_nircal_metadata <- function(connection, n, spctra_start, spcinfo, progress, 
     metadata[i, ] <- i.metadata
   }
 
-  if (class(metadata) != "matrix") {
-    metadata <- t(metadata)
-  }
+  # if (!"matrix" %in% class(metadata)) {
+  #   metadata <- t(metadata)
+  # }
 
+
+  
   ## not really necessary
   metadata <- metadata[order(as.numeric(metadata[, 1])), -1, drop = FALSE]
 
