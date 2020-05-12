@@ -11,8 +11,7 @@ using namespace Rcpp;
 //' @keywords internal
 //' @useDynLib prospectr
 // [[Rcpp::export]]
-
-NumericMatrix ResampleCppM(NumericMatrix X, NumericVector wav, NumericVector new_wav, NumericVector fwhm) {
+NumericMatrix resample_fwhm(NumericMatrix X, NumericVector wav, NumericVector new_wav, NumericVector fwhm) {
   int nX = X.nrow(),  np = new_wav.size();
   NumericMatrix output(nX,np);
   
@@ -31,7 +30,7 @@ NumericMatrix ResampleCppM(NumericMatrix X, NumericVector wav, NumericVector new
 }
 
 // [[Rcpp::export]]
-NumericVector ResampleCppV(NumericVector X, NumericVector wav, NumericVector new_wav, NumericVector fwhm) {
+NumericVector resample_fwhm_vec(NumericVector X, NumericVector wav, NumericVector new_wav, NumericVector fwhm) {
   int np = new_wav.size();
   NumericVector output(np);
   
