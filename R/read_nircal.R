@@ -5,7 +5,7 @@
 #' read_nircal(file, response = TRUE, spectra = TRUE,
 #'             metadata = TRUE, progress = TRUE, verbose = TRUE)
 #' @param file the name of the NIRCal (.nir) file which the data are to be read 
-#' from.
+#' from. For URLs a temporary file is first downloaded and is then read.
 #' @param response a logical indicating if the data of the response variables 
 #' must be returned (default is `TRUE`).
 #' @param spectra a logical indicating if the spectral data must be returned  
@@ -86,47 +86,64 @@
 ##                   spectra and metadata has been vectorized (significantly).
 ##                   Function compartmentalization.
 ## 13.03.2020 (leo): bug fix. from 1:n[idxdescription] to (1:n)[idxdescription]
+## 13.05.2020 (leo): reads from URLs
 read_nircal <- function(file,
                         response = TRUE,
                         spectra = TRUE,
                         metadata = TRUE,
                         progress = TRUE,
                         verbose = TRUE) {
-  if (!file.exists(file)) {
-    stop("File does not exists!")
-  }
-
+  
+  
   con <- file(file, "rb")
-
+  
+  if ("url" %in% class(con)) {
+    close(con)
+    tmp <- tempfile(pattern = "", fileext = ".nir")
+    download.file(url = file, destfile = tmp, method = "auto", quiet = FALSE, mode = "wb",
+                  cacheOK = TRUE,
+                  extra = getOption("download.file.extra"),
+                  headers = NULL)
+    message("File at: '", tmp, "'\n")
+    file <- tmp
+    con <- file(file, "rb")
+  } else { 
+    if (!file.exists(file)) {
+      stop("File does not exists!")
+    }
+  }
+  
+  con <- file(file, "rb")
+  
   seek(con, where = 1)
   nircalraw <- readBin(con,
-    n = file.info(file)$size, what = "raw"
+                       n = file.info(file)$size, what = "raw"
   )
-
+  
   isnircal <- grepRaw("NIRCAL Project File", readLines(con = file, 1:2), all = TRUE)
-
+  
   if (length(isnircal) == 0) {
     stop("Ups! This does not look like a BUCHI NIRCal file")
   }
-
+  
   rawcoords <- get_nircal_indices(x = nircalraw)
-
+  
   ids <- get_nircal_ids(connection = con, from = rawcoords$values_s[5], to = rawcoords$values_s2)
   nd <- length(ids)
-
+  
   nms <- c(
     "ID", "GUID", "Scans", "resolution", "nWavenumbers", "WavenumberSteps", "WavenumberStart",
     "Device", "Software Version", "Created", "Modified", "Creator", "Creator login", "Modified by",
     "Modifier login", "Instrument serial", "Measurement cell", "Option serial", "Gain factor",
     "Gain", "Instrument temperature", "Sample temperature", "Comment", "Description"
   )
-
+  
   dextracted <- matrix(NA, length(ids), length(nms))
   dextracted <- data.frame(dextracted)
   colnames(dextracted) <- nms
-
+  
   dextracted$ID <- ids
-
+  
   if (response) {
     responses <- get_nircal_response(x = nircalraw, n = nd)
     dextracted <- cbind(dextracted, responses$properties)
@@ -135,39 +152,39 @@ read_nircal <- function(file,
       warning(responses$warning)
     }
   }
-
+  
   readmessage <- paste(
     "File contains", nd, ifelse(nd == 1, "spectrum", "spectra"),
     ifelse(response,
-      ifelse(length(responses$propertynames) == 1 & "<<undef>>" %in% responses$propertynames, "and one unnamed response variable",
-        paste("and", length(responses$propertynames), "response variables")
-      ), ""
+           ifelse(length(responses$propertynames) == 1 & "<<undef>>" %in% responses$propertynames, "and one unnamed response variable",
+                  paste("and", length(responses$propertynames), "response variables")
+           ), ""
     )
   )
-
+  
   readmessage <- paste(readmessage, "\n", sep = "")
-
+  
   if (verbose) {
     cat(readmessage)
   }
-
+  
   if (progress) {
     pb <- txtProgressBar(style = 1)
     g1 <- 0.75
     g2 <- 0.10
     g3 <- 0.07
   }
-
+  
   ## verify that what it was read coincides with the number of samples specified in the file
   if (rawcoords$nsamples != nd) {
     stop("number of samples do not match the number of IDs")
   }
-
-
+  
+  
   if (progress) {
     setTxtProgressBar(pb, g1)
   }
-
+  
   .comment <- get_nircal_comments(
     connection = con,
     metanumbers = rawcoords$metanumbers,
@@ -176,7 +193,7 @@ read_nircal <- function(file,
     comment_f = rawcoords$comment_f,
     n = nd
   )
-
+  
   description <- get_nircal_description(
     x = nircalraw,
     begin_s = rawcoords$begin_s,
@@ -185,28 +202,28 @@ read_nircal <- function(file,
     comment_f = rawcoords$comment_f,
     n = nd
   )
-
+  
   dextracted$Comment <- as.character(.comment)
   dextracted$Description <- as.character(description)
-
+  
   if (progress) {
     setTxtProgressBar(pb, g1 + g2)
   }
-
+  
   speclength <- get_nircal_lengthspc(
     connection = con,
     from = rawcoords$values_s[6],
     to = rawcoords$values_s[7] - rawcoords$values_s[6]
   )
-
-
+  
+  
   n_s <- rawcoords$end_s - rawcoords$begin_s - 1
   spctra_start <- rawcoords$begin_s[n_s == speclength * 8]
   ## it is here where each spectrum starts
   spctra_start <- spctra_start[spctra_start > min(rawcoords$spcinfo)]
-
-
-
+  
+  
+  
   ## -- Collect the spectra  --
   if (spectra) {
     dspectra <- get_nircal_spectra(
@@ -218,9 +235,9 @@ read_nircal <- function(file,
     )
     dextracted$spc <- dspectra
   }
-
-
-
+  
+  
+  
   if (progress) {
     setTxtProgressBar(pb, g1 + g2 + g3)
     cmpl <- g1 + g2 + g3
@@ -229,7 +246,7 @@ read_nircal <- function(file,
     stp <- NULL
     cmpl <- NULL
   }
-
+  
   if (metadata) {
     metda <- get_nircal_metadata(
       connection = con,
@@ -242,35 +259,35 @@ read_nircal <- function(file,
       progress.steps = stp
     )
     dextracted[, colnames(metda)] <- metda
-
+    
     if (progress) {
       # Close connection
       close(con, type = "rb")
     }
   } else {
     guididx <- unlist(lapply(rawcoords$spcinfo[1:nd],
-      FUN = function(x, l) x:(x + l),
-      l = 41
+                             FUN = function(x, l) x:(x + l),
+                             l = 41
     ))
-
+    
     if (progress) {
       setTxtProgressBar(pb, 1)
     }
-
+    
     guids <- readChar(nircalraw[guididx], nchars = nd * (41 + 1))
     guids <- strsplit(guids, "\n")[[1]]
     guids <- gsub("[0-9]{2}/", "", guids)
     dextracted$GUID <- guids
     dextracted$nWavenumbers <- speclength
   }
-
-
-
+  
+  
+  
   if (progress) {
     close(pb)
   }
-
-
+  
+  
   numericp <- c(
     "Scans",
     "resolution",
@@ -282,13 +299,13 @@ read_nircal <- function(file,
     "Instrument temperature",
     "Sample temperature"
   )
-
+  
   dextracted[, numericp] <- as.numeric(unlist(dextracted[, numericp]))
   dextracted$`Gain factor`[dextracted$`Gain factor` == 0] <- NA
   dextracted$`Instrument temperature`[dextracted$`Instrument temperature` == 0] <- NA
   dextracted$Device[dextracted$Device == ""] <- NA
   dextracted$Device[dextracted$Device %in% c("0", "1", "-1")] <- NA
-
+  
   if (verbose) {
     if (sum(is.na(dextracted$`Gain factor`)) > 0) {
       if (nrow(dextracted) == 1) {
@@ -305,11 +322,11 @@ read_nircal <- function(file,
       }
     }
   }
-
+  
   if (!sum(!is.na(dextracted$spc))) {
     dextracted <- dextracted[, !colnames(dextracted) %in% "spc"]
   }
-
+  
   return(dextracted)
 }
 
@@ -320,31 +337,31 @@ read_nircal <- function(file,
 get_nircal_indices <- function(x) {
   beginchr <- "begin"
   endchr <- "end"
-
+  
   begin_s <- grepRaw(paste("\n", beginchr, "\n", sep = ""), x, all = TRUE) + nchar(beginchr) + 2
   end_s <- grepRaw(paste("\n", endchr, "\n", sep = ""), x, all = TRUE) + 1
-
-
+  
+  
   values_s <- grepRaw("Values", x, all = TRUE)
   values_s2 <- grepRaw("\n1[[:space:]]Values", x, all = TRUE)
   values_s2 <- values_s2[1 + sum(!values_s2 > values_s[5])]
   values_s3 <- grepRaw("[0-9]{1,}[[:space:]]Values", x, all = TRUE)[5]
-
+  
   spcinfo <- 1 + grepRaw("\n38\\/\\{", x, all = TRUE)[-1]
-
+  
   ## The numbers in NIRCal files preceeding the files comment and description (e.g 11/ or 7/)
   metanumbers <- grepRaw("[[0-9]]{0,}\\/Comment\n[[0-9]{0,}\\/Description", x, all = TRUE)[1]
-
+  
   lnss <- values_s[5] - values_s3
-
+  
   nss <- as.numeric(readBin(x[values_s3:(values_s3 + lnss - 1)], "character"))
-
+  
   srchc_s <- "[ [:punct:][:alnum:]]{0,}\n[ [:punct:][:alnum:]]{0,}\\/[ [:alnum:][:punct:]]{0,}\n38\\/\\{"
   srchc_f <- "\n[ [:punct:][:alnum:]]{0,}\\/[ [:punct:][:alnum:]]{0,}\n38\\/\\{"
   comment_s <- grepRaw(srchc_s, x, ignore.case = TRUE, all = TRUE)[1:nss]
   comment_f <- grepRaw(srchc_f, x, ignore.case = TRUE, all = TRUE)[1:nss]
-
-
+  
+  
   return(list(
     nsamples = nss,
     begin_s = begin_s,
@@ -376,13 +393,13 @@ get_nircal_ids <- function(connection, from, to) {
 #' @keywords internal
 get_nircal_comments <- function(connection, metanumbers, begin_s, comment_s, comment_f, n) {
   seek(connection, where = metanumbers + begin_s[sum(metanumbers > begin_s) + 1])
-
+  
   readb <- function(..i.., connection, comment_s, comment_f) {
     seek(connection, where = comment_s[..i..])
     i.comment <- readChar(connection, nchars = comment_f[..i..] - comment_s[..i..])
     i.comment
   }
-
+  
   comment <- description <- rep(NA, n)
   idxcomments <- (comment_f - comment_s) > 2
   i.comment <- sapply(
@@ -392,12 +409,12 @@ get_nircal_comments <- function(connection, metanumbers, begin_s, comment_s, com
     comment_s = comment_s,
     comment_f = comment_f
   )
-
+  
   comment[idxcomments] <- i.comment
   comment <- gsub("^[.]{0,}[0-9]{1,}\\/", "", comment)
-
+  
   flush(connection)
-
+  
   return(comment)
 }
 
@@ -405,22 +422,22 @@ get_nircal_comments <- function(connection, metanumbers, begin_s, comment_s, com
 #' @description internal
 #' @keywords internal
 get_nircal_description <- function(x, begin_s, spcinfo, comment_s, comment_f, n) {
-
+  
   ## The numbers in NIRCal files preceeding the files comment and description (e.g 11/ or 7/)
   metanumbers <- grepRaw("[[0-9]]{0,}\\/Comment\n[[0-9]{0,}\\/Description", x, all = TRUE)[1]
   metanumbersinfo <- readBin(x[metanumbers:(metanumbers + begin_s[sum(metanumbers > begin_s) + 1])], "character")
-
+  
   metanumbersinfo <- strsplit(metanumbersinfo, "\n", useBytes = TRUE)[[1]]
   metadescription <- strsplit(metanumbersinfo[2], "Description", useBytes = TRUE)[[1]]
-
+  
   srchmtd <- paste("[0-9]{1,}/1/cm\n", metadescription, "[A-Z a-z]{1,}\n", sep = "")
-
+  
   i.description <- grepRaw(srchmtd,
-    value = TRUE,
-    x,
-    all = TRUE
+                           value = TRUE,
+                           x,
+                           all = TRUE
   )
-
+  
   if (length(i.description) > 0) {
     i.description <- sapply(X = i.description, FUN = readBin, what = "character")
     i.description <- strsplit(i.description, paste("[0-9]{1,}/1/cm\n", metadescription, "|\n", sep = ""), useBytes = TRUE)
@@ -432,7 +449,7 @@ get_nircal_description <- function(x, begin_s, spcinfo, comment_s, comment_f, n)
       i.description <- readChar(x[rvec], spcinfo[..i..] - comment_f[..i..] + 1)
       i.description
     }
-
+    
     idxdescription <- (spcinfo[1:n] - comment_f) > 2
     i.description <- sapply(
       X = (1:n)[idxdescription],
@@ -444,15 +461,15 @@ get_nircal_description <- function(x, begin_s, spcinfo, comment_s, comment_f, n)
     )
     i.description <- iconv(i.description, from = "ASCII", to = "UTF-8", sub = "byte")
     i.description
-
+    
     description <- rep(NA, n)
-
+    
     description[idxdescription] <- i.description
     description[description == ""] <- NA
     description <- gsub("[ [:punct:][:alnum:]]{0,}\n[ [:punct:][:alnum:]]{0,}\\/", "", description)
     description <- gsub("[.]$", "", description)
   }
-
+  
   return(description)
 }
 
@@ -474,96 +491,96 @@ get_nircal_lengthspc <- function(connection, from, to) {
 get_nircal_response <- function(x, n) {
   ## get the data of the response variables
   properties_info <- grepRaw("10/Properties\n18/Property Selection",
-    x,
-    all = TRUE
+                             x,
+                             all = TRUE
   )[1]
   properties_info2 <- grepRaw("begin", x,
-    offset = properties_info,
-    all = TRUE
+                              offset = properties_info,
+                              all = TRUE
   )
-
-
+  
+  
   pindc <- properties_info:(properties_info + properties_info2[2] - properties_info)
   properties_info3 <- readBin(x[pindc],
-    what = "character"
+                              what = "character"
   )
-
+  
   nproperties_c <- strsplit(properties_info3, "\n", useBytes = TRUE)[[1]][5]
   nproperties_n <- as.numeric(unlist(strsplit(nproperties_c, "Values", useBytes = TRUE)))
-
+  
   properties_info4 <- grepRaw(nproperties_c,
-    x,
-    offset = properties_info,
-    all = TRUE
+                              x,
+                              offset = properties_info,
+                              all = TRUE
   )
-
-
+  
+  
   pindc2 <- properties_info4[3]:(properties_info4[3] + properties_info2[3] - properties_info4[3])
   properties_info5 <- readBin(x[pindc2],
-    what = "character"
+                              what = "character"
   )
-
+  
   properties_info5 <- iconv(properties_info5, from = "ASCII", to = "UTF-8", sub = "byte")
   properties_info6 <- strsplit(properties_info5, "\n", useBytes = TRUE)[[1]][1 + c(1:nproperties_n)]
   properties_info7 <- unlist(strsplit(properties_info6, "[0-9]/", useBytes = TRUE))
   propertynames <- properties_info7[seq(2, length(properties_info7), by = 2)]
-
+  
   proppositions <- grepRaw(paste(properties_info6, collapse = "\n"),
-    x,
-    fixed = TRUE,
-    all = TRUE
+                           x,
+                           fixed = TRUE,
+                           all = TRUE
   )[-1]
-
-
+  
+  
   nval <- paste(length(propertynames), "Values")
-
+  
   pns <- gsub(pattern = "[[:punct:]]", replacement = "[[:punct:]]", x = propertynames)
-
+  
   prop <- paste(c(nval, paste("[0-9]{0,}\\/", pns, sep = "", collapse = "\n"), "[0-9]{0,}", nval, "begin"), collapse = "\n")
-
+  
   propidx <- grepRaw(prop,
-    x,
-    all = TRUE
+                     x,
+                     all = TRUE
   )
-
-
+  
+  
   lengthpropidx <- length(grepRaw(prop,
-    x,
-    all = FALSE,
-    value = TRUE
+                                  x,
+                                  all = FALSE,
+                                  value = TRUE
   )) + 1
-
-
+  
+  
   if (sum(duplicated(propertynames)) > 0) {
     wnr <- c("Some property names are duplicated, please correct the names. Indices have been added to the repeated names")
     dpn <- unique(propertynames[duplicated(propertynames)])
     for (i in 1:length(dpn)) {
       propertynames[propertynames == dpn] <- paste(propertynames[propertynames == dpn],
-        1:length(propertynames[propertynames == dpn]),
-        sep = "_"
+                                                   1:length(propertynames[propertynames == dpn]),
+                                                   sep = "_"
       )
     }
   } else {
     wrn <- NULL
   }
   propertynames <- gsub("/", "_", propertynames)
-
-
+  
+  
   respidx <- unlist(lapply((propidx + lengthpropidx)[1:n],
-    FUN = function(x, l) x:(x + l),
-    l = 8 * nproperties_n - 1
+                           FUN = function(x, l) x:(x + l),
+                           l = 8 * nproperties_n - 1
   ))
-
+  
   properties <- readBin(x[respidx], what = "double", n = n * nproperties_n)
   properties <- t(matrix(properties, nrow = nproperties_n))
-
-
+  
+  
   if (length(propertynames) > 0) {
     properties[properties == 0] <- NA
   }
-
+  
   colnames(properties) <- propertynames
-
+  
   return(list(
     propertynames = propertynames,
     properties = properties,
@@ -579,7 +596,7 @@ get_nircal_metadata <- function(connection, n, spctra_start, spcinfo, progress, 
   metadata <- matrix(NA, nrow = n, ncol = 32)
   iprogress <- progress.start
   for (i in 1:n) {
-
+    
     ## read just the segment with the info (including binary data for numeric info)
     seek(connection, where = spcinfo[i])
     
@@ -587,57 +604,57 @@ get_nircal_metadata <- function(connection, n, spctra_start, spcinfo, progress, 
     ac <- iconv(ac, from = "latin1", to = "UTF-8", sub = "byte")
     ac <- strsplit(ac, "\n")[[1]]
     ac <- ac[-length(ac)]
-
+    
     ncac <- 10 + grep("1/cm", ac)
     ncac2 <- grep("NIRCal", ac)
     ncac2 <- ncac2[length(ncac2)]
     ncac <- c(ncac, ncac2)
-
-
+    
+    
     # nflx <- grep("NIRFlex N500", ac)[1]
     nflx <- ncac2 + 11
-
+    
     ## Device
     i.device <- ac[nflx]
-
+    
     ## Created: year, month, day, hours, minutes, seconds
     i.created_ymdhms <- ac[ncac[1] - 1:6]
-
+    
     ## Modified: year, month, day, hours, minutes, seconds
     i.modified_ymdhms <- ac[ncac[2] - 1:6]
-
+    
     ## Software version, creator, creator log in
     i.versioncreatorlogin <- ac[ncac[1] + c(1, 2, 5)]
-
+    
     ## Modified by, modified by log in
     i.moodifiedby <- ac[ncac[2] + c(2, 5)]
-
+    
     ## Instrument serial number, measurement cell, serial number measurement cell
     i.snmcsn <- ac[nflx - c(4, 3, 2)]
-
-
+    
+    
     gain_s <- grep("Gain Factor", ac)
     temp_s <- grep("Instrument Temperature", ac)
     temp_sample <- grep("Sample Temperature", ac)
-
+    
     if (length(gain_s) != 0) {
       i.gain_factor <- ac[gain_s + c(1, 3)]
     } else {
       i.gain_factor <- c(NA, NA)
     }
-
+    
     if (length(temp_s) != 0) {
       i.instrumenttemp <- ac[temp_s + 1]
     } else {
       i.instrumenttemp <- NA
     }
-
+    
     if (length(temp_sample) != 0) {
       i.sampletemp <- ac[temp_sample + 1]
     } else {
       i.sampletemp <- NA
     }
-
+    
     i.metadata <- c(
       i,
       ac[c(1, 7:11)],
@@ -651,65 +668,65 @@ get_nircal_metadata <- function(connection, n, spctra_start, spcinfo, progress, 
       i.instrumenttemp,
       i.sampletemp
     )
-
+    
     if (progress) {
       rprogress <- (i * progress.steps) + iprogress
       setTxtProgressBar(pb, rprogress)
     }
-
+    
     metadata[i, ] <- i.metadata
   }
-
+  
   # if (!"matrix" %in% class(metadata)) {
   #   metadata <- t(metadata)
   # }
-
-
+  
+  
   
   ## not really necessary
   metadata <- metadata[order(as.numeric(metadata[, 1])), -1, drop = FALSE]
-
+  
   sf <- function(..i.., ex) {
     substring(ex[, ..i..], first = 1 + regexpr(pattern = "\\/", text = ex[, ..i..]))
   }
-
+  
   dataex <- sapply(c(1:10, 23:31), FUN = sf, ex = metadata)
-
-
+  
+  
   datesc <- as.vector(sapply(c(11:22), FUN = sf, ex = metadata))
-
+  
   datesc[nchar(datesc) == 1 & !is.na(datesc)] <- paste("0", datesc[nchar(datesc) == 1 & !is.na(datesc)], sep = "")
-
+  
   datesc <- matrix(datesc, nrow(dataex))
-
+  
   datecreated <- paste(datesc[, 1],
-    "/",
-    datesc[, 2],
-    "/",
-    datesc[, 3],
-    " ",
-    datesc[, 4],
-    ":",
-    datesc[, 5],
-    ":",
-    datesc[, 6],
-    sep = ""
+                       "/",
+                       datesc[, 2],
+                       "/",
+                       datesc[, 3],
+                       " ",
+                       datesc[, 4],
+                       ":",
+                       datesc[, 5],
+                       ":",
+                       datesc[, 6],
+                       sep = ""
   )
-
+  
   datemodified <- paste(datesc[, 7],
-    "/",
-    datesc[, 8],
-    "/",
-    datesc[, 9],
-    " ",
-    datesc[, 10],
-    ":",
-    datesc[, 11],
-    ":",
-    datesc[, 12],
-    sep = ""
+                        "/",
+                        datesc[, 8],
+                        "/",
+                        datesc[, 9],
+                        " ",
+                        datesc[, 10],
+                        ":",
+                        datesc[, 11],
+                        ":",
+                        datesc[, 12],
+                        sep = ""
   )
-
+  
   nms <- c(
     "GUID",
     "Scans",
@@ -731,9 +748,9 @@ get_nircal_metadata <- function(connection, n, spctra_start, spcinfo, progress, 
     "Instrument temperature",
     "Sample temperature"
   )
-
+  
   colnames(dataex) <- nms
-
+  
   dataex <- cbind(dataex, Created = datecreated, Modified = datemodified)
   flush(connection)
   return(dataex)
@@ -744,24 +761,24 @@ get_nircal_metadata <- function(connection, n, spctra_start, spcinfo, progress, 
 #' @keywords internal
 get_nircal_spectra <- function(x, values_s, spctra_start, speclength, n) {
   spcidx <- unlist(lapply(spctra_start[1:n],
-    FUN = function(x, l) x:(x + l),
-    l = 8 * speclength - 1
+                          FUN = function(x, l) x:(x + l),
+                          l = 8 * speclength - 1
   ))
-
+  
   dspectra <- readBin(x[spcidx], what = "double", n = n * speclength)
   dspectra <- t(matrix(dspectra, nrow = speclength, ncol = n))
-
+  
   wavref <- paste(speclength, "Values")
   wavstart <- grepRaw(wavref, x, all = TRUE)[3] + nchar(wavref) + 1
-
-
+  
+  
   widx <- wavstart:(wavstart + values_s[values_s > wavstart][1] - wavstart)
   waves <- readBin(x[widx], what = "character")
   waves <- strsplit(waves, "\n")[[1]]
   waves <- waves[grep("[0-9]{1}/", waves)]
   waves <- iconv(waves, from = "ASCII", to = "UTF-8", sub = "byte")
   waves <- as.numeric(gsub("[0-9]/", "", waves))
-
+  
   colnames(dspectra) <- waves
   return(dspectra)
 }
