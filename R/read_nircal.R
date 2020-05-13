@@ -116,7 +116,7 @@ read_nircal <- function(file,
     }
   }
   
-  seek(con, where = 1)
+  seek(con, where = 1, origin = "start")
   nircalraw <- readBin(con,
                        n = file.info(file)$size, what = "raw"
   )
@@ -378,7 +378,7 @@ get_nircal_indices <- function(x) {
 }
 
 get_nircal_ids <- function(connection, from, to) {
-  seek(connection, where = from)
+  seek(connection, where = from, origin = "start", origin = "start")
 
   ids <- readBin(readBin(connection, what = "raw", n = to - from),
                  "character")
@@ -395,10 +395,11 @@ get_nircal_ids <- function(connection, from, to) {
 #' @description internal
 #' @keywords internal
 get_nircal_comments <- function(connection, metanumbers, begin_s, comment_s, comment_f, n) {
-  seek(connection, where = metanumbers + begin_s[sum(metanumbers > begin_s) + 1])
+  seek(connection, where = metanumbers + begin_s[sum(metanumbers > begin_s) + 1],
+       origin = "start")
   
   readb <- function(..i.., connection, comment_s, comment_f) {
-    seek(connection, where = comment_s[..i..])
+    seek(connection, where = comment_s[..i..], origin = "start")
     
     i.comment <- readBin(readBin(connection, what = "raw",
                                  n = comment_f[..i..] - comment_s[..i..]),
@@ -484,7 +485,7 @@ get_nircal_description <- function(x, begin_s, spcinfo, comment_s, comment_f, n)
 #' @description internal
 #' @keywords internal
 get_nircal_lengthspc <- function(connection, from, to) {
-  seek(connection, where = from)
+  seek(connection, where = from, origin = "start")
   speclength <- readChar(connection, nchars = to)
   speclength <- strsplit(speclength, "\n", useBytes = TRUE)[[1]]
   speclength <- as.numeric(speclength[length(speclength)])
@@ -605,7 +606,7 @@ get_nircal_metadata <- function(connection, n, spctra_start, spcinfo, progress, 
   for (i in 1:n) {
     
     ## read just the segment with the info (including binary data for numeric info)
-    seek(connection, where = spcinfo[i])
+    seek(connection, where = spcinfo[i], origin = "start")
     ac <- readBin(readBin(connection, what = "raw", n = (spctra_start[i] - spcinfo[i])),
                    "character")
     
