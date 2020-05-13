@@ -378,7 +378,7 @@ get_nircal_indices <- function(x) {
 }
 
 get_nircal_ids <- function(connection, from, to) {
-  seek(connection, where = from, origin = "start", origin = "start")
+  seek(connection, where = from, origin = "start")
 
   ids <- readBin(readBin(connection, what = "raw", n = to - from),
                  "character")
