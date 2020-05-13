@@ -116,9 +116,7 @@ read_nircal <- function(file,
     }
   }
   
-  con <- file(file, "rb")
-  
-  seek(con, where = 1)
+  seek(con, where = 1, origin = "start")
   nircalraw <- readBin(con,
                        n = file.info(file)$size, what = "raw"
   )
@@ -380,8 +378,10 @@ get_nircal_indices <- function(x) {
 }
 
 get_nircal_ids <- function(connection, from, to) {
-  seek(connection, where = from)
-  ids <- readChar(connection, nchars = to - from)
+  seek(connection, where = from, origin = "start")
+
+  ids <- readBin(readBin(connection, what = "raw", n = to - from),
+                 "character")
   ids <- iconv(ids, from = "ASCII", to = "UTF-8", sub = "byte")
   ids <- strsplit(ids, "\n", useBytes = TRUE)[[1]]
   ids <- ids[-c(1, length(ids))]
@@ -395,11 +395,16 @@ get_nircal_ids <- function(connection, from, to) {
 #' @description internal
 #' @keywords internal
 get_nircal_comments <- function(connection, metanumbers, begin_s, comment_s, comment_f, n) {
-  seek(connection, where = metanumbers + begin_s[sum(metanumbers > begin_s) + 1])
+  seek(connection, where = metanumbers + begin_s[sum(metanumbers > begin_s) + 1],
+       origin = "start")
   
   readb <- function(..i.., connection, comment_s, comment_f) {
-    seek(connection, where = comment_s[..i..])
-    i.comment <- readChar(connection, nchars = comment_f[..i..] - comment_s[..i..])
+    seek(connection, where = comment_s[..i..], origin = "start")
+    
+    i.comment <- readBin(readBin(connection, what = "raw",
+                                 n = comment_f[..i..] - comment_s[..i..]),
+                         "character")
+    #i.comment <- readChar(connection, nchars = comment_f[..i..] - comment_s[..i..])
     i.comment
   }
   
@@ -449,7 +454,7 @@ get_nircal_description <- function(x, begin_s, spcinfo, comment_s, comment_f, n)
     ## This part might fail since not all nircal files have the description right on top of the sample GUID
     readd <- function(..i.., rawf, comment_s, comment_f, spcinfo) {
       rvec <- comment_s[..i..]:(comment_s[..i..] + spcinfo[..i..] - comment_f[..i..])
-      i.description <- readChar(x[rvec], spcinfo[..i..] - comment_f[..i..] + 1)
+      i.description <- readChar(rawf[rvec], spcinfo[..i..] - comment_f[..i..] + 1)
       i.description
     }
     
@@ -480,7 +485,7 @@ get_nircal_description <- function(x, begin_s, spcinfo, comment_s, comment_f, n)
 #' @description internal
 #' @keywords internal
 get_nircal_lengthspc <- function(connection, from, to) {
-  seek(connection, where = from)
+  seek(connection, where = from, origin = "start")
   speclength <- readChar(connection, nchars = to)
   speclength <- strsplit(speclength, "\n", useBytes = TRUE)[[1]]
   speclength <- as.numeric(speclength[length(speclength)])
@@ -601,9 +606,10 @@ get_nircal_metadata <- function(connection, n, spctra_start, spcinfo, progress, 
   for (i in 1:n) {
     
     ## read just the segment with the info (including binary data for numeric info)
-    seek(connection, where = spcinfo[i])
+    seek(connection, where = spcinfo[i], origin = "start")
+    ac <- readBin(readBin(connection, what = "raw", n = (spctra_start[i] - spcinfo[i])),
+                   "character")
     
-    suppressWarnings(ac <- readChar(connection, nchars = (spctra_start[i] - spcinfo[i]), useBytes = TRUE))
     ac <- iconv(ac, from = "latin1", to = "UTF-8", sub = "byte")
     ac <- strsplit(ac, "\n")[[1]]
     ac <- ac[-length(ac)]
