@@ -27,6 +27,7 @@
 #' @examples
 #' read_nircal("https://github.com/buchi-labortechnik/transpec_info/blob/master/data/DEMO_file_cannabis.nir?raw=true")
 #' @author Leonardo Ramirez-Lopez
+#' @importFrom utils download.file
 #' @export
 
 ## 23.03.2018 (leo): Since the scan function was crashing with some files, it 
