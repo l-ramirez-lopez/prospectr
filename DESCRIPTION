@@ -25,7 +25,7 @@ LinkingTo:
     Rcpp, 
     RcppArmadillo
 Depends:
-    R (>= 4.0.0),
+    R (>= 3.5.0),
 Imports:
     foreach,
     iterators,
