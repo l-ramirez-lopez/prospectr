@@ -9,11 +9,7 @@ read_nircal(file, response = TRUE, spectra = TRUE,
 }
 \arguments{
 \item{file}{the name of the NIRCal (.nir) file which the data are to be read
-<<<<<<< HEAD
-from.}
-=======
 from. For URLs a temporary file is first downloaded and is then read.}
->>>>>>> 34ce337ccd406795136f87b25a5e771de1d92621
 
 \item{response}{a logical indicating if the data of the response variables
 must be returned (default is \code{TRUE}).}
