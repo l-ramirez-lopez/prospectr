@@ -17,7 +17,6 @@ License: GPL (>=3)
 URL: https://github.com/l-ramirez-lopez/prospectr
 VignetteBuilder: knitr
 Suggests:
-    resemble,
     knitr,
     rmarkdown,
     formatR
