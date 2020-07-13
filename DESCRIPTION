@@ -29,7 +29,7 @@ Imports:
     foreach,
     iterators,
     Rcpp (>= 1.0.1)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 NeedsCompilation: yes
 LazyData: true
 Repository: CRAN
