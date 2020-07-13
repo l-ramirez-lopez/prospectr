@@ -117,8 +117,8 @@ read_nircal <- function(file,
   }
 
   seek(con, where = 1, origin = "start")
-  nircalraw <- readBin(con,
-    n = file.info(file)$size, what = "raw"
+  nircalraw <- readBin(con, what = "raw",
+    n = file.info(file)$size
   )
 
   isnircal <- grepRaw("NIRCAL Project File", readLines(con = file, 1:2), all = TRUE)
@@ -157,8 +157,8 @@ read_nircal <- function(file,
   readmessage <- paste(
     "File contains", nd, ifelse(nd == 1, "spectrum", "spectra"),
     ifelse(response,
-      ifelse(length(responses$propertynames) == 1 & "<<undef>>" %in% responses$propertynames, "and one unnamed response variable",
-        paste("and", length(responses$propertynames), "response variables")
+      ifelse(length(responses$property_names) == 1 & "<<undef>>" %in% responses$property_names, "and one unnamed response variable",
+        paste("and", length(responses$property_names), "response variables")
       ), ""
     )
   )
@@ -506,99 +506,102 @@ get_nircal_lengthspc <- function(connection, from, to) {
 #' @keywords internal
 get_nircal_response <- function(x, n) {
   ## get the data of the response variables
-  properties_info <- grepRaw("10/Properties\n18/Property Selection",
-    x,
-    all = TRUE
+  property_info_start <- grepRaw("10/Properties\n18/Property Selection",
+                                 x,
+                                 all = TRUE
   )[1]
-  properties_info2 <- grepRaw("begin", x,
-    offset = properties_info,
-    all = TRUE
-  )
-
-  pindc <- properties_info:(properties_info + properties_info2[2] - properties_info)
-  properties_info3 <- readBin(x[pindc],
-    what = "character"
-  )
-
-  nproperties_c <- strsplit(properties_info3, "\n", useBytes = TRUE)[[1]][5]
+  
+  property_info_end <- grepRaw("begin", x, offset = property_info_start, all = TRUE)
+  
+  property_info_indcs <- property_info_start:(property_info_start + property_info_end[2] - property_info_start)
+  
+  nproperties_c <- strsplit(readBin(x[property_info_indcs], what = "character"),
+                            "\n", useBytes = TRUE)[[1]][5]
   nproperties_n <- as.numeric(unlist(strsplit(nproperties_c, "Values", useBytes = TRUE)))
-
-  properties_info4 <- grepRaw(nproperties_c,
-    x,
-    offset = properties_info,
-    all = TRUE
-  )
-
-
-  pindc2 <- properties_info4[3]:(properties_info4[3] + properties_info2[3] - properties_info4[3])
-  properties_info_char <- readBin(x[pindc2],
-    what = "character"
-  )
-
-  properties_info5 <- iconv(properties_info_char, from = "ASCII", to = "UTF-8", sub = "byte")
-  properties_info_char <- strsplit(properties_info_char, "\n", useBytes = TRUE)[[1]][1 + c(1:nproperties_n)]
-
-  properties_info6 <- strsplit(properties_info5, "\n", useBytes = TRUE)[[1]][1 + c(1:nproperties_n)]
-  properties_info7 <- unlist(strsplit(properties_info6, "[0-9]/", useBytes = TRUE))
-  propertynames <- properties_info7[seq(2, length(properties_info7), by = 2)]
-
-  proppositions <- grepRaw(paste(properties_info_char, collapse = "\n"),
-    x,
-    fixed = TRUE,
-    all = TRUE
+  
+  property_names_indcs <- grepRaw(nproperties_c,
+                                  x,
+                                  offset = property_info_start,
+                                  all = TRUE)
+  property_names_indcs <- property_names_indcs[3]:(property_names_indcs[3] + property_info_end[3] - property_names_indcs[3])
+  property_names_char <- readBin(x[property_names_indcs],
+                                 what = "character")
+  
+  
+  
+  property_names_utf <- iconv(property_names_char, from = "ASCII", to = "UTF-8", sub = "byte")
+  
+  property_names_utf <- strsplit(property_names_utf, "\n", useBytes = TRUE)[[1]][1 + c(1:nproperties_n)]
+  property_names_char <- strsplit(property_names_char, "\n", useBytes = TRUE)[[1]][1 + c(1:nproperties_n)]
+  
+  property_names_search <- sapply(property_names_char, 
+                                  FUN = function(x) strsplit(x, "[0-9]{0,}/")[[1]][[2]], 
+                                  USE.NAMES = FALSE)
+  property_names_search <- gsub(pattern = "[[:punct:]]", 
+                                replacement = "[[:punct:]]", 
+                                x = property_names_search)
+  property_names_search <- gsub("[^ -~]", '[^ -~]', property_names_search)
+  property_names_char <- gsub("[^ -~]", '[^ -~]', property_names_char)
+  
+  property_names <- sapply(property_names_utf, 
+                           FUN = function(x) strsplit(x, "[0-9]{0,}/")[[1]][[2]], 
+                           USE.NAMES = FALSE)
+  
+  proppositions <- grepRaw(paste(property_names_char, collapse = "\n"),
+                           x,
+                           fixed = FALSE,
+                           all = TRUE
   )[-1]
-
-
-  nval <- paste(length(propertynames), "Values")
-
-  pns <- gsub(pattern = "[[:punct:]]", replacement = "[[:punct:]]", x = propertynames)
-
-  prop <- paste(c(nval, paste("[0-9]{0,}\\/", pns, sep = "", collapse = "\n"), "[0-9]{0,}", nval, "begin"), collapse = "\n")
-
-  propidx <- grepRaw(prop,
-    x,
-    all = TRUE
+  
+  
+  nval <- paste(length(property_names), "Values")
+  
+  property_names_search <- paste(c(nval, paste("[0-9]{0,}\\/", property_names_search, sep = "", collapse = "\n"), "[0-9]{0,}", nval, "begin"), collapse = "\n")
+  
+  property_indices <- grepRaw(property_names_search,
+                              x,
+                              all = TRUE
   )
-
-
-  lengthpropidx <- length(grepRaw(prop,
-    x,
-    all = FALSE,
-    value = TRUE
+  
+  
+  lengthproperty_indices <- length(grepRaw(property_names_search,
+                                           x,
+                                           all = FALSE,
+                                           value = TRUE
   )) + 1
-
-
-  if (sum(duplicated(propertynames)) > 0) {
+  
+  
+  if (sum(duplicated(property_names)) > 0) {
     wnr <- c("Some property names are duplicated, please correct the names. Indices have been added to the repeated names")
-    dpn <- unique(propertynames[duplicated(propertynames)])
+    dpn <- unique(property_names[duplicated(property_names)])
     for (i in 1:length(dpn)) {
-      propertynames[propertynames == dpn] <- paste(propertynames[propertynames == dpn],
-        1:length(propertynames[propertynames == dpn]),
-        sep = "_"
+      property_names[property_names == dpn] <- paste(property_names[property_names == dpn],
+                                                     1:length(property_names[property_names == dpn]),
+                                                     sep = "_"
       )
     }
   } else {
     wrn <- NULL
   }
-  propertynames <- gsub("/", "_", propertynames)
-
-  respidx <- unlist(lapply((propidx + lengthpropidx)[1:n],
-    FUN = function(x, l) x:(x + l),
-    l = 8 * nproperties_n - 1
+  property_names <- gsub("/", "_", property_names)
+  
+  respidx <- unlist(lapply((property_indices + lengthproperty_indices)[1:n],
+                           FUN = function(x, l) x:(x + l),
+                           l = 8 * nproperties_n - 1
   ))
-
+  
   properties <- readBin(x[respidx], what = "double", n = n * nproperties_n)
   properties <- t(matrix(properties, nrow = nproperties_n))
-
-
-  if (length(propertynames) > 0) {
+  
+  
+  if (length(property_names) > 0) {
     properties[properties == 0] <- NA
   }
-
-  colnames(properties) <- propertynames
-
+  
+  colnames(properties) <- property_names
+  
   return(list(
-    propertynames = propertynames,
+    property_names = property_names,
     properties = properties,
     warning = wrn
   ))
