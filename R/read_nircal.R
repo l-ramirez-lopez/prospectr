@@ -515,7 +515,6 @@ get_nircal_response <- function(x, n) {
     all = TRUE
   )
 
-
   pindc <- properties_info:(properties_info + properties_info2[2] - properties_info)
   properties_info3 <- readBin(x[pindc],
     what = "character"
@@ -532,16 +531,18 @@ get_nircal_response <- function(x, n) {
 
 
   pindc2 <- properties_info4[3]:(properties_info4[3] + properties_info2[3] - properties_info4[3])
-  properties_info5 <- readBin(x[pindc2],
+  properties_info_char <- readBin(x[pindc2],
     what = "character"
   )
 
-  properties_info5 <- iconv(properties_info5, from = "ASCII", to = "UTF-8", sub = "byte")
+  properties_info5 <- iconv(properties_info_char, from = "ASCII", to = "UTF-8", sub = "byte")
+  properties_info_char <- strsplit(properties_info_char, "\n", useBytes = TRUE)[[1]][1 + c(1:nproperties_n)]
+
   properties_info6 <- strsplit(properties_info5, "\n", useBytes = TRUE)[[1]][1 + c(1:nproperties_n)]
   properties_info7 <- unlist(strsplit(properties_info6, "[0-9]/", useBytes = TRUE))
   propertynames <- properties_info7[seq(2, length(properties_info7), by = 2)]
 
-  proppositions <- grepRaw(paste(properties_info6, collapse = "\n"),
+  proppositions <- grepRaw(paste(properties_info_char, collapse = "\n"),
     x,
     fixed = TRUE,
     all = TRUE
@@ -580,7 +581,6 @@ get_nircal_response <- function(x, n) {
     wrn <- NULL
   }
   propertynames <- gsub("/", "_", propertynames)
-
 
   respidx <- unlist(lapply((propidx + lengthpropidx)[1:n],
     FUN = function(x, l) x:(x + l),
