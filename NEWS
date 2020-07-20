@@ -1,6 +1,8 @@
 prospectr 0.2.1
 ===============
+* New license
 * Bug fix: in read_nircal, the description filed was not being properly read
+
 
 prospectr 0.2.0
 ===============

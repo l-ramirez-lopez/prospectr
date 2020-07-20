@@ -13,7 +13,7 @@ BugReports:
     https://github.com/l-ramirez-lopez/prospectr/issues
 Description: Functions to preprocess spectroscopic data 
     and conduct (representative) sample selection/calibration sampling.
-License: GPL (>=3)
+License: MIT + file LICENSE
 URL: https://github.com/l-ramirez-lopez/prospectr
 VignetteBuilder: knitr
 Suggests:
