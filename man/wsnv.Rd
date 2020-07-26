@@ -2,7 +2,7 @@
 % Please edit documentation in R/weightedsnv.R
 \name{wsnv}
 \alias{wsnv}
-\title{Weighted SNV or Variable Sorting for Normalization (VSN)}
+\title{Weighted SNV or Variable Sorting for Normalization (VSN) with SNV}
 \usage{
 wsnv(x, tol = 0.001, nbParam = 3, nbIter = 5000, progress = FALSE)
 }
@@ -36,6 +36,8 @@ Journal of Chemometrics 34:e3164. DOI: \url{https://doi.org/10.1002/cem.3164}
 \code{\link{snv}} \code{\link{wmsc}}
 }
 \author{
-Original MATLAB code: Jean-Michel Roger.
-Conversion to R & Parallelization: Guillaume Hans (with permission of the author).
+\itemize{
+\item Original MATLAB code: Jean-Michel Roger.
+\item Conversion to R & Parallelization: Guillaume Hans (with permission of the author).
+}
 }

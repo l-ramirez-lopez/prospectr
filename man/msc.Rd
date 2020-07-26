@@ -16,7 +16,7 @@ a \code{matrix} of corrected spectra.
 The \code{msc} function implements the multiplicative scatter correction based on the mean spectrum.
 }
 \examples{
-bioSpec_msc<-msc(bioSpec)
+NIRsoil_msc<-msc(NIRsoil$spc)
 
 }
 \references{

@@ -260,7 +260,7 @@ computeWeights<-function(x, tol, nbParam, nbIter, progress){
 }
 
 
-#' Weighted SNV or Variable Sorting for Normalization (VSN)
+#' Weighted SNV or Variable Sorting for Normalization (VSN) with SNV
 #'
 #' Function used to normalize the spectra and that computes the optimal wavelength weighting by considering
 #' all possible spectrum couples (RANSAC algorithm) and summing their results.
@@ -281,8 +281,10 @@ computeWeights<-function(x, tol, nbParam, nbIter, progress){
 #' Journal of Chemometrics 34:e3164. DOI: \url{https://doi.org/10.1002/cem.3164}
 #'
 #' @author
-#' Original MATLAB code: Jean-Michel Roger.
-#' Conversion to R & Parallelization: Guillaume Hans (with permission of the author).
+#' \itemize{
+#'     \item Original MATLAB code: Jean-Michel Roger.
+#'     \item Conversion to R & Parallelization: Guillaume Hans (with permission of the author).
+#'     }
 #'
 #' @seealso \code{\link{snv}} \code{\link{wmsc}}
 #'
@@ -329,7 +331,7 @@ wsnv<-function(x, tol=0.001, nbParam=3, nbIter=5000, progress=FALSE){
 }
 
 
-#' Weighted MSC
+#' Weighted MSC or Variable Sorting for Normalization (VSN) with MSC
 #'
 #' Function used to normalize the spectra and that computes the optimal wavelength weighting by considering
 #' all possible spectrum couples (RANSAC algorithm) and summing their results.
@@ -347,8 +349,10 @@ wsnv<-function(x, tol=0.001, nbParam=3, nbIter=5000, progress=FALSE){
 #' Journal of Chemometrics 34:e3164. DOI: \url{https://doi.org/10.1002/cem.3164}
 #'
 #' @author
-#' Original MATLAB code: Jean-Michel Roger.
-#' Conversion to R & Parallelization: Guillaume Hans (with permission of the author).
+#' \itemize{
+#'     \item Original MATLAB code: Jean-Michel Roger.
+#'     \item Conversion to R & Parallelization: Guillaume Hans (with permission of the author).
+#'     }
 #'
 #' @seealso \code{\link{msc}} \code{\link{wsnv}}
 #'
