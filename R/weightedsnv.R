@@ -282,7 +282,7 @@ computeWeights<-function(x, tol, nbParam, nbIter, progress){
 #'
 #' @author
 #' Original MATLAB code: Jean-Michel Roger.
-#' Conversion to R & Parallelization: Guillaume Hans.
+#' Conversion to R & Parallelization: Guillaume Hans (with permission of the author).
 #'
 #' @seealso \code{\link{snv}} \code{\link{wmsc}}
 #'
@@ -348,7 +348,7 @@ wsnv<-function(x, tol=0.001, nbParam=3, nbIter=5000, progress=FALSE){
 #'
 #' @author
 #' Original MATLAB code: Jean-Michel Roger.
-#' Conversion to R & Parallelization: Guillaume Hans.
+#' Conversion to R & Parallelization: Guillaume Hans (with permission of the author).
 #'
 #' @seealso \code{\link{msc}} \code{\link{wsnv}}
 #'

@@ -37,5 +37,5 @@ Journal of Chemometrics 34:e3164. DOI: \url{https://doi.org/10.1002/cem.3164}
 }
 \author{
 Original MATLAB code: Jean-Michel Roger.
-Conversion to R & Parallelization: Guillaume Hans.
+Conversion to R & Parallelization: Guillaume Hans (with permission of the author).
 }
