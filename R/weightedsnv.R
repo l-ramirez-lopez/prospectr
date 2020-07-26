@@ -287,6 +287,7 @@ computeWeights<-function(x, tol, nbParam, nbIter, progress){
 #' @seealso \code{\link{snv}} \code{\link{wmsc}}
 #'
 #' @import foreach
+#' @importFrom parallel makeCluster detectCores stopCluster
 #'
 #' @export
 wsnv<-function(x, tol=0.001, nbParam=3, nbIter=5000, progress=FALSE){
