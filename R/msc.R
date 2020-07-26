@@ -21,9 +21,10 @@
 #' @export
 msc<-function(x){
   
+  x<-as.matrix(x)
   Z <- cbind(1, colMeans(x))
-  B <- t(solve(crossprod(Z), t(x@Spec %*% Z)))
-  newSpec <- (x@Spec - B[, 1])/B[, 2]
+  B <- t(solve(crossprod(Z), t(x %*% Z)))
+  newSpec <- (x - B[, 1])/B[, 2]
   
   return(newSpec)
   
