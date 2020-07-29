@@ -16,7 +16,7 @@
 #' @seealso \code{\link{snv}} \code{\link{mean}}
 #'
 #' @examples
-#' NIRsoil_msc<-msc(NIRsoil$spc)
+#' tranf_msc <- msc(NIRsoil$spc)
 #'
 #' @export
 msc<-function(x){
