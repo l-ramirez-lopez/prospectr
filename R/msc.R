@@ -17,15 +17,14 @@
 #'
 #' @examples
 #' tranf_msc <- msc(NIRsoil$spc)
-#'
 #' @export
-msc<-function(x){
-  
-  x<-as.matrix(x)
+msc <- function(x) {
+  x <- as.matrix(x)
   Z <- cbind(1, colMeans(x))
   B <- t(solve(crossprod(Z), t(x %*% Z)))
-  newSpec <- (x - B[, 1])/B[, 2]
-  
-  return(newSpec)
-  
+  new_spec <- (x - B[, 1]) / B[, 2]
+
+  return(new_spec)
 }
+
+## FIXME: add predition method?
