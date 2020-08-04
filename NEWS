@@ -1,7 +1,11 @@
 prospectr 0.2.1
 ===============
 * New license
+* New argument in resample(). Now the function accpects additional arguments 
+(...) that can be passed to the function "splinefun" of stats which is used for 
+spline resampling.
 * Bug fix: in read_nircal, the description filed was not being properly read
+
 
 
 prospectr 0.2.0

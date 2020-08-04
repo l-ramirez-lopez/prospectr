@@ -9,7 +9,9 @@
 #' @param wav a numeric vector giving the original band positions.
 #' @param new.wav a numeric vector giving the new band positions.
 #' @param interpol the interpolation method: 'linear' or 'spline' (default).
-#' @author Antoine Stevens
+#' @param ... additional arguments to be passed to the code{\link{splinefun}} 
+#' function when \code{interpol = 'spline'}. 
+#' @author Antoine Stevens and Leonardo Ramirez-Lopez
 #' @examples
 #' data(NIRsoil)
 #' wav <- as.numeric(colnames(NIRsoil$spc))
@@ -22,7 +24,7 @@
 #' @seealso \code{\link{resample2}}
 #' @export
 #'
-resample <- function(X, wav, new.wav, interpol = "spline") {
+resample <- function(X, wav, new.wav, interpol = "spline", ...) {
   if (is.data.frame(X)) {
     X <- as.matrix(X)
   }
@@ -38,7 +40,7 @@ resample <- function(X, wav, new.wav, interpol = "spline") {
     if (interpol == "linear") {
       approx(x = wav, y = x, xout = new.wav, method = "linear")$y
     } else {
-      splinefun(x = wav, y = x)(new.wav)
+      splinefun(x = wav, y = x, ...)(new.wav)
     }
   }
 
