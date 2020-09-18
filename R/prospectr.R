@@ -6,17 +6,18 @@
 #' Currently, the following preprocessing functions are available:
 #'
 #' \itemize{
-#'   \item{\code{\link{continuumRemoval}}}
-#'   \item{\code{\link{savitzkyGolay}}}
-#'   \item{\code{\link{detrend}}}
-#'   \item{\code{\link{gapDer}}}
-#'   \item{\code{\link{movav}}}
-#'   \item{\code{\link{standardNormalVariate}}}
-#'   \item{\code{\link{binning}}}
 #'   \item{\code{\link{resample}}}
 #'   \item{\code{\link{resample2}}}
+#'   \item{\code{\link{movav}}}
+#'   \item{\code{\link{standardNormalVariate}}}
+#'   \item{\code{\link{msc}}}
 #'   \item{\code{\link{blockScale}}}
 #'   \item{\code{\link{blockNorm}}}
+#'   \item{\code{\link{binning}}}
+#'   \item{\code{\link{detrend}}}
+#'   \item{\code{\link{savitzkyGolay}}}
+#'   \item{\code{\link{gapDer}}}
+#'   \item{\code{\link{continuumRemoval}}}
 #'  }
 #'
 #' For the selection of representative samples/observations for calibrating spectral models the following functions ca be used:
@@ -42,6 +43,7 @@
 #' @name prospectr-package
 #' @title Overview of the functions in the prospectr package
 #' @import Rcpp foreach iterators
+#' @import mathjaxr
 #' @importFrom grDevices chull
 #' @importFrom graphics legend matplot
 #' @importFrom stats approx cov kmeans lm prcomp qf sd splinefun var

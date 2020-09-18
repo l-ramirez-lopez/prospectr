@@ -2,30 +2,59 @@
 % Please edit documentation in R/msc.R
 \name{msc}
 \alias{msc}
-\title{MSC (Multiplicative Scatter Correction)}
+\title{Multiplicative Scatter Correction (msc)}
 \usage{
-msc(x)
+msc(X, reference_spc = colMeans(X))
 }
 \arguments{
-\item{x}{a \code{matrix} - the spectral matrix (each spectrum is a row).}
+\item{X}{a numeric matrix of spectral data.}
+
+\item{reference_spc}{a numeric vector corresponding to an "ideal" reference
+spectrum (e.g. free of scattering effects). By default the function uses the
+mean spectrum of the input \code{X}. See details.}
 }
 \value{
-a \code{matrix} of corrected spectra.
+a matrix of normalized spectral data with an attribute which indicates the
+reference spectrum used.
 }
 \description{
-The \code{msc} function implements the multiplicative scatter correction based on the mean spectrum.
+\loadmathjax
+This function implements the multiplicative scatter correction method
+which attempts to remove physical light scatter by accounting for additive
+and multiplicative effects (Geladi et al., 1985).
+}
+\details{
+The Multiplicative Scatter Correction (MSC) is a normalization method that
+attempts to account for additive and multiplicative effects by aligning each
+spectrum (\mjeqn{x_i}{x_i}) with an ideal reference one (\mjeqn{x_r}{x_r}) as
+follows:
+
+\mjdeqn{x_i = m_i x_r + a_i}{x_i = m_i x_r + a_i}
+\mjdeqn{MSC(x_i) = \frac{a_i - x_i}{m_i}}{MSC(x_i) = {a_i - x_i}/{m_i}}
+
+where \mjeqn{a_i}{a_i} and \mjeqn{m_i}{m_i} are the additive and
+multiplicative terms respectively.
 }
 \examples{
-NIRsoil_msc<-msc(NIRsoil$spc)
-
+data(NIRsoil)
+NIRsoil$msc_spc <- msc(X = NIRsoil$spc)
+# 10 first snv spectra
+matplot(
+  x = as.numeric(colnames(NIRsoil$msc_spc)),
+  y = t(NIRsoil$msc_spc[1:10, ]),
+  type = "l",
+  xlab = "wavelength, nm",
+  ylab = "msc"
+)
 }
 \references{
-Geladi, P., MacDougall, D., and Martens, H. (1985) Linearization and Scatter-Correction for Near-Infrared Reflectance Spectra of Meat.
+Geladi, P., MacDougall, D., and Martens, H. 1985. Linearization and
+Scatter-Correction for Near-Infrared Reflectance Spectra of Meat.
 Applied Spectroscopy, 39(3):491-500.
 }
 \seealso{
 \code{\link{snv}} \code{\link{mean}}
 }
 \author{
-Guillaume Hans
+Leonardo Ramirez-Lopez and Guillaume Hans
 }
