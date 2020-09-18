@@ -10,26 +10,29 @@ standardNormalVariate(X)
 \item{X}{a numeric \code{matrix} of spectral data.}
 }
 \value{
-a \code{matrix} of the transformed data
+#' a matrix of normalized spectral data.
 }
 \description{
-\code{standardNormalVariate} normalizes each row of an input \code{data.frame} or \code{matrix} by substracting
-each row by its mean and dividing by its standard deviation
+\loadmathjax
+This function normalizes each row of an input \code{data.frame} or \code{matrix} by
+substracting each row by its mean and dividing it by its standard deviation
 }
 \details{
 SNV is simple way for normalizing spectral data that intends to correct for light scatter.
 It operates row-wise:
-\deqn{SNV_i = \frac{x_i - \bar{x_i}}{s_i}}
-where \eqn{x_i} is the signal of a sample \eqn{i}, \eqn{\bar{x_i}} is its mean and
-\eqn{s_i} its standard deviation
+
+\mjdeqn{SNV_i = \frac{x_i - \bar{x}_i}{s_i}}{SNV_i = \frac{x_i - \bar{x}_i}{s_i}}
+
+where \mjeqn{x_i}{x_i} is the signal of the \mjeqn{i}{i}th observation,
+\mjeqn{\bar{x}_i}{\bar{x}_i} is its mean and \mjeqn{s_i}{s_i} its standard
+deviation.
 }
 \examples{
 data(NIRsoil)
-spc <- 1 / 10^NIRsoil$spc # conversion to reflectance
-snv <- standardNormalVariate(X = spc)
+NIRsoil$spc_snv <- standardNormalVariate(X = NIRsoil$spc)
 # 10 first snv spectra
 matplot(
-  x = as.numeric(colnames(snv)),
+  x = as.numeric(colnames(NIRsoil$spc_snv)),
   y = t(snv[1:10, ]),
   type = "l",
   xlab = "wavelength, nm",
