@@ -14,6 +14,9 @@ resample(X, wav, new.wav, interpol = 'spline')
 \item{new.wav}{a numeric vector giving the new band positions.}
 
 \item{interpol}{the interpolation method: 'linear' or 'spline' (default).}
+
+\item{...}{additional arguments to be passed to the code{\link{splinefun}}
+function when \code{interpol = 'spline'}.}
 }
 \value{
 a \code{matrix} or \code{vector} with resampled values.
@@ -36,5 +39,5 @@ dim(resampled)
 \code{\link{resample2}}
 }
 \author{
-Antoine Stevens
+Antoine Stevens and Leonardo Ramirez-Lopez
 }
