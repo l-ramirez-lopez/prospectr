@@ -1,12 +1,10 @@
 prospectr 0.2.1
 ===============
 * New license
-* New argument in resample(). Now the function accpects additional arguments 
-(...) that can be passed to the function "splinefun" of stats which is used for 
-spline resampling.
+* Now resample() also has a new argument (...) to pass additional arguments to the 
+splinefun() function (of stats) used within resample() when the argument 
+interpol = "spline" (the default since version 0.2.0)
 * Bug fix: in read_nircal, the description filed was not being properly read
-
-
 
 prospectr 0.2.0
 ===============
