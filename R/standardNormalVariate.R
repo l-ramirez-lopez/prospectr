@@ -32,7 +32,8 @@
 #' where \mjeqn{x_i}{x_i} is the signal of the \mjeqn{i}{i}th observation,
 #' \mjeqn{\bar{x}_i}{\bar{x}_i} is its mean and \mjeqn{s_i}{s_i} its standard
 #' deviation.
-#' @seealso \code{\link{detrend}}, \code{\link{blockScale}}, \code{\link{blockNorm}}
+#' @seealso \code{\link{msc}}, \code{\link{detrend}}, \code{\link{blockScale}}, 
+#' \code{\link{blockNorm}}
 #' @references Barnes RJ, Dhanoa MS, Lister SJ. 1989. Standard normal variate transformation and de-trending of near-infrared diffuse reflectance spectra. Applied spectroscopy, 43(5): 772-777.
 #' @export
 #'
