@@ -1,6 +1,7 @@
 prospectr 0.2.1
 ===============
 * New license
+* New preprocessing function: multiplicative scatter correction (msc)
 * Now resample() also has a new argument (...) to pass additional arguments to the 
 splinefun() function (of stats) used within resample() when the argument 
 interpol = "spline" (the default since version 0.2.0)
