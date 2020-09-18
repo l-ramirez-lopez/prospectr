@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{get_msc_coeff}
 \alias{get_msc_coeff}
-\title{Convolve}
+\title{get_msc_coeff}
 \usage{
 get_msc_coeff(X, reference_spc)
 }

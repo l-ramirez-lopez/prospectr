@@ -76,7 +76,7 @@ fastDistV <- function(X, Y, method) {
     .Call('_prospectr_fastDistV', PACKAGE = 'prospectr', X, Y, method)
 }
 
-#' @title Convolve 
+#' @title get_msc_coeff
 #' @description
 #' Coefficients for multiplicative Scatter Correction written in C++
 #' @param X matrix 

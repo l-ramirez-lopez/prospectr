@@ -5,7 +5,7 @@
 // [[Rcpp::depends(RcppArmadillo)]]
 
 using namespace Rcpp;
-//' @title Convolve 
+//' @title get_msc_coeff
 //' @description
 //' Coefficients for multiplicative Scatter Correction written in C++
 //' @param X matrix 
