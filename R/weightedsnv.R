@@ -356,7 +356,6 @@ wsnv<-function(x, tol=0.001, nbParam=3, nbIter=5000, progress=FALSE){
 #'
 #' @seealso \code{\link{msc}} \code{\link{wsnv}}
 #'
-#' @import doParallel
 #'
 #' @export
 wmsc<-function(x, degree=2, tol=0.001, nbParam=3, nbIter=5000, progress=FALSE){
