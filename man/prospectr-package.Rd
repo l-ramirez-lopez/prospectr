@@ -5,12 +5,15 @@
 \alias{prospectr-package}
 \title{Overview of the functions in the prospectr package}
 \description{
+\lifecycle{maturing}
+
+Misc functions for spectral data
+
 This package implements a number of \code{R} functions useful for
 pre-processing spectral data well as for selecting representaive samples/spectra.
 The functions included here are particularly useful in Near-Infrarred and Infrared
 Spectroscopy applications.
-}
-\details{
+
 Currently, the following preprocessing functions are available:
 
 \itemize{
@@ -28,7 +31,8 @@ Currently, the following preprocessing functions are available:
 \item{\code{\link{continuumRemoval}}}
 }
 
-For the selection of representative samples/observations for calibrating spectral models the following functions ca be used:
+For the selection of representative samples/observations for calibrating
+spectral models the following functions ca be used:
 
 \itemize{
 \item{\code{\link{naes}}}

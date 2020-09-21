@@ -29,9 +29,11 @@ Depends:
 Imports:
     foreach,
     iterators,
-    Rcpp (>= 1.0.1)
+    Rcpp (>= 1.0.1),
+    lifecycle (>= 0.2.0),
 RdMacros: 
-    mathjaxr, 
+    mathjaxr,
+    lifecycle
 RoxygenNote: 7.1.1
 NeedsCompilation: yes
 LazyData: true
