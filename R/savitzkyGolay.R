@@ -1,9 +1,11 @@
 #' @title Savitzky-Golay transformation
 #' @description
-#' Savitzky-Golay smoothing and derivative of a data `matrix`, `data.frame` or `vector`.
+#' \lifecycle{stable}
+#' Savitzky-Golay smoothing and derivative of a data matrix or vector.
 #' @usage
 #' savitzkyGolay(X, m, p, w, delta.wav)
-#' @param X a numeric `data.frame`, `matrix` or `vector` to transform
+#' @param X a numeric matrix or vector to process (optionally a data frame that can
+#' be coerced to a numerical matrix).
 #' @param m the differentiation order.
 #' @param p the polynomial order.
 #' @param w a window size (must be odd).

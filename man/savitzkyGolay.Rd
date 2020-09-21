@@ -7,7 +7,8 @@
 savitzkyGolay(X, m, p, w, delta.wav)
 }
 \arguments{
-\item{X}{a numeric \code{data.frame}, \code{matrix} or \code{vector} to transform}
+\item{X}{a numeric matrix or vector to process (optionally a data frame that can
+be coerced to a numerical matrix).}
 
 \item{m}{the differentiation order.}
 
@@ -18,7 +19,8 @@ savitzkyGolay(X, m, p, w, delta.wav)
 \item{delta.wav}{(optional) sampling interval.}
 }
 \description{
-Savitzky-Golay smoothing and derivative of a data \code{matrix}, \code{data.frame} or \code{vector}.
+\lifecycle{stable}
+Savitzky-Golay smoothing and derivative of a data matrix or vector.
 }
 \details{
 The Savitzky-Golay algorithm fits a local polynomial regression on the signal. It requires evenly spaced data points.

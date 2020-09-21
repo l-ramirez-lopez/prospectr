@@ -7,16 +7,18 @@
 binning(X, bins, bin.size)
 }
 \arguments{
-\item{X}{a numeric \code{data.frame}, \code{matrix} or \code{vector} to process.}
+\item{X}{a numeric matrix or vector to process (optionally a data frame that can
+be coerced to a numerical matrix).}
 
 \item{bins}{the number of bins.}
 
 \item{bin.size}{the desired size of the bins.}
 }
 \value{
-a \code{matrix} or \code{vector} with average values per bin.
+a matrix or vector with average values per bin.
 }
 \description{
+\lifecycle{stable}
 Compute average values of a signal in pre-determined bins (col-wise subsets).
 The bin size can be determined either directly or by specifying the number of bins.
 Sometimes called boxcar transformation in signal processing
@@ -54,7 +56,8 @@ matpoints(as.numeric(colnames(binned)),
 )
 }
 \seealso{
-\code{\link{savitzkyGolay}}, \code{\link{movav}}, \code{\link{gapDer}}, \code{\link{continuumRemoval}}
+\code{\link{savitzkyGolay}}, \code{\link{movav}},
+\code{\link{gapDer}}, \code{\link{continuumRemoval}}
 }
 \author{
 Antoine Stevens & Leonardo Ramirez-Lopez

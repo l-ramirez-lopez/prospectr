@@ -10,11 +10,20 @@ Visit the package website [here](http://antoinestevens.github.io/prospectr/) !
 
 _Antoine Stevens & Leo Ramirez-Lopez_
 
-_Last update: 22.04.2020_
+_Last update: 21.09.2020_
 
-`prospectr` provides various utilities for pre--processing and sample selection of visible and near infrared spectral data with [R](http://cran.r-project.org/). While similar functions are available in other packages, like [`signal`](http://cran.r-project.org/web/packages/signal/index.html), the functions in this package works indifferently for `data.frame`, `matrix` and `vector` inputs. Besides, several functions are optimized for speed and use C++ code through the [`Rcpp`](http://cran.r-project.org/web/packages/Rcpp/index.html) and [`RcppArmadillo`](http://cran.r-project.org/web/packages/RcppArmadillo/index.html) packages.
+`prospectr` provides various utilities for pre--processing and sample selection 
+of visible and near infrared spectral data with [R](http://cran.r-project.org/). 
+While similar functions are available in other packages, like [`signal`](http://cran.r-project.org/web/packages/signal/index.html), the 
+functions in this package works indifferently for `data.frame`, `matrix` and 
+`vector` inputs. Besides, several functions are optimized for speed and use 
+C++ code through the [`Rcpp`](http://cran.r-project.org/web/packages/Rcpp/index.html) 
+and [`RcppArmadillo`](http://cran.r-project.org/web/packages/RcppArmadillo/index.html)
+packages.
 
-A vignette gives an overview of the main functionalities of the package. Just type `vignette("prospectr-intro")` in the console to access it. Currently, the following preprocessing functions are available:
+A vignette gives an overview of the main functionalities of the package. Just
+type `vignette("prospectr-intro")` in the console to access it. Currently, the 
+following preprocessing functions are available:
 
  `continuumRemoval`      : continuum-removed absorbance or reflectance values                     
  `savitzkyGolay`         : Savitzky-Golay filter (smoothing and derivatives)                      
@@ -28,7 +37,8 @@ A vignette gives an overview of the main functionalities of the package. Just ty
  `blockScale`            : block scaling                                                           
  `blockNorm`             : sum of squares block weighting                                         
 
-The selection of representative samples/observations for calibration of spectral models can be achieved with one of the following functions:
+The selection of representative samples/observations for calibration of spectral 
+models can be achieved with one of the following functions:
 
  `naes`      : k-means sampling    
  `kenStone`  : CADEX (Kennard--Stone) algorithm                
@@ -46,4 +56,7 @@ Other useful functions are also available:
 
 ## Bug report and development version
 
-You can send an email to the package maintainer (<ramirez.lopez.leo@gmail.com>) or create an [issue](http://github.com/l-ramirez-lopez/prospectr/issues) on github. To install the development version of `prospectr`, simply install [`devtools`](http://cran.r-project.org/web/packages/devtools/index.html) from CRAN then run `install_github("l-ramirez-lopez/prospectr")`.
+You can send an email to the package maintainer (<ramirez.lopez.leo@gmail.com>) 
+or create an [issue](http://github.com/l-ramirez-lopez/prospectr/issues) on github. 
+To install the development version of `prospectr`, simply install [`devtools`](http://cran.r-project.org/web/packages/devtools/index.html) from 
+CRAN then run `install_github("l-ramirez-lopez/prospectr")`.

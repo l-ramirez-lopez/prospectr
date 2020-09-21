@@ -7,7 +7,8 @@
 gapDer(X, m = 1, w = 1, s = 1, delta.wav)
 }
 \arguments{
-\item{X}{a numeric \code{matrix} , \code{data.frame} or \code{vector} to transform.}
+\item{X}{a numeric matrix or vector` to transform (optionally a data frame
+that can be coerced to a numerical matrix).}
 
 \item{m}{the order of the derivative, between 1 and 4 (default = 1).}
 
@@ -20,10 +21,11 @@ between points over which the derivative is computed.}
 \item{delta.wav}{the sampling interval (or band spacing).}
 }
 \value{
-a \code{matrix} or \code{vector} with the filtered signal(s)
+a matrix or vector with the filtered signal(s)
 }
 \description{
-Gap-Segment derivatives of a data \code{matrix}, \code{data.frame} or \code{vector}
+\lifecycle{stable}
+Gap-Segment derivatives of a data matrix or vector
 }
 \details{
 The sampling interval specified with the \code{delta.wav} argument is used for

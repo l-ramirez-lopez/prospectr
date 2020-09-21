@@ -4,10 +4,11 @@
 \alias{resample}
 \title{Resample spectral data}
 \usage{
-resample(X, wav, new.wav, interpol = 'spline')
+resample(X, wav, new.wav, interpol = "spline")
 }
 \arguments{
-\item{X}{numeric \code{data.frame}, \code{matrix} or \code{vector} to resample.}
+\item{X}{numeric matrix or vector to resample (optionally a data frame that can
+be coerced to a numerical matrix).}
 
 \item{wav}{a numeric vector giving the original band positions.}
 
@@ -19,10 +20,11 @@ resample(X, wav, new.wav, interpol = 'spline')
 function when \code{interpol = 'spline'}.}
 }
 \value{
-a \code{matrix} or \code{vector} with resampled values.
+a matrix or vector with resampled values.
 }
 \description{
-Resample a data \code{matrix}, \code{data.frame} or \code{vector} to new coordinates (e.g.
+\lifecycle{stable}
+Resample a data matrix or vector to new coordinates (e.g.
 band positions) using spline or linear interpolation. This function is a
 simple wrapper around \code{\link{approx}} and \code{\link{splinefun}} in
 \pkg{base}.

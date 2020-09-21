@@ -1,16 +1,22 @@
 #' @title Honigs algorithm for calibration sampling
 #' @description
-#' Select calibration samples from a data `matrix` or `data.frame` using the Honings et al. (1985) method
+#' \lifecycle{stable}
+#' Select calibration samples from a data matrix using the Honings et al. (1985)
+#' method
 #' @usage
 #' honigs(X, k, type)
-#' @param X a numeric `data.frame` or `matrix` with absorbance or continuum-removed reflectance values.
+#' @param X a numeric matrix with absorbance or continuum-removed reflectance
+#' values (optionally a data frame that can be coerced to a numerical matrix).
 #' @param k the number of samples to select for calibration.
-#' @param type type of data: 'A' for absorbance (default), 'R' for reflectance, 'CR' for continuum-removed reflectance
+#' @param type type of data: 'A' for absorbance (default), 'R' for reflectance,
+#' 'CR' for continuum-removed reflectance
 #' @author Antoine Stevens
 #' @return a `list` with components:
 #' \itemize{
-#'  \item{'`model`'}{ numeric `vector` giving the row indices of the input data selected for calibration}
-#'  \item{'`test`'}{ numeric `vector` giving the row indices of the remaining observations}
+#'  \item{'`model`'}{ numeric vector giving the row indices of the input data
+#'  selected for calibration}
+#'  \item{'`test`'}{ numeric vector giving the row indices of the remaining
+#'  observations}
 #'  \item{'`bands`'}{ indices of the columns used during the selection procedure}
 #' }
 #' @examples

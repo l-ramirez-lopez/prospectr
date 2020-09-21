@@ -7,28 +7,30 @@
 readASD(fnames, in_format, out_format)
 }
 \arguments{
-\item{fnames}{a character \code{vector} of the name(s) (with absolute path) of the file(s) to read.}
+\item{fnames}{a character vector of the name(s) (with absolute path) of the file(s) to read.}
 
 \item{in_format}{the format of the input file: \code{'binary'} or \code{'txt'}.}
 
-\item{out_format}{the format of the output: \code{'matrix'} (default) or \code{'list'} (see below).}
+\item{out_format}{the format of the output: 'matrix' (default) or 'list' (see below).}
 }
 \value{
-if \code{out_format} = \code{'matrix'}, reflectance values of the input file(s) in a single \code{matrix}.
+if \code{out_format} = \code{'matrix'}, reflectance values of the input file(s) in a single matrix.
 
-if \code{out_format} = \code{'list'}, a \code{list} of the input file(s) data consisting of a \code{list} with components:
+if \code{out_format} = \code{'list'}, a \code{list} of the input file(s) data consisting of a list with components:
 \itemize{
 \item{\code{Name}}{ name of the file imported}
 \item{\code{datetime}}{ date and time of acquisition in \code{POSIXct} format}
-\item{\code{header}}{ \code{list} with information from the header file}
-\item{\code{radiance}}{ if applicable, a numeric \code{vector} of radiance values}
-\item{\code{reference}}{ if applicable, a numeric \code{vector} of radiance values of the white reference}
-\item{\code{reflectance}}{ numeric \code{vector} of reflectance values}
-\item{\code{wavelength}}{ numeric \code{vector} of the band positions}
+\item{\code{header}}{ list with information from the header file}
+\item{\code{radiance}}{ if applicable, a numeric vector of radiance values}
+\item{\code{reference}}{ if applicable, a numeric vector of radiance values of the white reference}
+\item{\code{reflectance}}{ numeric vector of reflectance values}
+\item{\code{wavelength}}{ numeric vector of the band positions}
 }
 }
 \description{
-Read single or multiple binary and ASCII files acquired with an ASD FieldSpec Pro (\href{http://www.asdi.com/}{ASDi}, Boulder, CO) spectroradiometer
+\lifecycle{maturing}
+Read single or multiple binary and ASCII files acquired with an ASD FieldSpec
+Pro (\href{http://www.asdi.com/}{ASDi}, Boulder, CO) spectroradiometer
 }
 \note{
 The is a \R port of the \file{importasd.m} function from the \sQuote{FSFPostProcessing} Matlab toolbox by Iain Robinson

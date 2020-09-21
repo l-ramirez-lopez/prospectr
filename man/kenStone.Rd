@@ -7,59 +7,80 @@
 kenStone(X, k, metric = "mahal", pc, group, .center = TRUE, .scale = FALSE)
 }
 \arguments{
-\item{X}{a numeric \code{matrix} .}
+\item{X}{a numeric matrix.}
 
 \item{k}{number of calibration samples to be selected.}
 
-\item{metric}{distance metric to be used: 'euclid' (Euclidean distance) or 'mahal' (Mahalanobis distance, default).}
+\item{metric}{distance metric to be used: 'euclid' (Euclidean distance) or
+'mahal' (Mahalanobis distance, default).}
 
-\item{pc}{optional. If not specified, distance are computed in the Euclidean space. Alternatively, distance are computed
-in the principal component score space and  \code{pc} is the number of principal components retained.
-If \code{pc < 1}, the number of principal components kept corresponds to the number of components
-explaining at least (\code{pc * 100}) percent of the total variance.}
+\item{pc}{optional. If not specified, distance are computed in the Euclidean
+space. Alternatively, distance are computed
+in the principal component score space and  \code{pc} is the number of principal
+components retained.
+If \code{pc < 1}, the number of principal components kept corresponds to the
+number of components explaining at least (\code{pc * 100}) percent of the total
+variance.}
 
-\item{group}{An optional \code{factor} (or vector that can be coerced to a factor by \code{\link{as.factor}}) of length
-equal to nrow(X), giving the identifier of related observations (e.g. samples of the same batch of measurements,
-, of the same origin, or of the same soil profile). When one observation is selected by the procedure all observations
-of the same group are removed together and assigned to the calibration set. This allows to select calibration points
-that are independent from the remaining points.}
+\item{group}{An optional \code{factor} (or vector that can be coerced to a factor
+by \code{\link{as.factor}}) of length equal to nrow(X), giving the identifier
+of related observations (e.g. samples of the same batch of measurements,
+samples of the same origin, or of the same soil profile). When one observation
+is selected by the procedure all observations of the same group are removed
+together and assigned to the calibration set. This allows to select calibration
+points that are independent from the remaining points.}
 
-\item{.center}{logical value indicating whether the input matrix should be centered before Principal Component
-Analysis. Default set to TRUE.}
+\item{.center}{logical value indicating whether the input matrix should be
+centered before Principal Component Analysis. Default set to \code{TRUE}.}
 
-\item{.scale}{logical value indicating whether the input matrix should be scaled before Principal Component
-Analysis. Default set to FALSE.}
+\item{.scale}{logical value indicating whether the input matrix should be
+scaled before Principal Component
+Analysis. Default set to \code{FALSE}.}
 }
 \value{
 a \code{list} with components:
 \itemize{
-\item{'\code{model}'}{ numeric \code{vector} giving the row indices of the input data selected for calibration}
-\item{'\code{test}'}{ numeric \code{vector} giving the row indices of the remaining observations}
-\item{'\code{pc}'}{ if the \code{pc} argument is specified, a numeric \code{matrix} of the scaled pc scores}
+\item{'\code{model}'}{ numeric vector giving the row indices of the input data
+selected for calibration}
+\item{'\code{test}'}{ numeric vector giving the row indices of the remaining
+observations}
+\item{'\code{pc}'}{ if the \code{pc} argument is specified, a numeric matrix of the
+scaled pc scores}
 }
 }
 \description{
-Select calibration samples from a large multivariate data using the Kennard-Stone algorithm
+\lifecycle{stable}
+Select calibration samples from a large multivariate data using the
+Kennard-Stone algorithm
 }
 \details{
-The Kennard--Stone algorithm allows to select samples with a uniform distribution over the predictor space (Kennard and Stone, 1969).
+The Kennard--Stone algorithm allows to select samples with a uniform
+distribution over the predictor space (Kennard and Stone, 1969).
 It starts by selecting the pair of points that are the farthest apart.
-They are assigned to the calibration set and removed from the list of points. Then, the procedure assigns remaining points to the calibration set
-by computing the distance between each unassigned points \ifelse{html}{ \out{i<sub>0</sub>}}{\eqn{i_0}} and selected points \eqn{i} and finding the point for which:
+They are assigned to the calibration set and removed from the list of points.
+Then, the procedure assigns remaining points to the calibration set
+by computing the distance between each unassigned points
+\ifelse{html}{ \out{i<sub>0</sub>}}{\eqn{i_0}} and selected points \eqn{i}
+and finding the point for which:
 
 \deqn{ d_{selected} = \max\limits_{i_0}(\min\limits_{i}(d_{i,i_{0}})) }
 
-This essentially selects point \eqn{i_0} which is the farthest apart from its closest neighbors \eqn{i} in the calibration set.
-The algorithm uses the Euclidean distance to select the points. However, the Mahalanobis distance can also be used. This
-can be achieved by performing a PCA analysis on the input data and computing the Euclidean distance on the truncated score
-matrix according to the following definition of the Mahalanobis \eqn{H} distance:
+This essentially selects point \eqn{i_0} which is the farthest apart from its
+closest neighbors \eqn{i} in the calibration set.
+The algorithm uses the Euclidean distance to select the points. However,
+the Mahalanobis distance can also be used. This can be achieved by performing
+a PCA on the input data and computing the Euclidean distance on the truncated
+score matrix according to the following definition of the Mahalanobis \eqn{H}
+distance:
 
 \deqn{
    H^{2}_{ij}  =  \sum\limits_{a=1}^{A}{(\hat{t}_{ia}-\hat{t}_{ja})^{2}/\hat{\lambda}_{a}}
 }
 
-where \eqn{\hat{t}_{ia}} is the a^th principal component score of point \eqn{i}, \eqn{\hat{t}_{ja}} is the corresponding value for point \eqn{j},
-\eqn{\hat{\lambda}_a} is the eigenvalue of principal component \eqn{a} and \eqn{A} is the number of principal components included in the computation.
+where \eqn{\hat{t}_{ia}} is the a^th principal component score of point
+\eqn{i}, \eqn{\hat{t}_{ja}} is the corresponding value for point \eqn{j},
+\eqn{\hat{\lambda}_a} is the eigenvalue of principal component \eqn{a} and
+\eqn{A} is the number of principal components included in the computation.
 }
 \examples{
 data(NIRsoil)
@@ -73,10 +94,12 @@ sel <- kenStone(X, k = 25, metric = "euclid")
 points(X[sel$model, ], pch = 19, col = 2)
 }
 \references{
-Kennard, R.W., and Stone, L.A., 1969. Computer aided design of experiments. Technometrics 11, 137-148.
+Kennard, R.W., and Stone, L.A., 1969. Computer aided design of experiments.
+Technometrics 11, 137-148.
 }
 \seealso{
-\code{\link{duplex}}, \code{\link{shenkWest}}, \code{\link{naes}}, \code{\link{honigs}}
+\code{\link{duplex}}, \code{\link{shenkWest}}, \code{\link{naes}},
+\code{\link{honigs}}
 }
 \author{
 Antoine Stevens & Leonardo Ramirez-Lopez

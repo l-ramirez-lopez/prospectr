@@ -1,11 +1,13 @@
 #' @title Signal binning
 #' @description
+#' \lifecycle{stable}
 #' Compute average values of a signal in pre-determined bins (col-wise subsets).
 #' The bin size can be determined either directly or by specifying the number of bins.
 #' Sometimes called boxcar transformation in signal processing
 #' @usage
 #' binning(X, bins, bin.size)
-#' @param X a numeric `data.frame`, `matrix` or `vector` to process.
+#' @param X a numeric matrix or vector to process (optionally a data frame that can
+#' be coerced to a numerical matrix).
 #' @param bins the number of bins.
 #' @param bin.size the desired size of the bins.
 #' @author Antoine Stevens & Leonardo Ramirez-Lopez
@@ -40,8 +42,9 @@
 #'   t(binned[1:5, ]),
 #'   pch = 1:5
 #' )
-#' @return a `matrix` or `vector` with average values per bin.
-#' @seealso \code{\link{savitzkyGolay}}, \code{\link{movav}}, \code{\link{gapDer}}, \code{\link{continuumRemoval}}
+#' @return a matrix or vector with average values per bin.
+#' @seealso \code{\link{savitzkyGolay}}, \code{\link{movav}},
+#' \code{\link{gapDer}}, \code{\link{continuumRemoval}}
 #' @export
 #'
 binning <- function(X, bins, bin.size) {

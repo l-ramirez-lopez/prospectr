@@ -14,12 +14,14 @@ be coerced to a numerical matrix).}
 #' a matrix of normalized spectral data.
 }
 \description{
+\lifecycle{stable}
 \loadmathjax
 This function normalizes each row of an input matrix by
 subtracting each row by its mean and dividing it by its standard deviation
 }
 \details{
-SNV is simple way for normalizing spectral data that intends to correct for light scatter.
+SNV is simple way for normalizing spectral data that intends to correct for
+light scatter.
 It operates row-wise:
 
 \mjdeqn{SNV_i = \frac{x_i - \bar{x}_i}{s_i}}{SNV_i = \frac{x_i - \bar{x}_i}{s_i}}
@@ -44,7 +46,9 @@ apply(snv, 1, sd) # check
 }
 }
 \references{
-Barnes RJ, Dhanoa MS, Lister SJ. 1989. Standard normal variate transformation and de-trending of near-infrared diffuse reflectance spectra. Applied spectroscopy, 43(5): 772-777.
+Barnes RJ, Dhanoa MS, Lister SJ. 1989. Standard normal variate
+transformation and de-trending of near-infrared diffuse reflectance spectra.
+Applied spectroscopy, 43(5): 772-777.
 }
 \seealso{
 \code{\link{msc}}, \code{\link{detrend}}, \code{\link{blockScale}},

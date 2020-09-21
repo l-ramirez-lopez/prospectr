@@ -7,22 +7,28 @@
 honigs(X, k, type)
 }
 \arguments{
-\item{X}{a numeric \code{data.frame} or \code{matrix} with absorbance or continuum-removed reflectance values.}
+\item{X}{a numeric matrix with absorbance or continuum-removed reflectance
+values (optionally a data frame that can be coerced to a numerical matrix).}
 
 \item{k}{the number of samples to select for calibration.}
 
-\item{type}{type of data: 'A' for absorbance (default), 'R' for reflectance, 'CR' for continuum-removed reflectance}
+\item{type}{type of data: 'A' for absorbance (default), 'R' for reflectance,
+'CR' for continuum-removed reflectance}
 }
 \value{
 a \code{list} with components:
 \itemize{
-\item{'\code{model}'}{ numeric \code{vector} giving the row indices of the input data selected for calibration}
-\item{'\code{test}'}{ numeric \code{vector} giving the row indices of the remaining observations}
+\item{'\code{model}'}{ numeric vector giving the row indices of the input data
+selected for calibration}
+\item{'\code{test}'}{ numeric vector giving the row indices of the remaining
+observations}
 \item{'\code{bands}'}{ indices of the columns used during the selection procedure}
 }
 }
 \description{
-Select calibration samples from a data \code{matrix} or \code{data.frame} using the Honings et al. (1985) method
+\lifecycle{stable}
+Select calibration samples from a data matrix using the Honings et al. (1985)
+method
 }
 \details{
 The Honigs algorithm is a simple method to select calibration samples based on their absorption features. Absorbance,

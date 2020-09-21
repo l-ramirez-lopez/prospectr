@@ -2,32 +2,39 @@
 % Please edit documentation in R/resample2.R
 \name{resample2}
 \alias{resample2}
-\title{Resample a high resolution signal to a low resolution signal using full width half maximum (FWHM) values}
+\title{Resample a high resolution signal to a low resolution signal using full
+width half maximum (FWHM) values}
 \usage{
 resample2(X, wav, new.wav, fwhm)
 }
 \arguments{
-\item{X}{a numeric \code{data.frame}, \code{matrix} or \code{vector} to resample.}
+\item{X}{a numeric matrix or vector to resample (optionally a data frame that can
+be coerced to a numerical matrix).}
 
-\item{wav}{a numeric \code{vector} giving the original band positions.}
+\item{wav}{a numeric vector giving the original band positions.}
 
-\item{new.wav}{a numeric \code{vector} giving the new band positions.}
+\item{new.wav}{a numeric vector giving the new band positions.}
 
-\item{fwhm}{a numeric \code{vector} giving the full width half maximums of the new band positions. If no value is specified, it
-is assumed that the fwhm is equal to the sampling interval (i.e. band spacing). If only one value is specified, the fwhm is
-assumed to be constant over the spectral range.}
+\item{fwhm}{a numeric vector giving the full width half maximums of the new
+band positions. If no value is specified, it is assumed that the fwhm is
+equal to the sampling interval (i.e. band spacing). If only one value is
+specified, the fwhm is assumed to be constant over the spectral range.}
 }
 \value{
-a \code{matrix} or \code{vector} with resampled values
+a matrix or vector with resampled values
 }
 \description{
-Resample a data \code{matrix}, \code{data.frame} or \code{vector} to match the response of another instrument
+\lifecycle{stable}
+Resample a data matrix or vector to match the response of another instrument
 using full width half maximum (FWHM) values
 }
 \details{
-The function uses gaussian models defined by fwhm values to resample the high resolution data to new band positions and resolution.
-It assumes that band spacing and fwhm of the input data is constant over the spectral range.
-The interpolated values are set to 0 if input data fall outside by 3 standard deviations of the gaussian densities defined by fwhm.
+The function uses gaussian models defined by fwhm values to resample the high
+resolution data to new band positions and resolution.
+It assumes that band spacing and fwhm of the input data is constant over the
+spectral range.
+The interpolated values are set to 0 if input data fall outside by 3 standard
+deviations of the gaussian densities defined by fwhm.
 }
 \examples{
 data(NIRsoil)

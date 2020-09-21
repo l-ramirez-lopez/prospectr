@@ -7,15 +7,17 @@
 detrend(X, wav)
 }
 \arguments{
-\item{X}{a numeric \code{data.frame}, \code{matrix} or \code{vector} to process.}
+\item{X}{a numeric matrix or vector to process  (optionally a data frame that can
+be coerced to a numerical matrix)}
 
 \item{wav}{the wavelengths/ band centers.}
 }
 \value{
-a \code{matrix} or \code{vector} with detrend values
+a matrix or vector with detrend values
 }
 \description{
-Normalizes each row of an input \code{data.frame} or \code{matrix} by applying a SNV transformation
+\lifecycle{stable}
+Normalizes each row of an input matrix by applying a SNV transformation
 followed by fitting a second order linear model and returning the fitted residuals.
 }
 \details{

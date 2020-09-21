@@ -1,18 +1,20 @@
 #' @title Gap-Segment derivative
 #' @description
-#' Gap-Segment derivatives of a data `matrix`, `data.frame` or `vector`
+#' \lifecycle{stable}
+#' Gap-Segment derivatives of a data matrix or vector
 #' @usage
 #' gapDer(X, m = 1, w = 1, s = 1, delta.wav)
-#' @param X a numeric `matrix` , `data.frame` or `vector` to transform.
+#' @param X a numeric matrix or vector` to transform (optionally a data frame
+#' that can be coerced to a numerical matrix).
 #' @param m the order of the derivative, between 1 and 4 (default = 1).
-#' @param w the filter length (should be odd and >=1), i.e. the spacing 
+#' @param w the filter length (should be odd and >=1), i.e. the spacing
 #' between points over which the derivative is computed.
-#' @param s the segment size, i.e. the range over which the points are averaged 
+#' @param s the segment size, i.e. the range over which the points are averaged
 #' (default = 1, i.e. no smoothing corresponding to 'Norris' Gap Derivative).
 #' @param delta.wav the sampling interval (or band spacing).
 #' @author Antoine Stevens
 #' @details
-#' The sampling interval specified with the `delta.wav` argument is used for 
+#' The sampling interval specified with the `delta.wav` argument is used for
 #' scaling and get numerically correct derivatives.
 #'
 #' The convolution function is written in C++/Rcpp for faster computations.
@@ -44,7 +46,7 @@
 #' par(opar)
 #' @references Hopkins (2002). NIR News 14(5), 10.
 #' @seealso \code{\link{savitzkyGolay}}, \code{\link{movav}}, \code{\link{binning}}, \code{\link{continuumRemoval}}
-#' @return a `matrix` or `vector` with the filtered signal(s)
+#' @return a matrix or vector with the filtered signal(s)
 #' @export
 #'
 gapDer <- function(X, m = 1, w = 1, s = 1, delta.wav) {
