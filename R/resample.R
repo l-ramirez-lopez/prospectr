@@ -6,13 +6,13 @@
 #' simple wrapper around \code{\link{approx}} and \code{\link{splinefun}} in
 #' \pkg{base}.
 #' @usage
-#' resample(X, wav, new.wav, interpol = "spline")
+#' resample(X, wav, new.wav, interpol = "spline", ...)
 #' @param X numeric matrix or vector to resample (optionally a data frame that can
 #' be coerced to a numerical matrix).
 #' @param wav a numeric vector giving the original band positions.
 #' @param new.wav a numeric vector giving the new band positions.
 #' @param interpol the interpolation method: 'linear' or 'spline' (default).
-#' @param ... additional arguments to be passed to the code{\link{splinefun}}
+#' @param ... additional arguments to be passed to the \code{\link{splinefun}}
 #' function when \code{interpol = 'spline'}.
 #' @author Antoine Stevens and Leonardo Ramirez-Lopez
 #' @examples
