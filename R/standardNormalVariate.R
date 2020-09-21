@@ -16,13 +16,13 @@
 #' # 10 first snv spectra
 #' matplot(
 #'   x = as.numeric(colnames(NIRsoil$spc_snv)),
-#'   y = t(snv[1:10, ]),
+#'   y = t(NIRsoil$spc_snv[1:10, ]),
 #'   type = "l",
 #'   xlab = "wavelength, nm",
 #'   ylab = "snv"
 #' )
 #' \dontrun{
-#' apply(snv, 1, sd) # check
+#' apply(NIRsoil$spc_snv, 1, sd) # check
 #' }
 #' @return #' a matrix of normalized spectral data.
 #' @details
