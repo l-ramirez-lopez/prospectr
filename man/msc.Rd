@@ -53,7 +53,8 @@ Scatter-Correction for Near-Infrared Reflectance Spectra of Meat.
 Applied Spectroscopy, 39(3):491-500.
 }
 \seealso{
-\code{\link{snv}} \code{\link{mean}}
+\code{\link{standardNormalVariate}}, \code{\link{detrend}},
+\code{\link{blockScale}}, \code{\link{blockNorm}}
 }
 \author{
 Leonardo Ramirez-Lopez and Guillaume Hans

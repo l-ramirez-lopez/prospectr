@@ -15,7 +15,7 @@ continuumRemoval(X, wav, type, interpol, method)
 
 \item{interpol}{the interpolation method between points on the convex hull: 'linear' (default) or 'spline'.}
 
-\item{method}{normalization method: 'division' (default) or 'substraction' (see details section).}
+\item{method}{normalization method: 'division' (default) or 'subtraction' (see details section).}
 }
 \value{
 a \code{matrix} or \code{vector} with the filtered spectra.
@@ -29,7 +29,7 @@ as a method to highlight energy absorption features of minerals.
 It can be viewed as a way to perform albedo normalization.
 The algorithm find points lying on the convex hull (local maxima or envelope) of a spectrum,
 connects the points by linear or spline interpolation and
-normalizes the spectrum by dividing (or substracting) the input data by the interpolated line.
+normalizes the spectrum by dividing (or subtracting) the input data by the interpolated line.
 }
 \examples{
 data(NIRsoil)

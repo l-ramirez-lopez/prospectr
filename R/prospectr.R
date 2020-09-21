@@ -1,3 +1,20 @@
+#' @useDynLib prospectr
+#' @import Rcpp foreach iterators
+#' @import mathjaxr
+## usethis namespace: start
+#' @importFrom lifecycle deprecate_soft
+## usethis namespace: end
+#' @importFrom grDevices chull
+#' @importFrom graphics legend matplot
+#' @importFrom stats approx cov kmeans lm prcomp qf sd splinefun var
+#' @importFrom utils read.table txtProgressBar setTxtProgressBar
+#' 
+#' @description
+#'
+#' \lifecycle{maturing}
+#' 
+#' Misc functions for spectral data
+#'  
 #' This package implements a number of `R` functions useful for
 #' pre-processing spectral data well as for selecting representaive samples/spectra.
 #' The functions included here are particularly useful in Near-Infrarred and Infrared
@@ -20,7 +37,8 @@
 #'   \item{\code{\link{continuumRemoval}}}
 #'  }
 #'
-#' For the selection of representative samples/observations for calibrating spectral models the following functions ca be used:
+#' For the selection of representative samples/observations for calibrating 
+#' spectral models the following functions ca be used:
 #'
 #' \itemize{
 #'   \item{\code{\link{naes}}}
@@ -42,13 +60,6 @@
 #' @docType package
 #' @name prospectr-package
 #' @title Overview of the functions in the prospectr package
-#' @import Rcpp foreach iterators
-#' @import mathjaxr
-#' @importFrom grDevices chull
-#' @importFrom graphics legend matplot
-#' @importFrom stats approx cov kmeans lm prcomp qf sd splinefun var
-#' @importFrom utils read.table txtProgressBar setTxtProgressBar
-#' @useDynLib prospectr
 #' @author
 #' Antoine Stevens & Leonardo Ramirez-Lopez \email{ramirez.lopez.leo@@gmail.com},
 
