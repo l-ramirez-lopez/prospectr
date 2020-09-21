@@ -15,7 +15,7 @@ standardNormalVariate(X)
 \description{
 \loadmathjax
 This function normalizes each row of an input \code{data.frame} or \code{matrix} by
-substracting each row by its mean and dividing it by its standard deviation
+subtracting each row by its mean and dividing it by its standard deviation
 }
 \details{
 SNV is simple way for normalizing spectral data that intends to correct for light scatter.
@@ -46,7 +46,8 @@ apply(snv, 1, sd) # check
 Barnes RJ, Dhanoa MS, Lister SJ. 1989. Standard normal variate transformation and de-trending of near-infrared diffuse reflectance spectra. Applied spectroscopy, 43(5): 772-777.
 }
 \seealso{
-\code{\link{detrend}}, \code{\link{blockScale}}, \code{\link{blockNorm}}
+\code{\link{msc}}, \code{\link{detrend}}, \code{\link{blockScale}},
+\code{\link{blockNorm}}
 }
 \author{
 Antoine Stevens

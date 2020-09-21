@@ -7,7 +7,7 @@
 #' @param wav optional. A numeric `vector` of band positions.
 #' @param type the type of data: 'R' for reflectance (default), 'A' for absorbance.
 #' @param interpol the interpolation method between points on the convex hull: 'linear' (default) or 'spline'.
-#' @param method normalization method: 'division' (default) or 'substraction' (see details section).
+#' @param method normalization method: 'division' (default) or 'subtraction' (see details section).
 #' @author Antoine Stevens & Leonardo Ramirez-Lopez
 #' @return a `matrix` or `vector` with the filtered spectra.
 #' @examples
@@ -30,7 +30,7 @@
 #' It can be viewed as a way to perform albedo normalization.
 #' The algorithm find points lying on the convex hull (local maxima or envelope) of a spectrum,
 #' connects the points by linear or spline interpolation and
-#' normalizes the spectrum by dividing (or substracting) the input data by the interpolated line.
+#' normalizes the spectrum by dividing (or subtracting) the input data by the interpolated line.
 #' @references Clark, R.N., and Roush, T.L., 1984. Reflectance Spectroscopy: Quantitative Analysis Techniques for Remote Sensing Applications. J. Geophys. Res. 89, 6329-6340.
 #' @export
 

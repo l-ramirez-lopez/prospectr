@@ -3,7 +3,7 @@
 #' @description
 #' \loadmathjax
 #' This function normalizes each row of an input `data.frame` or `matrix` by 
-#' substracting each row by its mean and dividing it by its standard deviation
+#' subtracting each row by its mean and dividing it by its standard deviation
 #' @usage
 #' standardNormalVariate(X)
 #' @param X a numeric `matrix` of spectral data.

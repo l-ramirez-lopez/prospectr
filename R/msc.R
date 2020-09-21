@@ -40,7 +40,6 @@
 #' \code{\link{blockScale}}, \code{\link{blockNorm}}
 #'
 #' @examples
-#' @examples
 #' data(NIRsoil)
 #' NIRsoil$msc_spc <- msc(X = NIRsoil$spc)
 #' # 10 first snv spectra

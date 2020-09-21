@@ -22,9 +22,10 @@ function when \code{interpol = 'spline'}.}
 a \code{matrix} or \code{vector} with resampled values.
 }
 \description{
-Resample a data \code{matrix}, \code{data.frame} or \code{vector} to new coordinates (e.g. band positions)
-using spline or linear interpolation. This function is a simple wrapper around \code{\link{approx}}
-and \code{\link{splinefun}} in \pkg{base}.
+Resample a data \code{matrix}, \code{data.frame} or \code{vector} to new coordinates (e.g.
+band positions) using spline or linear interpolation. This function is a
+simple wrapper around \code{\link{approx}} and \code{\link{splinefun}} in
+\pkg{base}.
 }
 \examples{
 data(NIRsoil)

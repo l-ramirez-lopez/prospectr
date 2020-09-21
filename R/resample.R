@@ -1,8 +1,9 @@
 #' @title Resample spectral data
 #' @description
-#' Resample a data `matrix`, `data.frame` or `vector` to new coordinates (e.g. band positions)
-#' using spline or linear interpolation. This function is a simple wrapper around \code{\link{approx}}
-#' and \code{\link{splinefun}} in \pkg{base}.
+#' Resample a data `matrix`, `data.frame` or `vector` to new coordinates (e.g. 
+#' band positions) using spline or linear interpolation. This function is a 
+#' simple wrapper around \code{\link{approx}} and \code{\link{splinefun}} in 
+#' \pkg{base}.
 #' @usage
 #' resample(X, wav, new.wav, interpol = 'spline')
 #' @param X numeric `data.frame`, `matrix` or `vector` to resample.
