@@ -7,14 +7,15 @@
 standardNormalVariate(X)
 }
 \arguments{
-\item{X}{a numeric \code{matrix} of spectral data.}
+\item{X}{a numeric matrix of spectral data (optionally a data frame that can
+be coerced to a numerical matrix).}
 }
 \value{
 #' a matrix of normalized spectral data.
 }
 \description{
 \loadmathjax
-This function normalizes each row of an input \code{data.frame} or \code{matrix} by
+This function normalizes each row of an input matrix by
 subtracting each row by its mean and dividing it by its standard deviation
 }
 \details{
