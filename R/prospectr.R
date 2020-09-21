@@ -1,6 +1,5 @@
 #' @useDynLib prospectr
 #' @import Rcpp foreach iterators
-#' @import mathjaxr
 ## usethis namespace: start
 #' @importFrom lifecycle deprecate_soft
 ## usethis namespace: end
