@@ -2,61 +2,73 @@
 % Please edit documentation in R/detrend.R
 \name{detrend}
 \alias{detrend}
-\title{Detrend transformation}
+\title{Detrending spectral data}
 \usage{
-detrend(X, wav)
+detrend(X, wav, p = 2)
 }
 \arguments{
-\item{X}{a numeric matrix or vector to process  (optionally a data frame that can
-be coerced to a numerical matrix)}
+\item{X}{a numeric matrix or vector to process  (optionally a data frame that
+can be coerced to a numerical matrix)}
 
 \item{wav}{the wavelengths/ band centers.}
+
+\item{p}{an integer larger than 1 indicating the polynomial order (default is
+2, as in the original paper of Barnes et al., 1989).}
 }
 \value{
-a matrix or vector with detrend values
+a matrix or vector with the detrended data.
 }
 \description{
 \lifecycle{stable}
+\loadmathjax
 Normalizes each row of an input matrix by applying a SNV transformation
-followed by fitting a second order linear model and returning the fitted residuals.
+followed by fitting a second order linear model and returning the fitted
+residuals.
 }
 \details{
-The detrend is a row-wise transformation that allows to correct for wavelength-dependent
-scattering effects (variations in curvilinearity). A second-degree polynomial is fit through each spectrum:
-\deqn{x_i = a\lambda^2 + b\lambda + c + e_i}
-were \eqn{x_i} is the spectrum, \eqn{\lambda} is the wavelength vector, a, b, c are estimated by least square,
-and \eqn{e_i} are the residuals of the least square fit. Then, a detrend spectrum corresponds to:
-\deqn{x\ast_i = x_i - (a\lambda^2 + b\lambda + c = e_i)}
+The detrend is a row-wise transformation that allows to correct for
+wavelength-dependent scattering effects (variations in curvilinearity). A
+\mjeqn{p}{p} order polynomial is fit for each spectrum (\mjeqn{x_i}{x_i})
+using the vector of bands (\mjeqn{\lambda}{\lambda}, e.g. wavelengths) as
+explanatory variable as follows:
+
+\mjdeqn{x_i = a\lambda^p + ... + b\lambda + c + e_i}{x_i = a\lambda^p + ... + b\lambda + c + e_i}
+
+were a, b, c are estimated by least squares, and \mjeqn{e_i}{e_i} are the
+spectral residuals of the least square fit. The residuals of the \mjeqn{i}{i}th
+correspond to the \mjeqn{i}{i}th detrended spectrum.
 }
 \examples{
 data(NIRsoil)
 wav <- as.numeric(colnames(NIRsoil$spc))
 # conversion to reflectance
-spc <- 1 / 10^NIRsoil$spc
 opar <- par(no.readonly = TRUE)
 par(mfrow = c(2, 1), mar = c(4, 4, 2, 2))
 # plot of the 10 first spectra
-matplot(wav, t(spc[1:10, ]),
+matplot(wav, t(NIRsoil$spc[1:10, ]),
   type = "l",
   xlab = "",
-  ylab = "Reflectance"
+  ylab = "Absorbance"
 )
 mtext("Raw spectra")
-det <- detrend(spc, wav)
+det <- detrend(NIRsoil$spc, wav)
 matplot(wav, t(det[1:10, ]),
   type = "l",
   xlab = "Wavelength /nm",
-  ylab = "Reflectance"
+  ylab = "Absorbance"
 )
 mtext("Detrend spectra")
 par(opar)
 }
 \references{
-Barnes RJ, Dhanoa MS, Lister SJ. 1989. Standard normal variate transformation and de-trending of near-infrared diffuse reflectance spectra. Applied spectroscopy, 43(5): 772-777.
+Barnes RJ, Dhanoa MS, Lister SJ. 1989. Standard normal variate
+transformation and de-trending of near-infrared diffuse reflectance spectra.
+Applied spectroscopy, 43(5): 772-777.
 }
 \seealso{
-\code{\link{standardNormalVariate}}, \code{\link{blockScale}}, \code{\link{blockNorm}}
+\code{\link{standardNormalVariate}}, \code{\link{blockScale}},
+\code{\link{blockNorm}}
 }
 \author{
-Antoine Stevens
+Antoine Stevens and Leonardo Ramirez-Lopez
 }

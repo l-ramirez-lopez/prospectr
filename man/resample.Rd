@@ -32,11 +32,10 @@ simple wrapper around \code{\link{approx}} and \code{\link{splinefun}} in
 \examples{
 data(NIRsoil)
 wav <- as.numeric(colnames(NIRsoil$spc))
-spc <- 1 / 10^NIRsoil$spc # conversion to reflectance
 # increase spectral resolution by 2
-resampled <- resample(spc, wav, seq(1100, 2498, 2))
-dim(spc)
-dim(resampled)
+NIRsoil$spc_resampled <- resample(NIRsoil$spc, wav, seq(1100, 2498, 2))
+dim(NIRsoil$spc)
+dim(NIRsoil$spc_resampled)
 }
 \seealso{
 \code{\link{resample2}}

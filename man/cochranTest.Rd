@@ -17,7 +17,7 @@ be coerced to a numerical matrix).}
 \item{alpha}{\emph{p}-value of the Cochran \emph{C} test.}
 }
 \value{
-a \code{list} with components:
+a list with components:
 \itemize{
 \item{'\code{X}'}{ input matrix from which outlying observations (rows) have
 been removed}
@@ -27,6 +27,7 @@ data that have been flagged as outliers}
 }
 \description{
 \lifecycle{stable}
+\loadmathjax
 Detects and removes replicate outliers in data series based on the Cochran
 \emph{C} test for homogeneity in variance.
 }
@@ -34,23 +35,25 @@ Detects and removes replicate outliers in data series based on the Cochran
 The Cochran \emph{C} test is test whether a single estimate of variance is
 significantly larger than a a group of variances.
 It can be computed as:
-\deqn{RMSD = \sqrt{\frac{1}{n} \sum_{i=1}^n {(y_i - \ddot{y}_i)^2}}}
-where \eqn{y_i} is the value of the side variable of the \eqn{i}th sample,
-\eqn{\ddot{y}_i} is the value of the side variable of the nearest neighbor
-of the \eqn{i}th sample and \eqn{n} is the total number of observations
 
-For multivariate data, the variance \eqn{S_i^2} can be computed on aggregated
+\mjdeqn{RMSD = \sqrt{\frac{1}{n} \sum_{i=1}^n {(y_i - \ddot{y}_i)^2}}}{RMSD = sqrt{{1}/{n} sum (y_i - ddot{y}_i)^2}}
+
+where \mjeqn{y_i}{y_i} is the value of the side variable of the \mjeqn{i}{i}th sample,
+\mjeqn{\ddot{y}_i}{\ddot{y}_i} is the value of the side variable of the nearest neighbor
+of the \mjeqn{i}{i}th sample and \mjeqn{n}{n} is the total number of observations.
+
+For multivariate data, the variance \mjeqn{S_i^2}{S_i^2} can be computed on aggregated
 data, using a summary function (\code{fun} argument)
 such as \code{sum}, \code{mean}, or first principal components ('PC1' and 'PC2').
 
 An observation is considered to have an outlying variance if the Cochran \emph{C}
-statistic is higher than an upper limit critical value \eqn{C_{UL}}
+statistic is higher than an upper limit critical value \mjeqn{C_{UL}}{C_{UL}}
 which can be evaluated with ('t Lam, 2010):
 
-\deqn{ C_{UL}(\alpha,n,N) = \left [1+\frac{N-1}{F_{c}(\alpha/N,(n-1),(N-1)(n-1))} \right ]^{-1}}
+\mjdeqn{C_{UL}(\alpha, n, N) = 1 + [\frac{N-1}{F_{c}(\alpha/N,(n-1),(N-1)(n-1))}]^{-1} }{C_{UL}(\alpha, n, N) = 1 + [\frac{N-1}{F_{c}(\alpha/N,(n-1),(N-1)(n-1))}]^{-1}}
 
-where \eqn{\alpha} is the \emph{p}-value of the test, \eqn{n} is the (average)
-number of replicates and \eqn{F_c} is the critical value of the Fisher's \eqn{F} ratio.
+where \mjeqn{\alpha}{\alpha} is the \emph{p}-value of the test, \mjeqn{n}{n} is the (average)
+number of replicates and \mjeqn{F_c}{F_c} is the critical value of the Fisher's \mjeqn{F}{F} ratio.
 
 The replicates with outlying variance are removed and the test can be applied
 iteratively until no outlying variance is detected under the given \emph{p}-value.

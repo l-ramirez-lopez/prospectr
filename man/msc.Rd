@@ -18,6 +18,7 @@ a matrix of normalized spectral data with an attribute which indicates the
 reference spectrum used.
 }
 \description{
+\lifecycle{maturing}
 \loadmathjax
 This function implements the multiplicative scatter correction method
 which attempts to remove physical light scatter by accounting for additive
