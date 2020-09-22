@@ -12,11 +12,24 @@
 #' @examples
 #' data(NIRsoil)
 #' wav <- as.numeric(colnames(NIRsoil$spc))
-#' spc <- 1 / 10^NIRsoil$spc # conversion to reflectance
-#' spc <- spc + rnorm(length(spc), 0, 0.001) # adding some noise
-#' matplot(wav, t(spc[1:10, ]), type = "l", xlab = "Wavelength /nm", ylab = "Reflectance")
-#' mov <- movav(spc, w = 11) # window size of 11 bands
-#' matlines(as.numeric(colnames(mov)), t(mov[1:10, ])) # smoothed data
+#' # adding some noise
+#' NIRsoil$spc_noise <- NIRsoil$spc + rnorm(length(NIRsoil$spc), 0, 0.001) 
+#' matplot(wav, 
+#'         t(NIRsoil$spc_noise[1:10, ]), 
+#'         type = "l", 
+#'         lty = 1,
+#'         xlab = "Wavelength /nm", 
+#'         ylab = "Absorbance",
+#'         col = "grey")
+#'
+#' # window size of 11 bands
+#' NIRsoil$spc_mov <- movav(NIRsoil$spc_noise, w = 15) 
+#' # smoothed data
+#' matlines(as.numeric(colnames(NIRsoil$spc_mov)), 
+#'          t(NIRsoil$spc_mov[1:10, ]), 
+#'          type = "l", 
+#'          lty = 1)
+#'
 #' @return a matrix or vector with the filtered signal(s)
 #' @seealso \code{\link{savitzkyGolay}}, \code{\link{gapDer}},
 #' \code{\link{binning}}, \code{\link{continuumRemoval}}

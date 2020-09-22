@@ -1,6 +1,7 @@
 #' @title Kennard-Stone algorithm for calibration sampling
 #' @description
 #' \lifecycle{stable}
+#' \loadmathjax
 #' Select calibration samples from a large multivariate data using the
 #' Kennard-Stone algorithm
 #' @usage
@@ -28,13 +29,13 @@
 #' @param .scale logical value indicating whether the input matrix should be
 #' scaled before Principal Component
 #' Analysis. Default set to \code{FALSE}.
-#' @return a `list` with components:
+#' @return a list with the following components:
 #' \itemize{
-#'  \item{'`model`'}{ numeric vector giving the row indices of the input data
+#'  \item{`model`:}{ numeric vector giving the row indices of the input data
 #'  selected for calibration}
-#'  \item{'`test`'}{ numeric vector giving the row indices of the remaining
+#'  \item{`test`:}{ numeric vector giving the row indices of the remaining
 #'  observations}
-#'  \item{'`pc`'}{ if the `pc` argument is specified, a numeric matrix of the
+#'  \item{`pc`:}{ if the `pc` argument is specified, a numeric matrix of the
 #'  scaled pc scores}
 #'  }
 #' @references
@@ -58,27 +59,27 @@
 #' They are assigned to the calibration set and removed from the list of points.
 #' Then, the procedure assigns remaining points to the calibration set
 #' by computing the distance between each unassigned points
-#' \ifelse{html}{ \out{i<sub>0</sub>}}{\eqn{i_0}} and selected points \eqn{i}
+#' \mjeqn{i_0}{i_0} and selected points \mjeqn{i}{i}
 #' and finding the point for which:
 #'
-#' \deqn{ d_{selected} = \max\limits_{i_0}(\min\limits_{i}(d_{i,i_{0}})) }
+#' \mjdeqn{d_{selected} = \max\limits_{i_0}(\min\limits_{i}(d_{i,i_{0}}))}{d_{sel ected} = \max_{i_0}(\min_{i}(d_{i,i0}))}
 #'
-#' This essentially selects point \eqn{i_0} which is the farthest apart from its
-#' closest neighbors \eqn{i} in the calibration set.
+#' This essentially selects point \mjeqn{i_0}{i_0} which is the farthest apart from its
+#' closest neighbors \mjeqn{i}{i} in the calibration set.
 #' The algorithm uses the Euclidean distance to select the points. However,
 #' the Mahalanobis distance can also be used. This can be achieved by performing
 #' a PCA on the input data and computing the Euclidean distance on the truncated
-#' score matrix according to the following definition of the Mahalanobis \eqn{H}
+#' score matrix according to the following definition of the Mahalanobis \mjeqn{H}{H}
 #' distance:
 #'
-#' \deqn{
-#'    H^{2}_{ij}  =  \sum\limits_{a=1}^{A}{(\hat{t}_{ia}-\hat{t}_{ja})^{2}/\hat{\lambda}_{a}}
-#' }
+#' \mjdeqn{H_{ij}^2 = \sum_{a=1}^A (\hat t_{ia} - \hat t_{ja})^{2} / \hat \lambda_a}{H_{ij}^2 = sum_{a=1}^A (hat t_{ia} - hat t_{ja})^{2} / hat lambda_a}
 #'
-#' where \eqn{\hat{t}_{ia}} is the a^th principal component score of point
-#' \eqn{i}, \eqn{\hat{t}_{ja}} is the corresponding value for point \eqn{j},
-#' \eqn{\hat{\lambda}_a} is the eigenvalue of principal component \eqn{a} and
-#' \eqn{A} is the number of principal components included in the computation.
+#' where \mjeqn{\hat t_{ia}}{hatt_{ia}} is the \mjeqn{a^{th}}{a^{th}} principal component 
+#' score of point \mjeqn{i}{i}, \mjeqn{\hat t_{ja}}{hatt_{ja}} is the 
+#' corresponding value for point \mjeqn{j}{j}, 
+#' \mjeqn{\hat \lambda_a}{hat lambda_a} is the eigenvalue of principal 
+#' component \mjeqn{a}{a} and \mjeqn{A}{A} is the number of principal components 
+#' included in the computation.
 #' @seealso  \code{\link{duplex}}, \code{\link{shenkWest}}, \code{\link{naes}},
 #' \code{\link{honigs}}
 #' @export

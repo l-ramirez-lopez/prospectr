@@ -1,6 +1,7 @@
 #' @title Cochran *C* Test
 #' @description
 #' \lifecycle{stable}
+#' \loadmathjax
 #' Detects and removes replicate outliers in data series based on the Cochran
 #' *C* test for homogeneity in variance.
 #' @usage
@@ -11,34 +12,38 @@
 #' @param fun function to aggregate data: 'sum' (default), 'mean', 'PC1' or 'PC2'.
 #' @param alpha *p*-value of the Cochran *C* test.
 #' @author Antoine Stevens
-#' @return a `list` with components:
+#' @return a list with components:
 #' \itemize{
 #'  \item{'`X`'}{ input matrix from which outlying observations (rows) have
 #'  been removed}
 #'  \item{'`outliers`'}{ numeric vector giving the row indices of the input
 #'  data that have been flagged as outliers}
 #' }
+#' 
 #' @details
 #' The Cochran *C* test is test whether a single estimate of variance is
 #' significantly larger than a a group of variances.
 #' It can be computed as:
-#' \deqn{RMSD = \sqrt{\frac{1}{n} \sum_{i=1}^n {(y_i - \ddot{y}_i)^2}}}
-#' where \eqn{y_i} is the value of the side variable of the \eqn{i}th sample,
-#' \eqn{\ddot{y}_i} is the value of the side variable of the nearest neighbor
-#' of the \eqn{i}th sample and \eqn{n} is the total number of observations
+#' 
+#' \mjdeqn{RMSD = \sqrt{\frac{1}{n} \sum_{i=1}^n {(y_i - \ddot{y}_i)^2}}}{RMSD = sqrt{{1}/{n} sum (y_i - ddot{y}_i)^2}}
+#' 
+#' where \mjeqn{y_i}{y_i} is the value of the side variable of the \mjeqn{i}{i}th sample,
+#' \mjeqn{\ddot{y}_i}{\ddot{y}_i} is the value of the side variable of the nearest neighbor
+#' of the \mjeqn{i}{i}th sample and \mjeqn{n}{n} is the total number of observations.
 #'
-#' For multivariate data, the variance \eqn{S_i^2} can be computed on aggregated
+#' For multivariate data, the variance \mjeqn{S_i^2}{S_i^2} can be computed on aggregated
 #' data, using a summary function (`fun` argument)
 #' such as `sum`, `mean`, or first principal components ('PC1' and 'PC2').
 #'
 #' An observation is considered to have an outlying variance if the Cochran *C*
-#' statistic is higher than an upper limit critical value \eqn{C_{UL}}
+#' statistic is higher than an upper limit critical value \mjeqn{C_{UL}}{C_{UL}}
 #' which can be evaluated with ('t Lam, 2010):
 #'
-#' \deqn{ C_{UL}(\alpha,n,N) = \left [1+\frac{N-1}{F_{c}(\alpha/N,(n-1),(N-1)(n-1))} \right ]^{-1}}
 #'
-#' where \eqn{\alpha} is the *p*-value of the test, \eqn{n} is the (average)
-#' number of replicates and \eqn{F_c} is the critical value of the Fisher's \eqn{F} ratio.
+#' \mjdeqn{C_{UL}(\alpha, n, N) = 1 + \[\frac{N-1}{F_{c}(\alpha/N,(n-1),(N-1)(n-1))}\]^{-1} }{C_{UL}(\alpha, n, N) = 1 + \[\frac{N-1}{F_{c}(\alpha/N,(n-1),(N-1)(n-1))}\]^{-1}}
+#'
+#' where \mjeqn{\alpha}{\alpha} is the *p*-value of the test, \mjeqn{n}{n} is the (average)
+#' number of replicates and \mjeqn{F_c}{F_c} is the critical value of the Fisher's \mjeqn{F}{F} ratio.
 #'
 #' The replicates with outlying variance are removed and the test can be applied
 #' iteratively until no outlying variance is detected under the given *p*-value.
