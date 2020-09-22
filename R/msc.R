@@ -1,6 +1,7 @@
 #' @title Multiplicative Scatter Correction (msc)
 #'
 #' @description
+#' \lifecycle{maturing}
 #' \loadmathjax
 #' This function implements the multiplicative scatter correction method
 #' which attempts to remove physical light scatter by accounting for additive
