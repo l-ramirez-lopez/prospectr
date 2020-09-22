@@ -1,6 +1,8 @@
 prospectr 0.2.1
 ===============
 * New license
+* The detrend function now allows to remove trends corresponding to different 
+polynomial orders. Check the new 'p' argument. 
 * New preprocessing function: multiplicative scatter correction (msc)
 * Now resample() also has a new argument (...) to pass additional arguments to the 
 splinefun() function (of stats) used within resample() when the argument 
