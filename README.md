@@ -21,7 +21,9 @@ C++ code through the [`Rcpp`](http://cran.r-project.org/web/packages/Rcpp/index.
 and [`RcppArmadillo`](http://cran.r-project.org/web/packages/RcppArmadillo/index.html)
 packages.
 
-A vignette gives an overview of the main functionalities of the package. Just
+Check the NEWS document for new functionality and general changes in the package.
+
+A vignette gives an overview of the main functions of the package. Just
 type `vignette("prospectr-intro")` in the console to access it. Currently, the 
 following preprocessing functions are available:
 
