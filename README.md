@@ -25,17 +25,18 @@ A vignette gives an overview of the main functionalities of the package. Just
 type `vignette("prospectr-intro")` in the console to access it. Currently, the 
 following preprocessing functions are available:
 
- `continuumRemoval`      : continuum-removed absorbance or reflectance values                     
- `savitzkyGolay`         : Savitzky-Golay filter (smoothing and derivatives)                      
- `gapDer`                : gap-segment derivative                                                 
- `movav`                 : moving average                                                         
- `standardNormalVariate` : standard normal variate (snv)                                          
- `detrend`               : detrend normalization                                                  
- `binning`               : average in column--wise subsets                                        
  `resample`              : resample a signal to new coordinates by linear or spline interpolation 
  `resample2`             : resample a signal to new coordinates using FWHM values                 
+ `movav`                 : moving average                                                         
+ `standardNormalVariate` : standard normal variate 
+ `msc`                   : multiplicative scatter correction                                        
+ `detrend`               : detrend normalization                                                  
  `blockScale`            : block scaling                                                           
  `blockNorm`             : sum of squares block weighting                                         
+ `binning`               : average in column--wise subsets                                        
+ `savitzkyGolay`         : Savitzky-Golay filter (smoothing and derivatives)                      
+ `gapDer`                : gap-segment derivative                                                 
+ `continuumRemoval`      : continuum-removed absorbance or reflectance values                     
 
 The selection of representative samples/observations for calibration of spectral 
 models can be achieved with one of the following functions:

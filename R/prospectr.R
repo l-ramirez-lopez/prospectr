@@ -27,10 +27,10 @@
 #'   \item{\code{\link{movav}}}
 #'   \item{\code{\link{standardNormalVariate}}}
 #'   \item{\code{\link{msc}}}
+#'   \item{\code{\link{detrend}}}
 #'   \item{\code{\link{blockScale}}}
 #'   \item{\code{\link{blockNorm}}}
 #'   \item{\code{\link{binning}}}
-#'   \item{\code{\link{detrend}}}
 #'   \item{\code{\link{savitzkyGolay}}}
 #'   \item{\code{\link{gapDer}}}
 #'   \item{\code{\link{continuumRemoval}}}
