@@ -8,6 +8,7 @@ polynomial orders. Check the new 'p' argument.
 splinefun() function (of stats) used within resample() when the argument 
 interpol = "spline" (the default since version 0.2.0)
 * Bug fix: in read_nircal, the description file was not being properly read
+* Now performing automatic unit tests with the package testthat
 
 prospectr 0.2.0
 ===============
