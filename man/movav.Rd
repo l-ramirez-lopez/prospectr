@@ -7,28 +7,44 @@
 movav(X, w)
 }
 \arguments{
-\item{X}{a numeric \code{data.frame}, \code{matrix} or \code{vector} to process.}
+\item{X}{a numeric matrix or vector to process (optionally a data frame that can
+be coerced to a numerical matrix).}
 
 \item{w}{filter length.}
 }
 \value{
-a \code{matrix} or \code{vector} with the filtered signal(s)
+a matrix or vector with the filtered signal(s)
 }
 \description{
-A simple moving average of a \code{vector}, \code{data.frame} or \code{matrix} using a convolution
+\lifecycle{stable}
+A simple moving average of a matrix or vector using a convolution
 function written in C++/Rcpp for fast computing
 }
 \examples{
 data(NIRsoil)
 wav <- as.numeric(colnames(NIRsoil$spc))
-spc <- 1 / 10^NIRsoil$spc # conversion to reflectance
-spc <- spc + rnorm(length(spc), 0, 0.001) # adding some noise
-matplot(wav, t(spc[1:10, ]), type = "l", xlab = "Wavelength /nm", ylab = "Reflectance")
-mov <- movav(spc, w = 11) # window size of 11 bands
-matlines(as.numeric(colnames(mov)), t(mov[1:10, ])) # smoothed data
+# adding some noise
+NIRsoil$spc_noise <- NIRsoil$spc + rnorm(length(NIRsoil$spc), 0, 0.001) 
+matplot(wav, 
+        t(NIRsoil$spc_noise[1:10, ]), 
+        type = "l", 
+        lty = 1,
+        xlab = "Wavelength /nm", 
+        ylab = "Absorbance",
+        col = "grey")
+
+# window size of 11 bands
+NIRsoil$spc_mov <- movav(NIRsoil$spc_noise, w = 15) 
+# smoothed data
+matlines(as.numeric(colnames(NIRsoil$spc_mov)), 
+         t(NIRsoil$spc_mov[1:10, ]), 
+         type = "l", 
+         lty = 1)
+
 }
 \seealso{
-\code{\link{savitzkyGolay}}, \code{\link{gapDer}}, \code{\link{binning}}, \code{\link{continuumRemoval}}
+\code{\link{savitzkyGolay}}, \code{\link{gapDer}},
+\code{\link{binning}}, \code{\link{continuumRemoval}}
 }
 \author{
 Antoine Stevens

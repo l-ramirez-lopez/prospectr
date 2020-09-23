@@ -1,41 +1,60 @@
 #' @title k-means sampling
-#' @description Perform a k-means sampling on a `matrix` or `data.frame` for multivariate calibration
+#' @description
+#' \lifecycle{stable}
+#' Perform a k-means sampling on a matrix for multivariate calibration
 #' @usage
 #' naes(X, k, pc, iter.max = 10, method = 0, .center = TRUE, .scale = FALSE)
-#' @param X a numeric `matrix` or `data.frame`.
-#' @param k either the number of calibration samples to select or a set of cluster centres to initiate the k-means clustering.
-#' @param pc optional. If not specified, k-means is run directly on the variable (Euclidean) space.
-#' Alternatively, a PCA is performed before k-means and `pc` is the number of principal components kept. If `pc < 1`,
-#' the number of principal components kept corresponds to the number of components explaining at least (`pc * 100`) percent of the total variance.
-#' @param iter.max maximum number of iterations allowed for the k-means clustering. Default is `iter.max = 10` (see `?kmeans`).
-#' @param method the method used for selecting calibration samples within each cluster: either samples closest to the cluster.
-#' centers (`method = 0`, default), samples farthest away from the centre of the data (`method = 1`) or
+#' @param X a numeric matrix (optionally a data frame that can
+#' be coerced to a numerical matrix).
+#' @param k either the number of calibration samples to select or a set of
+#' cluster centres to initiate the k-means clustering.
+#' @param pc optional. If not specified, k-means is run directly on the variable
+#' (Euclidean) space.
+#' Alternatively, a PCA is performed before k-means and `pc` is the number of
+#' principal components kept. If `pc < 1`,the number of principal components
+#' kept corresponds to the number of components explaining at least (`pc * 100`)
+#' percent of the total variance.
+#' @param iter.max maximum number of iterations allowed for the k-means
+#' clustering. Default is `iter.max = 10` (see `?kmeans`).
+#' @param method the method used for selecting calibration samples within each
+#' cluster: either samples closest to the cluster.
+#' centers (`method = 0`, default), samples farthest away from the centre of the
+#' data (`method = 1`) or
 #' random selection (`method = 2`).
-#' @param .center logical value indicating whether the input matrix should be centered before Principal Component
-#' Analysis. Default set to TRUE.
-#' @param .scale logical value indicating whether the input matrix should be scaled before Principal Component
-#' Analysis. Default set to FALSE.
-#' @return a `list` with components:
+#' @param .center logical value indicating whether the input matrix should be
+#' centered before Principal Component Analysis. Default set to \code{TRUE}.
+#' @param .scale logical value indicating whether the input matrix should be
+#' scaled before Principal Component Analysis. Default set to \code{FALSE}.
+#' @return a list with components:
 #' \itemize{
-#'  \item{'`model`'}{ numeric `vector` giving the row indices of the input data selected for calibration}
-#'  \item{'`test`'}{ numeric `vector` giving the row indices of the remaining observations}
-#'  \item{'`pc`'}{ if the `pc` argument is specified, a numeric `matrix` of the scaled pc scores}
-#'  \item{'`cluster`'}{ integer vector indicating the cluster to which each point was assigned}
-#'  \item{'`centers`'}{ a `matrix` of cluster centres}
+#'  \item{'`model`'}{ numeric vector giving the row indices of the input data
+#'  selected for calibration}
+#'  \item{'`test`'}{ numeric vector giving the row indices of the remaining
+#'  observations}
+#'  \item{'`pc`'}{ if the `pc` argument is specified, a numeric matrix of the
+#'  scaled pc scores}
+#'  \item{'`cluster`'}{ integer vector indicating the cluster to which each
+#'  point was assigned}
+#'  \item{'`centers`'}{ a matrix of cluster centres}
 #' }
-#' @details K-means sampling is a simple procedure based on cluster analysis to select calibration samples from large multivariate datasets.
+#' @details K-means sampling is a simple procedure based on cluster analysis to
+#' select calibration samples from large multivariate datasets.
 #' The method can be described in three points (Naes et al.,2001):
 #'
 #' \enumerate{
 #'  \item Perform a PCA and decide how many principal component to keep,
-#'  \item Carry out a k-means clustering on the principal component scores and choose the number of resulting clusters to be equal to
+#'  \item Carry out a k-means clustering on the principal component scores and
+#'  choose the number of resulting clusters to be equal to
 #' the number of desired calibration samples,
 #'  \item Select one sample from each cluster.
 #' }
 #' @references
-#' Naes, T., 1987. The design of calibration in near infra-red reflectance analysis by clustering. Journal of Chemometrics 1, 121-134.
+#' Naes, T., 1987. The design of calibration in near infra-red reflectance
+#' analysis by clustering. Journal of Chemometrics 1, 121-134.
 #'
-#' Naes, T., Isaksson, T., Fearn, T., and Davies, T., 2002. A user friendly guide to multivariate calibration and classification. NIR Publications, Chichester, United Kingdom.
+#' Naes, T., Isaksson, T., Fearn, T., and Davies, T., 2002. A user friendly
+#' guide to multivariate calibration and classification. NIR Publications,
+#' Chichester, United Kingdom.
 #' @examples
 #' data(NIRsoil)
 #' sel <- naes(NIRsoil$spc, k = 5, p = .99, method = 0)
@@ -59,7 +78,8 @@
 #'   cex = 1
 #' )
 #' @author Antoine Stevens & Leonardo Ramirez-Lopez
-#' @seealso \code{\link{kenStone}}, \code{\link{honigs}}, \code{\link{duplex}}, \code{\link{shenkWest}}
+#' @seealso \code{\link{kenStone}}, \code{\link{honigs}}, \code{\link{duplex}},
+#' \code{\link{shenkWest}}
 #' @export
 
 naes <- function(X, k, pc, iter.max = 10, method = 0, .center = TRUE, .scale = FALSE) {

@@ -1,3 +1,19 @@
+#' @useDynLib prospectr
+#' @import Rcpp foreach iterators
+## usethis namespace: start
+#' @importFrom lifecycle deprecate_soft
+## usethis namespace: end
+#' @importFrom grDevices chull
+#' @importFrom graphics legend matplot
+#' @importFrom stats approx cov kmeans lm prcomp qf sd splinefun var
+#' @importFrom utils read.table txtProgressBar setTxtProgressBar
+#'
+#' @description
+#'
+#' \lifecycle{maturing}
+#'
+#' Misc functions for spectral data
+#'
 #' This package implements a number of `R` functions useful for
 #' pre-processing spectral data well as for selecting representaive samples/spectra.
 #' The functions included here are particularly useful in Near-Infrarred and Infrared
@@ -6,20 +22,22 @@
 #' Currently, the following preprocessing functions are available:
 #'
 #' \itemize{
-#'   \item{\code{\link{continuumRemoval}}}
-#'   \item{\code{\link{savitzkyGolay}}}
-#'   \item{\code{\link{detrend}}}
-#'   \item{\code{\link{gapDer}}}
-#'   \item{\code{\link{movav}}}
-#'   \item{\code{\link{standardNormalVariate}}}
-#'   \item{\code{\link{binning}}}
 #'   \item{\code{\link{resample}}}
 #'   \item{\code{\link{resample2}}}
+#'   \item{\code{\link{movav}}}
+#'   \item{\code{\link{standardNormalVariate}}}
+#'   \item{\code{\link{msc}}}
+#'   \item{\code{\link{detrend}}}
 #'   \item{\code{\link{blockScale}}}
 #'   \item{\code{\link{blockNorm}}}
+#'   \item{\code{\link{binning}}}
+#'   \item{\code{\link{savitzkyGolay}}}
+#'   \item{\code{\link{gapDer}}}
+#'   \item{\code{\link{continuumRemoval}}}
 #'  }
 #'
-#' For the selection of representative samples/observations for calibrating spectral models the following functions ca be used:
+#' For the selection of representative samples/observations for calibrating
+#' spectral models the following functions ca be used:
 #'
 #' \itemize{
 #'   \item{\code{\link{naes}}}
@@ -41,12 +59,6 @@
 #' @docType package
 #' @name prospectr-package
 #' @title Overview of the functions in the prospectr package
-#' @import Rcpp foreach iterators
-#' @importFrom grDevices chull
-#' @importFrom graphics legend matplot
-#' @importFrom stats approx cov kmeans lm prcomp qf sd splinefun var
-#' @importFrom utils read.table txtProgressBar setTxtProgressBar
-#' @useDynLib prospectr
 #' @author
 #' Antoine Stevens & Leonardo Ramirez-Lopez \email{ramirez.lopez.leo@@gmail.com},
 

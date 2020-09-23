@@ -7,21 +7,26 @@
 continuumRemoval(X, wav, type, interpol, method)
 }
 \arguments{
-\item{X}{a numeric \code{data.frame}, \code{matrix} or \code{vector} to process.}
+\item{X}{a numeric matrix or vector to process (optionally a data frame that can
+be coerced to a numerical matrix).}
 
-\item{wav}{optional. A numeric \code{vector} of band positions.}
+\item{wav}{optional. A numeric vector of band positions.}
 
-\item{type}{the type of data: 'R' for reflectance (default), 'A' for absorbance.}
+\item{type}{the type of data: 'R' for reflectance (default), 'A' for
+absorbance.}
 
-\item{interpol}{the interpolation method between points on the convex hull: 'linear' (default) or 'spline'.}
+\item{interpol}{the interpolation method between points on the convex hull:
+'linear' (default) or 'spline'.}
 
-\item{method}{normalization method: 'division' (default) or 'substraction' (see details section).}
+\item{method}{normalization method: 'division' (default) or 'subtraction'
+(see details section).}
 }
 \value{
-a \code{matrix} or \code{vector} with the filtered spectra.
+a matrix or vector with the filtered spectra.
 }
 \description{
-Compute the continuum removed values of a data \code{matrix}, \code{data.frame}, or \code{vector} as implemented in ENVI
+\lifecycle{maturing}
+Compute the continuum removed values of a data matrix or vector
 }
 \details{
 The continuum removal technique was introduced by Clark and Roush (1984)
@@ -29,7 +34,7 @@ as a method to highlight energy absorption features of minerals.
 It can be viewed as a way to perform albedo normalization.
 The algorithm find points lying on the convex hull (local maxima or envelope) of a spectrum,
 connects the points by linear or spline interpolation and
-normalizes the spectrum by dividing (or substracting) the input data by the interpolated line.
+normalizes the spectrum by dividing (or subtracting) the input data by the interpolated line.
 }
 \examples{
 data(NIRsoil)

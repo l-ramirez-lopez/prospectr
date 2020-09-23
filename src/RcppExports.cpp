@@ -108,6 +108,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// get_msc_coeff
+NumericMatrix get_msc_coeff(arma::mat X, arma::vec reference_spc);
+RcppExport SEXP _prospectr_get_msc_coeff(SEXP XSEXP, SEXP reference_spcSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type X(XSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type reference_spc(reference_spcSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_msc_coeff(X, reference_spc));
+    return rcpp_result_gen;
+END_RCPP
+}
 // residLm
 NumericMatrix residLm(NumericMatrix Yr, NumericMatrix Xr);
 RcppExport SEXP _prospectr_residLm(SEXP YrSEXP, SEXP XrSEXP) {
@@ -130,6 +142,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_prospectr_convCppV", (DL_FUNC) &_prospectr_convCppV, 2},
     {"_prospectr_fastDist", (DL_FUNC) &_prospectr_fastDist, 3},
     {"_prospectr_fastDistV", (DL_FUNC) &_prospectr_fastDistV, 3},
+    {"_prospectr_get_msc_coeff", (DL_FUNC) &_prospectr_get_msc_coeff, 2},
     {"_prospectr_residLm", (DL_FUNC) &_prospectr_residLm, 2},
     {NULL, NULL, 0}
 };

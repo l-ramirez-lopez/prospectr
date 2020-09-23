@@ -1,17 +1,22 @@
 #' @title Splice correction of a spectral matrix acquired with an ASD spectrometer
 #' @description
-#' Corrects steps in an input spectral matrix by linear interpolation of the values of the edges of the middle sensor
+#' \lifecycle{stable}
+#' Corrects steps in an input spectral matrix by linear interpolation of the
+#' values of the edges of the middle sensor
 #' @usage
 #' spliceCorrection(X, wav, splice = c(1000, 1830), interpol.bands = 10)
-#' @param X a numeric `data.frame`, `matrix` or `vector` to transform.
-#' @param wav a numeric `vector` with band positions.
-#' @param splice a numeric `vector` of the two positions of the splices, default = c(1000, 1830).
+#' @param X a numeric matrix or vector to transform (optionally a data frame that can
+#' be coerced to a numerical matrix).
+#' @param wav a numeric vector with band positions.
+#' @param splice a numeric vector of the two positions of the splices,
+#' default: \code{c(1000, 1830)}.
 #' corresponding to the splices of the ASD FieldSpec Pro spectrometer.
 #' @param interpol.bands the number of interpolation bands.
-#' @return a `matrix` with the splice corrected data.
+#' @return a matrix with the splice corrected data.
 #' @author Antoine Stevens
 #' @details
-#' Spectra acquired with an ASD FieldSpec Pro spectroradiometer usually exhibit steps at the splice of the three built-in sensors,
+#' Spectra acquired with an ASD FieldSpec Pro spectroradiometer usually exhibit
+#' steps at the splice of the three built-in sensors,
 #' positioned at 1000 nm (end of VNIR detector) and 1830 nm (end of SWIR1 detector).
 #' @export
 

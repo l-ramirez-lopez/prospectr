@@ -7,43 +7,52 @@
 standardNormalVariate(X)
 }
 \arguments{
-\item{X}{a numeric \code{matrix} of spectral data.}
+\item{X}{a numeric matrix of spectral data (optionally a data frame that can
+be coerced to a numerical matrix).}
 }
 \value{
-a \code{matrix} of the transformed data
+#' a matrix of normalized spectral data.
 }
 \description{
-\code{standardNormalVariate} normalizes each row of an input \code{data.frame} or \code{matrix} by substracting
-each row by its mean and dividing by its standard deviation
+\lifecycle{stable}
+\loadmathjax
+This function normalizes each row of an input matrix by
+subtracting each row by its mean and dividing it by its standard deviation
 }
 \details{
-SNV is simple way for normalizing spectral data that intends to correct for light scatter.
+SNV is simple way for normalizing spectral data that intends to correct for
+light scatter.
 It operates row-wise:
-\deqn{SNV_i = \frac{x_i - \bar{x_i}}{s_i}}
-where \eqn{x_i} is the signal of a sample \eqn{i}, \eqn{\bar{x_i}} is its mean and
-\eqn{s_i} its standard deviation
+
+\mjdeqn{SNV_i = \frac{x_i - \bar{x}_i}{s_i}}{SNV_i = \frac{x_i - \bar{x}_i}{s_i}}
+
+where \mjeqn{x_i}{x_i} is the signal of the \mjeqn{i}{i}th observation,
+\mjeqn{\bar{x}_i}{\bar{x}_i} is its mean and \mjeqn{s_i}{s_i} its standard
+deviation.
 }
 \examples{
 data(NIRsoil)
-spc <- 1 / 10^NIRsoil$spc # conversion to reflectance
-snv <- standardNormalVariate(X = spc)
+NIRsoil$spc_snv <- standardNormalVariate(X = NIRsoil$spc)
 # 10 first snv spectra
 matplot(
-  x = as.numeric(colnames(snv)),
-  y = t(snv[1:10, ]),
+  x = as.numeric(colnames(NIRsoil$spc_snv)),
+  y = t(NIRsoil$spc_snv[1:10, ]),
   type = "l",
   xlab = "wavelength, nm",
   ylab = "snv"
 )
 \dontrun{
-apply(snv, 1, sd) # check
+apply(NIRsoil$spc_snv, 1, sd) # check
 }
 }
 \references{
-Barnes RJ, Dhanoa MS, Lister SJ. 1989. Standard normal variate transformation and de-trending of near-infrared diffuse reflectance spectra. Applied spectroscopy, 43(5): 772-777.
+Barnes RJ, Dhanoa MS, Lister SJ. 1989. Standard normal variate
+transformation and de-trending of near-infrared diffuse reflectance spectra.
+Applied spectroscopy, 43(5): 772-777.
 }
 \seealso{
-\code{\link{detrend}}, \code{\link{blockScale}}, \code{\link{blockNorm}}
+\code{\link{msc}}, \code{\link{detrend}}, \code{\link{blockScale}},
+\code{\link{blockNorm}}
 }
 \author{
 Antoine Stevens

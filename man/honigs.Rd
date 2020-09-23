@@ -7,22 +7,28 @@
 honigs(X, k, type)
 }
 \arguments{
-\item{X}{a numeric \code{data.frame} or \code{matrix} with absorbance or continuum-removed reflectance values.}
+\item{X}{a numeric matrix with absorbance or continuum-removed reflectance
+values (optionally a data frame that can be coerced to a numerical matrix).}
 
 \item{k}{the number of samples to select for calibration.}
 
-\item{type}{type of data: 'A' for absorbance (default), 'R' for reflectance, 'CR' for continuum-removed reflectance}
+\item{type}{type of data: 'A' for absorbance (default), 'R' for reflectance,
+'CR' for continuum-removed reflectance}
 }
 \value{
 a \code{list} with components:
 \itemize{
-\item{'\code{model}'}{ numeric \code{vector} giving the row indices of the input data selected for calibration}
-\item{'\code{test}'}{ numeric \code{vector} giving the row indices of the remaining observations}
+\item{'\code{model}'}{ numeric vector giving the row indices of the input data
+selected for calibration}
+\item{'\code{test}'}{ numeric vector giving the row indices of the remaining
+observations}
 \item{'\code{bands}'}{ indices of the columns used during the selection procedure}
 }
 }
 \description{
-Select calibration samples from a data \code{matrix} or \code{data.frame} using the Honings et al. (1985) method
+\lifecycle{stable}
+Select calibration samples from a data matrix using the Honings et al. (1985)
+method
 }
 \details{
 The Honigs algorithm is a simple method to select calibration samples based on their absorption features. Absorbance,
@@ -33,15 +39,15 @@ The algorithm can be described as follows: let \eqn{A} be a matrix of \eqn{(i \t
 \item the observation (row) with the maximum absolute absorbance (\eqn{max(|A|)}) is selected and assigned to the calibration set.
 \item a vector of weights \eqn{W} is computed as \eqn{A_j/max_A} where \eqn{A_j} is the column of \eqn{A} having the maximum absolute absorbance
 and \eqn{max_A} is the absorbance value corresponding to the maximum absolute absorbance of \eqn{A}.
-\item each row \eqn{A_i} is multiplied by the corresponding weight \eqn{W_i} and the resulting vector is substracted from the original row \eqn{A_i}.
+\item each row \eqn{A_i} is multiplied by the corresponding weight \eqn{W_i} and the resulting vector is subtracted from the original row \eqn{A_i}.
 \item the row of the selected observation and the column with the maximum absolute absorbance is removed from the matrix
 \item go back to step 1 and repeat the procedure until the desired number of selected samples is reached
 }
 
 The observation with the maximum absorbance is considered to have
 an unusual composition. The algorithm selects therefore this observation and remove from other
-samples the selected absorption feature by substraction. Samples with low concentration
-related to this absorption will then have large negative absorption after the substraction step
+samples the selected absorption feature by subtraction. Samples with low concentration
+related to this absorption will then have large negative absorption after the subtraction step
 and hence will be likely to be selected rapidly by the selection procedure as well.
 }
 \note{

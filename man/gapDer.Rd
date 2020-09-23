@@ -2,57 +2,70 @@
 % Please edit documentation in R/gapDer.R
 \name{gapDer}
 \alias{gapDer}
-\title{Gap-Segment Derivative}
+\title{Gap-Segment derivative}
 \usage{
 gapDer(X, m = 1, w = 1, s = 1, delta.wav)
 }
 \arguments{
-\item{X}{a numeric \code{matrix} , \code{data.frame} or \code{vector} to transform.}
+\item{X}{a numeric matrix or vector` to transform (optionally a data frame
+that can be coerced to a numerical matrix).}
 
 \item{m}{the order of the derivative, between 1 and 4 (default = 1).}
 
-\item{w}{the filter length (should be odd and >=1), i.e. the spacing between points over which the derivative is computed.}
+\item{w}{the filter length (should be odd and >=1), i.e. the spacing
+between points over which the derivative is computed.}
 
-\item{s}{sthe egment size, i.e. the range over which the points are averaged (default = 1, i.e. no smoothing corresponding to 'Norris' Gap Derivative).}
+\item{s}{the segment size, i.e. the range over which the points are averaged
+(default = 1, i.e. no smoothing corresponding to 'Norris' Gap Derivative).}
 
 \item{delta.wav}{the sampling interval (or band spacing).}
 }
 \value{
-a \code{matrix} or \code{vector} with the filtered signal(s)
+a matrix or vector with the filtered signal(s)
 }
 \description{
-Gap-Segment derivatives of a data \code{matrix}, \code{data.frame} or \code{vector}
+\lifecycle{stable}
+Gap-Segment derivatives of a data matrix or vector
 }
 \details{
-The sampling interval specified with the \code{delta.wav} argument is used for scaling and
-get numerically correct derivatives.
+The sampling interval specified with the \code{delta.wav} argument is used for
+scaling and get numerically correct derivatives.
 
 The convolution function is written in C++/Rcpp for faster computations.
 }
 \examples{
 data(NIRsoil)
-spc <- 1 / 10^NIRsoil$spc # conversion to reflectance
 opar <- par(no.readonly = TRUE)
 par(mfrow = c(2, 2), mar = c(4, 4, 2, 2))
 # plot of the 10 first spectra
-matplot(as.numeric(colnames(spc)), t(spc[1:10, ]),
-  type = "l", xlab = "", ylab = "Reflectance"
-)
+matplot(as.numeric(colnames(NIRsoil$spc)), 
+        t(NIRsoil$spc[1:10, ]),
+        type = "l", 
+        xlab = "", 
+        ylab = "Absorbance")
 mtext("Raw spectra")
-der <- gapDer(spc, m = 1, w = 1, s = 1, delta.wav = 2)
-matplot(as.numeric(colnames(der)), t(der[1:10, ]),
-  type = "l", xlab = "Wavelength /nm", ylab = "gap derivative"
-)
+
+der <- gapDer(NIRsoil$spc, m = 1, w = 1, s = 1, delta.wav = 2)
+matplot(as.numeric(colnames(der)), 
+        t(der[1:10, ]),
+        type = "l", 
+        xlab = "Wavelength /nm", 
+        ylab = "gap derivative")
+
 mtext("1st derivative spectra")
-der <- gapDer(spc, m = 1, w = 11, s = 1, delta.wav = 2)
+der <- gapDer(NIRsoil$spc, m = 1, w = 11, s = 1, delta.wav = 2)
 matplot(as.numeric(colnames(der)), t(der[1:10, ]),
-  type = "l", xlab = "Wavelength /nm", ylab = "gap derivative"
-)
+        type = "l", 
+        xlab = "Wavelength /nm", 
+        ylab = "gap derivative")
+
 mtext("1st derivative spectra with a window size = 11 nm")
-der <- gapDer(spc, m = 1, w = 11, s = 10, delta.wav = 2)
+der <- gapDer(NIRsoil$spc, m = 1, w = 11, s = 10, delta.wav = 2)
 matplot(as.numeric(colnames(der)), t(der[1:10, ]),
-  type = "l", xlab = "Wavelength /nm", ylab = "gap derivative"
-)
+        type = "l", 
+        xlab = "Wavelength /nm",
+        ylab = "gap derivative")
+        
 mtext("1st derivative spectra with a window size = 11 nm, smoothing of 10 nm")
 par(opar)
 }

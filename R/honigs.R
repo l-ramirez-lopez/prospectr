@@ -1,16 +1,22 @@
 #' @title Honigs algorithm for calibration sampling
 #' @description
-#' Select calibration samples from a data `matrix` or `data.frame` using the Honings et al. (1985) method
+#' \lifecycle{stable}
+#' Select calibration samples from a data matrix using the Honings et al. (1985)
+#' method
 #' @usage
 #' honigs(X, k, type)
-#' @param X a numeric `data.frame` or `matrix` with absorbance or continuum-removed reflectance values.
+#' @param X a numeric matrix with absorbance or continuum-removed reflectance
+#' values (optionally a data frame that can be coerced to a numerical matrix).
 #' @param k the number of samples to select for calibration.
-#' @param type type of data: 'A' for absorbance (default), 'R' for reflectance, 'CR' for continuum-removed reflectance
+#' @param type type of data: 'A' for absorbance (default), 'R' for reflectance,
+#' 'CR' for continuum-removed reflectance
 #' @author Antoine Stevens
 #' @return a `list` with components:
 #' \itemize{
-#'  \item{'`model`'}{ numeric `vector` giving the row indices of the input data selected for calibration}
-#'  \item{'`test`'}{ numeric `vector` giving the row indices of the remaining observations}
+#'  \item{'`model`'}{ numeric vector giving the row indices of the input data
+#'  selected for calibration}
+#'  \item{'`test`'}{ numeric vector giving the row indices of the remaining
+#'  observations}
 #'  \item{'`bands`'}{ indices of the columns used during the selection procedure}
 #' }
 #' @examples
@@ -45,15 +51,15 @@
 #'  \item the observation (row) with the maximum absolute absorbance (\eqn{max(|A|)}) is selected and assigned to the calibration set.
 #'  \item a vector of weights \eqn{W} is computed as \eqn{A_j/max_A} where \eqn{A_j} is the column of \eqn{A} having the maximum absolute absorbance
 #'  and \eqn{max_A} is the absorbance value corresponding to the maximum absolute absorbance of \eqn{A}.
-#'  \item each row \eqn{A_i} is multiplied by the corresponding weight \eqn{W_i} and the resulting vector is substracted from the original row \eqn{A_i}.
+#'  \item each row \eqn{A_i} is multiplied by the corresponding weight \eqn{W_i} and the resulting vector is subtracted from the original row \eqn{A_i}.
 #'  \item the row of the selected observation and the column with the maximum absolute absorbance is removed from the matrix
 #'  \item go back to step 1 and repeat the procedure until the desired number of selected samples is reached
 #' }
 #'
 #' The observation with the maximum absorbance is considered to have
 #' an unusual composition. The algorithm selects therefore this observation and remove from other
-#' samples the selected absorption feature by substraction. Samples with low concentration
-#' related to this absorption will then have large negative absorption after the substraction step
+#' samples the selected absorption feature by subtraction. Samples with low concentration
+#' related to this absorption will then have large negative absorption after the subtraction step
 #' and hence will be likely to be selected rapidly by the selection procedure as well.
 #'
 #' @note The selection procedure is sensitive to noisy features in the signal. The number of samples selected `k` selected
@@ -106,7 +112,7 @@ honigs <- function(X, k, type = c("A", "R", "CR")) {
 
     # matplot(t(X),type='l') lines(X[idx[1]],col=0,cex=1) abline(v=p[idx[2]])
 
-    X <- X - x # substraction
+    X <- X - x # subtraction
     p <- p[-idx[2]]
     X <- X[-idx[1], -idx[2]]
   }

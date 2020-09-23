@@ -3,23 +3,25 @@ Type: Package
 Title: Miscellaneous Functions for Processing 
        and Sample Selection of Spectroscopic Data
 Version: 0.2.1
-Date: 2020-05-13
+Date: 2020-09-23
 Author: 
     Antoine Stevens [aut, cre], 
-    Leonardo Ramirez-Lopez [aut, cre]
+    Leonardo Ramirez-Lopez [aut, cre],
+    Guillaume Hans [ctb]
 Maintainer: 
     Leonardo Ramirez-Lopez <ramirez.lopez.leo@gmail.com>
 BugReports: 
     https://github.com/l-ramirez-lopez/prospectr/issues
 Description: Functions to preprocess spectroscopic data 
     and conduct (representative) sample selection/calibration sampling.
-License: GPL (>=3)
+License: MIT + file LICENSE
 URL: https://github.com/l-ramirez-lopez/prospectr
 VignetteBuilder: knitr
 Suggests:
     knitr,
     rmarkdown,
-    formatR
+    formatR,
+    testthat
 LinkingTo: 
     Rcpp, 
     RcppArmadillo
@@ -28,7 +30,12 @@ Depends:
 Imports:
     foreach,
     iterators,
-    Rcpp (>= 1.0.1)
+    Rcpp (>= 1.0.1),
+    mathjaxr (>= 1.0), 
+    lifecycle (>= 0.2.0),
+RdMacros: 
+    mathjaxr,
+    lifecycle
 RoxygenNote: 7.1.1
 NeedsCompilation: yes
 LazyData: true

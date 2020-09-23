@@ -76,6 +76,17 @@ fastDistV <- function(X, Y, method) {
     .Call('_prospectr_fastDistV', PACKAGE = 'prospectr', X, Y, method)
 }
 
+#' @title get_msc_coeff
+#' @description
+#' Coefficients for multiplicative Scatter Correction written in C++
+#' @param X matrix 
+#' @param reference_spc a matrix of one row and same columns as in X
+#' @keywords internal
+#' @useDynLib prospectr
+get_msc_coeff <- function(X, reference_spc) {
+    .Call('_prospectr_get_msc_coeff', PACKAGE = 'prospectr', X, reference_spc)
+}
+
 residLm <- function(Yr, Xr) {
     .Call('_prospectr_residLm', PACKAGE = 'prospectr', Yr, Xr)
 }
