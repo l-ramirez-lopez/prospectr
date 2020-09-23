@@ -43,10 +43,10 @@ wav <- as.numeric(colnames(NIRsoil$spc))
 matplot(wav, t(NIRsoil$spc[1:10, ]), type = "l", xlab = "Wavelength /nm", 
         ylab = "Absorbance")
 # ASTER SWIR bands (nm)
-new.wav <- c(1650, 2165, 2205, 2260, 2330, 2395) # positions
+new_wav <- c(1650, 2165, 2205, 2260, 2330, 2395) # positions
 fwhm <- c(100, 40, 40, 50, 70, 70) #  fwhm's
 # Resample NIRsoil to ASTER band positions
-aster <- resample2(NIRsoil$spc, wav, new.wav, fwhm)
+aster <- resample2(NIRsoil$spc, wav, new_wav, fwhm)
 matpoints(as.numeric(colnames(aster)), t(aster[1:10, ]), pch = 1:5)
 }
 \seealso{
