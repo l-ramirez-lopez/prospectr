@@ -10,7 +10,7 @@ Visit the package website [here](http://antoinestevens.github.io/prospectr/) !
 
 _Antoine Stevens & Leo Ramirez-Lopez_
 
-_Last update: 21.09.2020_
+_Last update: 23.09.2020_
 
 `prospectr` provides various utilities for pre--processing and sample selection 
 of visible and near infrared spectral data with [R](http://cran.r-project.org/). 
