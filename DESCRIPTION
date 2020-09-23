@@ -20,7 +20,8 @@ VignetteBuilder: knitr
 Suggests:
     knitr,
     rmarkdown,
-    formatR
+    formatR,
+    testthat
 LinkingTo: 
     Rcpp, 
     RcppArmadillo
