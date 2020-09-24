@@ -11,7 +11,7 @@ standardNormalVariate(X)
 be coerced to a numerical matrix).}
 }
 \value{
-#' a matrix of normalized spectral data.
+a matrix of normalized spectral data.
 }
 \description{
 \lifecycle{stable}
