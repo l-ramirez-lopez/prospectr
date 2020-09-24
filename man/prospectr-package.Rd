@@ -15,9 +15,8 @@ This package implements a number of \code{R} functions useful for
 pre-processing spectral data well as for selecting representaive samples/spectra.
 The functions included here are particularly useful in Near-Infrarred and Infrared
 Spectroscopy applications.
-
-@details
-
+}
+\details{
 Currently, the following preprocessing functions are available:
 
 \itemize{
