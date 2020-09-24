@@ -20,7 +20,7 @@
 #' The functions included here are particularly useful in Near-Infrarred and Infrared
 #' Spectroscopy applications.
 #'
-#'  @details
+#' @details
 #'
 #' Currently, the following preprocessing functions are available:
 #'
