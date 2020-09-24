@@ -13,11 +13,14 @@
 #' \lifecycle{maturing}
 #'
 #' Misc functions for spectral data
+#' \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 #'
 #' This package implements a number of `R` functions useful for
 #' pre-processing spectral data well as for selecting representaive samples/spectra.
 #' The functions included here are particularly useful in Near-Infrarred and Infrared
 #' Spectroscopy applications.
+#'
+#'  @details
 #'
 #' Currently, the following preprocessing functions are available:
 #'
@@ -58,6 +61,7 @@
 #'  }
 #' @docType package
 #' @name prospectr-package
+#' @aliases prospectr-package prospectr
 #' @title Overview of the functions in the prospectr package
 #' @author
 #' Antoine Stevens & Leonardo Ramirez-Lopez \email{ramirez.lopez.leo@@gmail.com},
