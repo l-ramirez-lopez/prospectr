@@ -3,16 +3,20 @@
 \docType{package}
 \name{prospectr-package}
 \alias{prospectr-package}
+\alias{prospectr}
 \title{Overview of the functions in the prospectr package}
 \description{
 \lifecycle{maturing}
 
 Misc functions for spectral data
+\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
 This package implements a number of \code{R} functions useful for
 pre-processing spectral data well as for selecting representaive samples/spectra.
 The functions included here are particularly useful in Near-Infrarred and Infrared
 Spectroscopy applications.
+
+@details
 
 Currently, the following preprocessing functions are available:
 
@@ -22,10 +26,10 @@ Currently, the following preprocessing functions are available:
 \item{\code{\link{movav}}}
 \item{\code{\link{standardNormalVariate}}}
 \item{\code{\link{msc}}}
+\item{\code{\link{detrend}}}
 \item{\code{\link{blockScale}}}
 \item{\code{\link{blockNorm}}}
 \item{\code{\link{binning}}}
-\item{\code{\link{detrend}}}
 \item{\code{\link{savitzkyGolay}}}
 \item{\code{\link{gapDer}}}
 \item{\code{\link{continuumRemoval}}}
