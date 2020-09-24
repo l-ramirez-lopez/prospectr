@@ -1,16 +1,17 @@
+# `prospectr`
+
 [![Travis-CI Build Status](https://travis-ci.org/l-ramirez-lopez/prospectr.svg?branch=master)](https://travis-ci.org/l-ramirez-lopez/prospectr/)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/prospectr)](http://cran.r-project.org/web/packages/prospectr)
 [![Downloads](https://cranlogs.r-pkg.org/badges/prospectr)](https://cranlogs.r-pkg.org/badges/prospectr)
-![alt text](https://raw.githubusercontent.com/antoinestevens/prospectr/gh-pages/logo_prospectr_color.png)
 
+<img align="right" src="./man/figures/logo.png" width="15%">
 
-# `prospectr`: Misc. Functions for Processing and Sample Selection of Spectroscopic Data
+<!-- badges: end -->
 
-Visit the package website [here](http://antoinestevens.github.io/prospectr/) !
-
+<em><p align="right"> Misc. Functions for Processing and Sample Selection of Spectroscopic Data </p></em>
 _Antoine Stevens & Leo Ramirez-Lopez_
 
-_Last update: 23.09.2020_
+_Last update: 24.09.2020_
 
 `prospectr` provides various utilities for pre--processing and sample selection 
 of visible and near infrared spectral data with [R](http://cran.r-project.org/). 
@@ -21,24 +22,21 @@ C++ code through the [`Rcpp`](http://cran.r-project.org/web/packages/Rcpp/index.
 and [`RcppArmadillo`](http://cran.r-project.org/web/packages/RcppArmadillo/index.html)
 packages.
 
-Check the NEWS document for new functionality and general changes in the package.
-
-A vignette gives an overview of the main functions of the package. Just
+A vignette gives an overview of the main functionalities of the package. Just
 type `vignette("prospectr-intro")` in the console to access it. Currently, the 
 following preprocessing functions are available:
 
- `resample`              : resample a signal to new coordinates by linear or spline interpolation 
- `resample2`             : resample a signal to new coordinates using FWHM values                 
- `movav`                 : moving average                                                         
- `standardNormalVariate` : standard normal variate 
- `msc`                   : multiplicative scatter correction                                        
- `detrend`               : detrend normalization                                                  
- `blockScale`            : block scaling                                                           
- `blockNorm`             : sum of squares block weighting                                         
- `binning`               : average in column--wise subsets                                        
+ `continuumRemoval`      : continuum-removed absorbance or reflectance values                     
  `savitzkyGolay`         : Savitzky-Golay filter (smoothing and derivatives)                      
  `gapDer`                : gap-segment derivative                                                 
- `continuumRemoval`      : continuum-removed absorbance or reflectance values                     
+ `movav`                 : moving average                                                         
+ `standardNormalVariate` : standard normal variate (snv)                                          
+ `detrend`               : detrend normalization                                                  
+ `binning`               : average in column--wise subsets                                        
+ `resample`              : resample a signal to new coordinates by linear or spline interpolation 
+ `resample2`             : resample a signal to new coordinates using FWHM values                 
+ `blockScale`            : block scaling                                                           
+ `blockNorm`             : sum of squares block weighting                                         
 
 The selection of representative samples/observations for calibration of spectral 
 models can be achieved with one of the following functions:
