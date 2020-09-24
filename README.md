@@ -4,11 +4,11 @@
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/prospectr)](http://cran.r-project.org/web/packages/prospectr)
 [![Downloads](https://cranlogs.r-pkg.org/badges/prospectr)](https://cranlogs.r-pkg.org/badges/prospectr)
 
-<img align="left" src="./man/figures/logo.png" width="15%">
+<img align="right" src="./man/figures/logo.png" width="15%">
 
 <!-- badges: end -->
 
-<em><p align="right"> Misc. Functions for Processing and Sample Selection of Spectroscopic Data </p></em>
+<em><p align="left"> Misc. Functions for Processing and Sample Selection of Spectroscopic Data </p></em>
 _Antoine Stevens & Leo Ramirez-Lopez_
 
 _Last update: 24.09.2020_
