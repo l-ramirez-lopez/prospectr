@@ -1,10 +1,10 @@
-# `prospectr`
+# prospectr
 
 [![Travis-CI Build Status](https://travis-ci.org/l-ramirez-lopez/prospectr.svg?branch=master)](https://travis-ci.org/l-ramirez-lopez/prospectr/)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/prospectr)](http://cran.r-project.org/web/packages/prospectr)
 [![Downloads](https://cranlogs.r-pkg.org/badges/prospectr)](https://cranlogs.r-pkg.org/badges/prospectr)
 
-<img align="right" src="./man/figures/logo.png" width="15%">
+<img align="left" src="./man/figures/logo.png" width="15%">
 
 <!-- badges: end -->
 
