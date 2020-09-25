@@ -74,11 +74,11 @@
 #'
 #' \mjdeqn{H_{ij}^2 = \sum_{a=1}^A (\hat t_{ia} - \hat t_{ja})^{2} / \hat \lambda_a}{H_{ij}^2 = sum_{a=1}^A (hat t_{ia} - hat t_{ja})^{2} / hat lambda_a}
 #'
-#' where \mjeqn{\hat t_{ia}}{hatt_{ia}} is the \mjeqn{a^{th}}{a^{th}} principal component 
-#' score of point \mjeqn{i}{i}, \mjeqn{\hat t_{ja}}{hatt_{ja}} is the 
-#' corresponding value for point \mjeqn{j}{j}, 
-#' \mjeqn{\hat \lambda_a}{hat lambda_a} is the eigenvalue of principal 
-#' component \mjeqn{a}{a} and \mjeqn{A}{A} is the number of principal components 
+#' where \mjeqn{\hat t_{ia}}{hatt_{ia}} is the \mjeqn{a^{th}}{a^{th}} principal component
+#' score of point \mjeqn{i}{i}, \mjeqn{\hat t_{ja}}{hatt_{ja}} is the
+#' corresponding value for point \mjeqn{j}{j},
+#' \mjeqn{\hat \lambda_a}{hat lambda_a} is the eigenvalue of principal
+#' component \mjeqn{a}{a} and \mjeqn{A}{A} is the number of principal components
 #' included in the computation.
 #' @seealso  \code{\link{duplex}}, \code{\link{shenkWest}}, \code{\link{naes}},
 #' \code{\link{honigs}}

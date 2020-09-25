@@ -27,9 +27,11 @@
 #' See: <https://www.buchi.com/gb-en/products/nirsolutions/nircal>
 #' @examples
 #' \dontrun{
-#' my_file <- paste0("https://github.com/buchi-labortechnik",
-#'                   "/transpec_info/blob/master/data",
-#'                   "/DEMO_file_cannabis.nir?raw=true")
+#' my_file <- paste0(
+#'   "https://github.com/buchi-labortechnik",
+#'   "/transpec_info/blob/master/data",
+#'   "/DEMO_file_cannabis.nir?raw=true"
+#' )
 #' read_nircal(my_file)
 #' }
 #' @author Leonardo Ramirez-Lopez
