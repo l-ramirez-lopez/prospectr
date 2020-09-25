@@ -47,24 +47,28 @@ par(mfrow = c(2, 1), mar = c(4, 4, 2, 2))
 
 # plot of the 10 first spectra
 matplot(as.numeric(colnames(NIRsoil$spc)),
-        t(NIRsoil$spc[1:10, ]),
-        type = "l",
-        xlab = "",
-        ylab = "Absorbance")
-        
+  t(NIRsoil$spc[1:10, ]),
+  type = "l",
+  xlab = "",
+  ylab = "Absorbance"
+)
+
 mtext("Raw spectra")
-NIRsoil$spc_sg <- savitzkyGolay(X = NIRsoil$spc,
-                                m = 1,
-                                p = 3,
-                                w = 11,
-                                delta.wav = 2)
-                                
+NIRsoil$spc_sg <- savitzkyGolay(
+  X = NIRsoil$spc,
+  m = 1,
+  p = 3,
+  w = 11,
+  delta.wav = 2
+)
+
 matplot(as.numeric(colnames(NIRsoil$spc_sg)),
-        t(NIRsoil$spc_sg[1:10, ]),
-        type = "l", 
-        xlab = "Wavelength /nm",
-        ylab = "1st derivative")
-        
+  t(NIRsoil$spc_sg[1:10, ]),
+  type = "l",
+  xlab = "Wavelength /nm",
+  ylab = "1st derivative"
+)
+
 mtext("1st derivative spectra")
 par(opar)
 }

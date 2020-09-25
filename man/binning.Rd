@@ -29,31 +29,35 @@ wav <- as.numeric(colnames(NIRsoil$spc))
 
 # 5 first spectra
 matplot(wav, t(NIRsoil$spc[1:5, ]),
-        type = "l",
-        xlab = "Wavelength /nm",
-        ylab = "Absorbance")
-        
+  type = "l",
+  xlab = "Wavelength /nm",
+  ylab = "Absorbance"
+)
+
 NIRsoil$spc_binned <- binning(NIRsoil$spc, bin.size = 20)
 
 # bin means
-matpoints(as.numeric(colnames(NIRsoil$spc_binned)), 
-          t(NIRsoil$spc_binned[1:5, ]), 
-          pch = 1:5)
+matpoints(as.numeric(colnames(NIRsoil$spc_binned)),
+  t(NIRsoil$spc_binned[1:5, ]),
+  pch = 1:5
+)
 
 NIRsoil$spc_binned <- binning(NIRsoil$spc, bins = 20)
 dim(NIRsoil$spc_binned) # 20 bins
 
 # 5 first spectra
-matplot(wav, 
-        t(NIRsoil$spc[1:5, ]),
-        type = "l",
-        xlab = "Wavelength /nm",
-        ylab = "Absorbance")
-        
+matplot(wav,
+  t(NIRsoil$spc[1:5, ]),
+  type = "l",
+  xlab = "Wavelength /nm",
+  ylab = "Absorbance"
+)
+
 # bin means
 matpoints(as.numeric(colnames(NIRsoil$spc_binned)),
-          t(NIRsoil$spc_binned[1:5, ]),
-          pch = 1:5)
+  t(NIRsoil$spc_binned[1:5, ]),
+  pch = 1:5
+)
 }
 \seealso{
 \code{\link{savitzkyGolay}}, \code{\link{movav}},
