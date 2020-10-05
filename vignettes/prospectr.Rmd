@@ -7,7 +7,7 @@ date: "`r Sys.Date()`"
 bibliography: ["one.bib"]
 biblio-style: "apalike"
 link-citations: true
-output: knitr:::html_vignette
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
