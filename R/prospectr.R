@@ -64,7 +64,7 @@
 #' @aliases prospectr-package prospectr
 #' @title Overview of the functions in the prospectr package
 #' @author
-#' Antoine Stevens & Leonardo Ramirez-Lopez \email{ramirez.lopez.leo@@gmail.com},
+#' Antoine Stevens & \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez} \email{ramirez.lopez.leo@@gmail.com},
 
 ######################################################################
 # prospectr

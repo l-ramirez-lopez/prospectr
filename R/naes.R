@@ -77,7 +77,7 @@
 #'   pch = 15,
 #'   cex = 1
 #' )
-#' @author Antoine Stevens & Leonardo Ramirez-Lopez
+#' @author Antoine Stevens & \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 #' @seealso \code{\link{kenStone}}, \code{\link{honigs}}, \code{\link{duplex}},
 #' \code{\link{shenkWest}}
 #' @export

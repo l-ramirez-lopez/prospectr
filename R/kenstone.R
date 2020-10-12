@@ -51,7 +51,7 @@
 #' plot(X, xlab = "VAR1", ylab = "VAR2")
 #' sel <- kenStone(X, k = 25, metric = "euclid")
 #' points(X[sel$model, ], pch = 19, col = 2)
-#' @author Antoine Stevens & Leonardo Ramirez-Lopez
+#' @author Antoine Stevens & \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 #' @details
 #' The Kennard--Stone algorithm allows to select samples with a uniform
 #' distribution over the predictor space (Kennard and Stone, 1969).

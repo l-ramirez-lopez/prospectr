@@ -57,7 +57,7 @@
 #' by the procedure is the Euclidean distance, but the Mahalanobis distance can
 #' be used as well using the `pc` argument (see \code{\link{kenStone}}).
 #'
-#' @author Antoine Stevens & Leonardo Ramirez--Lopez
+#' @author Antoine Stevens & \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 #' @examples
 #' data(NIRsoil)
 #' sel <- duplex(NIRsoil$spc, k = 30, metric = "mahal", pc = .99)

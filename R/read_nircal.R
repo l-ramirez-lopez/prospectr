@@ -34,7 +34,7 @@
 #' )
 #' read_nircal(my_file)
 #' }
-#' @author Leonardo Ramirez-Lopez
+#' @author \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 #' @importFrom utils download.file
 #' @export
 

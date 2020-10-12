@@ -13,7 +13,7 @@
 #' 'linear' (default) or 'spline'.
 #' @param method normalization method: 'division' (default) or 'subtraction'
 #' (see details section).
-#' @author Antoine Stevens & Leonardo Ramirez-Lopez
+#' @author Antoine Stevens & \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 #' @return a matrix or vector with the filtered spectra.
 #' @examples
 #' data(NIRsoil)

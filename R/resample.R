@@ -14,7 +14,7 @@
 #' @param interpol the interpolation method: 'linear' or 'spline' (default).
 #' @param ... additional arguments to be passed to the \code{\link{splinefun}}
 #' function when \code{interpol = 'spline'}.
-#' @author Antoine Stevens and Leonardo Ramirez-Lopez
+#' @author Antoine Stevens and \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 #' @examples
 #' data(NIRsoil)
 #' wav <- as.numeric(colnames(NIRsoil$spc))

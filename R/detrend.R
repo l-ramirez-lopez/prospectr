@@ -12,7 +12,7 @@
 #' @param wav the wavelengths/ band centers.
 #' @param p an integer larger than 1 indicating the polynomial order (default is
 #' 2, as in the original paper of Barnes et al., 1989).
-#' @author Antoine Stevens and Leonardo Ramirez-Lopez
+#' @author Antoine Stevens and \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 #' @examples
 #' data(NIRsoil)
 #' wav <- as.numeric(colnames(NIRsoil$spc))

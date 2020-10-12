@@ -11,7 +11,7 @@
 #' @param p the polynomial order.
 #' @param w a window size (must be odd).
 #' @param delta.wav (optional) sampling interval.
-#' @author Antoine Stevens and Leonardo Ramirez-Lopez
+#' @author Antoine Stevens and \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 #' @examples
 #' data(NIRsoil)
 #' opar <- par(no.readonly = TRUE)

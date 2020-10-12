@@ -10,7 +10,7 @@
 #' be coerced to a numerical matrix).
 #' @param bins the number of bins.
 #' @param bin.size the desired size of the bins.
-#' @author Antoine Stevens & Leonardo Ramirez-Lopez
+#' @author Antoine Stevens & \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 #' @examples
 #' data(NIRsoil)
 #' wav <- as.numeric(colnames(NIRsoil$spc))
