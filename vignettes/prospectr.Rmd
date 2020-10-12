@@ -4,7 +4,7 @@ author:
  - name: Antoine Stevens and Leonardo Ramirez-Lopez
    email: ramirez.lopez.leo@gmail.com
 date: "`r Sys.Date()`"
-bibliography: ["one.bib"]
+bibliography: ["prospectr.bib"]
 biblio-style: "apalike"
 link-citations: true
 output: 
@@ -73,7 +73,7 @@ Function Name           | Description
 `blockNorm`             | sum of squares block weighting
 
 
-We show below how they can be used, using the NIR dataset (NIRsoil) included in the package [@fernandez2008]. Observations should be arranged row-wise.
+We show below how they can be used, using the Near-Infrared (NIR) dataset (NIRsoil) included in the package [@fernandez2008]. Observations should be arranged row-wise.
 
 ```{r NIRsoil, tidy = TRUE, message = FALSE}
 library(prospectr)
@@ -209,7 +209,57 @@ $$ SNV_i = \frac{x_i - \bar{x_i}}{s_i}$$
 snv <- standardNormalVariate(X = NIRsoil$spc)
 ```
 
-According to @fearn2008, it is better to perform SNV transformation after filtering (by e.g. Savitzky-Golay) than the reverse.
+According to @fearn2008, it is better to perform SNV transformation after 
+filtering (by e.g. Savitzky-Golay) than the reverse.
+
+### Multiplicative scatter correction (MSC)
+Along with SNV, MSC [@geladi1985linearization] this is one of the most widely 
+used pre-processing techniques in NIR spectroscopy [@rinnan2009review]. This is 
+a normalization method that attempts to account for additive and multiplicative 
+effects by aligning each spectrum ($x_i$) with an ideal reference one ($x_r$) as
+follows:
+$$x_i = m_i x_r + a_i$$
+$$MSC(x_i) = \frac{a_i - x_i}{m_i}$$
+where $a_i$ and $m_i$ are the additive and multiplicative terms respectively.
+
+
+```{r msc, fig.cap="Effect of MSC on raw spectra",fig.height=6,fig.width=10, tidy=TRUE, dpi = 50,out.height="60%",out.width="100%"}
+# X = input spectral matrix
+msc_spc <- msc(X = NIRsoil$spc, reference_spc = colMeans(NIRsoil$spc))
+
+plot(as.numeric(colnames(NIRsoil$spc)), 
+     NIRsoil$spc[1,], 
+     type = "l", 
+     xlab = "Wavelength, nm", ylab = "Absorbance", 
+     lwd = 1.5)
+lines(as.numeric(colnames(NIRsoil$spc)), 
+      msc_spc[1,], 
+      lwd = 1.5, col = "red")
+axis(4, col = "red")
+grid()
+legend("topleft", legend = c("raw", "MSC signal"), lty = c(1, 1),col = c("black", "red"))
+par(new = FALSE)
+```
+
+Since the MSC-corrected is based on a reference spectrum, it is necessary to 
+save this spectrum in order to apply the same type of processing to new spectra 
+later on. The following code shows how this can be done in `prospectr`:
+
+```{r eval = FALSE}
+# a reference set of spectra
+Xr <- NIRsoil$spc[NIRsoil$train == 1, ]
+
+# an "unseen" set of spectra
+Xu <- NIRsoil$spc[NIRsoil$train == 0, ]
+
+# apply msc to Xr
+Xr_msc <- msc(Xr)
+
+# apply the same msc to Xu
+attr(Xr_msc,"Reference spectrum") # use this info from the previous object
+
+Xu_msc <- msc(Xu, reference_spc = attr(Xr_msc, "Reference spectrum"))
+```
 
 ### SNV-Detrend
 
@@ -219,7 +269,8 @@ The _SNV-Detrend_ [@barnes1989] further accounts for wavelength-dependent scatte
 # X = input spectral matrix
 # wav = band centers
 dt <- detrend(X = NIRsoil$spc, wav = as.numeric(colnames(NIRsoil$spc)))
-plot(NIRsoil$spc[1,], type = "l", xlab = "Band number", ylab = "", lwd = 1.5)
+plot(as.numeric(colnames(NIRsoil$spc)), 
+     NIRsoil$spc[1,], type = "l", xlab = "Wavelength", ylab = "Absorbance", lwd = 1.5)
 par(new = TRUE)
 plot(dt[1,], xaxt = "n", yaxt = "n", xlab = "", ylab = "", lwd = 1.5, col = "red", type = "l")
 axis(4, col = "red")
