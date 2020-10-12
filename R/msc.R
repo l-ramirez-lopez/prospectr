@@ -30,7 +30,7 @@
 #' a matrix of normalized spectral data with an attribute which indicates the
 #' reference spectrum used.
 #' @author
-#' Leonardo Ramirez-Lopez and Guillaume Hans
+#' \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez} and Guillaume Hans
 #'
 #' @references
 #' Geladi, P., MacDougall, D., and Martens, H. 1985. Linearization and

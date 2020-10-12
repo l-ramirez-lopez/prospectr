@@ -58,5 +58,5 @@ Applied Spectroscopy, 39(3):491-500.
 \code{\link{blockScale}}, \code{\link{blockNorm}}
 }
 \author{
-Leonardo Ramirez-Lopez and Guillaume Hans
+\href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez} and Guillaume Hans
 }
