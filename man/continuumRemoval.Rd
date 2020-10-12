@@ -58,5 +58,5 @@ Clark, R.N., and Roush, T.L., 1984. Reflectance Spectroscopy: Quantitative Analy
 \code{\link{savitzkyGolay}}, \code{\link{movav}}, \code{\link{gapDer}}, \code{\link{binning}}
 }
 \author{
-Antoine Stevens & Leonardo Ramirez-Lopez
+Antoine Stevens & \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 }

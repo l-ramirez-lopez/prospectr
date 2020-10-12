@@ -41,5 +41,5 @@ dim(NIRsoil$spc_resampled)
 \code{\link{resample2}}
 }
 \author{
-Antoine Stevens and Leonardo Ramirez-Lopez
+Antoine Stevens and \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 }

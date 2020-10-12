@@ -64,5 +64,5 @@ matpoints(as.numeric(colnames(NIRsoil$spc_binned)),
 \code{\link{gapDer}}, \code{\link{continuumRemoval}}
 }
 \author{
-Antoine Stevens & Leonardo Ramirez-Lopez
+Antoine Stevens & \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 }

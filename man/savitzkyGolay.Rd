@@ -81,5 +81,5 @@ Wentzell, P.D., and Brown, C.D., 2000. Signal processing in analytical
 chemistry. Encyclopedia of Analytical Chemistry, 9764-9800.
 }
 \author{
-Antoine Stevens and Leonardo Ramirez-Lopez
+Antoine Stevens and \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 }

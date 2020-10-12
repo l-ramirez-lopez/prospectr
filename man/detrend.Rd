@@ -70,5 +70,5 @@ Applied spectroscopy, 43(5): 772-777.
 \code{\link{blockNorm}}
 }
 \author{
-Antoine Stevens and Leonardo Ramirez-Lopez
+Antoine Stevens and \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 }
