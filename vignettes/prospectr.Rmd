@@ -30,6 +30,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+# Introduction
+
 Near- and mid-infrared spectroscopy are high--troughput, non--destructive and cheap sensing methods that has a range of applications in agricultural, medical, food and environmental science. A number of `R` packages of interest for the spectroscopist is already available for processing and analysis of spectroscopic data. 
 
 
@@ -43,6 +45,11 @@ Since the publication of the [special special Volume in Spectroscopy and Chemome
 
 In addition, [Bryan Hanson](https://github.com/bryanhanson?tab=followers) provides a list of Free Open Source Software (FOSS) dedictaed to Spectroscopic applications in gneral (see [https://bryanhanson.github.io/FOSS4Spectroscopy/](https://bryanhanson.github.io/FOSS4Spectroscopy/)). 
 
+# Citing the package
+Simply type and you will get the info you need:
+```{r eval = TRUE}
+citation(package = "prospectr")
+```
 
 # Signal Processing
 
