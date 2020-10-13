@@ -40,9 +40,9 @@ It seems that ASD file format has changed quite a lot with file versions. The fu
 all versions. Please report any bugs to the package maintainer.
 }
 \references{
-\url{http://fsf.nerc.ac.uk/user_group/user_group.shtml}
+\url{https://fsf.nerc.ac.uk/user_group/user_group.shtml}
 
-\url{http://www.mathworks.com/matlabcentral/fileexchange/31547}
+\url{https://www.mathworks.com/matlabcentral/fileexchange/31547}
 
 Indico Version 8 file format (\url{http://www.malvernpanalytical.com/en/learn/knowledge-center/user-manuals/asd-file-format-v8})
 }

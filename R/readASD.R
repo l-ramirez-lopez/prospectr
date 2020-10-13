@@ -23,9 +23,9 @@
 #' }
 #' @author Antoine Stevens (\R port), Iain Robinson (matlab function) & Leonardo Ramirez-Lopez (\R port)
 #' @references
-#' <http://fsf.nerc.ac.uk/user_group/user_group.shtml>
+#' <https://fsf.nerc.ac.uk/user_group/user_group.shtml>
 #'
-#' <http://www.mathworks.com/matlabcentral/fileexchange/31547>
+#' <https://www.mathworks.com/matlabcentral/fileexchange/31547>
 #'
 #' Indico Version 8 file format (<http://www.malvernpanalytical.com/en/learn/knowledge-center/user-manuals/asd-file-format-v8>)
 #' @note
