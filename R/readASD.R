@@ -25,7 +25,7 @@
 #' @references
 #' <https://fsf.nerc.ac.uk/user_group/user_group.shtml>
 #'
-#' <https://www.mathworks.com/matlabcentral/fileexchange/31547>
+#' <https://www.mathworks.com/matlabcentral/fileexchange/31547-field-spectroscopy-facility-post-processing-toolbox>
 #'
 #' Indico Version 8 file format (<http://www.malvernpanalytical.com/en/learn/knowledge-center/user-manuals/asd-file-format-v8>)
 #' @note
