@@ -14,7 +14,7 @@ _Antoine Stevens & Leo Ramirez-Lopez_
 _Last update: 24.09.2020_
 
 `prospectr` provides various utilities for pre--processing and sample selection 
-of visible and near infrared spectral data with [R](http://cran.r-project.org/). 
+of visible and near infrared spectral data with `R`. 
 While similar functions are available in other packages, like [`signal`](https://CRAN.R-project.org/package=signal), the 
 functions in this package works indifferently for `data.frame`, `matrix` and 
 `vector` inputs. Besides, several functions are optimized for speed and use 
