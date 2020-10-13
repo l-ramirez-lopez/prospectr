@@ -6,7 +6,7 @@
 \alias{prospectr}
 \title{Overview of the functions in the prospectr package}
 \description{
-\lifecycle{stable}
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a>}}{\strong{Stable}}
 
 Misc functions for spectral data
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
