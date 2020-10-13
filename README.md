@@ -1,7 +1,7 @@
 # prospectr
 
 [![Travis-CI Build Status](https://travis-ci.org/l-ramirez-lopez/prospectr.svg?branch=master)](https://travis-ci.org/l-ramirez-lopez/prospectr/)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/prospectr)](http://cran.r-project.org/web/packages/prospectr)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/prospectr)](https://CRAN.R-project.org/package=prospectr)
 [![Downloads](https://cranlogs.r-pkg.org/badges/prospectr)](https://cranlogs.r-pkg.org/badges/prospectr)
 
 <img align="right" src="./man/figures/logo.png" width="15%">
@@ -15,11 +15,11 @@ _Last update: 24.09.2020_
 
 `prospectr` provides various utilities for pre--processing and sample selection 
 of visible and near infrared spectral data with [R](http://cran.r-project.org/). 
-While similar functions are available in other packages, like [`signal`](http://cran.r-project.org/web/packages/signal/index.html), the 
+While similar functions are available in other packages, like [`signal`](https://CRAN.R-project.org/package=signal), the 
 functions in this package works indifferently for `data.frame`, `matrix` and 
 `vector` inputs. Besides, several functions are optimized for speed and use 
-C++ code through the [`Rcpp`](http://cran.r-project.org/web/packages/Rcpp/index.html) 
-and [`RcppArmadillo`](http://cran.r-project.org/web/packages/RcppArmadillo/index.html)
+C++ code through the [`Rcpp`](https://CRAN.R-project.org/package=Rcpp) 
+and [`RcppArmadillo`](https://CRAN.R-project.org/package=RcppArmadillo)
 packages.
 
 Check the NEWS document for new functionality and general changes in the package.
@@ -61,6 +61,6 @@ Other useful functions are also available:
 ## Bug report and development version
 
 You can send an email to the package maintainer (<ramirez.lopez.leo@gmail.com>) 
-or create an [issue](http://github.com/l-ramirez-lopez/prospectr/issues) on github. 
-To install the development version of `prospectr`, simply install [`devtools`](http://cran.r-project.org/web/packages/devtools/index.html) from 
+or create an [issue](https://github.com/l-ramirez-lopez/prospectr/issues) on github. 
+To install the development version of `prospectr`, simply install [`devtools`](https://CRAN.R-project.org/package=devtools) from 
 CRAN then run `install_github("l-ramirez-lopez/prospectr")`.
