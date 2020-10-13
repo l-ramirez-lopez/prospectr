@@ -1,5 +1,8 @@
 #' @useDynLib prospectr
-#' @import Rcpp foreach iterators
+#' @import lifecycle
+#' @import Rcpp 
+#' @import foreach 
+#' @import iterators
 ## usethis namespace: start
 #' @importFrom lifecycle deprecate_soft
 ## usethis namespace: end
