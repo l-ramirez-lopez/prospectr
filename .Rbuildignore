@@ -1,16 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^README\.md
 .Rhistory
 .gitignore
-figure
-whittaker.r
-logo_prospectr.xcf
-prospectr-intro\.html
-prospectr-intro\.bib
-prospectr-intro\.md
-^.*\.tex
-^.*\.pdf
 code_ex.R
 .travis.yml
 ^packrat/
@@ -18,5 +9,3 @@ code_ex.R
 TODO
 ^appveyor\.yml$
 cran-comments.md
-^doc$
-^Meta$
