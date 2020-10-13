@@ -1,6 +1,5 @@
 #' @title DUPLEX algorithm for calibration sampling
 #' @description
-#' \lifecycle{stable}
 #' Select calibration samples from a large multivariate data using the DUPLEX
 #' algorithm
 #' @usage

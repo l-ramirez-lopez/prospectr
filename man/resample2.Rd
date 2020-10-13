@@ -24,7 +24,6 @@ specified, the fwhm is assumed to be constant over the spectral range.}
 a matrix or vector with resampled values
 }
 \description{
-\lifecycle{stable}
 Resample a data matrix or vector to match the response of another instrument
 using full width half maximum (FWHM) values
 }

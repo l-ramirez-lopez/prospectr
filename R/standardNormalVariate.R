@@ -1,7 +1,6 @@
 #' @title Standard normal variate transformation
 #'
 #' @description
-#' \lifecycle{stable}
 #' \loadmathjax
 #' This function normalizes each row of an input matrix by
 #' subtracting each row by its mean and dividing it by its standard deviation

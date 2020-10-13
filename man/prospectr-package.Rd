@@ -6,7 +6,7 @@
 \alias{prospectr}
 \title{Overview of the functions in the prospectr package}
 \description{
-\lifecycle{maturing}
+\lifecycle{stable}
 
 Misc functions for spectral data
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
@@ -55,6 +55,20 @@ Other useful functions are also available:
 \item{\code{\link{cochranTest}}}
 }
 }
+\seealso{
+Useful links:
+\itemize{
+\item \url{https://github.com/l-ramirez-lopez/prospectr}
+\item Report bugs at \url{https://github.com/l-ramirez-lopez/prospectr/issues}
+}
+}
 \author{
-Antoine Stevens & \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez} \email{ramirez.lopez.leo@gmail.com},
+\strong{Maintainer}: Leonardo Ramirez-Lopez \email{ramirez.lopez.leo@gmail.com}
+
+Authors:
+\itemize{
+\item Antoine Stevens (\href{https://orcid.org/0000-0002-1588-7519}{ORCID})
+
+\item Leonardo Ramirez-Lopez (\href{https://orcid.org/0000-0002-5369-5120}{ORCID})
+}
 }

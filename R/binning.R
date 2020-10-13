@@ -1,6 +1,5 @@
 #' @title Signal binning
 #' @description
-#' \lifecycle{stable}
 #' Compute average values of a signal in pre-determined bins (col-wise subsets).
 #' The bin size can be determined either directly or by specifying the number of bins.
 #' Sometimes called boxcar transformation in signal processing

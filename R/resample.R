@@ -1,6 +1,5 @@
 #' @title Resample spectral data
 #' @description
-#' \lifecycle{stable}
 #' Resample a data matrix or vector to new coordinates (e.g.
 #' band positions) using spline or linear interpolation. This function is a
 #' simple wrapper around \code{\link{approx}} and \code{\link{splinefun}} in

@@ -1,7 +1,6 @@
 #' @title Puchwein algorithm for calibration sampling
 #'
 #' @description
-#' \lifecycle{stable}
 #' Select calibration samples from multivariate data using the Puchwein algorithm
 #' @usage
 #' puchwein(X, pc = 0.95, k, min.sel, details = FALSE, .center = TRUE, .scale = FALSE)

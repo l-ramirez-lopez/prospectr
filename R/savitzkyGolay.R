@@ -1,6 +1,5 @@
 #' @title Savitzky-Golay smoothing and differentiation
 #' @description
-#' \lifecycle{stable}
 #' \loadmathjax
 #' Savitzky-Golay smoothing and derivative of a data matrix or vector.
 #' @usage

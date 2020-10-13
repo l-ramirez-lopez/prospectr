@@ -1,7 +1,6 @@
 #' @title Hard or soft block scaling
 #'
 #' @description
-#' \lifecycle{stable}
 #' Hard or soft block scaling of a spectral matrix to constant group variance.
 #' In multivariate calibration, block scaling is used to down-weight variables,
 #' when one block of variables dominates other blocks.

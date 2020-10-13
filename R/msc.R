@@ -1,7 +1,9 @@
 #' @title Multiplicative Scatter Correction (msc)
 #'
 #' @description
-#' \lifecycle{maturing}
+#' 
+#' \ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
+#' 
 #' \loadmathjax
 #' This function implements the multiplicative scatter correction method
 #' which attempts to remove physical light scatter by accounting for additive

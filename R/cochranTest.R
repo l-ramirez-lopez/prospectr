@@ -1,6 +1,5 @@
 #' @title Cochran *C* Test
 #' @description
-#' \lifecycle{stable}
 #' \loadmathjax
 #' Detects and removes replicate outliers in data series based on the Cochran
 #' *C* test for homogeneity in variance.

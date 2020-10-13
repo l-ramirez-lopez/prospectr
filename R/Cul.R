@@ -1,7 +1,6 @@
 #' @title Cochran C critical value
 #'
 #' @description
-#' \lifecycle{stable}
 #' Upper limit critical value Cul for one-sided test on balanced design
 #' @usage
 #' Cul(a,n,N)

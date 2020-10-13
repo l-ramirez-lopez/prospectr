@@ -16,7 +16,6 @@ be coerced to a numerical matrix).}
 a matrix or vector with the filtered signal(s)
 }
 \description{
-\lifecycle{stable}
 A simple moving average of a matrix or vector using a convolution
 function written in C++/Rcpp for fast computing
 }

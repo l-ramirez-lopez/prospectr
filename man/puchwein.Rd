@@ -52,7 +52,6 @@ cumulative sums of leverage of the points selected in each loop}
 }
 }
 \description{
-\lifecycle{stable}
 Select calibration samples from multivariate data using the Puchwein algorithm
 }
 \details{

@@ -1,7 +1,6 @@
 #' @title SELECT algorithm for calibration sampling
 #'
 #' @description
-#' \lifecycle{stable}
 #' Select calibration samples from a large multivariate data using the SELECT
 #' algorithm as described in Shenk and Westerhaus (1991).
 #' @usage

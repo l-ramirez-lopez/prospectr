@@ -26,7 +26,6 @@ observations}
 }
 }
 \description{
-\lifecycle{stable}
 Select calibration samples from a data matrix using the Honings et al. (1985)
 method
 }

@@ -23,7 +23,6 @@ function when \code{interpol = 'spline'}.}
 a matrix or vector with resampled values.
 }
 \description{
-\lifecycle{stable}
 Resample a data matrix or vector to new coordinates (e.g.
 band positions) using spline or linear interpolation. This function is a
 simple wrapper around \code{\link{approx}} and \code{\link{splinefun}} in

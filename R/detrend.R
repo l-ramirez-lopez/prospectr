@@ -1,6 +1,5 @@
 #' @title Detrending spectral data
 #' @description
-#' \lifecycle{stable}
 #' \loadmathjax
 #' Normalizes each row of an input matrix by applying a SNV transformation
 #' followed by fitting a second order linear model and returning the fitted

@@ -16,7 +16,6 @@ be coerced to a numerical matrix).}
 a list with components \code{Xscaled}, the scaled matrix and \code{f}, the scaling factor
 }
 \description{
-\lifecycle{stable}
 Sum of squares block weighting: allows to scale blocks of variables,
 but keeping the relative weights of the variables inside a block.
 }

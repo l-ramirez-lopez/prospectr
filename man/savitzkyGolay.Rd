@@ -19,7 +19,6 @@ can be coerced to a numerical matrix).}
 \item{delta.wav}{(optional) sampling interval.}
 }
 \description{
-\lifecycle{stable}
 \loadmathjax
 Savitzky-Golay smoothing and derivative of a data matrix or vector.
 }

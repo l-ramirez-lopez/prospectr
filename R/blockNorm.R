@@ -1,6 +1,5 @@
 #' @title Sum of squares block weighting
 #' @description
-#' \lifecycle{stable}
 #' Sum of squares block weighting: allows to scale blocks of variables,
 #' but keeping the relative weights of the variables inside a block.
 #' @usage

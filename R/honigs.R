@@ -1,6 +1,5 @@
 #' @title Honigs algorithm for calibration sampling
 #' @description
-#' \lifecycle{stable}
 #' Select calibration samples from a data matrix using the Honings et al. (1985)
 #' method
 #' @usage

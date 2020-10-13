@@ -38,7 +38,6 @@ observations}
 }
 }
 \description{
-\lifecycle{stable}
 Select calibration samples from a large multivariate data using the SELECT
 algorithm as described in Shenk and Westerhaus (1991).
 }

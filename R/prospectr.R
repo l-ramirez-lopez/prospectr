@@ -13,7 +13,7 @@
 #'
 #' @description
 #'
-#' \lifecycle{maturing}
+#' \lifecycle{stable}
 #'
 #' Misc functions for spectral data
 #' \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
@@ -66,9 +66,22 @@
 #' @name prospectr-package
 #' @aliases prospectr-package prospectr
 #' @title Overview of the functions in the prospectr package
-#' @author
-#' Antoine Stevens & \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez} \email{ramirez.lopez.leo@@gmail.com},
-
+#' @seealso 
+#' Useful links:
+#' \itemize{
+#' \item \url{https://github.com/l-ramirez-lopez/prospectr}
+#' \item Report bugs at \url{https://github.com/l-ramirez-lopez/prospectr/issues}
+#' }
+#' @author 
+#' 
+#' \strong{Maintainer}: Leonardo Ramirez-Lopez \email{ramirez.lopez.leo@gmail.com}
+#' 
+#' Authors:
+#' \itemize{
+#' \item Antoine Stevens (\href{https://orcid.org/0000-0002-1588-7519}{ORCID})
+#' 
+#' \item Leonardo Ramirez-Lopez (\href{https://orcid.org/0000-0002-5369-5120}{ORCID})
+#' }
 ######################################################################
 # prospectr
 # Copyrigth (C) 2020 Leonardo Ramirez-Lopez

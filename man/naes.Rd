@@ -50,7 +50,6 @@ point was assigned}
 }
 }
 \description{
-\lifecycle{stable}
 Perform a k-means sampling on a matrix for multivariate calibration
 }
 \details{

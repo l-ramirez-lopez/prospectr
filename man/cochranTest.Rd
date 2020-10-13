@@ -26,7 +26,6 @@ data that have been flagged as outliers}
 }
 }
 \description{
-\lifecycle{stable}
 \loadmathjax
 Detects and removes replicate outliers in data series based on the Cochran
 \emph{C} test for homogeneity in variance.

@@ -24,7 +24,6 @@ between points over which the derivative is computed.}
 a matrix or vector with the filtered signal(s)
 }
 \description{
-\lifecycle{stable}
 Gap-Segment derivatives of a data matrix or vector
 }
 \details{

@@ -1,6 +1,5 @@
 #' @title Moving average
 #' @description
-#' \lifecycle{stable}
 #' A simple moving average of a matrix or vector using a convolution
 #' function written in C++/Rcpp for fast computing
 #' @usage

@@ -19,7 +19,6 @@ can be coerced to a numerical matrix)}
 a matrix or vector with the detrended data.
 }
 \description{
-\lifecycle{stable}
 \loadmathjax
 Normalizes each row of an input matrix by applying a SNV transformation
 followed by fitting a second order linear model and returning the fitted

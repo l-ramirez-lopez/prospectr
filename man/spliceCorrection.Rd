@@ -22,7 +22,6 @@ corresponding to the splices of the ASD FieldSpec Pro spectrometer.}
 a matrix with the splice corrected data.
 }
 \description{
-\lifecycle{stable}
 Corrects steps in an input spectral matrix by linear interpolation of the
 values of the edges of the middle sensor
 }

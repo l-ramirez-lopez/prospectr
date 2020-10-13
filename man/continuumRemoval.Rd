@@ -25,7 +25,8 @@ absorbance.}
 a matrix or vector with the filtered spectra.
 }
 \description{
-\lifecycle{maturing}
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
+
 Compute the continuum removed values of a data matrix or vector
 }
 \details{

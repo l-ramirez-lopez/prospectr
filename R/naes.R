@@ -1,6 +1,5 @@
 #' @title k-means sampling
 #' @description
-#' \lifecycle{stable}
 #' Perform a k-means sampling on a matrix for multivariate calibration
 #' @usage
 #' naes(X, k, pc, iter.max = 10, method = 0, .center = TRUE, .scale = FALSE)

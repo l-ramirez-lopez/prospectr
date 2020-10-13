@@ -49,7 +49,6 @@ scaled pc scores}
 }
 }
 \description{
-\lifecycle{stable}
 \loadmathjax
 Select calibration samples from a large multivariate data using the
 Kennard-Stone algorithm

@@ -18,7 +18,8 @@ a matrix of normalized spectral data with an attribute which indicates the
 reference spectrum used.
 }
 \description{
-\lifecycle{maturing}
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
+
 \loadmathjax
 This function implements the multiplicative scatter correction method
 which attempts to remove physical light scatter by accounting for additive

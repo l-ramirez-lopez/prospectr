@@ -1,6 +1,5 @@
 #' @title Gap-Segment derivative
 #' @description
-#' \lifecycle{stable}
 #' Gap-Segment derivatives of a data matrix or vector
 #' @usage
 #' gapDer(X, m = 1, w = 1, s = 1, delta.wav)

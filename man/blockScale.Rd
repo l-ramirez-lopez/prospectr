@@ -19,7 +19,6 @@ of all variables, default = 1), applicable when \code{type = 'hard'}.}
 a \code{list} with \code{Xscaled}, the scaled matrix and \code{f}, the scaling factor.
 }
 \description{
-\lifecycle{stable}
 Hard or soft block scaling of a spectral matrix to constant group variance.
 In multivariate calibration, block scaling is used to down-weight variables,
 when one block of variables dominates other blocks.

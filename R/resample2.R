@@ -1,7 +1,6 @@
 #' @title Resample a high resolution signal to a low resolution signal using full
 #' width half maximum (FWHM) values
 #' @description
-#' \lifecycle{stable}
 #' Resample a data matrix or vector to match the response of another instrument
 #' using full width half maximum (FWHM) values
 #' @usage

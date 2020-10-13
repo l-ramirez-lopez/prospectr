@@ -1,8 +1,11 @@
 #' @title Read ASD FieldSpec Pro binary and ASCII files
 #' @description
-#' \lifecycle{maturing}
+#' 
+#' \ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
+#' 
 #' Read single or multiple binary and ASCII files acquired with an ASD FieldSpec
-#' Pro ([ASDi](http://www.asdi.com/), Boulder, CO) spectroradiometer
+#' Pro ([ASDi](https://www.malvernpanalytical.com/en/products/product-range/asd-range), 
+#' Boulder, CO) spectroradiometer
 #' @usage
 #' readASD(fnames, in_format, out_format)
 #' @param fnames a character vector of the name(s) (with absolute path) of the file(s) to read.
@@ -27,7 +30,7 @@
 #'
 #' <https://www.mathworks.com/matlabcentral/fileexchange/31547-field-spectroscopy-facility-post-processing-toolbox>
 #'
-#' Indico Version 8 file format (<http://www.malvernpanalytical.com/en/learn/knowledge-center/user-manuals/asd-file-format-v8>)
+#' Indico Version 8 file format (<https://www.malvernpanalytical.com/en/learn/knowledge-center/user-manuals/asd-file-format-v8>)
 #' @note
 #' The is a \R port of the \file{importasd.m} function from the \sQuote{FSFPostProcessing} Matlab toolbox by Iain Robinson
 #' (University of Edinburgh), which is based on some Java code provided by Andreas Hunei (University of Zurich)
