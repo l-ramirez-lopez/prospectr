@@ -3,7 +3,7 @@
 #' @description
 #' \loadmathjax
 #' \ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
-#' 
+#'
 #' This function implements the multiplicative scatter correction method
 #' which attempts to remove physical light scatter by accounting for additive
 #' and multiplicative effects (Geladi et al., 1985).

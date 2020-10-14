@@ -1,8 +1,9 @@
 #' @useDynLib prospectr
 #' @import lifecycle
-#' @import Rcpp 
-#' @import foreach 
+#' @import Rcpp
+#' @import foreach
 #' @import iterators
+#' @import mathjaxr
 ## usethis namespace: start
 #' @importFrom lifecycle deprecate_soft
 ## usethis namespace: end
@@ -66,20 +67,20 @@
 #' @name prospectr-package
 #' @aliases prospectr-package prospectr
 #' @title Overview of the functions in the prospectr package
-#' @seealso 
+#' @seealso
 #' Useful links:
 #' \itemize{
 #' \item \url{https://github.com/l-ramirez-lopez/prospectr}
 #' \item Report bugs at \url{https://github.com/l-ramirez-lopez/prospectr/issues}
 #' }
-#' @author 
-#' 
+#' @author
+#'
 #' \strong{Maintainer}: Leonardo Ramirez-Lopez \email{ramirez.lopez.leo@gmail.com}
-#' 
+#'
 #' Authors:
 #' \itemize{
 #' \item Antoine Stevens (\href{https://orcid.org/0000-0002-1588-7519}{ORCID})
-#' 
+#'
 #' \item Leonardo Ramirez-Lopez (\href{https://orcid.org/0000-0002-5369-5120}{ORCID})
 #' }
 ######################################################################

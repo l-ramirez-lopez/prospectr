@@ -1,10 +1,10 @@
 #' @title Read ASD FieldSpec Pro binary and ASCII files
 #' @description
-#' 
+#'
 #' \ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
-#' 
+#'
 #' Read single or multiple binary and ASCII files acquired with an ASD FieldSpec
-#' Pro ([ASDi](https://www.malvernpanalytical.com/en/products/product-range/asd-range), 
+#' Pro ([ASDi](https://www.malvernpanalytical.com/en/products/product-range/asd-range),
 #' Boulder, CO) spectroradiometer
 #' @usage
 #' readASD(fnames, in_format, out_format)

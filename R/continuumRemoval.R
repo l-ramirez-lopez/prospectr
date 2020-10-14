@@ -1,8 +1,8 @@
 #' @title Continuum Removal
 #' @description
-#' 
+#'
 #' \ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
-#' 
+#'
 #' Compute the continuum removed values of a data matrix or vector
 #' @usage
 #' continuumRemoval(X, wav, type, interpol, method)
