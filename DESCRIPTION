@@ -34,9 +34,7 @@ Imports:
     Rcpp (>= 1.0.1),
     mathjaxr (>= 1.0), 
     lifecycle (>= 0.2.0)
-RdMacros: 
-    mathjaxr,
-    lifecycle
+RdMacros: mathjaxr
 RoxygenNote: 7.1.1
 NeedsCompilation: yes
 LazyData: true
