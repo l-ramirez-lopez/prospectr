@@ -70,7 +70,7 @@ Other useful functions are also available:
 A BibTeX entry for LaTeX users is:
  
  ```
- @Manual{,
+ @Manual{stevens2020prospectr,
     title = {An introduction to the prospectr package},
     author = {Antoine Stevens and Leornardo Ramirez-Lopez},
     publication = {R package Vignette},
