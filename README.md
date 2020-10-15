@@ -11,11 +11,14 @@
 <em><p align="left"> Misc. Functions for Processing and Sample Selection of Spectroscopic Data </p></em>
 _Antoine Stevens & Leo Ramirez-Lopez_
 
-_Last update: 24.09.2020_
+_Last update: 15.10.2020_
 
-`prospectr` provides various utilities for pre--processing and sample selection 
-of visible and near infrared spectral data with `R`. 
-While similar functions are available in other packages, like [`signal`](https://CRAN.R-project.org/package=signal), the 
+`prospectr` is becoming more and more used in spectroscopic applications, which 
+is evidenced by the number of scientific publications citing the package. 
+This package is very useful for singal processing and chemometrics in general as 
+it provides various utilities for pre--processing and sample selection 
+of spectral data. While similar functions are available in other packages, like 
+[`signal`](https://CRAN.R-project.org/package=signal), the 
 functions in this package works indifferently for `data.frame`, `matrix` and 
 `vector` inputs. Besides, several functions are optimized for speed and use 
 C++ code through the [`Rcpp`](https://CRAN.R-project.org/package=Rcpp) 
@@ -24,6 +27,7 @@ packages.
 
 Check the NEWS document for new functionality and general changes in the package.
 
+## Core functionality
 A vignette gives an overview of the main functions of the package. Just
 type `vignette("prospectr-intro")` in the console to access it. Currently, the 
 following preprocessing functions are available:
@@ -57,6 +61,23 @@ Other useful functions are also available:
  `readASD`          : read binary or text files from an ASD instrument (Indico Pro format)         
  `spliceCorrection` : correct spectra for steps at the splice of detectors in an ASD FieldSpec Pro  
  `cochranTest`      : detects replicate outliers with the Cochran _C_ test                         
+
+## Citing the package
+
+  Antoine Stevens and Leornardo Ramirez-Lopez (2020). An introduction to the prospectr package. R package
+  Vignette R package version 0.2.1.
+
+A BibTeX entry for LaTeX users is:
+ 
+ ```
+ @Manual{,
+    title = {An introduction to the prospectr package},
+    author = {Antoine Stevens and Leornardo Ramirez-Lopez},
+    publication = {R package Vignette},
+    year = {2020},
+    note = {R package version 0.2.1},
+  }
+  ```
 
 ## Bug report and development version
 
