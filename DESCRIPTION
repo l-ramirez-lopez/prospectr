@@ -20,9 +20,9 @@ VignetteBuilder: knitr
 Suggests:
     knitr,
     rmarkdown,
-    bookdown, 
     formatR,
-    testthat
+    testthat,
+    bookdown
 LinkingTo: 
     Rcpp, 
     RcppArmadillo
