@@ -70,6 +70,7 @@ matplot(as.numeric(colnames(NIRsoil$spc_sg)),
 
 mtext("1st derivative spectra")
 par(opar)
+
 }
 \references{
 Savitzky, A., and Golay, M.J.E., 1964. Smoothing and

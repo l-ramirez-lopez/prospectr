@@ -48,6 +48,7 @@ matplot(
   xlab = "wavelength, nm",
   ylab = "msc"
 )
+
 }
 \references{
 Geladi, P., MacDougall, D., and Martens, H. 1985. Linearization and

@@ -41,6 +41,7 @@ matlines(as.numeric(colnames(NIRsoil$spc_mov)),
   type = "l",
   lty = 1
 )
+
 }
 \seealso{
 \code{\link{savitzkyGolay}}, \code{\link{gapDer}},

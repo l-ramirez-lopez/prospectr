@@ -49,6 +49,7 @@ fwhm <- c(100, 40, 40, 50, 70, 70) #  fwhm's
 # Resample NIRsoil to ASTER band positions
 aster <- resample2(NIRsoil$spc, wav, new_wav, fwhm)
 matpoints(as.numeric(colnames(aster)), t(aster[1:10, ]), pch = 1:5)
+
 }
 \seealso{
 \code{\link{resample}}

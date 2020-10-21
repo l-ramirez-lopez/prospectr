@@ -35,18 +35,19 @@ Pro (\href{https://www.malvernpanalytical.com/en/products/product-range/asd-rang
 Boulder, CO) spectroradiometer
 }
 \note{
-The is a \R port of the \file{importasd.m} function from the \sQuote{FSFPostProcessing} Matlab toolbox by Iain Robinson
-(University of Edinburgh), which is based on some Java code provided by Andreas Hunei (University of Zurich)
+There is a \R port of the \file{importasd.m} function from the
+\sQuote{FSFPostProcessing} Matlab toolbox by Iain Robinson
+(University of Edinburgh), which is based on some Java code provided
+by Andreas Hunei (University of Zurich).
 
-It seems that ASD file format has changed quite a lot with file versions. The function will possibly not work as expected for
+It seems that ASD file format has changed quite a lot with file versions. The
+function will possibly not work as expected for
 all versions. Please report any bugs to the package maintainer.
 }
 \references{
-\url{https://fsf.nerc.ac.uk/user_group/user_group.shtml}
-
-\url{https://www.mathworks.com/matlabcentral/fileexchange/31547-field-spectroscopy-facility-post-processing-toolbox}
-
-Indico Version 8 file format (\url{https://www.malvernpanalytical.com/en/learn/knowledge-center/user-manuals/asd-file-format-v8})
+Robinson, I., and A. MacArthur. 2011. The Field Spectroscopy Facility Post
+Processing Toolbox User Guide. Post processing spectral data in MATLAB,
+University of Edinburgh, Edinburgh, UK.
 }
 \author{
 Antoine Stevens (\R port), Iain Robinson (matlab function) & Leonardo Ramirez-Lopez (\R port)

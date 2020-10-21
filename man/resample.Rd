@@ -7,8 +7,8 @@
 resample(X, wav, new.wav, interpol = "spline", ...)
 }
 \arguments{
-\item{X}{numeric matrix or vector to resample (optionally a data frame that can
-be coerced to a numerical matrix).}
+\item{X}{numeric matrix or vector to resample (optionally a data frame that
+can be coerced to a numerical matrix).}
 
 \item{wav}{a numeric vector giving the original band positions.}
 
@@ -35,6 +35,7 @@ wav <- as.numeric(colnames(NIRsoil$spc))
 NIRsoil$spc_resampled <- resample(NIRsoil$spc, wav, seq(1100, 2498, 2))
 dim(NIRsoil$spc)
 dim(NIRsoil$spc_resampled)
+
 }
 \seealso{
 \code{\link{resample2}}

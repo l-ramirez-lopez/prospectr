@@ -40,9 +40,11 @@ matplot(
   xlab = "wavelength, nm",
   ylab = "snv"
 )
+
 \dontrun{
 apply(NIRsoil$spc_snv, 1, sd) # check
 }
+
 }
 \references{
 Barnes RJ, Dhanoa MS, Lister SJ. 1989. Standard normal variate

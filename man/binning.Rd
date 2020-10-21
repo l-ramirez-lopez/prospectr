@@ -7,8 +7,8 @@
 binning(X, bins, bin.size)
 }
 \arguments{
-\item{X}{a numeric matrix or vector to process (optionally a data frame that can
-be coerced to a numerical matrix).}
+\item{X}{a numeric matrix or vector to process (optionally a data frame that
+can be coerced to a numerical matrix).}
 
 \item{bins}{the number of bins.}
 
@@ -19,8 +19,8 @@ a matrix or vector with average values per bin.
 }
 \description{
 Compute average values of a signal in pre-determined bins (col-wise subsets).
-The bin size can be determined either directly or by specifying the number of bins.
-Sometimes called boxcar transformation in signal processing
+The bin size can be determined either directly or by specifying the number of
+bins. Sometimes called boxcar transformation in signal processing
 }
 \examples{
 data(NIRsoil)
@@ -57,6 +57,7 @@ matpoints(as.numeric(colnames(NIRsoil$spc_binned)),
   t(NIRsoil$spc_binned[1:5, ]),
   pch = 1:5
 )
+
 }
 \seealso{
 \code{\link{savitzkyGolay}}, \code{\link{movav}},
