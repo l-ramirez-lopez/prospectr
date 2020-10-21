@@ -1,13 +1,14 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-.Rhistory
 .gitignore
-code_ex.R
+.Rhistory
 .travis.yml
+^appveyor\.yml$
+cran-comments.md
+code_ex.R
+^Rscript*
 ^packrat/
 ^\.Rprofile$c  
 TODO
-^appveyor\.yml$
-cran-comments.md
 epo.R
 
