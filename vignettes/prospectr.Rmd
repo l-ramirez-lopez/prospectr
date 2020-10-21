@@ -1,27 +1,29 @@
 ---
-title: "An introduction to the prospectr package"
-author: 
- - name: Antoine Stevens and Leonardo Ramirez-Lopez
-   email: ramirez.lopez.leo@gmail.com
+title: "An introduction to the `prospectr` package"
+author: Antoine Stevens and Leonardo Ramirez-Lopez^[ramirez.lopez.leo@gmail.com]
 date: "`r Sys.Date()`"
 bibliography: ["prospectr.bib"]
 biblio-style: "apalike"
 link-citations: true
-output: 
-  bookdown::html_document2:
-    theme: united
+header-includes:
+  - \usepackage{framed}
+  - \usepackage{pdflscape}
+  - \newcommand{\blandscape}{\begin{landscape}}
+  - \newcommand{\elandscape}{\end{landscape}}
+output:
+  pdf_document:
     toc: true
-    toc_depth: 3
-    toc_float:
-      collapsed: true
-      smooth_scroll: false
-  citation_package: natbib
+    toc_depth: 2
+    number_sections: true
+    latex_engine: pdflatex
+    highlight: espresso
+    extra_dependencies:
+    - framed
+    citation_package: natbib
 vignette: >
   %\VignetteIndexEntry{An introduction to the prospectr package}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
-editor_options:
-  chunk_output_type: console
 ---
 
 ```{r setup, include = FALSE}
@@ -30,8 +32,17 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Introduction
 
+# Preamble
+`prospectr` is becoming more and more used in spectroscopic applications, which 
+is evidenced by the number of scientific publications citing the package. This 
+package is very useful for singal processing and chemometrics in general as it 
+provides various utilities for pre--processing and sample selection of spectral 
+data. While similar functions are available in other packages, like [`signal`](https://CRAN.R-project.org/package=signal), the functions in this 
+package works indifferently for `data.frame`, `matrix` and `vector` inputs. 
+Besides, several functions are optimized for speed and use C++ code through the [`Rcpp`](https://CRAN.R-project.org/package=Rcpp) and [`RcppArmadillo`](https://CRAN.R-project.org/package=RcppArmadillo) packages.
+
+# Introduction
 Several spectroscopic techniques such as Near-Infrared (NIR) spectroscopy are 
 high--troughput, non--destructive and cheap sensing methods that has a range of 
 applications in agricultural, medical, food and environmental science. A number 
@@ -119,7 +130,7 @@ can be removed mathematically.
 
 A moving average filter is a column-wise operation which average contiguous 
 wavelengths within a given window size. 
-```{r movin, fig.cap = "Effect of a moving average with window size of 11 bands on a raw spectrum", tidy = TRUE, fig.height = 6, fig.width = 10, dpi = 50, out.height = "60%", out.width = "100%"}
+```{r movin, fig.cap = "Effect of a moving average with window size of 11 bands on a raw spectrum", tidy = TRUE, fig.height = 6, fig.width = 10, dpi = 50, out.height = "60%", out.width = "100%", fig.retina = 1}
 # add some noise
 noisy <- NIRsoil$spc + rnorm(length(NIRsoil$spc), 0, 0.001) 
 # Plot the first spectrum
@@ -133,14 +144,17 @@ X <- movav(X = noisy, w = 11) # window size of 11 bands
 # Note that the 5 first and last bands are lost in the process
 lines(x = as.numeric(colnames(X)), y = X[1,], lwd = 1.5, col = "red")
 grid()
-legend("topleft", legend = c("raw", "moving average"), lty = c(1, 1), col = c("black", "red"))
+legend("topleft", 
+       legend = c("raw", "moving average"), 
+       lty = c(1, 1), col = c("black", "red"))
 ```
 
 ## Savitzky-Golay filtering
 
 Savitzky-Golay filtering [@savitzky1964] is a very common preprocessing 
 technique. It fits a local polynomial regression on the signal and requires
-__equidistant__ bandwidth. Mathematically, it operates simply as a weighted sum of neighbouring values:
+__equidistant__ bandwidth. Mathematically, it operates simply as a weighted sum 
+of neighbouring values:
 
 $$ x_j\ast = \frac{1}{N}\sum_{h=-k}^{k}{c_hx_{j+h}}$$
 
@@ -191,7 +205,7 @@ $$ x_i'' = x_{i-1} - 2 \cdot x_i + x_{i+1}$$
 
 In R, this can be simply achieved with the `diff` function in `base`: 
 
-```{r d1,fig.cap="Effect of first derivative and second derivative", fig.height=6,fig.width=10, tidy=TRUE, dpi = 50,out.height="60%",out.width="100%"}
+```{r d1,fig.cap="Effect of first derivative and second derivative", fig.height=6,fig.width=10, tidy=TRUE, dpi = 50,out.height="60%",out.width="100%", fig.retina = 0.85}
 # X = wavelength
 # Y = spectral matrix
 # n = order
@@ -223,7 +237,7 @@ $$ x_i'' = x_{i-k} - 2 \cdot x_i + x_{i+k}$$
 where $k$ is the gap size. Again, this can be easily achieved in R using the 
 `lag` argument of the `diff` function
 
-```{r gapder,fig.cap="Effect of 1st-order gap derivative ", fig.height=6,fig.width=10, tidy=TRUE, dpi = 50,out.height="60%",out.width="100%"}
+```{r gapder,fig.cap="Effect of 1st-order gap derivative ", fig.height=6,fig.width=10, tidy=TRUE, dpi = 50,out.height="60%",out.width="100%", fig.retina = 0.85}
 # first derivative with a gap of 10 bands
 gd1 <- t(diff(t(NIRsoil$spc), differences = 1, lag = 10)) 
 ```
@@ -234,7 +248,7 @@ algorithms. The Gap-segment algorithms performs first a smoothing under a given
 segment size, followed by a derivative of a given order under a given gap size. 
 Here is an exemple of the use of the `gapDer` function.
 
-```{r gapseg,fig.cap="Effect of 1st-order gap-segment derivative ", fig.height=6,fig.width=10, tidy=TRUE, dpi = 50,out.height="60%",out.width="100%"}
+```{r gapseg,fig.cap="Effect of 1st-order gap-segment derivative ", fig.height=6,fig.width=10, tidy=TRUE, dpi = 50,out.height="60%",out.width="100%", fig.retina = 0.85}
 # m = order of the derivative
 # w = window size ( = {2 * gap size} + 1)
 # s = segment size
@@ -266,7 +280,7 @@ that intends to correct for light _scatter_. It operates row-wise:
 
 $$ SNV_i = \frac{x_i - \bar{x_i}}{s_i}$$
 
-```{r snv, eval=TRUE, fig.cap="Effect of SNV on raw spectra", fig.height=6,fig.width=10, tidy=TRUE, dpi = 50,out.height="60%",out.width="100%"}
+```{r snv, eval=TRUE, fig.cap="Effect of SNV on raw spectra", fig.height=6,fig.width=10, tidy=TRUE, dpi = 50,out.height="60%",out.width="100%", fig.retina = 0.85}
 snv <- standardNormalVariate(X = NIRsoil$spc)
 ```
 
@@ -284,7 +298,7 @@ $$MSC(x_i) = \frac{a_i - x_i}{m_i}$$
 where $a_i$ and $m_i$ are the additive and multiplicative terms respectively.
 
 
-```{r msc, fig.cap="Effect of MSC on raw spectra",fig.height=6,fig.width=10, tidy=TRUE, dpi = 50,out.height="60%",out.width="100%"}
+```{r msc, fig.cap="Effect of MSC on raw spectra",fig.height=6,fig.width=10, tidy=TRUE, dpi = 50,out.height="60%",out.width="100%", fig.retina = 0.85}
 # X = input spectral matrix
 msc_spc <- msc(X = NIRsoil$spc, reference_spc = colMeans(NIRsoil$spc))
 
@@ -298,7 +312,10 @@ lines(as.numeric(colnames(NIRsoil$spc)),
       lwd = 1.5, col = "red")
 axis(4, col = "red")
 grid()
-legend("topleft", legend = c("raw", "MSC signal"), lty = c(1, 1),col = c("black", "red"))
+legend("topleft", 
+       legend = c("raw", "MSC signal"), 
+       lty = c(1, 1),
+       col = c("black", "red"))
 par(new = FALSE)
 ```
 
@@ -329,7 +346,7 @@ scattering effects (variation in curvilinearity between the spectra). After a
 _SNV_ transformation, a 2$^{nd}$-order polynomial is fit to the spectrum and 
 subtracted from it.
 
-```{r detrend, fig.cap="Effect of SNV-Detrend on raw spectra",fig.height=6,fig.width=10, tidy=TRUE, dpi = 50,out.height="60%",out.width="100%"}
+```{r detrend, fig.cap="Effect of SNV-Detrend on raw spectra",fig.height=6,fig.width=10, tidy=TRUE, dpi = 50,out.height="60%",out.width="100%", fig.retina = 0.85}
 # X = input spectral matrix
 # wav = band centers
 dt <- detrend(X = NIRsoil$spc, wav = as.numeric(colnames(NIRsoil$spc)))
@@ -435,7 +452,7 @@ removal.
 The `continuumRemoval` function allows to compute the continuum-removed values 
 of either reflectance or absorbance spectra. 
 
-```{r cr, fig.cap = "Absorbance and continuum-removed absorbance spectra", fig.height = 6, fig.width = 10, tidy = TRUE, dpi = 50, out.height = "60%", out.width = "100%"}
+```{r cr, fig.cap = "Absorbance and continuum-removed absorbance spectra", fig.height = 6, fig.width = 10, tidy = TRUE, dpi = 50, out.height = "60%", out.width = "100%", fig.retina = 0.85}
 # type of data: 'R' for reflectance (default), 'A' for absorbance
 cr <- continuumRemoval(X = NIRsoil$spc, type = "A")
 # plot of the 10 first abs spectra
@@ -496,7 +513,7 @@ See the `method` argument in `naes`
 
 4. For each $c$ allocate in $X_{tr}$ its closest sample found in $X$.   
 
-```{r naes, fig.cap = "Selection of 5 samples by k-means sampling", tidy = TRUE, dpi = 50, fig.height = 5, fig.width = 5, out.height = '80%', out.width = '80%', fig.align ='center'}
+```{r naes, fig.cap = "Selection of 5 samples by k-means sampling", tidy = TRUE, dpi = 50, fig.height = 5, fig.width = 5, out.height = '80%', out.width = '80%', fig.align ='center', fig.retina = 0.85}
 # X = the input matrix
 # k = number of calibration samples to be selected
 # pc = if pc is specified, k-mean is performed in the pc space 
@@ -541,7 +558,7 @@ selection.
 
 Let's see some examples...
 
-```{r ken, fig.cap="Selection of 40 calibration samples with the Kennard-Stone algorithm", tidy = TRUE, dpi = 50, fig.height = 5, fig.width = 5, out.height = '80%', out.width = '80%', fig.align ='center'}
+```{r ken, fig.cap="Selection of 40 calibration samples with the Kennard-Stone algorithm", tidy = TRUE, dpi = 50, fig.height = 5, fig.width = 5, out.height = '80%', out.width = '80%', fig.align ='center', fig.retina = 0.85}
 # Create a dataset for illustrating how the calibration sampling 
 # algorithms work
 X <- data.frame(x1 = rnorm(1000), x2 = rnorm(1000))
@@ -549,10 +566,11 @@ plot(X, col = rgb(0, 0, 0, 0.3), pch = 19, main = "Kennard-Stone (synthetic)")
 grid()
 # kenStone produces a list with row index of the points selected for calibration
 ken <- kenStone(X, k = 40) 
-points(X[ken$model,], col = "red", pch = 19, cex = 1.4) # plot selected points
+# plot selected points
+points(X[ken$model,], col = "red", pch = 19, cex = 1.4) 
 ```
 
-```{r ken2, fig.cap="Kennard-Stone sampling on the NIRsoil dataset", tidy = TRUE, dpi = 50, fig.height = 5, fig.width = 5, out.height = '80%', out.width = '80%', fig.align ='center'}
+```{r ken2, fig.cap="Kennard-Stone sampling on the NIRsoil dataset", tidy = TRUE, dpi = 50, fig.height = 5, fig.width = 5, out.height = '80%', out.width = '80%', fig.align ='center', fig.retina = 0.85}
 
 # Test with the NIRsoil dataset
 # one can also use the mahalanobis distance (metric argument)
@@ -584,7 +602,7 @@ Kennard-Stone, begins by selecting pairs of points that are the farthest
 apart from each other, and then assigns points alternatively to the 
 _calibration_ and _validation_ sets.
 
-```{r duplex, fig.cap="Selection of 15 calibration and validation samples with the DUPLEX algorithm", tidy = TRUE, dpi = 50, fig.height = 5, fig.width = 5, out.height = '80%', out.width = '80%', fig.align ='center'}
+```{r duplex, fig.cap="Selection of 15 calibration and validation samples with the DUPLEX algorithm", tidy = TRUE, dpi = 50, fig.height = 5, fig.width = 5, out.height = '80%', out.width = '80%', fig.align ='center', fig.retina = 0.85}
 dup <- duplex(X = X, k = 15) # k is the number of selected samples
 plot(X, col = rgb(0, 0, 0, 0.3), pch = 19, main = "DUPLEX") 
 grid()
@@ -608,7 +626,7 @@ treshold (default = 0.6). The distance metric is the Mahalanobis distance
 divided by the number of dimensions (number of pc components) used to compute
 the distance. Here is an example of how the `shenkWest` function might work:
 
-```{r shenk, fig.cap="Selection of samples with the SELECT algorithm", tidy = TRUE, dpi = 50, fig.height = 5, fig.width = 5, out.height = '80%', out.width = '80%', fig.align ='center'}
+```{r shenk, fig.cap="Selection of samples with the SELECT algorithm", tidy = TRUE, dpi = 50, fig.height = 5, fig.width = 5, out.height = '80%', out.width = '80%', fig.align ='center', fig.retina = 0.85}
 shenk <- shenkWest(X = NIRsoil$spc, d.min = 0.6, pc = 2)
 plot(shenk$pc, col = rgb(0, 0, 0, 0.3), pch = 19, main = "SELECT") 
 grid()
@@ -642,14 +660,14 @@ remaining samples.
 the limiting distance.
 
 
-```{r puchwein, fig.cap="Samples selected by the Puchwein algorithm", tidy = TRUE, dpi = 50, fig.height = 5, fig.width = 5, out.height = '80%', out.width = '80%', fig.align ='center'}
+```{r puchwein, fig.cap="Samples selected by the Puchwein algorithm", tidy = TRUE, dpi = 50, fig.height = 5, fig.width = 5, out.height = '80%', out.width = '80%', fig.align ='center', fig.retina = 0.85}
 pu <- puchwein(X = NIRsoil$spc, k = 0.2, pc =2)
 plot(pu$pc, col = rgb(0, 0, 0, 0.3), pch = 19, main = "puchwein") 
 grid()
 points(pu$pc[pu$model,],col = "red", pch = 19) # selected samples
 ```
 
-```{r puchwein2, fig.cap="How to find the optimal loop", tidy=TRUE, dpi = 50, eval = FALSE}
+```{r puchwein2, fig.cap="How to find the optimal loop", tidy=TRUE, dpi = 50, eval = FALSE, fig.retina = 0.85}
 par(mfrow = c(2, 1))
 plot(pu$leverage$removed,pu$leverage$diff, 
      type = "l",
@@ -672,7 +690,7 @@ Then this absorption is substracted from other spectra and the algorithm
 iteratively select samples with the highest absorption (in absolute value) 
 until the desired number of samples is reached. 
 
-```{r honigs, fig.cap="Spectra selected with the Honigs algorithm and bands used", tidy = TRUE, dpi = 50, fig.height = 5, fig.width = 5, out.height = '80%', out.width = '80%', fig.align ='center'}
+```{r honigs, fig.cap="Spectra selected with the Honigs algorithm and bands used", tidy = TRUE, dpi = 50, fig.height = 5, fig.width = 5, out.height = '80%', out.width = '80%', fig.align ='center', fig.retina = 0.85}
 # type = "A" is for absorbance data
 ho <- honigs(X = NIRsoil$spc, k = 10, type = "A") 
 # plot calibration spectra
