@@ -42,6 +42,7 @@
 #'
 #' mtext("1st derivative spectra")
 #' par(opar)
+#' 
 #' @details
 #' The Savitzky-Golay algorithm fits a local polynomial regression on the signal.
 #' It requires evenly spaced data points. Mathematically, it operates simply as

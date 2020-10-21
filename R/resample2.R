@@ -35,8 +35,11 @@
 #' # Resample NIRsoil to ASTER band positions
 #' aster <- resample2(NIRsoil$spc, wav, new_wav, fwhm)
 #' matpoints(as.numeric(colnames(aster)), t(aster[1:10, ]), pch = 1:5)
-#' @return a matrix or vector with resampled values
-#' @seealso \code{\link{resample}}
+#' 
+#' @return 
+#' a matrix or vector with resampled values
+#' @seealso 
+#' \code{\link{resample}}
 #' @export
 #'
 resample2 <- function(X, wav, new.wav, fwhm) {

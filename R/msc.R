@@ -52,6 +52,7 @@
 #'   xlab = "wavelength, nm",
 #'   ylab = "msc"
 #' )
+#' 
 #' @export
 msc <- function(X, reference_spc = colMeans(X)) {
   X <- as.matrix(X)

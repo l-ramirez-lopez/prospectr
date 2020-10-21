@@ -53,11 +53,12 @@
 #'   xlab = "Wavelength /nm",
 #'   ylab = "gap derivative"
 #' )
-#'
-#' mtext("1st derivative spectra with a window size = 11 nm, smoothing of 10 nm")
+#' mtext("1st derivative spectra with: window size: 11 nm, smoothing: 10 nm")
 #' par(opar)
+#' 
 #' @references Hopkins (2002). NIR News 14(5), 10.
-#' @seealso \code{\link{savitzkyGolay}}, \code{\link{movav}}, \code{\link{binning}}, \code{\link{continuumRemoval}}
+#' @seealso \code{\link{savitzkyGolay}}, \code{\link{movav}}, 
+#' \code{\link{binning}}, \code{\link{continuumRemoval}}
 #' @return a matrix or vector with the filtered signal(s)
 #' @export
 #'
