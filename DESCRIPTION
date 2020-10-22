@@ -38,6 +38,7 @@ RdMacros: mathjaxr
 RoxygenNote: 7.1.1
 NeedsCompilation: yes
 LazyData: true
+LazyDataCompression: xz
 Repository: CRAN
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
