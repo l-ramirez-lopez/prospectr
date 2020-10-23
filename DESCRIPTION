@@ -3,7 +3,7 @@ Type: Package
 Title: Miscellaneous Functions for Processing 
        and Sample Selection of Spectroscopic Data
 Version: 0.2.1
-Date: 2020-10-12
+Date: 2020-10-23
 Author: 
     Antoine Stevens [aut, cre] (<https://orcid.org/0000-0002-1588-7519>), 
     Leonardo Ramirez-Lopez [aut, cre] (<https://orcid.org/0000-0002-5369-5120>),
