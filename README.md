@@ -11,7 +11,7 @@
 <em><p align="left"> Misc. Functions for Processing and Sample Selection of Spectroscopic Data </p></em>
 _Antoine Stevens & Leo Ramirez-Lopez_
 
-_Last update: 15.10.2020_
+_Last update: 23.10.2020_
 
 `prospectr` is becoming more and more used in spectroscopic applications, which 
 is evidenced by the number of scientific publications citing the package. 
