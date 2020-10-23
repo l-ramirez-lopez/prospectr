@@ -5,9 +5,9 @@ Title: Miscellaneous Functions for Processing
 Version: 0.2.1
 Date: 2020-10-12
 Author: 
-    Antoine Stevens [aut, cre], 
-    Leonardo Ramirez-Lopez [aut, cre],
-    Guillaume Hans [ctb]
+    Antoine Stevens [aut, cre] (<https://orcid.org/0000-0002-1588-7519>), 
+    Leonardo Ramirez-Lopez [aut, cre] (<https://orcid.org/0000-0002-5369-5120>),
+    Guillaume Hans [ctb] (<https://orcid.org/0000-0002-6503-5760>)
 Maintainer: 
     Leonardo Ramirez-Lopez <ramirez.lopez.leo@gmail.com>
 BugReports: 
