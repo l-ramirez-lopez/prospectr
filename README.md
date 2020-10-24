@@ -29,7 +29,7 @@ packages.
 Check the NEWS document for new functionality and general changes in the package.
 
 ## Vignette
-A vignette for `prospectr` explaing its core functionality is available at (https://cran.r-project.org/web/packages/prospectr/vignettes/prospectr.html)[https://cran.r-project.org/web/packages/prospectr/vignettes/prospectr.html].
+A vignette for `prospectr` explaing its core functionality is available at [https://cran.r-project.org/web/packages/prospectr/vignettes/prospectr.html](https://cran.r-project.org/web/packages/prospectr/vignettes/prospectr.html).
 
 ## Core functionality
 A vignette gives an overview of the main functions of the package. Just
