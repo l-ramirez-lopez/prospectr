@@ -11,7 +11,7 @@
 <em><p align="left"> Misc. Functions for Processing and Sample Selection of Spectroscopic Data </p></em>
 _Antoine Stevens & Leo Ramirez-Lopez_
 
-_Last update: 23.10.2020_
+_Last update: 24.10.2020_
 
 `prospectr` is becoming more and more used in spectroscopic applications, which 
 is evidenced by the number of scientific publications citing the package. 
@@ -25,7 +25,11 @@ C++ code through the [`Rcpp`](https://CRAN.R-project.org/package=Rcpp)
 and [`RcppArmadillo`](https://CRAN.R-project.org/package=RcppArmadillo)
 packages.
 
+## News
 Check the NEWS document for new functionality and general changes in the package.
+
+## Vignette
+A vignette for `prospectr` explaing its core functionality is available at (https://cran.r-project.org/web/packages/prospectr/vignettes/prospectr.html)[https://cran.r-project.org/web/packages/prospectr/vignettes/prospectr.html].
 
 ## Core functionality
 A vignette gives an overview of the main functions of the package. Just
