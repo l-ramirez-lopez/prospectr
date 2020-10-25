@@ -7,8 +7,8 @@
 resample(X, wav, new.wav, interpol = "spline", ...)
 }
 \arguments{
-\item{X}{numeric matrix or vector to resample (optionally a data frame that can
-be coerced to a numerical matrix).}
+\item{X}{numeric matrix or vector to resample (optionally a data frame that
+can be coerced to a numerical matrix).}
 
 \item{wav}{a numeric vector giving the original band positions.}
 
@@ -23,7 +23,6 @@ function when \code{interpol = 'spline'}.}
 a matrix or vector with resampled values.
 }
 \description{
-\lifecycle{stable}
 Resample a data matrix or vector to new coordinates (e.g.
 band positions) using spline or linear interpolation. This function is a
 simple wrapper around \code{\link{approx}} and \code{\link{splinefun}} in
@@ -36,10 +35,11 @@ wav <- as.numeric(colnames(NIRsoil$spc))
 NIRsoil$spc_resampled <- resample(NIRsoil$spc, wav, seq(1100, 2498, 2))
 dim(NIRsoil$spc)
 dim(NIRsoil$spc_resampled)
+
 }
 \seealso{
 \code{\link{resample2}}
 }
 \author{
-Antoine Stevens and Leonardo Ramirez-Lopez
+Antoine Stevens and \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 }

@@ -4,7 +4,13 @@
 \alias{duplex}
 \title{DUPLEX algorithm for calibration sampling}
 \usage{
-duplex(X, k, metric, pc, group, .center = TRUE, .scale = FALSE)
+duplex(X, 
+       k, 
+       metric = c("mahal", "euclid"), 
+       pc, 
+       group, 
+       .center = TRUE, 
+       .scale = FALSE)
 }
 \arguments{
 \item{X}{a numeric matrix.}
@@ -18,16 +24,19 @@ or 'mahal' (Mahalanobis distance, default).}
 the samples. If not specified, distance are computed in the Euclidean space.
 Alternatively, distances are computed in the principal component space and
 \code{pc} is the number of principal components retained.
-If \code{pc < 1}, the number of principal components kept corresponds to the number
+If \code{pc < 1}, the number of principal components kept corresponds to the
+number
 of components explaining at least (\code{pc * 100}) percent of the total variance.}
 
 \item{group}{An optional \code{factor} (or vector that can be coerced to a factor
 by \code{\link{as.factor}}) of length equal to nrow(X), giving the identifier
 of related observations (e.g. samples of the same batch of measurements,
-samples of the same origin, or of the same soil profile). When one observation is
+samples of the same origin, or of the same soil profile). When one
+observation is
 selected by the procedure all observations of the same group are removed
 together and assigned to the calibration/validation sets. This allows to
-select calibration and validation samples that are independent from each other.}
+select calibration and validation samples that are independent from each
+other.}
 
 \item{.center}{logical value indicating whether the input matrix should be
 centered before projecting \code{X} onto the Principal Component space.
@@ -49,7 +58,6 @@ scaled pc scores}
 }
 }
 \description{
-\lifecycle{stable}
 Select calibration samples from a large multivariate data using the DUPLEX
 algorithm
 }
@@ -79,6 +87,7 @@ plot(X[, 1], X[, 2], xlab = "VAR1", ylab = "VAR2")
 sel <- duplex(X, k = 25, metric = "mahal")
 points(X[sel$model, ], pch = 19, col = 2) # points selected for calibration
 points(X[sel$test, ], pch = 15, col = 3) # points selected for validation
+
 }
 \references{
 Kennard, R.W., and Stone, L.A., 1969. Computer aided design of experiments.
@@ -88,8 +97,9 @@ Snee, R.D., 1977. Validation of regression models: methods and examples.
 Technometrics 19, 415-428.
 }
 \seealso{
-\code{\link{kenStone}}, \code{\link{honigs}}, \code{\link{shenkWest}}, \code{\link{naes}}
+\code{\link{kenStone}}, \code{\link{honigs}}, \code{\link{shenkWest}},
+\code{\link{naes}}
 }
 \author{
-Antoine Stevens & Leonardo Ramirez--Lopez
+Antoine Stevens & \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 }

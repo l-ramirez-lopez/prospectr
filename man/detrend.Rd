@@ -19,7 +19,6 @@ can be coerced to a numerical matrix)}
 a matrix or vector with the detrended data.
 }
 \description{
-\lifecycle{stable}
 \loadmathjax
 Normalizes each row of an input matrix by applying a SNV transformation
 followed by fitting a second order linear model and returning the fitted
@@ -59,6 +58,7 @@ matplot(wav, t(det[1:10, ]),
 )
 mtext("Detrend spectra")
 par(opar)
+
 }
 \references{
 Barnes RJ, Dhanoa MS, Lister SJ. 1989. Standard normal variate
@@ -70,5 +70,5 @@ Applied spectroscopy, 43(5): 772-777.
 \code{\link{blockNorm}}
 }
 \author{
-Antoine Stevens and Leonardo Ramirez-Lopez
+Antoine Stevens and \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 }

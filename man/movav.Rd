@@ -16,7 +16,6 @@ be coerced to a numerical matrix).}
 a matrix or vector with the filtered signal(s)
 }
 \description{
-\lifecycle{stable}
 A simple moving average of a matrix or vector using a convolution
 function written in C++/Rcpp for fast computing
 }
@@ -24,22 +23,24 @@ function written in C++/Rcpp for fast computing
 data(NIRsoil)
 wav <- as.numeric(colnames(NIRsoil$spc))
 # adding some noise
-NIRsoil$spc_noise <- NIRsoil$spc + rnorm(length(NIRsoil$spc), 0, 0.001) 
-matplot(wav, 
-        t(NIRsoil$spc_noise[1:10, ]), 
-        type = "l", 
-        lty = 1,
-        xlab = "Wavelength /nm", 
-        ylab = "Absorbance",
-        col = "grey")
+NIRsoil$spc_noise <- NIRsoil$spc + rnorm(length(NIRsoil$spc), 0, 0.001)
+matplot(wav,
+  t(NIRsoil$spc_noise[1:10, ]),
+  type = "l",
+  lty = 1,
+  xlab = "Wavelength /nm",
+  ylab = "Absorbance",
+  col = "grey"
+)
 
 # window size of 11 bands
-NIRsoil$spc_mov <- movav(NIRsoil$spc_noise, w = 15) 
+NIRsoil$spc_mov <- movav(NIRsoil$spc_noise, w = 15)
 # smoothed data
-matlines(as.numeric(colnames(NIRsoil$spc_mov)), 
-         t(NIRsoil$spc_mov[1:10, ]), 
-         type = "l", 
-         lty = 1)
+matlines(as.numeric(colnames(NIRsoil$spc_mov)),
+  t(NIRsoil$spc_mov[1:10, ]),
+  type = "l",
+  lty = 1
+)
 
 }
 \seealso{

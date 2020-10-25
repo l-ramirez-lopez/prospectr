@@ -4,7 +4,9 @@
 \alias{continuumRemoval}
 \title{Continuum Removal}
 \usage{
-continuumRemoval(X, wav, type, interpol, method)
+continuumRemoval(X, wav, type = c("R", "A"), 
+                 interpol = c("linear", "spline"), 
+                 method = c("division", "substraction"))
 }
 \arguments{
 \item{X}{a numeric matrix or vector to process (optionally a data frame that can
@@ -25,16 +27,18 @@ absorbance.}
 a matrix or vector with the filtered spectra.
 }
 \description{
-\lifecycle{maturing}
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
+
 Compute the continuum removed values of a data matrix or vector
 }
 \details{
 The continuum removal technique was introduced by Clark and Roush (1984)
 as a method to highlight energy absorption features of minerals.
 It can be viewed as a way to perform albedo normalization.
-The algorithm find points lying on the convex hull (local maxima or envelope) of a spectrum,
-connects the points by linear or spline interpolation and
-normalizes the spectrum by dividing (or subtracting) the input data by the interpolated line.
+The algorithm find points lying on the convex hull (local maxima or envelope)
+of a spectrum, connects the points by linear or spline interpolation and
+normalizes the spectrum by dividing (or subtracting) the input data by the
+interpolated line.
 }
 \examples{
 data(NIRsoil)
@@ -50,13 +54,17 @@ matplot(wav,
 #  # type = 'A' is used for absorbance spectra
 cr <- continuumRemoval(NIRsoil$spc, wav, type = "A")
 matlines(wav, t(cr[1:10, ]))
+
 }
 \references{
-Clark, R.N., and Roush, T.L., 1984. Reflectance Spectroscopy: Quantitative Analysis Techniques for Remote Sensing Applications. J. Geophys. Res. 89, 6329-6340.
+Clark, R.N., and Roush, T.L., 1984. Reflectance Spectroscopy: Quantitative
+Analysis Techniques for Remote Sensing Applications. J. Geophys. Res. 89,
+6329-6340.
 }
 \seealso{
-\code{\link{savitzkyGolay}}, \code{\link{movav}}, \code{\link{gapDer}}, \code{\link{binning}}
+\code{\link{savitzkyGolay}}, \code{\link{movav}},
+\code{\link{gapDer}}, \code{\link{binning}}
 }
 \author{
-Antoine Stevens & Leonardo Ramirez-Lopez
+Antoine Stevens & \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 }

@@ -1,8 +1,11 @@
 #' @title Read ASD FieldSpec Pro binary and ASCII files
 #' @description
-#' \lifecycle{maturing}
+#'
+#' \ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
+#'
 #' Read single or multiple binary and ASCII files acquired with an ASD FieldSpec
-#' Pro ([ASDi](http://www.asdi.com/), Boulder, CO) spectroradiometer
+#' Pro ([ASDi](https://www.malvernpanalytical.com/en/products/product-range/asd-range),
+#' Boulder, CO) spectroradiometer
 #' @usage
 #' readASD(fnames, in_format, out_format)
 #' @param fnames a character vector of the name(s) (with absolute path) of the file(s) to read.
@@ -23,16 +26,17 @@
 #' }
 #' @author Antoine Stevens (\R port), Iain Robinson (matlab function) & Leonardo Ramirez-Lopez (\R port)
 #' @references
-#' <http://fsf.nerc.ac.uk/user_group/user_group.shtml>
-#'
-#' <http://www.mathworks.com/matlabcentral/fileexchange/31547>
-#'
-#' Indico Version 8 file format (<http://www.malvernpanalytical.com/en/learn/knowledge-center/user-manuals/asd-file-format-v8>)
+#' Robinson, I., and A. MacArthur. 2011. The Field Spectroscopy Facility Post 
+#' Processing Toolbox User Guide. Post processing spectral data in MATLAB, 
+#' University of Edinburgh, Edinburgh, UK.
 #' @note
-#' The is a \R port of the \file{importasd.m} function from the \sQuote{FSFPostProcessing} Matlab toolbox by Iain Robinson
-#' (University of Edinburgh), which is based on some Java code provided by Andreas Hunei (University of Zurich)
+#' There is a \R port of the \file{importasd.m} function from the 
+#' \sQuote{FSFPostProcessing} Matlab toolbox by Iain Robinson
+#' (University of Edinburgh), which is based on some Java code provided 
+#' by Andreas Hunei (University of Zurich).
 #'
-#' It seems that ASD file format has changed quite a lot with file versions. The function will possibly not work as expected for
+#' It seems that ASD file format has changed quite a lot with file versions. The 
+#' function will possibly not work as expected for
 #' all versions. Please report any bugs to the package maintainer.
 #' @export
 #'

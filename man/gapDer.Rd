@@ -24,7 +24,6 @@ between points over which the derivative is computed.}
 a matrix or vector with the filtered signal(s)
 }
 \description{
-\lifecycle{stable}
 Gap-Segment derivatives of a data matrix or vector
 }
 \details{
@@ -38,42 +37,47 @@ data(NIRsoil)
 opar <- par(no.readonly = TRUE)
 par(mfrow = c(2, 2), mar = c(4, 4, 2, 2))
 # plot of the 10 first spectra
-matplot(as.numeric(colnames(NIRsoil$spc)), 
-        t(NIRsoil$spc[1:10, ]),
-        type = "l", 
-        xlab = "", 
-        ylab = "Absorbance")
+matplot(as.numeric(colnames(NIRsoil$spc)),
+  t(NIRsoil$spc[1:10, ]),
+  type = "l",
+  xlab = "",
+  ylab = "Absorbance"
+)
 mtext("Raw spectra")
 
 der <- gapDer(NIRsoil$spc, m = 1, w = 1, s = 1, delta.wav = 2)
-matplot(as.numeric(colnames(der)), 
-        t(der[1:10, ]),
-        type = "l", 
-        xlab = "Wavelength /nm", 
-        ylab = "gap derivative")
+matplot(as.numeric(colnames(der)),
+  t(der[1:10, ]),
+  type = "l",
+  xlab = "Wavelength /nm",
+  ylab = "gap derivative"
+)
 
 mtext("1st derivative spectra")
 der <- gapDer(NIRsoil$spc, m = 1, w = 11, s = 1, delta.wav = 2)
 matplot(as.numeric(colnames(der)), t(der[1:10, ]),
-        type = "l", 
-        xlab = "Wavelength /nm", 
-        ylab = "gap derivative")
+  type = "l",
+  xlab = "Wavelength /nm",
+  ylab = "gap derivative"
+)
 
 mtext("1st derivative spectra with a window size = 11 nm")
 der <- gapDer(NIRsoil$spc, m = 1, w = 11, s = 10, delta.wav = 2)
 matplot(as.numeric(colnames(der)), t(der[1:10, ]),
-        type = "l", 
-        xlab = "Wavelength /nm",
-        ylab = "gap derivative")
-        
-mtext("1st derivative spectra with a window size = 11 nm, smoothing of 10 nm")
+  type = "l",
+  xlab = "Wavelength /nm",
+  ylab = "gap derivative"
+)
+mtext("1st derivative spectra with: window size: 11 nm, smoothing: 10 nm")
 par(opar)
+
 }
 \references{
 Hopkins (2002). NIR News 14(5), 10.
 }
 \seealso{
-\code{\link{savitzkyGolay}}, \code{\link{movav}}, \code{\link{binning}}, \code{\link{continuumRemoval}}
+\code{\link{savitzkyGolay}}, \code{\link{movav}},
+\code{\link{binning}}, \code{\link{continuumRemoval}}
 }
 \author{
 Antoine Stevens

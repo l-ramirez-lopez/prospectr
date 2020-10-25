@@ -1,6 +1,5 @@
 #' @title Kennard-Stone algorithm for calibration sampling
 #' @description
-#' \lifecycle{stable}
 #' \loadmathjax
 #' Select calibration samples from a large multivariate data using the
 #' Kennard-Stone algorithm
@@ -45,13 +44,15 @@
 #' data(NIRsoil)
 #' sel <- kenStone(NIRsoil$spc, k = 30, pc = .99)
 #' plot(sel$pc[, 1:2], xlab = "PC1", ylab = "PC2")
-#' points(sel$pc[sel$model, 1:2], pch = 19, col = 2) # points selected for calibration
+#' # points selected for calibration
+#' points(sel$pc[sel$model, 1:2], pch = 19, col = 2) 
 #' # Test on artificial data
 #' X <- expand.grid(1:20, 1:20) + rnorm(1e5, 0, .1)
 #' plot(X, xlab = "VAR1", ylab = "VAR2")
 #' sel <- kenStone(X, k = 25, metric = "euclid")
 #' points(X[sel$model, ], pch = 19, col = 2)
-#' @author Antoine Stevens & Leonardo Ramirez-Lopez
+#' 
+#' @author Antoine Stevens & \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 #' @details
 #' The Kennard--Stone algorithm allows to select samples with a uniform
 #' distribution over the predictor space (Kennard and Stone, 1969).
@@ -74,11 +75,11 @@
 #'
 #' \mjdeqn{H_{ij}^2 = \sum_{a=1}^A (\hat t_{ia} - \hat t_{ja})^{2} / \hat \lambda_a}{H_{ij}^2 = sum_{a=1}^A (hat t_{ia} - hat t_{ja})^{2} / hat lambda_a}
 #'
-#' where \mjeqn{\hat t_{ia}}{hatt_{ia}} is the \mjeqn{a^{th}}{a^{th}} principal component 
-#' score of point \mjeqn{i}{i}, \mjeqn{\hat t_{ja}}{hatt_{ja}} is the 
-#' corresponding value for point \mjeqn{j}{j}, 
-#' \mjeqn{\hat \lambda_a}{hat lambda_a} is the eigenvalue of principal 
-#' component \mjeqn{a}{a} and \mjeqn{A}{A} is the number of principal components 
+#' where \mjeqn{\hat t_{ia}}{hatt_{ia}} is the \mjeqn{a^{th}}{a^{th}} principal component
+#' score of point \mjeqn{i}{i}, \mjeqn{\hat t_{ja}}{hatt_{ja}} is the
+#' corresponding value for point \mjeqn{j}{j},
+#' \mjeqn{\hat \lambda_a}{hat lambda_a} is the eigenvalue of principal
+#' component \mjeqn{a}{a} and \mjeqn{A}{A} is the number of principal components
 #' included in the computation.
 #' @seealso  \code{\link{duplex}}, \code{\link{shenkWest}}, \code{\link{naes}},
 #' \code{\link{honigs}}

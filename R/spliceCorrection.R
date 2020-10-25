@@ -1,6 +1,5 @@
 #' @title Splice correction of a spectral matrix acquired with an ASD spectrometer
 #' @description
-#' \lifecycle{stable}
 #' Corrects steps in an input spectral matrix by linear interpolation of the
 #' values of the edges of the middle sensor
 #' @usage

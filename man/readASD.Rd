@@ -28,23 +28,26 @@ if \code{out_format} = \code{'list'}, a \code{list} of the input file(s) data co
 }
 }
 \description{
-\lifecycle{maturing}
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
+
 Read single or multiple binary and ASCII files acquired with an ASD FieldSpec
-Pro (\href{http://www.asdi.com/}{ASDi}, Boulder, CO) spectroradiometer
+Pro (\href{https://www.malvernpanalytical.com/en/products/product-range/asd-range}{ASDi},
+Boulder, CO) spectroradiometer
 }
 \note{
-The is a \R port of the \file{importasd.m} function from the \sQuote{FSFPostProcessing} Matlab toolbox by Iain Robinson
-(University of Edinburgh), which is based on some Java code provided by Andreas Hunei (University of Zurich)
+There is a \R port of the \file{importasd.m} function from the
+\sQuote{FSFPostProcessing} Matlab toolbox by Iain Robinson
+(University of Edinburgh), which is based on some Java code provided
+by Andreas Hunei (University of Zurich).
 
-It seems that ASD file format has changed quite a lot with file versions. The function will possibly not work as expected for
+It seems that ASD file format has changed quite a lot with file versions. The
+function will possibly not work as expected for
 all versions. Please report any bugs to the package maintainer.
 }
 \references{
-\url{http://fsf.nerc.ac.uk/user_group/user_group.shtml}
-
-\url{http://www.mathworks.com/matlabcentral/fileexchange/31547}
-
-Indico Version 8 file format (\url{http://www.malvernpanalytical.com/en/learn/knowledge-center/user-manuals/asd-file-format-v8})
+Robinson, I., and A. MacArthur. 2011. The Field Spectroscopy Facility Post
+Processing Toolbox User Guide. Post processing spectral data in MATLAB,
+University of Edinburgh, Edinburgh, UK.
 }
 \author{
 Antoine Stevens (\R port), Iain Robinson (matlab function) & Leonardo Ramirez-Lopez (\R port)

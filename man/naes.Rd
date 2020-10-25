@@ -50,7 +50,6 @@ point was assigned}
 }
 }
 \description{
-\lifecycle{stable}
 Perform a k-means sampling on a matrix for multivariate calibration
 }
 \details{
@@ -88,6 +87,7 @@ points(sel$pc[sel2$model, 1:2],
   pch = 15,
   cex = 1
 )
+
 }
 \references{
 Naes, T., 1987. The design of calibration in near infra-red reflectance
@@ -102,5 +102,5 @@ Chichester, United Kingdom.
 \code{\link{shenkWest}}
 }
 \author{
-Antoine Stevens & Leonardo Ramirez-Lopez
+Antoine Stevens & \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 }

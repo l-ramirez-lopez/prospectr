@@ -14,7 +14,6 @@ Cul(a,n,N)
 \item{N}{number of data series.}
 }
 \description{
-\lifecycle{stable}
 Upper limit critical value Cul for one-sided test on balanced design
 }
 \references{

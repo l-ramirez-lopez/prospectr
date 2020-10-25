@@ -7,8 +7,8 @@
 blockScale(X, type = 'hard', sigma2 = 1)
 }
 \arguments{
-\item{X}{a numeric matrix or vector to process (optionally a data frame that can
-be coerced to a numerical matrix).}
+\item{X}{a numeric matrix or vector to process (optionally a data frame that
+can be coerced to a numerical matrix).}
 
 \item{type}{the type of block scaling: 'hard' or 'soft'.}
 
@@ -16,10 +16,10 @@ be coerced to a numerical matrix).}
 of all variables, default = 1), applicable when \code{type = 'hard'}.}
 }
 \value{
-a \code{list} with \code{Xscaled}, the scaled matrix and \code{f}, the scaling factor.
+a \code{list} with \code{Xscaled}, the scaled matrix and \code{f}, the scaling
+factor.
 }
 \description{
-\lifecycle{stable}
 Hard or soft block scaling of a spectral matrix to constant group variance.
 In multivariate calibration, block scaling is used to down-weight variables,
 when one block of variables dominates other blocks.
@@ -34,6 +34,7 @@ X <- matrix(rnorm(100), ncol = 10)
 res <- blockScale(X)
 # sum of column variances == 1
 apply(res$Xscaled, 2, var)
+
 }
 \references{
 Eriksson, L., Johansson, E., Kettaneh, N., Trygg, J.,

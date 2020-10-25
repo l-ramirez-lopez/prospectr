@@ -11,10 +11,9 @@ standardNormalVariate(X)
 be coerced to a numerical matrix).}
 }
 \value{
-#' a matrix of normalized spectral data.
+a matrix of normalized spectral data.
 }
 \description{
-\lifecycle{stable}
 \loadmathjax
 This function normalizes each row of an input matrix by
 subtracting each row by its mean and dividing it by its standard deviation
@@ -41,9 +40,11 @@ matplot(
   xlab = "wavelength, nm",
   ylab = "snv"
 )
+
 \dontrun{
 apply(NIRsoil$spc_snv, 1, sd) # check
 }
+
 }
 \references{
 Barnes RJ, Dhanoa MS, Lister SJ. 1989. Standard normal variate

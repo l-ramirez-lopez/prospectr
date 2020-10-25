@@ -1,67 +1,71 @@
 #' @title Savitzky-Golay smoothing and differentiation
 #' @description
-#' \lifecycle{stable}
 #' \loadmathjax
 #' Savitzky-Golay smoothing and derivative of a data matrix or vector.
 #' @usage
 #' savitzkyGolay(X, m, p, w, delta.wav)
-#' @param X a numeric matrix or vector to process (optionally a data frame that 
+#' @param X a numeric matrix or vector to process (optionally a data frame that
 #' can be coerced to a numerical matrix).
 #' @param m the differentiation order.
 #' @param p the polynomial order.
 #' @param w a window size (must be odd).
 #' @param delta.wav (optional) sampling interval.
-#' @author Antoine Stevens and Leonardo Ramirez-Lopez
+#' @author Antoine Stevens and \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 #' @examples
 #' data(NIRsoil)
 #' opar <- par(no.readonly = TRUE)
 #' par(mfrow = c(2, 1), mar = c(4, 4, 2, 2))
-#' 
+#'
 #' # plot of the 10 first spectra
 #' matplot(as.numeric(colnames(NIRsoil$spc)),
-#'         t(NIRsoil$spc[1:10, ]),
-#'         type = "l",
-#'         xlab = "",
-#'         ylab = "Absorbance")
-#'         
+#'   t(NIRsoil$spc[1:10, ]),
+#'   type = "l",
+#'   xlab = "",
+#'   ylab = "Absorbance"
+#' )
+#'
 #' mtext("Raw spectra")
-#' NIRsoil$spc_sg <- savitzkyGolay(X = NIRsoil$spc,
-#'                                 m = 1,
-#'                                 p = 3,
-#'                                 w = 11,
-#'                                 delta.wav = 2)
-#'                                 
+#' NIRsoil$spc_sg <- savitzkyGolay(
+#'   X = NIRsoil$spc,
+#'   m = 1,
+#'   p = 3,
+#'   w = 11,
+#'   delta.wav = 2
+#' )
+#'
 #' matplot(as.numeric(colnames(NIRsoil$spc_sg)),
-#'         t(NIRsoil$spc_sg[1:10, ]),
-#'         type = "l", 
-#'         xlab = "Wavelength /nm",
-#'         ylab = "1st derivative")
-#'         
+#'   t(NIRsoil$spc_sg[1:10, ]),
+#'   type = "l",
+#'   xlab = "Wavelength /nm",
+#'   ylab = "1st derivative"
+#' )
+#'
 #' mtext("1st derivative spectra")
 #' par(opar)
+#' 
 #' @details
-#' The Savitzky-Golay algorithm fits a local polynomial regression on the signal. 
-#' It requires evenly spaced data points. Mathematically, it operates simply as 
+#' The Savitzky-Golay algorithm fits a local polynomial regression on the signal.
+#' It requires evenly spaced data points. Mathematically, it operates simply as
 #' a weighted sum over a given window:
-#' 
+#'
 #' \mjdeqn{ x_j\ast = \frac{1}{N}\sum_{h=-k}^{k}{c_hx_{j+h}}}{ x_j ast = 1/N \sum_{h=-k}^{k} c_hx_{j+h}}
-#' 
-#' where \mjeqn{x_j\ast}{x_j ast} is the new value, \mjeqn{N}{N} is a 
-#' normalizing coefficient, \mjeqn{k}{k} is the gap size on each side of 
-#' \mjeqn{j}{j} and \mjeqn{c_h}{c_h} are pre-computed coefficients, that depends 
+#'
+#' where \mjeqn{x_j\ast}{x_j ast} is the new value, \mjeqn{N}{N} is a
+#' normalizing coefficient, \mjeqn{k}{k} is the gap size on each side of
+#' \mjeqn{j}{j} and \mjeqn{c_h}{c_h} are pre-computed coefficients, that depends
 #' on the chosen polynomial order and degree.
 #'
-#' The sampling interval specified with the `delta.wav` argument is used for 
+#' The sampling interval specified with the `delta.wav` argument is used for
 #' scaling and get numerically correct derivatives.
-#' 
+#'
 #' The convolution function is written in C++/Rcpp for faster computations.
-#' 
-#' @references 
-#' Savitzky, A., and Golay, M.J.E., 1964. Smoothing and 
-#' differentiation of data by simplified least squares procedures. 
+#'
+#' @references
+#' Savitzky, A., and Golay, M.J.E., 1964. Smoothing and
+#' differentiation of data by simplified least squares procedures.
 #' Anal. Chem. 36, 1627-1639.
 #'
-#' Wentzell, P.D., and Brown, C.D., 2000. Signal processing in analytical 
+#' Wentzell, P.D., and Brown, C.D., 2000. Signal processing in analytical
 #' chemistry. Encyclopedia of Analytical Chemistry, 9764-9800.
 #' @export
 #'

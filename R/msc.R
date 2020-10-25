@@ -1,8 +1,9 @@
 #' @title Multiplicative Scatter Correction (msc)
 #'
 #' @description
-#' \lifecycle{maturing}
 #' \loadmathjax
+#' \ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a>}}{\strong{Maturing}}
+#'
 #' This function implements the multiplicative scatter correction method
 #' which attempts to remove physical light scatter by accounting for additive
 #' and multiplicative effects (Geladi et al., 1985).
@@ -30,7 +31,7 @@
 #' a matrix of normalized spectral data with an attribute which indicates the
 #' reference spectrum used.
 #' @author
-#' Leonardo Ramirez-Lopez and Guillaume Hans
+#' \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez} and Guillaume Hans
 #'
 #' @references
 #' Geladi, P., MacDougall, D., and Martens, H. 1985. Linearization and
@@ -51,6 +52,7 @@
 #'   xlab = "wavelength, nm",
 #'   ylab = "msc"
 #' )
+#' 
 #' @export
 msc <- function(X, reference_spc = colMeans(X)) {
   X <- as.matrix(X)

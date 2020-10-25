@@ -19,7 +19,6 @@ can be coerced to a numerical matrix).}
 \item{delta.wav}{(optional) sampling interval.}
 }
 \description{
-\lifecycle{stable}
 \loadmathjax
 Savitzky-Golay smoothing and derivative of a data matrix or vector.
 }
@@ -47,26 +46,31 @@ par(mfrow = c(2, 1), mar = c(4, 4, 2, 2))
 
 # plot of the 10 first spectra
 matplot(as.numeric(colnames(NIRsoil$spc)),
-        t(NIRsoil$spc[1:10, ]),
-        type = "l",
-        xlab = "",
-        ylab = "Absorbance")
-        
+  t(NIRsoil$spc[1:10, ]),
+  type = "l",
+  xlab = "",
+  ylab = "Absorbance"
+)
+
 mtext("Raw spectra")
-NIRsoil$spc_sg <- savitzkyGolay(X = NIRsoil$spc,
-                                m = 1,
-                                p = 3,
-                                w = 11,
-                                delta.wav = 2)
-                                
+NIRsoil$spc_sg <- savitzkyGolay(
+  X = NIRsoil$spc,
+  m = 1,
+  p = 3,
+  w = 11,
+  delta.wav = 2
+)
+
 matplot(as.numeric(colnames(NIRsoil$spc_sg)),
-        t(NIRsoil$spc_sg[1:10, ]),
-        type = "l", 
-        xlab = "Wavelength /nm",
-        ylab = "1st derivative")
-        
+  t(NIRsoil$spc_sg[1:10, ]),
+  type = "l",
+  xlab = "Wavelength /nm",
+  ylab = "1st derivative"
+)
+
 mtext("1st derivative spectra")
 par(opar)
+
 }
 \references{
 Savitzky, A., and Golay, M.J.E., 1964. Smoothing and
@@ -77,5 +81,5 @@ Wentzell, P.D., and Brown, C.D., 2000. Signal processing in analytical
 chemistry. Encyclopedia of Analytical Chemistry, 9764-9800.
 }
 \author{
-Antoine Stevens and Leonardo Ramirez-Lopez
+Antoine Stevens and \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 }

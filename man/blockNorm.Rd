@@ -10,13 +10,14 @@ blockNorm(X, targetnorm = 1)
 \item{X}{a numeric matrix to transform (optionally a data frame that can
 be coerced to a numerical matrix).}
 
-\item{targetnorm}{desired sum of squares for a block of variables (default = 1)}
+\item{targetnorm}{desired sum of squares for a block of variables
+(default = 1)}
 }
 \value{
-a list with components \code{Xscaled}, the scaled matrix and \code{f}, the scaling factor
+a list with components \code{Xscaled}, the scaled matrix and \code{f}, the
+scaling factor
 }
 \description{
-\lifecycle{stable}
 Sum of squares block weighting: allows to scale blocks of variables,
 but keeping the relative weights of the variables inside a block.
 }
@@ -27,13 +28,15 @@ produces a matrix with a pre--determined sum of squares.
 }
 \note{
 This is a \R port of the \file{MBnorm.m} function of the MB matlab toolbox
-by Fran van den Berg (\url{http://www.models.life.ku.dk/~courses/MBtoolbox/mbtmain.htm})
+by Fran van den Berg which can be found at:
+\href{http://www.models.life.ku.dk/~courses/MBtoolbox/mbtmain.htm}{http://www.models.life.ku.dk/~courses/MBtoolbox/mbtmain.htm}
 }
 \examples{
 X <- matrix(rnorm(100), ncol = 10)
 # Block normalize to sum of square equals to 1
 res <- blockNorm(X, targetnorm = 1)
 sum(res$Xscaled^2) # check
+
 }
 \references{
 Eriksson, L., Johansson, E., Kettaneh, N., Trygg, J.,

@@ -1,5 +1,9 @@
 #' @useDynLib prospectr
-#' @import Rcpp foreach iterators
+#' @import lifecycle
+#' @import Rcpp
+#' @import foreach
+#' @import iterators
+#' @import mathjaxr
 ## usethis namespace: start
 #' @importFrom lifecycle deprecate_soft
 ## usethis namespace: end
@@ -10,7 +14,7 @@
 #'
 #' @description
 #'
-#' \lifecycle{maturing}
+#' \ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a>}}{\strong{Stable}}
 #'
 #' Misc functions for spectral data
 #' \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
@@ -20,7 +24,7 @@
 #' The functions included here are particularly useful in Near-Infrarred and Infrared
 #' Spectroscopy applications.
 #'
-#'  @details
+#' @details
 #'
 #' Currently, the following preprocessing functions are available:
 #'
@@ -63,9 +67,22 @@
 #' @name prospectr-package
 #' @aliases prospectr-package prospectr
 #' @title Overview of the functions in the prospectr package
+#' @seealso
+#' Useful links:
+#' \itemize{
+#' \item \url{https://github.com/l-ramirez-lopez/prospectr}
+#' \item Report bugs at \url{https://github.com/l-ramirez-lopez/prospectr/issues}
+#' }
 #' @author
-#' Antoine Stevens & Leonardo Ramirez-Lopez \email{ramirez.lopez.leo@@gmail.com},
-
+#'
+#' \strong{Maintainer}: Leonardo Ramirez-Lopez \email{ramirez.lopez.leo@gmail.com}
+#'
+#' Authors:
+#' \itemize{
+#' \item Antoine Stevens (\href{https://orcid.org/0000-0002-1588-7519}{ORCID})
+#'
+#' \item Leonardo Ramirez-Lopez (\href{https://orcid.org/0000-0002-5369-5120}{ORCID})
+#' }
 ######################################################################
 # prospectr
 # Copyrigth (C) 2020 Leonardo Ramirez-Lopez

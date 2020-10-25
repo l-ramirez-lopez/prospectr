@@ -1,6 +1,5 @@
 #' @title Cochran *C* Test
 #' @description
-#' \lifecycle{stable}
 #' \loadmathjax
 #' Detects and removes replicate outliers in data series based on the Cochran
 #' *C* test for homogeneity in variance.
@@ -19,14 +18,14 @@
 #'  \item{'`outliers`'}{ numeric vector giving the row indices of the input
 #'  data that have been flagged as outliers}
 #' }
-#' 
+#'
 #' @details
 #' The Cochran *C* test is test whether a single estimate of variance is
 #' significantly larger than a a group of variances.
 #' It can be computed as:
-#' 
+#'
 #' \mjdeqn{RMSD = \sqrt{\frac{1}{n} \sum_{i=1}^n {(y_i - \ddot{y}_i)^2}}}{RMSD = sqrt{{1}/{n} sum (y_i - ddot{y}_i)^2}}
-#' 
+#'
 #' where \mjeqn{y_i}{y_i} is the value of the side variable of the \mjeqn{i}{i}th sample,
 #' \mjeqn{\ddot{y}_i}{\ddot{y}_i} is the value of the side variable of the nearest neighbor
 #' of the \mjeqn{i}{i}th sample and \mjeqn{n}{n} is the total number of observations.

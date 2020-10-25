@@ -24,7 +24,6 @@ specified, the fwhm is assumed to be constant over the spectral range.}
 a matrix or vector with resampled values
 }
 \description{
-\lifecycle{stable}
 Resample a data matrix or vector to match the response of another instrument
 using full width half maximum (FWHM) values
 }
@@ -40,14 +39,17 @@ deviations of the gaussian densities defined by fwhm.
 data(NIRsoil)
 wav <- as.numeric(colnames(NIRsoil$spc))
 # Plot 10 first spectra
-matplot(wav, t(NIRsoil$spc[1:10, ]), type = "l", xlab = "Wavelength /nm", 
-        ylab = "Absorbance")
+matplot(wav, t(NIRsoil$spc[1:10, ]),
+  type = "l", xlab = "Wavelength /nm",
+  ylab = "Absorbance"
+)
 # ASTER SWIR bands (nm)
 new_wav <- c(1650, 2165, 2205, 2260, 2330, 2395) # positions
 fwhm <- c(100, 40, 40, 50, 70, 70) #  fwhm's
 # Resample NIRsoil to ASTER band positions
 aster <- resample2(NIRsoil$spc, wav, new_wav, fwhm)
 matpoints(as.numeric(colnames(aster)), t(aster[1:10, ]), pch = 1:5)
+
 }
 \seealso{
 \code{\link{resample}}
