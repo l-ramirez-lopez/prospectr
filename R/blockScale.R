@@ -5,7 +5,7 @@
 #' In multivariate calibration, block scaling is used to down-weight variables,
 #' when one block of variables dominates other blocks.
 #' With hard block scaling, the variables in a block are scaled so that the sum
-#' of their variances equals 1. Wen soft block scaling is used, the variables
+#' of their variances equals 1. When soft block scaling is used, the variables
 #' are scaled such that the sum of variable variances is equal to the square
 #' root of the number of variables in a particular block.
 #' @usage
