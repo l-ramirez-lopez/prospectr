@@ -1,3 +1,7 @@
+prospectr 0.2.2
+===============
+* standardNormalVariate returns now a matrix (previosuly a data.frame)
+
 prospectr 0.2.1
 ===============
 * New license
