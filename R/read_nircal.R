@@ -92,7 +92,7 @@
 ##                   Function compartmentalization.
 ## 13.03.2020 (leo): bug fix. from 1:n[idxdescription] to (1:n)[idxdescription]
 ## 13.05.2020 (leo): reads from URLs
-read_nircal <- function(file,
+my_read_nircal <- function(file,
                         response = TRUE,
                         spectra = TRUE,
                         metadata = TRUE,
@@ -407,7 +407,7 @@ get_nircal_comments <- function(connection, metanumbers, begin_s, comment_s, com
 
   readb <- function(..i.., connection, comment_s, comment_f) {
     seek(connection, where = comment_s[..i..], origin = "start")
-
+browser()
     i.comment <- readBin(
       readBin(connection,
         what = "raw",
