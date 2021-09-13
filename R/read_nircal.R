@@ -86,7 +86,7 @@
 ## 13.06.2019 (leo): Property names with a slash character "/" (e.g. TMA/ABVT)
 ##                   were causing the function to crash. This was fixed
 ##                   Any "/" in a property name will be replaced with "_"
-## 13.03.2020 (leo): using now connections in conjuctioon with raw vectors
+## 13.03.2020 (leo): using now connections in conjunction with raw vectors
 ##                   (hexView no longer used). Code for reading responses,
 ##                   spectra and metadata has been vectorized (significantly).
 ##                   Function compartmentalization.
@@ -226,8 +226,6 @@ read_nircal <- function(file,
   ## it is here where each spectrum starts
   spctra_start <- spctra_start[spctra_start > min(rawcoords$spcinfo)]
 
-
-
   ## -- Collect the spectra  --
   if (spectra) {
     dspectra <- get_nircal_spectra(
@@ -239,8 +237,6 @@ read_nircal <- function(file,
     )
     dextracted$spc <- dspectra
   }
-
-
 
   if (progress) {
     setTxtProgressBar(pb, g1 + g2 + g3)
@@ -387,7 +383,7 @@ get_nircal_ids <- function(connection, from, to) {
     readBin(connection, what = "raw", n = to - from),
     "character"
   )
-
+  
   ids <- iconv(ids, to = "UTF-8", sub = NA)
   ids <- strsplit(ids, "\n", useBytes = TRUE)[[1]]
   ids <- ids[-c(1, length(ids))]
@@ -408,7 +404,7 @@ get_nircal_comments <- function(connection, metanumbers, begin_s, comment_s, com
 
   readb <- function(..i.., connection, comment_s, comment_f) {
     seek(connection, where = comment_s[..i..], origin = "start")
-browser()
+
     i.comment <- readBin(
       readBin(connection,
         what = "raw",
@@ -510,11 +506,12 @@ get_nircal_lengthspc <- function(connection, from, to) {
 #' @keywords internal
 get_nircal_response <- function(x, n) {
   ## get the data of the response variables
-  property_info_start <- grepRaw("10/Properties\n18/Property Selection",
+  property_info_start <- grepRaw(
+    "10/Properties\n18/Property Selection",
     x,
     all = TRUE
   )[1]
-
+  
   property_info_end <- grepRaw("begin", x, offset = property_info_start, all = TRUE)
 
   property_info_indcs <- property_info_start:(property_info_start + property_info_end[2] - property_info_start)
@@ -530,31 +527,35 @@ get_nircal_response <- function(x, n) {
     offset = property_info_start,
     all = TRUE
   )
+  
   property_names_indcs <- property_names_indcs[3]:(property_names_indcs[3] + property_info_end[3] - property_names_indcs[3])
-  property_names_char <- readBin(x[property_names_indcs],
+  property_names_char <- readBin(
+    x[property_names_indcs],
     what = "character"
   )
-
-
-
+  
   property_names_utf <- iconv(property_names_char, from = "ASCII", to = "UTF-8", sub = "byte")
 
   property_names_utf <- strsplit(property_names_utf, "\n", useBytes = TRUE)[[1]][1 + c(1:nproperties_n)]
   property_names_char <- strsplit(property_names_char, "\n", useBytes = TRUE)[[1]][1 + c(1:nproperties_n)]
 
-  property_names_search <- sapply(property_names_char,
+  property_names_search <- sapply(
+    property_names_char,
     FUN = function(x) strsplit(x, "[0-9]{0,}/")[[1]][[2]],
     USE.NAMES = FALSE
   )
+  
   property_names_search <- gsub(
     pattern = "[[:punct:]]",
     replacement = "[[:punct:]]",
     x = property_names_search
   )
+  
   property_names_search <- gsub("[^ -~]", "[^ -~]", property_names_search)
   property_names_char <- gsub("[^ -~]", "[^ -~]", property_names_char)
 
-  property_names <- sapply(property_names_utf,
+  property_names <- sapply(
+    property_names_utf,
     FUN = function(x) strsplit(x, "[0-9]{0,}/")[[1]][[2]],
     USE.NAMES = FALSE
   )
@@ -568,20 +569,29 @@ get_nircal_response <- function(x, n) {
 
   nval <- paste(length(property_names), "Values")
 
-  property_names_search <- paste(c(nval, paste("[0-9]{0,}\\/", property_names_search, sep = "", collapse = "\n"), "[0-9]{0,}", nval, "begin"), collapse = "\n")
+  property_names_search <- paste(
+    c(nval, 
+      paste("[0-9]{0,}\\/", property_names_search, sep = "", collapse = "\n"), 
+      "[0-9]{0,}", 
+      nval, 
+      "begin"), 
+    collapse = "\n")
 
-  property_indices <- grepRaw(property_names_search,
+  property_indices <- grepRaw(
+    property_names_search,
     x,
     all = TRUE
   )
 
 
-  lengthproperty_indices <- length(grepRaw(property_names_search,
-    x,
-    all = FALSE,
-    value = TRUE
-  )) + 1
-
+  lengthproperty_indices <- length(
+    grepRaw(
+      property_names_search,
+      x,
+      all = FALSE,
+      value = TRUE
+    )) + 1
+  
 
   if (sum(duplicated(property_names)) > 0) {
     wnr <- c("Some property names are duplicated, please correct the names. Indices have been added to the repeated names")
@@ -597,7 +607,7 @@ get_nircal_response <- function(x, n) {
   }
   property_names <- gsub("/", "_", property_names)
 
-  respidx <- unlist(lapply((property_indices + lengthproperty_indices)[1:(n-11)],
+  respidx <- unlist(lapply((property_indices + lengthproperty_indices)[1:(n)],
     FUN = function(x, l) {
       vec <- x:(x + l)
       vec
