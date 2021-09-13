@@ -92,7 +92,7 @@
 ##                   Function compartmentalization.
 ## 13.03.2020 (leo): bug fix. from 1:n[idxdescription] to (1:n)[idxdescription]
 ## 13.05.2020 (leo): reads from URLs
-my_read_nircal <- function(file,
+read_nircal <- function(file,
                         response = TRUE,
                         spectra = TRUE,
                         metadata = TRUE,
@@ -387,7 +387,8 @@ get_nircal_ids <- function(connection, from, to) {
     readBin(connection, what = "raw", n = to - from),
     "character"
   )
-  ids <- iconv(ids, from = "ASCII", to = "UTF-8", sub = "byte")
+
+  ids <- iconv(ids, to = "UTF-8", sub = NA)
   ids <- strsplit(ids, "\n", useBytes = TRUE)[[1]]
   ids <- ids[-c(1, length(ids))]
   ids <- substr(x = ids, start = regexpr("/", ids) + 1, stop = 100000)
@@ -596,8 +597,11 @@ get_nircal_response <- function(x, n) {
   }
   property_names <- gsub("/", "_", property_names)
 
-  respidx <- unlist(lapply((property_indices + lengthproperty_indices)[1:n],
-    FUN = function(x, l) x:(x + l),
+  respidx <- unlist(lapply((property_indices + lengthproperty_indices)[1:(n-11)],
+    FUN = function(x, l) {
+      vec <- x:(x + l)
+      vec
+      },
     l = 8 * nproperties_n - 1
   ))
 
