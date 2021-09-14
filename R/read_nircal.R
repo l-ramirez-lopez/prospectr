@@ -92,12 +92,12 @@
 ##                   Function compartmentalization.
 ## 13.03.2020 (leo): bug fix. from 1:n[idxdescription] to (1:n)[idxdescription]
 ## 13.05.2020 (leo): reads from URLs
-my_read_nircal <- function(file,
-                           response = TRUE,
-                           spectra = TRUE,
-                           metadata = TRUE,
-                           progress = TRUE,
-                           verbose = TRUE) {
+read_nircal <- function(file,
+                        response = TRUE,
+                        spectra = TRUE,
+                        metadata = TRUE,
+                        progress = TRUE,
+                        verbose = TRUE) {
   con <- file(file, "rb")
   
   if ("url" %in% class(con)) {
@@ -189,23 +189,28 @@ my_read_nircal <- function(file,
     setTxtProgressBar(pb, g1)
   }
   
-  .comment <- get_nircal_comments(
-    connection = con,
-    metanumbers = rawcoords$metanumbers,
-    begin_s = rawcoords$begin_s,
-    comment_s = rawcoords$comment_s,
-    comment_f = rawcoords$comment_f,
-    n = nd
-  )
-  
-  description <- get_nircal_description(
-    x = nircalraw,
-    begin_s = rawcoords$begin_s,
-    spcinfo = rawcoords$spcinfo,
-    comment_s = rawcoords$comment_s,
-    comment_f = rawcoords$comment_f,
-    n = nd
-  )
+  if (!is.null(rawcoords$comment_s) | !is.null(rawcoords$comment_f)) {
+    .comment <- get_nircal_comments(
+      connection = con,
+      metanumbers = rawcoords$metanumbers,
+      begin_s = rawcoords$begin_s,
+      comment_s = rawcoords$comment_s,
+      comment_f = rawcoords$comment_f,
+      n = nd
+    )
+    
+    description <- get_nircal_description(
+      x = nircalraw,
+      begin_s = rawcoords$begin_s,
+      spcinfo = rawcoords$spcinfo,
+      comment_s = rawcoords$comment_s,
+      comment_f = rawcoords$comment_f,
+      n = nd
+    )
+  } else {
+    warning("comments and description fields cointain unreadable data, these fields have been skipped")
+    .comment <- description <- rep(NA, nd)
+  }
   
   dextracted$Comment <- as.character(.comment)
   dextracted$Description <- as.character(description)
@@ -360,6 +365,12 @@ get_nircal_indices <- function(x) {
   srchc_f <- "\n[ [:punct:][:alnum:]]{0,}\\/[ [:punct:][:alnum:]]{0,}\n38\\/\\{"
   comment_s <- grepRaw(srchc_s, x, ignore.case = TRUE, all = TRUE)
   comment_f <- grepRaw(srchc_f, x, ignore.case = TRUE, all = TRUE)
+  
+  if (length(comment_s) < nss | length(comment_f) < nss) {
+    read_comments_description <- FALSE
+    comment_s <- comment_f <- NULL
+  }
+  
   
   return(list(
     nsamples = nss,
