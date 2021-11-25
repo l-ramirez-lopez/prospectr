@@ -409,11 +409,11 @@ get_nircal_ids <- function(connection, from, to) {
 get_nircal_comments <- function(connection, metanumbers, begin_s, comment_s, comment_f, n) {
   if (length(comment_s) < n | length(comment_f) < n) {
     warning("comments cannot be read")
-    comment <- rep(NA,)
+    comment <- rep(NA, n)
     return(comment)
   } else {
-    comment_s <- comment_s[1:nss]  
-    comment_f <- comment_f[1:nss]
+    comment_s <- comment_s[1:n]  
+    comment_f <- comment_f[1:n]
     
     
     seek(connection,
