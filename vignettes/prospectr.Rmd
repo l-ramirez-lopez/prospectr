@@ -80,6 +80,7 @@ Function Name           | Description
 `movav`                 | simple moving (or running) average filter    
 `savitzkyGolay`         | Savitzky--Golay smoothing and derivative       
 `gapDer`                | gap--segment derivative                        
+`baseline`              | baseline removal (similar to `continuumRemoval`)
 `continuumRemoval`      | computes continuum--removed values                               
 `detrend`               | detrend normalization
 `standardNormalVariate` | Standard Normal Variate (SNV) transformation
@@ -256,7 +257,8 @@ legend("topleft",
        col = c("black", "red"))
 ```
 
-## Scatter corrections
+
+## Scatter and baseline corrections
 
 Undesired spectral variations due to light _scatter_ effects and variations in 
 effective _path length_  can be removed using scatter corrections.
@@ -362,6 +364,39 @@ legend("topleft",
 par(new = FALSE)
 ```
 
+### Baseline removal
+
+This method estimates the baseline of a given spectrum and subtract it from the 
+original spectrum. For this, the `baseline` function comprises three basic steps:
+
+1. The convex hull points of each spectrum are identified using the 
+`grDevices::chull` function.   
+  
+2. To obtain the baseline of each spectrum, the convex hull points are linearly 
+interpolated to the same frequencies of the original spectra. 
+  
+3. The baseline of each spectrum is subtracted from the original input spectrum.
+
+```{r baselined, fig.cap = "Absorbance spectra, baseline spectra and baseline corrected spectra", fig.height = 4, fig.width = 6, fig.retina = 1, out.extra='style= "background-color: #FFFFFF; border: 10px solid transparent; padding:0px"'}
+data(NIRsoil)
+
+wav <- as.numeric(colnames(NIRsoil$spc))
+# plot of the 3 first absorbance spectra
+matplot(wav,
+        t(NIRsoil$spc[1:3, ]),
+        type = "l",
+        ylim = c(0, .6),
+        xlab = "Wavelength /nm",
+        ylab = "Absorbance")
+grid()
+ 
+bs <- baseline(NIRsoil$spc, wav)
+matlines(wav, t(bs[1:3, ]))
+ 
+fitted_baselines <- attr(bs, "baselines")
+matlines(wav, t(fitted_baselines[1:3, ]))
+```
+
 ## Centering and scaling
 
 Centering and scaling tranforms a given matrix to a matrix with columns with 
@@ -422,17 +457,13 @@ half maximum (FWHM) values (`resample2`).
 The continuum removal technique was introduced by @clark1984 as an effective
 method to highlight absorption features of minerals. It can be viewed as an 
 albedo normalization technique. This technique is based on the computation 
-of the continuum (or envelope) of a given spectrum. The continuum-removed 
-spectrum of a given spectrum is computed as follows:
+of the continuum (or envelope) of a given spectrum. It is very similar to 
+`baseline`, however it differs from it in the third step, in which instead of 
+a baseline subtraction it divides the original spectrum by its continuum as follows: 
 
-1. The convex hull points are identified.   
-  
-2. Then, these points are connected by linear interpolation to form the 
-continuum. 
-  
-3. The continuum-removed spectrum is given by 
-$\phi_{i} = \frac{x_{i}}{c_{i}};  i=\left \{ 1,..., p\right\}$, where $x_{i}$ 
-and $c_{i}$ are the original and the continuum reflectance (or absorbance) 
+$$\phi_{i} = \frac{x_{i}}{c_{i}};  i=\left \{ 1,..., p\right\}$$ 
+
+where $x_{i}$ and $c_{i}$ are the original and the continuum reflectance (or absorbance) 
 values respectively at the $i$^th wavelength of a set of $p$ wavelengths, and 
 $\phi_{i}$ is the final reflectance (or absorbance) value after continuum 
 removal.
@@ -454,7 +485,6 @@ matplot(as.numeric(colnames(NIRsoil$spc)),
 matlines(as.numeric(colnames(NIRsoil$spc)), lty = 1, t(cr[1:3, ]))
 grid()
 ```
-
 
 
 # Calibration sampling algorithms 
