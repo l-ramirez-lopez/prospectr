@@ -26,6 +26,7 @@ Currently, the following preprocessing functions are available:
 \item{\code{\link{standardNormalVariate}}}
 \item{\code{\link{msc}}}
 \item{\code{\link{detrend}}}
+\item{\code{\link{baseline}}}
 \item{\code{\link{blockScale}}}
 \item{\code{\link{blockNorm}}}
 \item{\code{\link{binning}}}
