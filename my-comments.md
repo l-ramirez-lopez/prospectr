@@ -1,6 +1,64 @@
 # prospectr
  
-# Rhub checks for release of `resemble 0.2.1` (`seville`)
+# version 0.2.2
+
+## Package was built using: 
+```
+devtools::build(
+  pkg = ".",
+  path = NULL,
+  binary = FALSE,
+  vignettes = TRUE,
+  manual = TRUE,
+  args = NULL,
+  quiet = FALSE
+)
+```
+
+The package was stripping some symbols for Rcpp functions in Makevars in order 
+to reduce the installation size of the package. Now these lines have been 
+commented to comply with CRAN policies:
+#strippedLib: $(SHLIB)
+#		if test -e "/usr/bin/strip" & test -e "/bin/uname" & [[ `uname` == "Linux" ]]; then /usr/bin/strip --strip-debug $(SHLIB); fi
+#.phony: strippedLib
+
+
+# Rhub checks for release of `prospectr 0.2.2` (`flawil`) 26.11.2021
+The checks were conducted in the following platforms through rhub:
+
+```
+rhub::check("/home/rl_leonardo/github/prospectr_0.2.2.tar.gz", 
+            platform = c("fedora-gcc-devel"), 
+            email = "ramirez.lopez.leo@gmail.com")
+```
+
+- "windows-x86_64-devel" OK
+
+- "macos-highsierra-release-cran" OK
+
+- "linux-x86_64-rocker-gcc-san" ## Not checked Rhub throwed a PREPERROR
+
+- "ubuntu-gcc-release"
+* checking installed package size ... NOTE
+installed size is  7.5Mb
+sub-directories of 1Mb or more:
+  data   1.9Mb
+libs   4.2Mb
+"debian-clang-devel" OK
+
+- "fedora-gcc-devel"
+checking installed package size ... NOTE
+installed size is  7.3Mb
+sub-directories of 1Mb or more:
+  data   1.9Mb
+libs   4.0Mb
+
+- "solaris-x86-patched-ods" OK
+
+# version 0.2.1
+
+# Rhub checks for release of `prospectr 0.2.1` (`seville`)
+
 
 24.10.2020
 
