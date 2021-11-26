@@ -35,6 +35,7 @@
 #'   \item{\code{\link{standardNormalVariate}}}
 #'   \item{\code{\link{msc}}}
 #'   \item{\code{\link{detrend}}}
+#'   \item{\code{\link{baseline}}}
 #'   \item{\code{\link{blockScale}}}
 #'   \item{\code{\link{blockNorm}}}
 #'   \item{\code{\link{binning}}}
@@ -85,7 +86,7 @@
 #' }
 ######################################################################
 # prospectr
-# Copyrigth (C) 2020 Leonardo Ramirez-Lopez
+# Copyrigth (C) 2021 Leonardo Ramirez-Lopez
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
