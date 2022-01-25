@@ -92,6 +92,8 @@
 ##                   Function compartmentalization.
 ## 13.03.2020 (leo): bug fix. from 1:n[idxdescription] to (1:n)[idxdescription]
 ## 13.05.2020 (leo): reads from URLs
+## 25.01.2022 (leo): bug fix in get_nircal_description(): it reads the proper 
+##                   number of recods based on n
 read_nircal <- function(file,
                         response = TRUE,
                         spectra = TRUE,
@@ -198,7 +200,7 @@ read_nircal <- function(file,
       comment_f = rawcoords$comment_f,
       n = nd
     )
-    
+
     description <- get_nircal_description(
       x = nircalraw,
       begin_s = rawcoords$begin_s,
@@ -463,8 +465,9 @@ get_nircal_description <- function(x, begin_s, spcinfo, comment_s, comment_f, n)
     description <- rep(NA,)
     return(description)
   } else {
-    
-    
+    comment_s <- comment_s[1:n]
+    comment_f <- comment_f[1:n]
+
     ## The numbers in NIRCal files preceeding the files comment and description (e.g 11/ or 7/)
     metanumbers <- grepRaw("[[0-9]]{0,}\\/Comment\n[[0-9]{0,}\\/Description", x, all = TRUE)[1]
     metanumbersinfo <- readBin(x[metanumbers:(metanumbers + begin_s[sum(metanumbers > begin_s) + 1])], "character")
