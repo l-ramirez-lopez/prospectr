@@ -12,7 +12,7 @@
 #' the range over which the points are averaged (default = 1, i.e. no 
 #' smoothing corresponding to Norris-Gap Derivative).
 #' @param delta.wav the sampling interval (or band spacing).
-#' @author Antoine Stevens
+#' @author Antoine Stevens and \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez} 
 #' @details
 #' In this type of derivatives, the gap size (\mjeqn{g}{g}) is half the of the 
 #' window size plus one (\mjeqn{w = 2g + 1}{w = 2g + 1}). Note that this 
@@ -52,13 +52,13 @@
 #' )
 #'
 #' mtext("1st derivative spectra with a window size = 11 nm")
-#' der <- gapDer(NIRsoil$spc, m = 1, w = 11, s = 10, delta.wav = 2)
+#' der <- gapDer(NIRsoil$spc, m = 1, w = 11, s = 5, delta.wav = 2)
 #' matplot(as.numeric(colnames(der)), t(der[1:10, ]),
 #'   type = "l",
 #'   xlab = "Wavelength /nm",
 #'   ylab = "gap derivative"
 #' )
-#' mtext("1st derivative spectra with: window size: 11 nm, smoothing: 10 nm")
+#' mtext("1st derivative spectra with: window size: 11 nm, smoothing: 5 nm")
 #' par(opar)
 #' 
 #' @references Hopkins (2002). NIR News 14(5), 10.
