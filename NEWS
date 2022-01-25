@@ -1,3 +1,18 @@
+prospectr 0.2.3
+===============
+
+## New features
+
+* none
+
+## Improvements and fixes
+
+* There was a bug in the filter for the 3rd order derivative in gap segment 
+derivative (gapDer) function. One of the factors in the filter had a wrong 
+negative sign. 
+
+
+
 prospectr 0.2.2
 ===============
 
