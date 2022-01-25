@@ -19,7 +19,7 @@
 #' @details
 #' The Multiplicative Scatter Correction (MSC) is a normalization method that
 #' attempts to account for additive and multiplicative effects by aligning each
-#' spectrum (\mjeqn{x_i}{x_i}) with an ideal reference one (\mjeqn{x_r}{x_r}) as
+#' spectrum (\mjeqn{x_i}{x_i}) to an ideal reference one (\mjeqn{x_r}{x_r}) as
 #' follows:
 #'
 #' \mjdeqn{x_i = m_i x_r + a_i}{x_i = m_i x_r + a_i}
