@@ -93,7 +93,7 @@ gapDer <- function(X, m = 1, w = 1, s = 1, delta.wav) {
   } else if (m == 2) {
     fp <- c(os, zw, -2 * os, zw, os)
   } else if (m == 3) {
-    fp <- c(-os, zw, -3 * os, zw, -3 * os, zw, os)
+    fp <- c(-os, zw, 3 * os, zw, -3 * os, zw, os)
   } else {
     fp <- c(os, zw, -4 * os, zw, 6 * os, zw, -4 * os, zw, os)
   }
