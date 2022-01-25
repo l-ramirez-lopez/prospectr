@@ -28,7 +28,7 @@ and multiplicative effects (Geladi et al., 1985).
 \details{
 The Multiplicative Scatter Correction (MSC) is a normalization method that
 attempts to account for additive and multiplicative effects by aligning each
-spectrum (\mjeqn{x_i}{x_i}) with an ideal reference one (\mjeqn{x_r}{x_r}) as
+spectrum (\mjeqn{x_i}{x_i}) to an ideal reference one (\mjeqn{x_r}{x_r}) as
 follows:
 
 \mjdeqn{x_i = m_i x_r + a_i}{x_i = m_i x_r + a_i}
@@ -36,19 +36,6 @@ follows:
 
 where \mjeqn{a_i}{a_i} and \mjeqn{m_i}{m_i} are the additive and
 multiplicative terms respectively.
-}
-\examples{
-data(NIRsoil)
-NIRsoil$msc_spc <- msc(X = NIRsoil$spc)
-# 10 first snv spectra
-matplot(
-  x = as.numeric(colnames(NIRsoil$msc_spc)),
-  y = t(NIRsoil$msc_spc[1:10, ]),
-  type = "l",
-  xlab = "wavelength, nm",
-  ylab = "msc"
-)
-
 }
 \references{
 Geladi, P., MacDougall, D., and Martens, H. 1985. Linearization and
