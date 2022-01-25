@@ -67,13 +67,13 @@ matplot(as.numeric(colnames(der)), t(der[1:10, ]),
 )
 
 mtext("1st derivative spectra with a window size = 11 nm")
-der <- gapDer(NIRsoil$spc, m = 1, w = 11, s = 10, delta.wav = 2)
+der <- gapDer(NIRsoil$spc, m = 1, w = 11, s = 5, delta.wav = 2)
 matplot(as.numeric(colnames(der)), t(der[1:10, ]),
   type = "l",
   xlab = "Wavelength /nm",
   ylab = "gap derivative"
 )
-mtext("1st derivative spectra with: window size: 11 nm, smoothing: 10 nm")
+mtext("1st derivative spectra with: window size: 11 nm, smoothing: 5 nm")
 par(opar)
 
 }
@@ -85,5 +85,5 @@ Hopkins (2002). NIR News 14(5), 10.
 \code{\link{binning}}, \code{\link{continuumRemoval}}
 }
 \author{
-Antoine Stevens
+Antoine Stevens and \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 }
