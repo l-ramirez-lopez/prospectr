@@ -49,5 +49,5 @@ standardNormalVariate <- function(X) {
   }
   X <- sweep(X, 1, rowMeans(X, na.rm = TRUE), "-")
   X <- sweep(X, 1, apply(X, 1, sd, na.rm = TRUE), "/")
-  return(X)
+  as.matrix(X)
 }

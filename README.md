@@ -11,7 +11,7 @@
 <em><p align="left"> Misc. Functions for Processing and Sample Selection of Spectroscopic Data </p></em>
 _Antoine Stevens & Leo Ramirez-Lopez_
 
-_Last update: 24.10.2020_
+_Last update: 26.11.2021_
 
 `prospectr` is becoming more and more used in spectroscopic applications, which 
 is evidenced by the number of scientific publications citing the package. 
@@ -29,7 +29,7 @@ packages.
 Check the NEWS document for new functionality and general changes in the package.
 
 ## Vignette
-A vignette for `prospectr` explaining its core functionality is available at [https://cran.r-project.org/web/packages/prospectr/vignettes/prospectr.html](https://cran.r-project.org/web/packages/prospectr/vignettes/prospectr.html).
+A vignette for `prospectr` explaining its core functionality is available at [https://CRAN.R-project.org/package=prospectr/vignettes/prospectr.html](https://CRAN.R-project.org/package=prospectr/vignettes/prospectr.html).
 
 ## Core functionality
 A vignette gives an overview of the main functions of the package. Just
@@ -69,17 +69,17 @@ Other useful functions are also available:
 ## Citing the package
 
   Antoine Stevens and Leornardo Ramirez-Lopez (2020). An introduction to the prospectr package. R package
-  Vignette R package version 0.2.1.
+  Vignette R package version 0.2.2.
 
 A BibTeX entry for LaTeX users is:
  
  ```
- @Manual{stevens2020prospectr,
+ @Manual{stevens2021prospectr,
     title = {An introduction to the prospectr package},
     author = {Antoine Stevens and Leornardo Ramirez-Lopez},
     publication = {R package Vignette},
-    year = {2020},
-    note = {R package version 0.2.1},
+    year = {2021},
+    note = {R package version 0.2.2},
   }
   ```
 

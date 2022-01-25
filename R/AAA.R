@@ -6,7 +6,7 @@
     file = system.file("DESCRIPTION", package = pkg),
     fields = "Version"
   )
-  packageStartupMessage(paste(pkg, "version", prospectr.v, "-- 'seville'"))
+  packageStartupMessage(paste(pkg, "version", prospectr.v, "-- 'flawil'"))
   mss2 <- paste0(
     "check the github repository at: ",
     "http://github.com/l-ramirez-lopez/prospectr"

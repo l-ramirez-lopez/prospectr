@@ -5,11 +5,12 @@
 #' gapDer(X, m = 1, w = 1, s = 1, delta.wav)
 #' @param X a numeric matrix or vector` to transform (optionally a data frame
 #' that can be coerced to a numerical matrix).
-#' @param m the order of the derivative, between 1 and 4 (default = 1).
-#' @param w the filter length (should be odd and >=1), i.e. the spacing
+#' @param m an integer indicating the order of the derivative, between 1 and 4 (default = 1).
+#' @param w an integer indicating the gap or filter length (must be odd and >=1), i.e. the spacing
 #' between points over which the derivative is computed.
-#' @param s the segment size, i.e. the range over which the points are averaged
-#' (default = 1, i.e. no smoothing corresponding to 'Norris' Gap Derivative).
+#' @param s an integer indicating the segment size (must be odd and >=1), i.e. 
+#' the range over which the points are averaged (default = 1, i.e. no 
+#' smoothing corresponding to Norris-Gap Derivative).
 #' @param delta.wav the sampling interval (or band spacing).
 #' @author Antoine Stevens
 #' @details
@@ -64,45 +65,49 @@
 #'
 gapDer <- function(X, m = 1, w = 1, s = 1, delta.wav) {
   if (w < 1 | !w %% 2) {
-    stop("w should be odd and >= 1")
+    stop("w must be odd and >= 1")
   }
   if (m < 1 | m > 4) {
-    stop("m should be between 1 and 4")
+    stop("m must be between 1 and 4")
   }
-  if (s < 1) {
-    stop("s should be  >=1")
+  if (s < 1 | !s %% 2) {
+    stop("s must be odd and >=1")
+  }
+  
+  filter_length <- m * w + (m + 1) * s 
+
+  if (filter_length > ncol(X)) {
+    stop("the current parameters produce a filter with a length larger than the number of variables in X")
   }
 
   if (is.data.frame(X)) {
     X <- as.matrix(X)
   }
+  
   zw <- rep(0, w)
   os <- rep(1, s)
+  nmr <- factorial(m)
 
   if (m == 1) {
     fp <- c(-os, zw, os)
-    nmr <- 1
   } else if (m == 2) {
     fp <- c(os, zw, -2 * os, zw, os)
-    nmr <- 2
   } else if (m == 3) {
-    fp <- c(-os, zw, -3 * os, zw, -3 * os, zw, os)
-    nmr <- 6
+    fp <- c(-os, zw, 3 * os, zw, -3 * os, zw, os)
   } else {
     fp <- c(os, zw, -4 * os, zw, 6 * os, zw, -4 * os, zw, os)
-    nmr <- 24
   }
   j <- (length(fp) - 1) / 2
   j <- -j:j
   nf <- 1 / nmr * sum((j^m) * fp)
-  f <- fp / nf # filter
+  sg_filter <- fp / nf # filter
 
   if (is.matrix(X)) {
     if (w >= ncol(X)) {
       stop("filter length w should be lower than ncol(X)")
     }
-    output <- convCppM(X, f) # Convolution
-    g <- (length(f) - 1) / 2
+    output <- convCppM(X, sg_filter) # Convolution
+    g <- (length(sg_filter) - 1) / 2
     colnames(output) <- colnames(X)[(g + 1):(ncol(X) - g)]
     rownames(output) <- rownames(X)
   }
@@ -111,7 +116,7 @@ gapDer <- function(X, m = 1, w = 1, s = 1, delta.wav) {
     if (w >= length(X)) {
       stop("filter length w should be lower than length(X)")
     }
-    output <- convCppV(X, f) # Convolution
+    output <- convCppV(X, sg_filter) # Convolution
     g <- (w - 1) / 2
     names(output) <- names(X)[((g + 1):(length(X) - g))]
   }

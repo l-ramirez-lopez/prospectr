@@ -5,6 +5,7 @@
 .travis.yml
 ^appveyor\.yml$
 cran-comments.md
+^my-comments\.md$
 code_ex.R
 ^Rscript*
 ^packrat/

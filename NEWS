@@ -1,3 +1,19 @@
+prospectr 0.2.2
+===============
+
+## New features
+
+* a new function for baseline correction was added. See baseline()  
+
+## Improvements and fixes
+
+* The package was stripping some symbols for Rcpp functions in Makevars in order 
+to reduce the installation size of the package. Now these lines have been 
+commented to comply with CRAN policies
+
+* standardNormalVariate returns now a matrix (previosuly a data.frame)
+
+
 prospectr 0.2.1
 ===============
 * New license
