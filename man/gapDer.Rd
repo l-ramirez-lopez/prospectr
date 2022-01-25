@@ -12,7 +12,7 @@ that can be coerced to a numerical matrix).}
 
 \item{m}{an integer indicating the order of the derivative, between 1 and 4 (default = 1).}
 
-\item{w}{an integer indicating the gap or filter length (must be odd and >=1), i.e. the spacing
+\item{w}{an integer indicating the window size (must be odd and >=1), i.e. the spacing
 between points over which the derivative is computed.}
 
 \item{s}{an integer indicating the segment size (must be odd and >=1), i.e.
@@ -28,6 +28,10 @@ a matrix or vector with the filtered signal(s)
 Gap-Segment derivatives of a data matrix or vector
 }
 \details{
+In this type of derivatives, the gap size (\mjeqn{g}{g}) is half the of the
+window size plus one (\mjeqn{w = 2g + 1}{w = 2g + 1}). Note that this
+function uses window size instead of gap size as input argument.
+
 The sampling interval specified with the \code{delta.wav} argument is used for
 scaling and get numerically correct derivatives.
 
