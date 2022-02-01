@@ -41,47 +41,46 @@
 #' )
 #' # add bands used during the selection process
 #' abline(v = wav[sel$bands])
-#' 
 #' @details
-#' The Honigs algorithm is a simple method to select calibration samples based 
-#' on their absorption features. Absorbance, reflectance and continuum-removed 
+#' The Honigs algorithm is a simple method to select calibration samples based
+#' on their absorption features. Absorbance, reflectance and continuum-removed
 #' reflectance values (see \code{\link{continuumRemoval}}) can be used (`type`
 #'  argument).
-#' The algorithm can be described as follows: let \eqn{A} be a matrix of 
+#' The algorithm can be described as follows: let \eqn{A} be a matrix of
 #' \eqn{(i \times j)} absorbance values:
 #'
 #' \enumerate{
-#'  \item the observation (row) with the maximum absolute absorbance 
+#'  \item the observation (row) with the maximum absolute absorbance
 #'  (\eqn{max(|A|)}) is selected and assigned to the calibration set.
-#'  \item a vector of weights \eqn{W} is computed as \eqn{A_j/max_A} where 
+#'  \item a vector of weights \eqn{W} is computed as \eqn{A_j/max_A} where
 #'  \eqn{A_j} is the column of \eqn{A} having the maximum absolute absorbance
-#'  and \eqn{max_A} is the absorbance value corresponding to the maximum 
+#'  and \eqn{max_A} is the absorbance value corresponding to the maximum
 #'  absolute absorbance of \eqn{A}
-#'  \item each row \eqn{A_i} is multiplied by the corresponding weight \eqn{W_i} 
+#'  \item each row \eqn{A_i} is multiplied by the corresponding weight \eqn{W_i}
 #'  and the resulting vector is subtracted from the original row \eqn{A_i}.
-#'  \item the row of the selected observation and the column with the maximum 
+#'  \item the row of the selected observation and the column with the maximum
 #'  absolute absorbance is removed from the matrix
-#'  \item go back to step 1 and repeat the procedure until the desired number 
+#'  \item go back to step 1 and repeat the procedure until the desired number
 #'  of selected samples is reached
 #' }
 #'
 #' The observation with the maximum absorbance is considered to have
-#' an unusual composition. The algorithm selects therefore this observation and 
-#' remove from other samples the selected absorption feature by subtraction. 
-#' Samples with low concentration related to this absorption will then have 
+#' an unusual composition. The algorithm selects therefore this observation and
+#' remove from other samples the selected absorption feature by subtraction.
+#' Samples with low concentration related to this absorption will then have
 #' large negative absorption after the subtraction step
-#' and hence will be likely to be selected rapidly by the selection procedure 
+#' and hence will be likely to be selected rapidly by the selection procedure
 #' as well.
 #'
-#' @note The selection procedure is sensitive to noisy features in the signal. 
-#' The number of samples selected `k` selected by the algorithm cannot be 
+#' @note The selection procedure is sensitive to noisy features in the signal.
+#' The number of samples selected `k` selected by the algorithm cannot be
 #' greater than the number of wavelengths.
-#' @references 
-#' Honigs D.E., Hieftje, G.M., Mark, H.L. and Hirschfeld, T.B. 1985. 
-#' Unique-sample selection via Near-Infrared spectral substraction. 
+#' @references
+#' Honigs D.E., Hieftje, G.M., Mark, H.L. and Hirschfeld, T.B. 1985.
+#' Unique-sample selection via Near-Infrared spectral substraction.
 #' Analytical Chemistry, 57, 2299-2303
-#' 
-#' @seealso \code{\link{kenStone}}, \code{\link{naes}}, \code{\link{duplex}}, 
+#'
+#' @seealso \code{\link{kenStone}}, \code{\link{naes}}, \code{\link{duplex}},
 #' \code{\link{shenkWest}}
 #' @export
 #'

@@ -19,7 +19,7 @@
 #' @details
 #' The Multiplicative Scatter Correction (MSC) is a normalization method that
 #' attempts to account for additive and multiplicative effects by aligning each
-#' spectrum (\mjeqn{x_i}{x_i}) with an ideal reference one (\mjeqn{x_r}{x_r}) as
+#' spectrum (\mjeqn{x_i}{x_i}) to an ideal reference one (\mjeqn{x_r}{x_r}) as
 #' follows:
 #'
 #' \mjdeqn{x_i = m_i x_r + a_i}{x_i = m_i x_r + a_i}
@@ -43,8 +43,8 @@
 #'
 #' @examples
 #' data(NIRsoil)
-#' NIRsoil$msc_spc <- msc(X = NIRsoil$spc)
-#' # 10 first snv spectra
+#' NIRsoil$msc_spc <- msc(X = NIRsoil$spc, reference_spc = colMeans(X))
+#' # 10 first msc spectra
 #' matplot(
 #'   x = as.numeric(colnames(NIRsoil$msc_spc)),
 #'   y = t(NIRsoil$msc_spc[1:10, ]),
@@ -52,8 +52,23 @@
 #'   xlab = "wavelength, nm",
 #'   ylab = "msc"
 #' )
-#' 
+#'
+#' # another example
+#' spectra_a <- NIRsoil$spc[1:40, ]
+#' spectra_b <- NIRsoil$spc[-(1:40), ]
+#'
+#' spectra_a_msc <- msc(spectra_a, colMeans(X))
+#'
+#' # correct spectra_a based on the reference spectrum used to correct
+#' # spectra_a
+#'
+#' spectra_b_msc <- msc(
+#'   spectra_b, 
+#'   reference_spc = attr(spectra_a_msc, "Reference spectrum")
+#' )
 #' @export
+
+
 msc <- function(X, reference_spc = colMeans(X)) {
   X <- as.matrix(X)
 

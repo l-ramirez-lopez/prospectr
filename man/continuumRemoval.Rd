@@ -4,8 +4,8 @@
 \alias{continuumRemoval}
 \title{Continuum Removal}
 \usage{
-continuumRemoval(X, wav, type = c("R", "A"), 
-                 interpol = c("linear", "spline"), 
+continuumRemoval(X, wav, type = c("R", "A"),
+                 interpol = c("linear", "spline"),
                  method = c("division", "substraction"))
 }
 \arguments{
@@ -54,7 +54,6 @@ matplot(wav,
 #  # type = 'A' is used for absorbance spectra
 cr <- continuumRemoval(NIRsoil$spc, wav, type = "A")
 matlines(wav, t(cr[1:10, ]))
-
 }
 \references{
 Clark, R.N., and Roush, T.L., 1984. Reflectance Spectroscopy: Quantitative

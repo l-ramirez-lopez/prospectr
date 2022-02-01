@@ -86,7 +86,7 @@
 #' }
 ######################################################################
 # prospectr
-# Copyrigth (C) 2021 Leonardo Ramirez-Lopez
+# Copyrigth (C) 2022 Leonardo Ramirez-Lopez
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

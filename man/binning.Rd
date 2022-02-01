@@ -57,7 +57,6 @@ matpoints(as.numeric(colnames(NIRsoil$spc_binned)),
   t(NIRsoil$spc_binned[1:5, ]),
   pch = 1:5
 )
-
 }
 \seealso{
 \code{\link{savitzkyGolay}}, \code{\link{movav}},

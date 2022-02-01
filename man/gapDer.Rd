@@ -10,13 +10,16 @@ gapDer(X, m = 1, w = 1, s = 1, delta.wav)
 \item{X}{a numeric matrix or vector` to transform (optionally a data frame
 that can be coerced to a numerical matrix).}
 
-\item{m}{the order of the derivative, between 1 and 4 (default = 1).}
+\item{m}{an integer indicating the order of the derivative, larger than 1
+(default is 1). Note that this function allows for high order derivatives
+(e.g. m = 6).}
 
-\item{w}{the filter length (should be odd and >=1), i.e. the spacing
+\item{w}{an integer indicating the gap size (must be odd and >=1), i.e. the spacing
 between points over which the derivative is computed.}
 
-\item{s}{the segment size, i.e. the range over which the points are averaged
-(default = 1, i.e. no smoothing corresponding to 'Norris' Gap Derivative).}
+\item{s}{an integer indicating the segment size (must be odd and >=1), i.e.
+the range over which the points are averaged (default = 1, i.e. no
+smoothing corresponding to Norris-Gap Derivative).}
 
 \item{delta.wav}{the sampling interval (or band spacing).}
 }
@@ -27,6 +30,10 @@ a matrix or vector with the filtered signal(s)
 Gap-Segment derivatives of a data matrix or vector
 }
 \details{
+In this type of derivatives, the gap size denotes the length of the x
+interval that separates the two segments that are averaged.  A detailed
+explanation of gap segment derivatives can be found in Hopkins (2001).
+
 The sampling interval specified with the \code{delta.wav} argument is used for
 scaling and get numerically correct derivatives.
 
@@ -62,23 +69,22 @@ matplot(as.numeric(colnames(der)), t(der[1:10, ]),
 )
 
 mtext("1st derivative spectra with a window size = 11 nm")
-der <- gapDer(NIRsoil$spc, m = 1, w = 11, s = 10, delta.wav = 2)
+der <- gapDer(NIRsoil$spc, m = 1, w = 11, s = 5, delta.wav = 2)
 matplot(as.numeric(colnames(der)), t(der[1:10, ]),
   type = "l",
   xlab = "Wavelength /nm",
   ylab = "gap derivative"
 )
-mtext("1st derivative spectra with: window size: 11 nm, smoothing: 10 nm")
+mtext("1st derivative spectra with: window size: 11 nm, smoothing: 5 nm")
 par(opar)
-
 }
 \references{
-Hopkins (2002). NIR News 14(5), 10.
+Hopkins, D. W. (2001). What is a Norris derivative?. NIR news, 12(3), 3-5.
 }
 \seealso{
 \code{\link{savitzkyGolay}}, \code{\link{movav}},
 \code{\link{binning}}, \code{\link{continuumRemoval}}
 }
 \author{
-Antoine Stevens
+Antoine Stevens and \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 }

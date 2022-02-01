@@ -2,15 +2,23 @@
 
 .onAttach <- function(lib, pkg) {
   # assign("gpclib", FALSE, envir=.prospectr_CACHE)
-  prospectr.v <- read.dcf(
+  prospectr_v <- read.dcf(
     file = system.file("DESCRIPTION", package = pkg),
     fields = "Version"
   )
-  packageStartupMessage(paste(pkg, "version", prospectr.v, "-- 'flawil'"))
-  mss2 <- paste0(
-    "check the github repository at: ",
-    "http://github.com/l-ramirez-lopez/prospectr"
+  mss <- paste0(
+    "\033[34m",
+    pkg, " version ",
+    prospectr_v,
+    " -- \033[39m'positive'"
   )
+  
+  mss2 <- paste0(
+    "\033[34mcheck the github repository at: ",
+    "https://github.com/l-ramirez-lopez/prospectr/\033[39m"
+  )
+  
+  packageStartupMessage(mss)  
   packageStartupMessage(mss2)
 }
 

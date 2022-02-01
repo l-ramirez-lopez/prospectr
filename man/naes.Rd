@@ -87,7 +87,6 @@ points(sel$pc[sel2$model, 1:2],
   pch = 15,
   cex = 1
 )
-
 }
 \references{
 Naes, T., 1987. The design of calibration in near infra-red reflectance

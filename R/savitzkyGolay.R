@@ -42,7 +42,6 @@
 #'
 #' mtext("1st derivative spectra")
 #' par(opar)
-#' 
 #' @details
 #' The Savitzky-Golay algorithm fits a local polynomial regression on the signal.
 #' It requires evenly spaced data points. Mathematically, it operates simply as
@@ -61,9 +60,15 @@
 #' The convolution function is written in C++/Rcpp for faster computations.
 #'
 #' @references
+#' Luo, J., Ying, K., He, P., & Bai, J. (2005). Properties of Savitzky–Golay
+#' digital differentiators. Digital Signal Processing, 15(2), 122-136.
+#'
 #' Savitzky, A., and Golay, M.J.E., 1964. Smoothing and
 #' differentiation of data by simplified least squares procedures.
 #' Anal. Chem. 36, 1627-1639.
+#'
+#' Schafer, R. W. (2011). What is a Savitzky-Golay filter? (lecture notes). IEEE
+#' Signal processing magazine, 28(4), 111-117.
 #'
 #' Wentzell, P.D., and Brown, C.D., 2000. Signal processing in analytical
 #' chemistry. Encyclopedia of Analytical Chemistry, 9764-9800.

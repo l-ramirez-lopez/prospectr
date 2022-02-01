@@ -10,11 +10,11 @@ savitzkyGolay(X, m, p, w, delta.wav)
 \item{X}{a numeric matrix or vector to process (optionally a data frame that
 can be coerced to a numerical matrix).}
 
-\item{m}{the differentiation order.}
+\item{m}{an integer indcating the differentiation order.}
 
-\item{p}{the polynomial order.}
+\item{p}{an integer indicating the polynomial order.}
 
-\item{w}{a window size (must be odd).}
+\item{w}{an integer indicating the window size (must be odd).}
 
 \item{delta.wav}{(optional) sampling interval.}
 }
@@ -70,12 +70,17 @@ matplot(as.numeric(colnames(NIRsoil$spc_sg)),
 
 mtext("1st derivative spectra")
 par(opar)
-
 }
 \references{
+Luo, J., Ying, K., He, P., & Bai, J. (2005). Properties of Savitzky–Golay
+digital differentiators. Digital Signal Processing, 15(2), 122-136.
+
 Savitzky, A., and Golay, M.J.E., 1964. Smoothing and
 differentiation of data by simplified least squares procedures.
 Anal. Chem. 36, 1627-1639.
+
+Schafer, R. W. (2011). What is a Savitzky-Golay filter? (lecture notes). IEEE
+Signal processing magazine, 28(4), 111-117.
 
 Wentzell, P.D., and Brown, C.D., 2000. Signal processing in analytical
 chemistry. Encyclopedia of Analytical Chemistry, 9764-9800.

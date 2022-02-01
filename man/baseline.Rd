@@ -36,11 +36,12 @@ data(NIRsoil)
 wav <- as.numeric(colnames(NIRsoil$spc))
 # plot of the 5 first absorbance spectra
 matplot(wav,
-        t(NIRsoil$spc[1:5, ]),
-        type = "l",
-        ylim = c(0, .6),
-        xlab = "Wavelength /nm",
-        ylab = "Absorbance")
+  t(NIRsoil$spc[1:5, ]),
+  type = "l",
+  ylim = c(0, .6),
+  xlab = "Wavelength /nm",
+  ylab = "Absorbance"
+)
 
 bs <- baseline(NIRsoil$spc, wav)
 matlines(wav, t(bs[1:5, ]))
@@ -48,7 +49,6 @@ matlines(wav, t(bs[1:5, ]))
 fitted_baselines <- attr(bs, "baselines")
 matlines(wav, t(fitted_baselines[1:5, ]))
 title("Original spectra, baselines and baselined spectra")
-
 }
 \seealso{
 \code{\link{savitzkyGolay}}, \code{\link{movav}},

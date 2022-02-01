@@ -1,3 +1,24 @@
+prospectr 0.2.3
+===============
+
+## New features
+
+* The gap-segment derivatives (gapDer) function now allows for high order 
+derivatives. In previous versions the function only allowed up to derivaties of 
+4th order, in this version the the function accepts as derivative order 
+any integer larger than 1. 
+
+## Improvements and fixes
+
+* There was a bug in the filter for the 3rd order derivative in gap segment 
+derivative (gapDer) function. One of the factors in the filter had a wrong 
+negative sign. 
+
+* There was a bug in the read_nircal function. It emerged only in some files and 
+prevented the function from reading the Description field properly 
+
+
+
 prospectr 0.2.2
 ===============
 

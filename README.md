@@ -11,7 +11,7 @@
 <em><p align="left"> Misc. Functions for Processing and Sample Selection of Spectroscopic Data </p></em>
 _Antoine Stevens & Leo Ramirez-Lopez_
 
-_Last update: 26.11.2021_
+_Last update: 02.02.2022_
 
 `prospectr` is becoming more and more used in spectroscopic applications, which 
 is evidenced by the number of scientific publications citing the package. 
@@ -68,18 +68,18 @@ Other useful functions are also available:
 
 ## Citing the package
 
-  Antoine Stevens and Leornardo Ramirez-Lopez (2020). An introduction to the prospectr package. R package
-  Vignette R package version 0.2.2.
+  Antoine Stevens and Leornardo Ramirez-Lopez (2022). An introduction to the prospectr package. R package
+  Vignette R package version 0.2.3.
 
 A BibTeX entry for LaTeX users is:
  
  ```
- @Manual{stevens2021prospectr,
+ @Manual{stevens2022prospectr,
     title = {An introduction to the prospectr package},
     author = {Antoine Stevens and Leornardo Ramirez-Lopez},
     publication = {R package Vignette},
-    year = {2021},
-    note = {R package version 0.2.2},
+    year = {2022},
+    note = {R package version 0.2.3},
   }
   ```
 

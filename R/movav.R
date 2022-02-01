@@ -30,7 +30,6 @@
 #'   type = "l",
 #'   lty = 1
 #' )
-#' 
 #' @return a matrix or vector with the filtered signal(s)
 #' @seealso \code{\link{savitzkyGolay}}, \code{\link{gapDer}},
 #' \code{\link{binning}}, \code{\link{continuumRemoval}}

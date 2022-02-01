@@ -1,4 +1,52 @@
 # prospectr
+
+# version 0.2.3
+
+## Package was built using: 
+```
+devtools::build(
+  pkg = ".",
+  path = NULL,
+  binary = FALSE,
+  vignettes = TRUE,
+  manual = TRUE,
+  args = NULL,
+  quiet = FALSE
+)
+```
+The aim of the release was to fix minor bugs
+
+# R win builder checks for release of `prospectr 0.2.3` (`positive`) 20.01.2022 passed all the checks without notes
+
+# Rhub checks for release of `prospectr 0.2.3` (`positive`) 20.01.2022
+The checks were conducted in the following platforms through rhub:
+
+```
+rhub::check(paste0(gsub("/prospectr$", "/", getwd()), "prospectr_0.2.3.tar.gz"), 
+            platform = c("fedora-gcc-devel"), 
+            email = "ramirez.lopez.leo@gmail.com")
+```
+- "fedora-gcc-devel" NOTE
+* checking installed package size ... NOTE
+  installed size is  6.7Mb
+  sub-directories of 1Mb or more:
+    data   1.9Mb
+    libs   4.0Mb
+
+- "windows-x86_64-devel" 
+
+- "macos-highsierra-release-cran" OK
+
+- "linux-x86_64-rocker-gcc-san" ## Not checked Rhub throwed a PREPERROR
+
+- "ubuntu-gcc-release" NOTE
+* checking installed package size ... NOTE
+  installed size is  6.9Mb
+  sub-directories of 1Mb or more:
+    data   1.9Mb
+    libs   4.2Mb
+
+- "solaris-x86-patched-ods" OK
  
 # version 0.2.2
 

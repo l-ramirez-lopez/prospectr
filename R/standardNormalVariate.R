@@ -20,11 +20,10 @@
 #'   xlab = "wavelength, nm",
 #'   ylab = "snv"
 #' )
-#' 
 #' \dontrun{
 #' apply(NIRsoil$spc_snv, 1, sd) # check
 #' }
-#' 
+#'
 #' @return a matrix of normalized spectral data.
 #' @details
 #' SNV is simple way for normalizing spectral data that intends to correct for

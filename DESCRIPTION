@@ -2,8 +2,8 @@ Package: prospectr
 Type: Package
 Title: Miscellaneous Functions for Processing 
        and Sample Selection of Spectroscopic Data
-Version: 0.2.2
-Date: 2021-11-25
+Version: 0.2.3
+Date: 2022-01-26
 Author: 
     Antoine Stevens [aut, cre] (<https://orcid.org/0000-0002-1588-7519>), 
     Leonardo Ramirez-Lopez [aut, cre] (<https://orcid.org/0000-0002-5369-5120>),
