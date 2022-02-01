@@ -40,7 +40,7 @@
 #'
 #' @seealso \code{\link{standardNormalVariate}}, \code{\link{detrend}},
 #' \code{\link{blockScale}}, \code{\link{blockNorm}}
-#' 
+#'
 #' @examples
 #' data(NIRsoil)
 #' NIRsoil$msc_spc <- msc(X = NIRsoil$spc, reference_spc = colMeans(X))
@@ -52,17 +52,17 @@
 #'   xlab = "wavelength, nm",
 #'   ylab = "msc"
 #' )
-#' 
+#'
 #' # another example
-#' spectra_a <- NIRsoil$spc[1:40, ] 
-#' spectra_b <- NIRsoil$spc[-(1:40), ] 
-#' 
+#' spectra_a <- NIRsoil$spc[1:40, ]
+#' spectra_b <- NIRsoil$spc[-(1:40), ]
+#'
 #' spectra_a_msc <- msc(spectra_a, colMeans(X))
-#' 
-#' # correct spectra b based on the reference spectrum used to correct spectra a
-#' spectra_b_msc <- msc(spectra_b, reference_spc = attr(spectra_a_msc, "Reference spectrum))
-#' 
-#' 
+#'
+#' # correct spectra_a based on the reference spectrum used to correct
+#' # spectra_a
+#'
+#' spectra_b_msc <- msc(spectra_b, reference_spc = attr(spectra_a_msc, "Reference spectrum"))
 #' @export
 
 
