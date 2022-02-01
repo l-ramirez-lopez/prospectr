@@ -15,7 +15,7 @@
   
   mss2 <- paste0(
     "\033[34mcheck the github repository at: ",
-    "http://github.com/l-ramirez-lopez/prospectr\033[39"
+    "https://github.com/l-ramirez-lopez/prospectr/\033[39m"
   )
   
   packageStartupMessage(mss)  
