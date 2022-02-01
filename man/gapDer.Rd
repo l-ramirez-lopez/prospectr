@@ -12,7 +12,7 @@ that can be coerced to a numerical matrix).}
 
 \item{m}{an integer indicating the order of the derivative, between 1 and 4 (default = 1).}
 
-\item{w}{an integer indicating the window size (must be odd and >=1), i.e. the spacing
+\item{w}{an integer indicating the gap size (must be odd and >=1), i.e. the spacing
 between points over which the derivative is computed.}
 
 \item{s}{an integer indicating the segment size (must be odd and >=1), i.e.
@@ -28,9 +28,9 @@ a matrix or vector with the filtered signal(s)
 Gap-Segment derivatives of a data matrix or vector
 }
 \details{
-In this type of derivatives, the gap size (\mjeqn{g}{g}) is half the of the
-window size plus one (\mjeqn{w = 2g + 1}{w = 2g + 1}). Note that this
-function uses window size instead of gap size as input argument.
+In this type of derivatives, the gap size denotes the length of the x
+interval that separates the two segments that are averaged.  A detailed
+explanation of gap segment derivatives can be found in Hopkins (2001).
 
 The sampling interval specified with the \code{delta.wav} argument is used for
 scaling and get numerically correct derivatives.
@@ -78,7 +78,7 @@ par(opar)
 
 }
 \references{
-Hopkins (2002). NIR News 14(5), 10.
+Hopkins, D. W. (2001). What is a Norris derivative?. NIR news, 12(3), 3-5.
 }
 \seealso{
 \code{\link{savitzkyGolay}}, \code{\link{movav}},
