@@ -62,7 +62,10 @@
 #' # correct spectra_a based on the reference spectrum used to correct
 #' # spectra_a
 #'
-#' spectra_b_msc <- msc(spectra_b, reference_spc = attr(spectra_a_msc, "Reference spectrum"))
+#' spectra_b_msc <- msc(
+#'   spectra_b, 
+#'   reference_spc = attr(spectra_a_msc, "Reference spectrum")
+#' )
 #' @export
 
 

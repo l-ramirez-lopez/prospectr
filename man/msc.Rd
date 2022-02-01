@@ -58,7 +58,10 @@ spectra_a_msc <- msc(spectra_a, colMeans(X))
 # correct spectra_a based on the reference spectrum used to correct
 # spectra_a
 
-spectra_b_msc <- msc(spectra_b, reference_spc = attr(spectra_a_msc, "Reference spectrum"))
+spectra_b_msc <- msc(
+  spectra_b, 
+  reference_spc = attr(spectra_a_msc, "Reference spectrum")
+)
 }
 \references{
 Geladi, P., MacDougall, D., and Martens, H. 1985. Linearization and
