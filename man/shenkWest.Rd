@@ -4,11 +4,11 @@
 \alias{shenkWest}
 \title{SELECT algorithm for calibration sampling}
 \usage{
-shenkWest(X, 
+shenkWest(X,
           d.min = 0.6,
-          pc = 0.95, 
+          pc = 0.95,
           rm.outlier = FALSE,
-          .center = TRUE, 
+          .center = TRUE,
           .scale = FALSE)
 }
 \arguments{
@@ -62,17 +62,16 @@ distance \verb{>3} are removed.
 \examples{
 data(NIRsoil)
 # reduce data size
-NIRsoil$spc <- binning(X = NIRsoil$spc, bin.size = 5) 
+NIRsoil$spc <- binning(X = NIRsoil$spc, bin.size = 5)
 sel <- shenkWest(NIRsoil$spc, pc = .99, d.min = .3, rm.outlier = FALSE)
 plot(sel$pc[, 1:2], xlab = "PC1", ylab = "PC2")
 # points selected for calibration
-points(sel$pc[sel$model, 1:2], pch = 19, col = 2) 
+points(sel$pc[sel$model, 1:2], pch = 19, col = 2)
 # without outliers
 sel <- shenkWest(NIRsoil$spc, pc = .99, d.min = .3, rm.outlier = TRUE)
 plot(sel$pc[, 1:2], xlab = "PC1", ylab = "PC2")
 # points selected for calibration
-points(sel$pc[sel$model, 1:2], pch = 15, col = 3) 
-
+points(sel$pc[sel$model, 1:2], pch = 15, col = 3)
 }
 \references{
 Shenk, J.S., and Westerhaus, M.O., 1991. Population Definition,

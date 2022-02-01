@@ -3,12 +3,12 @@
 #' Select calibration samples from a large multivariate data using the DUPLEX
 #' algorithm
 #' @usage
-#' duplex(X, 
-#'        k, 
-#'        metric = c("mahal", "euclid"), 
-#'        pc, 
-#'        group, 
-#'        .center = TRUE, 
+#' duplex(X,
+#'        k,
+#'        metric = c("mahal", "euclid"),
+#'        pc,
+#'        group,
+#'        .center = TRUE,
 #'        .scale = FALSE)
 #' @param X a numeric matrix.
 #' @param k the number of calibration/validation samples.
@@ -18,17 +18,17 @@
 #' the samples. If not specified, distance are computed in the Euclidean space.
 #' Alternatively, distances are computed in the principal component space and
 #' `pc` is the number of principal components retained.
-#' If `pc < 1`, the number of principal components kept corresponds to the 
+#' If `pc < 1`, the number of principal components kept corresponds to the
 #' number
 #' of components explaining at least (`pc * 100`) percent of the total variance.
 #' @param group An optional `factor` (or vector that can be coerced to a factor
 #' by \code{\link{as.factor}}) of length equal to nrow(X), giving the identifier
 #' of related observations (e.g. samples of the same batch of measurements,
-#' samples of the same origin, or of the same soil profile). When one 
+#' samples of the same origin, or of the same soil profile). When one
 #' observation is
 #' selected by the procedure all observations of the same group are removed
 #' together and assigned to the calibration/validation sets. This allows to
-#' select calibration and validation samples that are independent from each 
+#' select calibration and validation samples that are independent from each
 #' other.
 #' @param .center logical value indicating whether the input matrix should be
 #' centered before projecting `X` onto the Principal Component space.
@@ -78,18 +78,17 @@
 #' sel <- duplex(X, k = 25, metric = "mahal")
 #' points(X[sel$model, ], pch = 19, col = 2) # points selected for calibration
 #' points(X[sel$test, ], pch = 15, col = 3) # points selected for validation
-#' 
-#' @seealso 
-#' \code{\link{kenStone}}, \code{\link{honigs}}, \code{\link{shenkWest}}, 
+#' @seealso
+#' \code{\link{kenStone}}, \code{\link{honigs}}, \code{\link{shenkWest}},
 #' \code{\link{naes}}
 #' @export
 
-duplex <- function(X, 
-                   k, 
-                   metric = c("mahal", "euclid"), 
-                   pc, 
-                   group, 
-                   .center = TRUE, 
+duplex <- function(X,
+                   k,
+                   metric = c("mahal", "euclid"),
+                   pc,
+                   group,
+                   .center = TRUE,
                    .scale = FALSE) {
   if (missing(k)) {
     stop("'k' must be specified")

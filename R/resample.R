@@ -6,7 +6,7 @@
 #' \pkg{base}.
 #' @usage
 #' resample(X, wav, new.wav, interpol = "spline", ...)
-#' @param X numeric matrix or vector to resample (optionally a data frame that 
+#' @param X numeric matrix or vector to resample (optionally a data frame that
 #' can be coerced to a numerical matrix).
 #' @param wav a numeric vector giving the original band positions.
 #' @param new.wav a numeric vector giving the new band positions.
@@ -21,10 +21,9 @@
 #' NIRsoil$spc_resampled <- resample(NIRsoil$spc, wav, seq(1100, 2498, 2))
 #' dim(NIRsoil$spc)
 #' dim(NIRsoil$spc_resampled)
-#' 
-#' @return 
+#' @return
 #' a matrix or vector with resampled values.
-#' @seealso 
+#' @seealso
 #' \code{\link{resample2}}
 #' @export
 #'

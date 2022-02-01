@@ -6,9 +6,9 @@
 #' blockNorm(X, targetnorm = 1)
 #' @param X a numeric matrix to transform (optionally a data frame that can
 #' be coerced to a numerical matrix).
-#' @param targetnorm desired sum of squares for a block of variables 
+#' @param targetnorm desired sum of squares for a block of variables
 #' (default = 1)
-#' @return a list with components `Xscaled`, the scaled matrix and `f`, the 
+#' @return a list with components `Xscaled`, the scaled matrix and `f`, the
 #' scaling factor
 #' @author Antoine Stevens
 #' @examples
@@ -16,15 +16,14 @@
 #' # Block normalize to sum of square equals to 1
 #' res <- blockNorm(X, targetnorm = 1)
 #' sum(res$Xscaled^2) # check
-#' 
-#' @seealso 
+#' @seealso
 #' \code{\link{blockScale}}, \code{\link{standardNormalVariate}},
 #' \code{\link{detrend}}
-#' @references 
+#' @references
 #' Eriksson, L., Johansson, E., Kettaneh, N., Trygg, J.,
 #' Wikstrom, C., and Wold, S., 2006. Multi- and Megavariate Data Analysis.
 #' MKS Umetrics AB.
-#' @details 
+#' @details
 #' The function computes a scaling factor, which, multiplied by the
 #' input matrix,
 #' produces a matrix with a pre--determined sum of squares.
@@ -32,7 +31,7 @@
 #' This is a \R port of the \file{MBnorm.m} function of the MB matlab toolbox
 #' by Fran van den Berg which can be found at:
 #' \href{http://www.models.life.ku.dk/~courses/MBtoolbox/mbtmain.htm}{http://www.models.life.ku.dk/~courses/MBtoolbox/mbtmain.htm}
-#' 
+#'
 #' @export
 blockNorm <- function(X, targetnorm = 1) {
   if (!any(class(X) %in% c("matrix", "data.frame"))) {

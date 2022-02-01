@@ -7,17 +7,17 @@
 #' that can be coerced to a numerical matrix).
 #' @param m an integer indicating the order of the derivative, between 1 and 4 (default = 1).
 #' @param w an integer indicating the gap size (must be odd and >=1), i.e. the spacing
-#' between points over which the derivative is computed. 
-#' @param s an integer indicating the segment size (must be odd and >=1), i.e. 
-#' the range over which the points are averaged (default = 1, i.e. no 
+#' between points over which the derivative is computed.
+#' @param s an integer indicating the segment size (must be odd and >=1), i.e.
+#' the range over which the points are averaged (default = 1, i.e. no
 #' smoothing corresponding to Norris-Gap Derivative).
 #' @param delta.wav the sampling interval (or band spacing).
-#' @author Antoine Stevens and \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez} 
+#' @author Antoine Stevens and \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 #' @details
-#' In this type of derivatives, the gap size denotes the length of the x 
-#' interval that separates the two segments that are averaged.  A detailed 
+#' In this type of derivatives, the gap size denotes the length of the x
+#' interval that separates the two segments that are averaged.  A detailed
 #' explanation of gap segment derivatives can be found in Hopkins (2001).
-#'  
+#'
 #' The sampling interval specified with the `delta.wav` argument is used for
 #' scaling and get numerically correct derivatives.
 #'
@@ -60,10 +60,9 @@
 #' )
 #' mtext("1st derivative spectra with: window size: 11 nm, smoothing: 5 nm")
 #' par(opar)
-#' 
-#' @references 
+#' @references
 #' Hopkins, D. W. (2001). What is a Norris derivative?. NIR news, 12(3), 3-5.
-#' @seealso \code{\link{savitzkyGolay}}, \code{\link{movav}}, 
+#' @seealso \code{\link{savitzkyGolay}}, \code{\link{movav}},
 #' \code{\link{binning}}, \code{\link{continuumRemoval}}
 #' @return a matrix or vector with the filtered signal(s)
 #' @export
@@ -78,8 +77,8 @@ gapDer <- function(X, m = 1, w = 1, s = 1, delta.wav) {
   if (s < 1 | !s %% 2) {
     stop("s must be odd and >= 1")
   }
-  
-  filter_length <- m * w + (m + 1) * s 
+
+  filter_length <- m * w + (m + 1) * s
 
   if (filter_length > ncol(X)) {
     stop("the current parameters produce a filter with a length larger than the number of variables in X")
@@ -88,7 +87,7 @@ gapDer <- function(X, m = 1, w = 1, s = 1, delta.wav) {
   if (is.data.frame(X)) {
     X <- as.matrix(X)
   }
-  
+
   zw <- rep(0, w)
   os <- rep(1, s)
   nmr <- factorial(m)

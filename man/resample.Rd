@@ -35,7 +35,6 @@ wav <- as.numeric(colnames(NIRsoil$spc))
 NIRsoil$spc_resampled <- resample(NIRsoil$spc, wav, seq(1100, 2498, 2))
 dim(NIRsoil$spc)
 dim(NIRsoil$spc_resampled)
-
 }
 \seealso{
 \code{\link{resample2}}

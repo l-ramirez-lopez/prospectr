@@ -88,7 +88,6 @@ matlines(wav,
 )
 # add bands used during the selection process
 abline(v = wav[sel$bands])
-
 }
 \references{
 Honigs D.E., Hieftje, G.M., Mark, H.L. and Hirschfeld, T.B. 1985.

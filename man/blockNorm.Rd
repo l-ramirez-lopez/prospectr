@@ -36,7 +36,6 @@ X <- matrix(rnorm(100), ncol = 10)
 # Block normalize to sum of square equals to 1
 res <- blockNorm(X, targetnorm = 1)
 sum(res$Xscaled^2) # check
-
 }
 \references{
 Eriksson, L., Johansson, E., Kettaneh, N., Trygg, J.,

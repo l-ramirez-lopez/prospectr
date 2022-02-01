@@ -58,7 +58,6 @@ matplot(wav, t(det[1:10, ]),
 )
 mtext("Detrend spectra")
 par(opar)
-
 }
 \references{
 Barnes RJ, Dhanoa MS, Lister SJ. 1989. Standard normal variate

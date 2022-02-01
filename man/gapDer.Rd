@@ -75,7 +75,6 @@ matplot(as.numeric(colnames(der)), t(der[1:10, ]),
 )
 mtext("1st derivative spectra with: window size: 11 nm, smoothing: 5 nm")
 par(opar)
-
 }
 \references{
 Hopkins, D. W. (2001). What is a Norris derivative?. NIR news, 12(3), 3-5.

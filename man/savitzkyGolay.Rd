@@ -70,7 +70,6 @@ matplot(as.numeric(colnames(NIRsoil$spc_sg)),
 
 mtext("1st derivative spectra")
 par(opar)
-
 }
 \references{
 Luo, J., Ying, K., He, P., & Bai, J. (2005). Properties of Savitzky–Golay

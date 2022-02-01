@@ -74,15 +74,20 @@ cochranTest <- function(X, id, fun = "sum", alpha = 0.05) {
   X <- data.frame(ID = 1:n, X, check.names = FALSE)
 
   while (pval <= alpha) {
-    x <- switch(fun, sum = {
-      apply(X[, -1], 1, sum)
-    }, mean = {
-      apply(X[, -1], 1, mean)
-    }, PC1 = {
-      prcomp(X[, -1], center = TRUE, .scale = FALSE)$x[, 1]
-    }, PC2 = {
-      prcomp(X[, -1], center = TRUE, .scale = FALSE)$x[, 2]
-    })
+    x <- switch(fun,
+      sum = {
+        apply(X[, -1], 1, sum)
+      },
+      mean = {
+        apply(X[, -1], 1, mean)
+      },
+      PC1 = {
+        prcomp(X[, -1], center = TRUE, .scale = FALSE)$x[, 1]
+      },
+      PC2 = {
+        prcomp(X[, -1], center = TRUE, .scale = FALSE)$x[, 2]
+      }
+    )
 
     vars <- tapply(x, id, var) # variances
     pval <- Cul(max(vars) / sum(vars), mean(table(id)), length(vars))

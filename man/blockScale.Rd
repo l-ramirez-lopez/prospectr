@@ -34,7 +34,6 @@ X <- matrix(rnorm(100), ncol = 10)
 res <- blockScale(X)
 # sum of column variances == 1
 apply(res$Xscaled, 2, var)
-
 }
 \references{
 Eriksson, L., Johansson, E., Kettaneh, N., Trygg, J.,

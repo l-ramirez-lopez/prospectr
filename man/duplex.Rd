@@ -4,12 +4,12 @@
 \alias{duplex}
 \title{DUPLEX algorithm for calibration sampling}
 \usage{
-duplex(X, 
-       k, 
-       metric = c("mahal", "euclid"), 
-       pc, 
-       group, 
-       .center = TRUE, 
+duplex(X,
+       k,
+       metric = c("mahal", "euclid"),
+       pc,
+       group,
+       .center = TRUE,
        .scale = FALSE)
 }
 \arguments{
@@ -87,7 +87,6 @@ plot(X[, 1], X[, 2], xlab = "VAR1", ylab = "VAR2")
 sel <- duplex(X, k = 25, metric = "mahal")
 points(X[sel$model, ], pch = 19, col = 2) # points selected for calibration
 points(X[sel$test, ], pch = 15, col = 3) # points selected for validation
-
 }
 \references{
 Kennard, R.W., and Stone, L.A., 1969. Computer aided design of experiments.

@@ -26,16 +26,16 @@
 #' }
 #' @author Antoine Stevens (\R port), Iain Robinson (matlab function) & Leonardo Ramirez-Lopez (\R port)
 #' @references
-#' Robinson, I., and A. MacArthur. 2011. The Field Spectroscopy Facility Post 
-#' Processing Toolbox User Guide. Post processing spectral data in MATLAB, 
+#' Robinson, I., and A. MacArthur. 2011. The Field Spectroscopy Facility Post
+#' Processing Toolbox User Guide. Post processing spectral data in MATLAB,
 #' University of Edinburgh, Edinburgh, UK.
 #' @note
-#' There is a \R port of the \file{importasd.m} function from the 
+#' There is a \R port of the \file{importasd.m} function from the
 #' \sQuote{FSFPostProcessing} Matlab toolbox by Iain Robinson
-#' (University of Edinburgh), which is based on some Java code provided 
+#' (University of Edinburgh), which is based on some Java code provided
 #' by Andreas Hunei (University of Zurich).
 #'
-#' It seems that ASD file format has changed quite a lot with file versions. The 
+#' It seems that ASD file format has changed quite a lot with file versions. The
 #' function will possibly not work as expected for
 #' all versions. Please report any bugs to the package maintainer.
 #' @export
