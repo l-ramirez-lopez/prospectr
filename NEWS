@@ -3,7 +3,10 @@ prospectr 0.2.3
 
 ## New features
 
-* none
+* The gap-segment derivatives (gapDer) function now allows for high order 
+derivatives. In previous versions the function only allowed up to derivaties of 
+4th order, in this version the the function accepts as derivative order 
+any integer larger than 1. 
 
 ## Improvements and fixes
 
