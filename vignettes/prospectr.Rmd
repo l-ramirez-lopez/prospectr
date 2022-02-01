@@ -232,14 +232,16 @@ gd1 <- t(diff(t(NIRsoil$spc), differences = 1, lag = 10))
 ```
 
 For more flexibility and control over the degree of smoothing, one could however 
-use the Savitzky-Golay (`savitzkyGolay`) and Gap-segment derivative (`gapDer`)
+use the Savitzky-Golay (`savitzkyGolay`) and gap-segment derivative (`gapDer`)
 algorithms. The Gap-segment algorithms performs first a smoothing under a given
 segment size, followed by a derivative of a given order under a given gap size. 
-Here is an exemple of the use of the `gapDer` function.
+Here is an example of the use of the `gapDer` function. For Savitzky-Golay and 
+gap-segment derivatives we refer the reader to @luo2005properties and 
+@hopkins2001norris respectively.
 
 ```{r gapseg,fig.cap="Effect of 1st-order gap-segment derivative ", fig.height = 4, fig.width = 6, fig.retina = 1, out.extra='style= "background-color: #FFFFFF; border: 10px solid transparent; padding:0px"'}
 # m = order of the derivative
-# w = window size ( = {2 * gap size} + 1)
+# w = gap size
 # s = segment size
 # first derivative with a gap of 5 bands
 gsd1 <- gapDer(X = NIRsoil$spc, m = 1, w = 11, s = 5) 
