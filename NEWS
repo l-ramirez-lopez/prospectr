@@ -3,6 +3,10 @@ prospectr 0.2.3
 
 ## New features
 
+* The kenStone function now includes a new feature that allows to initalize the
+calibration sample search with a user-defined subset of observations (which are 
+to be included in the final calibration subset).
+
 * The gap-segment derivatives (gapDer) function now allows for high order 
 derivatives. In previous versions the function only allowed up to derivaties of 
 4th order, in this version the the function accepts as derivative order 
