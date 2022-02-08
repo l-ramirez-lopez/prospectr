@@ -94,7 +94,7 @@
 #' \code{\link{honigs}}
 #' @export
 
-kenStone2 <- function(
+kenStone <- function(
   X, 
   k, 
   metric = "mahal", 
