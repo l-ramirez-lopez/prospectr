@@ -4,7 +4,8 @@
 \alias{kenStone}
 \title{Kennard-Stone algorithm for calibration sampling}
 \usage{
-kenStone(X, k, metric = "mahal", pc, group, .center = TRUE, .scale = FALSE)
+kenStone(X, k, metric = "mahal", pc, group,
+         .center = TRUE, .scale = FALSE, init = NULL)
 }
 \arguments{
 \item{X}{a numeric matrix.}
