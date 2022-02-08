@@ -4,7 +4,8 @@
 #' Select calibration samples from a large multivariate data using the
 #' Kennard-Stone algorithm
 #' @usage
-#' kenStone(X, k, metric = "mahal", pc, group, .center = TRUE, .scale = FALSE)
+#' kenStone(X, k, metric = "mahal", pc, group,
+#'          .center = TRUE, .scale = FALSE, init = NULL)
 #' @param X a numeric matrix.
 #' @param k number of calibration samples to be selected.
 #' @param metric distance metric to be used: 'euclid' (Euclidean distance) or
