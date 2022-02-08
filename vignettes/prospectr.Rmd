@@ -595,7 +595,7 @@ points(X[ken$model,], col = "red", pch = 19, cex = 1.4)
 # Test with the NIRsoil dataset
 # one can also use the mahalanobis distance (metric argument)
 # computed in the pc space (pc argument)
-ken_mahal <- kenStone(X = NIRsoil$spc, k = 20, metric = "mahal", pc= 2)
+ken_mahal <- kenStone(X = NIRsoil$spc, k = 20, metric = "mahal", pc = 2)
 # The pc components in the output list stores the pc scores
 plot(ken_mahal$pc[,1], 
      ken_mahal$pc[,2], 
@@ -609,6 +609,48 @@ grid()
 points(ken_mahal$pc[ken_mahal$model, 1], 
        ken_mahal$pc[ken_mahal$model,2], 
        pch = 19, col = "red") 
+```
+
+In cases where we have calibration samples which have been already pre-selected, 
+we can use the `init` argument of the `kenStone()` function. If we 
+want to force (because of convenience) a subset of observations in the 
+calibration set search we can initialize the Kennard-Stone algorithm with such 
+samples. For example:
+
+```{r ksinitalization, tidy = TRUE}
+# Indices of the initialization samples
+initialization_ind <- c(486, 702, 722, 728) 
+ken_mahal_init <- kenStone(
+  X = NIRsoil$spc, 
+  k = 20, 
+  metric = "mahal", 
+  pc = 2, 
+  init = initialization_ind)
+
+ken_mahal_init$model
+```
+
+```{r ken3, fig.cap="Kennard-Stone sampling with initialization samples", fig.height = 4.5, fig.width = 4, fig.retina = 1, fig.align = 'center', out.extra='style= "background-color: #FFFFFF; border: 10px solid transparent; padding:0px"'}
+
+# The pc components in the output list stores the pc scores
+plot(ken_mahal_init$pc[,1], 
+     ken_mahal_init$pc[,2], 
+     col = rgb(0, 0, 0, 0.3), 
+     pch = 19, 
+     xlab = "PC1",
+     ylab = "PC2",
+     main = "Kennard-Stone with 4 initialization samples") 
+grid()
+# This is the selected points in the pc space
+points(ken_mahal$pc[ken_mahal$model, 1], 
+       ken_mahal$pc[ken_mahal$model, 2], 
+       pch = 19, col = "red") 
+
+# Our initialization samples
+points(ken_mahal$pc[initialization_ind, 1], 
+       ken_mahal$pc[initialization_ind, 2], 
+       pch = 19, cex = 1.5, col = "blue") 
+
 ```
 
 
