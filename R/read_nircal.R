@@ -100,6 +100,7 @@ read_nircal <- function(file,
                         metadata = TRUE,
                         progress = TRUE,
                         verbose = TRUE) {
+  
   con <- file(file, "rb")
 
   if ("url" %in% class(con)) {
@@ -125,8 +126,13 @@ read_nircal <- function(file,
     what = "raw",
     n = file.info(file)$size
   )
-
-  isnircal <- grepRaw("NIRCAL Project File", readLines(con = file, 1:2), all = TRUE)
+  
+  first_lines <- readLines(con = file, 1:2)
+  if (length(first_lines) > 1) {
+    isnircal <- grepRaw("NIRCAL Project File", first_lines, all = TRUE)
+  } else {
+    isnircal <- NULL
+  }
 
   if (length(isnircal) == 0) {
     stop("Ups! This does not look like a BUCHI NIRCal file")
