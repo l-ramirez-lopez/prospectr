@@ -52,6 +52,7 @@
 #' \code{\link{gapDer}}, \code{\link{continuumRemoval}}
 #' @export
 #'
+
 binning <- function(X, bins, bin.size) {
   if (is.data.frame(X)) {
     X <- as.matrix(X)
@@ -62,32 +63,44 @@ binning <- function(X, bins, bin.size) {
   if (missing(bins) & missing(bin.size)) {
     return(X)
   }
-
+  
   if (is.matrix(X)) {
-    p1 <- ncol(X)
+    nv <- ncol(X)
   } else {
-    p1 <- length(X)
+    nv <- length(X)
   }
-
+  browser()
+  bins  <- bins + 1
   if (missing(bins) & !missing(bin.size)) {
-    b <- findInterval(1:p1, seq(1, p1, bin.size))
+    b <- findInterval(
+      1:nv, 
+      seq(1, nv, bin.size)
+    )
   } else {
-    b <- findInterval(1:p1, seq(1, p1, length.out = bins + 1), rightmost.closed = TRUE)
+    b <- findInterval(
+      1:nv, 
+      seq(1, nv, length.out = bins), 
+      rightmost.closed = TRUE
+    )
   }
-
-  p2 <- max(b)
-
+  
+  n_classes <- max(b)
+  
   if (is.matrix(X)) {
-    output <- matrix(0, nrow(X), p2)
-    for (i in seq_len(p2)) {
-      output[, i] <- rowMeans(X[, b == i, drop = F])
-    }
+    
+    output <- matrix(0, nrow(X), n_classes)
+    
+    # for (i in seq_len(n_classes)) {
+    #   output[, i] <- rowMeans(X[, b == i, drop = F])
+    # }
+    
+    output <- t(aggregate(t(X), by = list(bin = b), FUN = mean))[-1, ]
     colnames(output) <- colnames(X)[ceiling(tapply(b, b, function(x) mean(which(b == x[1]), na.rm = TRUE)))] # find colnames
     rownames(output) <- rownames(X)
   } else {
     output <- tapply(X, b, mean)
     names(output) <- names(X)[ceiling(tapply(b, b, function(x) mean(which(b == x[1]), na.rm = TRUE)))]
   }
-
+  
   return(output)
 }
