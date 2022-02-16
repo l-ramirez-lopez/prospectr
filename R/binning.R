@@ -69,7 +69,7 @@ binning <- function(X, bins, bin.size) {
   } else {
     nv <- length(X)
   }
-  browser()
+
   bins  <- bins + 1
   if (missing(bins) & !missing(bin.size)) {
     b <- findInterval(
