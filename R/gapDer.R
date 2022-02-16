@@ -120,7 +120,7 @@ gapDer <- function(X, m = 1, w = 1, s = 1, delta.wav) {
 
   if (is.matrix(X)) {
     if (w >= ncol(X)) {
-      stop("filter length w should be lower than ncol(X)")
+      stop("filter length w must be lower than ncol(X)")
     }
     output <- convCppM(X, sg_filter) # Convolution
     g <- (length(sg_filter) - 1) / 2
@@ -130,7 +130,7 @@ gapDer <- function(X, m = 1, w = 1, s = 1, delta.wav) {
 
   if (is.vector(X)) {
     if (w >= length(X)) {
-      stop("filter length w should be lower than length(X)")
+      stop("filter length w must be lower than length(X)")
     }
     output <- convCppV(X, sg_filter) # Convolution
     g <- (w - 1) / 2
