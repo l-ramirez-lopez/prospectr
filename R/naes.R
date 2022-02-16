@@ -20,9 +20,9 @@
 #' centers (`method = 0`, default), samples farthest away from the centre of the
 #' data (`method = 1`) or
 #' random selection (`method = 2`).
-#' @param .center logical value indicating whether the input matrix should be
+#' @param .center logical value indicating whether the input matrix must be
 #' centered before Principal Component Analysis. Default set to \code{TRUE}.
-#' @param .scale logical value indicating whether the input matrix should be
+#' @param .scale logical value indicating whether the input matrix must be
 #' scaled before Principal Component Analysis. Default set to \code{FALSE}.
 #' @return a list with components:
 #' \itemize{
@@ -94,7 +94,7 @@ naes <- function(X, k, pc, iter.max = 10, method = 0, .center = TRUE, .scale = F
   }
 
   if (!method %in% 0:2) {
-    stop("'method' should be 0, 1 or 2")
+    stop("'method' must be 0, 1 or 2")
   }
 
   if (!missing(pc)) {
@@ -121,7 +121,7 @@ naes <- function(X, k, pc, iter.max = 10, method = 0, .center = TRUE, .scale = F
       stop("'k' has to be higher than 2")
     }
     if (k >= nrow(X)) {
-      stop("'k' should be lower than nrow(X)")
+      stop("'k' must be lower than nrow(X)")
     }
     n <- k
   }
