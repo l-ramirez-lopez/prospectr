@@ -74,13 +74,15 @@ binning <- function(X, bins, bin.size) {
   if (missing(bins) & !missing(bin.size)) {
     b <- findInterval(
       1:nv, 
-      seq(1, nv, bin.size)
+      seq(1, nv, bin.size), 
+      left.open = TRUE
     )
   } else {
     b <- findInterval(
       1:nv, 
       seq(1, nv, length.out = bins), 
-      rightmost.closed = TRUE
+      rightmost.closed = TRUE, 
+      left.open = TRUE
     )
   }
   
