@@ -46,10 +46,10 @@ resample2 <- function(X, wav, new.wav, fwhm) {
     X <- as.matrix(X)
   }
   if (missing(wav)) {
-    stop("wav argument should be specified")
+    stop("wav argument must be specified")
   }
   if (missing(new.wav)) {
-    stop("new.wav argument should be specified")
+    stop("new.wav argument must be specified")
   }
   if (missing(fwhm)) {
     fwhm <- c(new.wav[2] - new.wav[1], diff(new.wav, 2) / 2, new.wav[length(new.wav)] - new.wav[length(new.wav) - 1])
@@ -58,19 +58,19 @@ resample2 <- function(X, wav, new.wav, fwhm) {
     fwhm <- rep(fwhm, length(new.wav))
   }
   if (length(new.wav) != length(fwhm)) {
-    stop("length(fwhm) should be equal to length(new.wav)")
+    stop("length(fwhm) must be equal to length(new.wav)")
   }
 
   if (is.matrix(X)) {
     if (length(wav) != ncol(X)) {
-      stop("length(wav) should be equal to ncol(X)")
+      stop("length(wav) must be equal to ncol(X)")
     }
     output <- resample_fwhm(X, wav, new.wav, fwhm)
     rownames(output) <- rownames(X)
     colnames(output) <- new.wav
   } else {
     if (length(wav) != length(X)) {
-      stop("length(wav) should be equal to length(X)")
+      stop("length(wav) must be equal to length(X)")
     }
     output <- resample_fwhm_vec(X, wav, new.wav, fwhm)
     names(output) <- new.wav
