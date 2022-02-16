@@ -44,7 +44,7 @@
 #'
 standardNormalVariate <- function(X) {
   if (!any(class(X) %in% c("matrix", "data.frame"))) {
-    stop("X should be a matrix or optionally a data.frame")
+    stop("X must be a matrix or optionally a data.frame")
   }
   X <- sweep(X, 1, rowMeans(X, na.rm = TRUE), "-")
   X <- sweep(X, 1, apply(X, 1, sd, na.rm = TRUE), "/")
