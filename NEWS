@@ -15,6 +15,12 @@ any integer larger than 1.
 
 ## Improvements and fixes
 
+* spliceCorrection() now accepts one or two values as input for the splice
+argument. Previusly it only accepted a vector of length two. For example, now it 
+corrrects for splice steps of spectra that originates from spectrometers 
+with two detectors (i.e. it corrects for the potential abrupt transition 
+betwteen the two detectors). 
+
 * An extra sanity check has been added to the read_nircal() function. The 
 function evaluaes whether it is indeed a file properly produced by the BUCHI 
 nircal software. 
