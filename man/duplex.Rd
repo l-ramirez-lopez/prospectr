@@ -38,11 +38,11 @@ together and assigned to the calibration/validation sets. This allows to
 select calibration and validation samples that are independent from each
 other.}
 
-\item{.center}{logical value indicating whether the input matrix should be
+\item{.center}{logical value indicating whether the input matrix must be
 centered before projecting \code{X} onto the Principal Component space.
 Analysis. Default set to \code{TRUE}.}
 
-\item{.scale}{logical value indicating whether the input matrix should be
+\item{.scale}{logical value indicating whether the input matrix must be
 scaled before \code{X} onto the Principal Component space.
 Analysis. Default set to \code{FALSE}.}
 }
