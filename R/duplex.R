@@ -30,10 +30,10 @@
 #' together and assigned to the calibration/validation sets. This allows to
 #' select calibration and validation samples that are independent from each
 #' other.
-#' @param .center logical value indicating whether the input matrix should be
+#' @param .center logical value indicating whether the input matrix must be
 #' centered before projecting `X` onto the Principal Component space.
 #' Analysis. Default set to \code{TRUE}.
-#' @param .scale logical value indicating whether the input matrix should be
+#' @param .scale logical value indicating whether the input matrix must be
 #' scaled before `X` onto the Principal Component space.
 #' Analysis. Default set to \code{FALSE}.
 #' @return a `list` with components:
@@ -97,7 +97,7 @@ duplex <- function(X,
     stop("'X' must have at least 2 columns")
   }
   if (k < 2) {
-    stop("Invalid argument: 'k' should be higher than 2")
+    stop("Invalid argument: 'k' must be higher than 2")
   }
   metric <- match.arg(metric)
   if (is.data.frame(X)) {
@@ -134,7 +134,7 @@ duplex <- function(X,
 
   if (!missing(group)) {
     if (length(group) != nrow(X)) {
-      stop("length(group) should be equal to nrow(X)")
+      stop("length(group) must be equal to nrow(X)")
     }
     if (!is.factor(group)) {
       group <- as.factor(group)
