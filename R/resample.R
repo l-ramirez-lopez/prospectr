@@ -32,7 +32,7 @@ resample <- function(X, wav, new.wav, interpol = "spline", ...) {
     X <- as.matrix(X)
   }
   if (missing(wav)) {
-    stop("wav argument should be specified")
+    stop("wav argument must be specified")
   }
 
   if (!interpol %in% c("linear", "spline")) {
@@ -49,7 +49,7 @@ resample <- function(X, wav, new.wav, interpol = "spline", ...) {
 
   if (is.matrix(X)) {
     if (length(wav) != ncol(X)) {
-      stop("length(wav) should be equal to ncol(X)")
+      stop("length(wav) must be equal to ncol(X)")
     }
 
     output <- t(apply(X, 1, resfun, interpol))
@@ -57,7 +57,7 @@ resample <- function(X, wav, new.wav, interpol = "spline", ...) {
     colnames(output) <- new.wav
   } else {
     if (length(wav) != length(X)) {
-      stop("length(wav) should be equal to length(X)")
+      stop("length(wav) must be equal to length(X)")
     }
     output <- resfun(X, interpol)
     names(output) <- new.wav
