@@ -14,6 +14,10 @@ derivatives. In previous versions the function only allowed up to derivaties of
 any integer larger than 1. 
 
 ## Improvements and fixes
+* binning() a bug in the creation of the binning groups has been fixed. When the
+a frequency  variable (e.g. wavelength) was exactly on the left of the bin
+range the variable was assigned to the next bin. In some cases this lead to 
+small discrepancies in the in the computation of the mean of the bins. 
 
 * spliceCorrection() now accepts one or two values as input for the splice
 argument. Previously it only accepted a vector of length two. For example, now it 
