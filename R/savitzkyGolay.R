@@ -84,10 +84,10 @@ savitzkyGolay <- function(X, m, p, w, delta.wav) {
     stop("needs an odd filter length w")
   }
   if (p >= w) {
-    stop("filter length w should be greater than polynomial order p")
+    stop("filter length w mus be greater than polynomial order p")
   }
   if (p < m) {
-    stop("polynomial order p should be geater or equal to differentiation order m")
+    stop("polynomial order p must be geater or equal to differentiation order m")
   }
 
   gap <- (w - 1) / 2
@@ -96,7 +96,7 @@ savitzkyGolay <- function(X, m, p, w, delta.wav) {
 
   if (is.matrix(X)) {
     if (w >= ncol(X)) {
-      stop("filter length w should be lower than ncol(X)")
+      stop("filter length w must be lower than ncol(X)")
     }
     output <- factorial(m) * convCppM(X, A[m + 1, ])
     g <- (w - 1) / 2
@@ -106,7 +106,7 @@ savitzkyGolay <- function(X, m, p, w, delta.wav) {
 
   if (is.vector(X)) {
     if (w >= length(X)) {
-      stop("filter length w should be lower than length(X)")
+      stop("filter length w must be lower than length(X)")
     }
     output <- factorial(m) * convCppV(X, A[m + 1, ])
     g <- (w - 1) / 2
