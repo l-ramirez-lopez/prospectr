@@ -16,7 +16,7 @@ any integer larger than 1.
 ## Improvements and fixes
 
 * spliceCorrection() now accepts one or two values as input for the splice
-argument. Previusly it only accepted a vector of length two. For example, now it 
+argument. Previously it only accepted a vector of length two. For example, now it 
 corrrects for splice steps of spectra that originates from spectrometers 
 with two detectors (i.e. it corrects for the potential abrupt transition 
 betwteen the two detectors). 
