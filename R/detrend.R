@@ -55,7 +55,7 @@
 
 detrend <- function(X, wav, p = 2) {
   if (missing(wav)) {
-    stop("argument wav should be specified")
+    stop("argument wav must be specified")
   }
 
   if (is.data.frame(X)) {
