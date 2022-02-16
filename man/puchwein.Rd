@@ -35,11 +35,11 @@ principal components}
 \item{details}{logical value, if \code{TRUE}, adds a component in the output list
 with the indices of the objects kept in each loop (default to \code{FALSE}).}
 
-\item{.center}{logical value indicating whether the input matrix should be
+\item{.center}{logical value indicating whether the input matrix must be
 centered before Principal Component.
 Analysis. Default set to TRUE.}
 
-\item{.scale}{logical value indicating whether the input matrix should be
+\item{.scale}{logical value indicating whether the input matrix must be
 scaled before Principal Component
 Analysis. Default set to FALSE.}
 }
