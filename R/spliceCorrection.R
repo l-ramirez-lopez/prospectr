@@ -63,7 +63,7 @@ spliceCorrection <- function(X, wav, splice = c(1000, 1830), interpol.bands = 10
   }
   
   if (length(wav) != ncol(X)) {
-    stop("length(wav) should be equal to ncol(X)")
+    stop("length(wav) must be equal to ncol(X)")
   }
   
   index <- which(wav %in% splice)
