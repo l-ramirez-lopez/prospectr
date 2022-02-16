@@ -35,7 +35,7 @@
 #' @export
 blockNorm <- function(X, targetnorm = 1) {
   if (!any(class(X) %in% c("matrix", "data.frame"))) {
-    stop("X should be a matrix or optionally a data.frame")
+    stop("X must be either a matrix or optionally a data.frame")
   }
 
   if (is.data.frame(X)) {
