@@ -12,9 +12,10 @@ be coerced to a numerical matrix).}
 
 \item{wav}{a numeric vector with band positions.}
 
-\item{splice}{a numeric vector of the two positions of the splices,
-default: \code{c(1000, 1830)}.
-corresponding to the splices of the ASD FieldSpec Pro spectrometer.}
+\item{splice}{a numeric vector of length 1 or 2 with the positions of the
+splice(s). Default:
+\code{c(1000, 1830)} (as for the ASD FieldSpec Pro spectrometer of Malvern
+Panalytical). See details.}
 
 \item{interpol.bands}{the number of interpolation bands.}
 }
@@ -26,10 +27,20 @@ Corrects steps in an input spectral matrix by linear interpolation of the
 values of the edges of the middle sensor
 }
 \details{
-Spectra acquired with an ASD FieldSpec Pro spectroradiometer usually exhibit
-steps at the splice of the three built-in sensors,
+This function uses by default the positions for the ASD FieldSpec Pro
+spectroradiometer (Malvern Panalytical) which usually exhibit
+steps at the splice of the three built-in detectors,
 positioned at 1000 nm (end of VNIR detector) and 1830 nm (end of SWIR1 detector).
+The data corresponding to the spectral region after the first step is used as
+reference for correcting the first region and the laste region (if 2 steps
+are supplied).
+Other typical examples of splice artifacts caused by concatenating data
+captured by different detectors inside the spectrometer:
+\itemize{
+\item{XDS (FOSS)}{ 1100 nm}
+\item{ProxiMate (BUCHI Labortechnik)}{ 900 nm}
+}
 }
 \author{
-Antoine Stevens
+Antoine Stevens and href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 }
