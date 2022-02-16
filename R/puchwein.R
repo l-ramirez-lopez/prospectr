@@ -28,10 +28,10 @@
 #' (default = 5).
 #' @param details logical value, if `TRUE`, adds a component in the output list
 #' with the indices of the objects kept in each loop (default to `FALSE`).
-#' @param .center logical value indicating whether the input matrix should be
+#' @param .center logical value indicating whether the input matrix must be
 #' centered before Principal Component.
 #' Analysis. Default set to TRUE.
-#' @param .scale logical value indicating whether the input matrix should be
+#' @param .scale logical value indicating whether the input matrix must be
 #' scaled before Principal Component
 #' Analysis. Default set to FALSE.
 #' @author Antoine Stevens
@@ -118,10 +118,10 @@ puchwein <- function(X,
                      .center = TRUE,
                      .scale = FALSE) {
   if (ncol(X) < 2) {
-    stop("X should have at least 2 columns")
+    stop("X must have at least 2 columns")
   }
   if (min.sel >= nrow(X)) {
-    stop("min.sel should be lower than nrow(X)")
+    stop("min.sel must be lower than nrow(X)")
   }
   if (!is.data.frame(X)) {
     X <- as.data.frame(X)
