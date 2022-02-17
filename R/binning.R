@@ -63,39 +63,38 @@ binning <- function(X, bins, bin.size) {
   if (missing(bins) & missing(bin.size)) {
     return(X)
   }
-  
+
   if (is.matrix(X)) {
     nv <- ncol(X)
   } else {
     nv <- length(X)
   }
 
-  bins  <- bins + 1
+  bins <- bins + 1
   if (missing(bins) & !missing(bin.size)) {
     b <- findInterval(
-      1:nv, 
-      seq(1, nv, bin.size), 
+      1:nv,
+      seq(1, nv, bin.size),
       left.open = FALSE
     )
   } else {
     b <- findInterval(
-      1:nv, 
+      1:nv,
       round(seq(1, nv, length.out = bins), 3), # round to 3 to avoid the famous floating math imprecision bug of R
-      rightmost.closed = TRUE, 
+      rightmost.closed = TRUE,
       left.open = FALSE
     )
   }
-  
+
   n_classes <- max(b)
-  
+
   if (is.matrix(X)) {
-    
     output <- matrix(0, nrow(X), n_classes)
-    
+
     # for (i in seq_len(n_classes)) {
     #   output[, i] <- rowMeans(X[, b == i, drop = F])
     # }
-    
+
     output <- aggregate(t(X), by = list(bin = b), FUN = mean)
     output <- t(output[order(output[, 1]), -1])
     colnames(output) <- colnames(X)[ceiling(tapply(b, b, function(x) mean(which(b == x[1]), na.rm = TRUE)))] # find colnames
@@ -104,6 +103,6 @@ binning <- function(X, bins, bin.size) {
     output <- tapply(X, b, mean)
     names(output) <- names(X)[ceiling(tapply(b, b, function(x) mean(which(b == x[1]), na.rm = TRUE)))]
   }
-  
+
   return(output)
 }
