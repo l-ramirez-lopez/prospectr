@@ -4,12 +4,12 @@
 \alias{get_msc_coeff}
 \title{get_msc_coeff}
 \usage{
-get_msc_coeff(X, reference_spc)
+get_msc_coeff(X, ref_spectrum)
 }
 \arguments{
 \item{X}{matrix}
 
-\item{reference_spc}{a matrix of one row and same columns as in X}
+\item{ref_spectrum}{a matrix of one row and same columns as in X}
 }
 \description{
 Coefficients for multiplicative Scatter Correction written in C++
