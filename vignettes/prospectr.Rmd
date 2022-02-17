@@ -292,7 +292,7 @@ where $a_i$ and $m_i$ are the additive and multiplicative terms respectively.
 
 ```{r msc, fig.cap="Effect of MSC on raw spectra", fig.height = 4, fig.width = 6, fig.retina = 1, out.extra='style= "background-color: #FFFFFF; border: 10px solid transparent; padding:0px"'}
 # X = input spectral matrix
-msc_spc <- msc(X = NIRsoil$spc, reference_spc = colMeans(NIRsoil$spc))
+msc_spc <- msc(X = NIRsoil$spc, ref_spectrum = colMeans(NIRsoil$spc))
 
 plot(as.numeric(colnames(NIRsoil$spc)), 
      NIRsoil$spc[1,], 
@@ -326,9 +326,9 @@ Xu <- NIRsoil$spc[NIRsoil$train == 0, ]
 Xr_msc <- msc(Xr)
 
 # apply the same msc to Xu
-attr(Xr_msc,"Reference spectrum") # use this info from the previous object
+attr(Xr_msc, "Reference spectrum") # use this info from the previous object
 
-Xu_msc <- msc(Xu, reference_spc = attr(Xr_msc, "Reference spectrum"))
+Xu_msc <- msc(Xu, ref_spectrum = attr(Xr_msc, "Reference spectrum"))
 ```
 
 ### SNV-Detrend
