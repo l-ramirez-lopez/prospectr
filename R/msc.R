@@ -9,12 +9,15 @@
 #' and multiplicative effects (Geladi et al., 1985).
 #'
 #' @usage
-#' msc(X, reference_spc = colMeans(X))
+#' msc(X, ref_spectrum = colMeans(X))
 #'
 #' @param X a numeric matrix of spectral data.
-#' @param reference_spc a numeric vector corresponding to an "ideal" reference
+#' @param ref_spectrum a numeric vector corresponding to an "ideal" reference
 #' spectrum (e.g. free of scattering effects). By default the function uses the
-#' mean spectrum of the input \code{X}. See details.
+#' mean spectrum of the input \code{X}. See details. Note that this argument was
+#' previously named as `reference_spc`, however, it has been renamed to 
+#' `ref_spectrum` to emphasize that this argument is a vector and not a 
+#' matrix of spectra. 
 #'
 #' @details
 #' The Multiplicative Scatter Correction (MSC) is a normalization method that
@@ -43,7 +46,7 @@
 #'
 #' @examples
 #' data(NIRsoil)
-#' NIRsoil$msc_spc <- msc(X = NIRsoil$spc, reference_spc = colMeans(X))
+#' NIRsoil$msc_spc <- msc(X = NIRsoil$spc, ref_spectrum = colMeans(X))
 #' # 10 first msc spectra
 #' matplot(
 #'   x = as.numeric(colnames(NIRsoil$msc_spc)),
@@ -64,24 +67,24 @@
 #'
 #' spectra_b_msc <- msc(
 #'   spectra_b,
-#'   reference_spc = attr(spectra_a_msc, "Reference spectrum")
+#'   ref_spectrum = attr(spectra_a_msc, "Reference spectrum")
 #' )
 #' @export
 
 
-msc <- function(X, reference_spc = colMeans(X)) {
+msc <- function(X, ref_spectrum = colMeans(X)) {
   X <- as.matrix(X)
 
-  if (!is.vector(reference_spc)) {
-    stop("'reference_spc' must be a vector")
+  if (!is.vector(ref_spectrum)) {
+    stop("'ref_spectrum' must be a vector")
   }
 
-  if (ncol(X) != length(reference_spc)) {
-    stop("The number of column in X must be equal to the length of 'reference_spc'")
+  if (ncol(X) != length(ref_spectrum)) {
+    stop("The number of column in X must be equal to the length of 'ref_spectrum'")
   }
-  offsets_slopes <- get_msc_coeff(X, reference_spc)
+  offsets_slopes <- get_msc_coeff(X, ref_spectrum)
   Xz <- sweep(X, MARGIN = 1, STATS = offsets_slopes[1, ], FUN = "-", check.margin = FALSE)
   Xz <- sweep(Xz, MARGIN = 1, STATS = offsets_slopes[2, ], FUN = "/", check.margin = FALSE)
-  attr(Xz, "Reference spectrum:") <- reference_spc
+  attr(Xz, "Reference spectrum:") <- ref_spectrum
   Xz
 }
