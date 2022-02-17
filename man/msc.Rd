@@ -4,14 +4,17 @@
 \alias{msc}
 \title{Multiplicative Scatter Correction (msc)}
 \usage{
-msc(X, reference_spc = colMeans(X))
+msc(X, ref_spectrum = colMeans(X))
 }
 \arguments{
 \item{X}{a numeric matrix of spectral data.}
 
-\item{reference_spc}{a numeric vector corresponding to an "ideal" reference
+\item{ref_spectrum}{a numeric vector corresponding to an "ideal" reference
 spectrum (e.g. free of scattering effects). By default the function uses the
-mean spectrum of the input \code{X}. See details.}
+mean spectrum of the input \code{X}. See details. Note that this argument was
+previously named as \code{reference_spc}, however, it has been renamed to
+\code{ref_spectrum} to emphasize that this argument is a vector and not a
+matrix of spectra.}
 }
 \value{
 a matrix of normalized spectral data with an attribute which indicates the
@@ -39,7 +42,7 @@ multiplicative terms respectively.
 }
 \examples{
 data(NIRsoil)
-NIRsoil$msc_spc <- msc(X = NIRsoil$spc, reference_spc = colMeans(X))
+NIRsoil$msc_spc <- msc(X = NIRsoil$spc, ref_spectrum = colMeans(X))
 # 10 first msc spectra
 matplot(
   x = as.numeric(colnames(NIRsoil$msc_spc)),
@@ -60,7 +63,7 @@ spectra_a_msc <- msc(spectra_a, colMeans(X))
 
 spectra_b_msc <- msc(
   spectra_b,
-  reference_spc = attr(spectra_a_msc, "Reference spectrum")
+  ref_spectrum = attr(spectra_a_msc, "Reference spectrum")
 )
 }
 \references{
