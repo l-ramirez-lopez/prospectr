@@ -11,5 +11,5 @@ test_that("msc", {
   
   X_mscb <- msc(NIRsoil$spc, apply(NIRsoil$spc, 2, median))
   expect_true(round(max(X_mscb[1, ]), 5) == 0.34816)
-  expect_true(round(minX_mscb[1, ]), 5) == 0.26749)
+  expect_true(round(min(X_mscb[1, ]), 5) == 0.26749)
 })
