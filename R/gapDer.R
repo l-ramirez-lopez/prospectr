@@ -5,8 +5,8 @@
 #' gapDer(X, m = 1, w = 1, s = 1, delta.wav)
 #' @param X a numeric matrix or vector` to transform (optionally a data frame
 #' that can be coerced to a numerical matrix).
-#' @param m an integer indicating the order of the derivative, larger than 1 
-#' (default is 1). Note that this function allows for high order derivatives 
+#' @param m an integer indicating the order of the derivative, larger than 1
+#' (default is 1). Note that this function allows for high order derivatives
 #' (e.g. m = 6).
 #' @param w an integer indicating the gap size (must be odd and >=1), i.e. the spacing
 #' between points over which the derivative is computed.
@@ -103,16 +103,16 @@ gapDer <- function(X, m = 1, w = 1, s = 1, delta.wav) {
   # } else {
   #   fp <- c(os, zw, -4 * os, zw, 6 * os, zw, -4 * os, zw, os)
   # }
-  
-  # Compute the filter in more efficient way allowing for higher order 
+
+  # Compute the filter in more efficient way allowing for higher order
   # derivatives
   fp <- NULL
-  for(k in 0:(m - 1)) {
+  for (k in 0:(m - 1)) {
     ck <- c((-1)^(m - k) * choose(m, k) * os, zw)
-    fp <- c(fp , ck)
+    fp <- c(fp, ck)
   }
   fp <- c(fp, os)
-  
+
   j <- (length(fp) - 1) / 2
   j <- -j:j
   nf <- 1 / nmr * sum((j^m) * fp)
