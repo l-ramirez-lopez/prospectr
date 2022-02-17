@@ -86,14 +86,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // get_msc_coeff
-NumericMatrix get_msc_coeff(arma::mat X, arma::vec reference_spc);
-RcppExport SEXP _prospectr_get_msc_coeff(SEXP XSEXP, SEXP reference_spcSEXP) {
+NumericMatrix get_msc_coeff(arma::mat X, arma::vec ref_spectrum);
+RcppExport SEXP _prospectr_get_msc_coeff(SEXP XSEXP, SEXP ref_spectrumSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::mat >::type X(XSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type reference_spc(reference_spcSEXP);
-    rcpp_result_gen = Rcpp::wrap(get_msc_coeff(X, reference_spc));
+    Rcpp::traits::input_parameter< arma::vec >::type ref_spectrum(ref_spectrumSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_msc_coeff(X, ref_spectrum));
     return rcpp_result_gen;
 END_RCPP
 }
