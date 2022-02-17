@@ -46,7 +46,7 @@
 #'
 #' @examples
 #' data(NIRsoil)
-#' NIRsoil$msc_spc <- msc(X = NIRsoil$spc, ref_spectrum = colMeans(X))
+#' NIRsoil$msc_spc <- msc(X = NIRsoil$spc)
 #' # 10 first msc spectra
 #' matplot(
 #'   x = as.numeric(colnames(NIRsoil$msc_spc)),
@@ -60,7 +60,7 @@
 #' spectra_a <- NIRsoil$spc[1:40, ]
 #' spectra_b <- NIRsoil$spc[-(1:40), ]
 #'
-#' spectra_a_msc <- msc(spectra_a, colMeans(X))
+#' spectra_a_msc <- msc(spectra_a, colMeans(spectra_a))
 #'
 #' # correct spectra_a based on the reference spectrum used to correct
 #' # spectra_a
