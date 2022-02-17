@@ -59,7 +59,7 @@ spectra_a_msc <- msc(spectra_a, colMeans(X))
 # spectra_a
 
 spectra_b_msc <- msc(
-  spectra_b, 
+  spectra_b,
   reference_spc = attr(spectra_a_msc, "Reference spectrum")
 )
 }
