@@ -63,11 +63,11 @@ fastDistV <- function(X, Y, method) {
 #' @description
 #' Coefficients for multiplicative Scatter Correction written in C++
 #' @param X matrix 
-#' @param reference_spc a matrix of one row and same columns as in X
+#' @param ref_spectrum a matrix of one row and same columns as in X
 #' @keywords internal
 #' @useDynLib prospectr
-get_msc_coeff <- function(X, reference_spc) {
-    .Call('_prospectr_get_msc_coeff', PACKAGE = 'prospectr', X, reference_spc)
+get_msc_coeff <- function(X, ref_spectrum) {
+    .Call('_prospectr_get_msc_coeff', PACKAGE = 'prospectr', X, ref_spectrum)
 }
 
 #' @title Resample to given band position and fwhm
