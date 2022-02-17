@@ -124,16 +124,16 @@ NumericVector fastDistV(NumericMatrix X, NumericVector Y, String method){
 //' @description
 //' Coefficients for multiplicative Scatter Correction written in C++
 //' @param X matrix 
-//' @param reference_spc a matrix of one row and same columns as in X
+//' @param ref_spectrum a matrix of one row and same columns as in X
 //' @keywords internal
 //' @useDynLib prospectr
 // [[Rcpp::export]]
 NumericMatrix get_msc_coeff(arma::mat X, 
-                            arma::vec reference_spc) {
+                            arma::vec ref_spectrum) {
   
   
   arma::mat ref = arma::ones(X.n_cols, 2);
-  ref.col(1) = reference_spc;
+  ref.col(1) = ref_spectrum;
   arma::mat aa = trans(ref) * ref;
   arma::mat bb = trans(X * ref);
   
