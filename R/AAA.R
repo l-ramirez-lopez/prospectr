@@ -12,13 +12,13 @@
     prospectr_v,
     " -- \033[39m'positive'"
   )
-  
+
   mss2 <- paste0(
     "\033[34mcheck the github repository at: ",
     "https://github.com/l-ramirez-lopez/prospectr/\033[39m"
   )
-  
-  packageStartupMessage(mss)  
+
+  packageStartupMessage(mss)
   packageStartupMessage(mss2)
 }
 
