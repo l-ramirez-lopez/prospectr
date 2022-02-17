@@ -58,7 +58,7 @@ binning <- function(X, bins, bin.size) {
     X <- as.matrix(X)
   }
   if (!missing(bins) & !missing(bin.size)) {
-    stop("EITHER 'bins' OR 'bin.size' must be specified")
+    stop("either 'bins' or 'bin.size' must be specified")
   }
   if (missing(bins) & missing(bin.size)) {
     return(X)
@@ -70,7 +70,7 @@ binning <- function(X, bins, bin.size) {
     nv <- length(X)
   }
 
-  bins <- bins + 1
+
   if (missing(bins) & !missing(bin.size)) {
     b <- findInterval(
       1:nv,
@@ -78,6 +78,7 @@ binning <- function(X, bins, bin.size) {
       left.open = FALSE
     )
   } else {
+    bins <- bins + 1
     b <- findInterval(
       1:nv,
       round(seq(1, nv, length.out = bins), 3), # round to 3 to avoid the famous floating math imprecision bug of R
