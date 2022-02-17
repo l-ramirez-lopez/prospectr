@@ -40,7 +40,10 @@ negative sign.
 * There was a bug in the read_nircal function. It emerged only in some files and 
 prevented the function from reading the Description field properly 
 
-
+## Changes
+* In the msc() function the argument `reference_spc` has been renamed to 
+`ref_spectrum` to emphasize that its input must be is a vector and not a 
+matrix of spectra. 
 
 prospectr 0.2.2
 ===============
