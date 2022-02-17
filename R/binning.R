@@ -75,14 +75,14 @@ binning <- function(X, bins, bin.size) {
     b <- findInterval(
       1:nv, 
       seq(1, nv, bin.size), 
-      left.open = TRUE
+      left.open = FALSE
     )
   } else {
     b <- findInterval(
       1:nv, 
-      seq(1, nv, length.out = bins), 
+      round(seq(1, nv, length.out = bins), 3), # round to 3 to avoid the famous floating math imprecision bug of R
       rightmost.closed = TRUE, 
-      left.open = TRUE
+      left.open = FALSE
     )
   }
   
@@ -96,7 +96,8 @@ binning <- function(X, bins, bin.size) {
     #   output[, i] <- rowMeans(X[, b == i, drop = F])
     # }
     
-    output <- t(aggregate(t(X), by = list(bin = b), FUN = mean))[-1, ]
+    output <- aggregate(t(X), by = list(bin = b), FUN = mean)
+    output <- t(output[order(output[, 1]), -1])
     colnames(output) <- colnames(X)[ceiling(tapply(b, b, function(x) mean(which(b == x[1]), na.rm = TRUE)))] # find colnames
     rownames(output) <- rownames(X)
   } else {
