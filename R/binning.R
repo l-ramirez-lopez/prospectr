@@ -50,6 +50,7 @@
 #' @seealso
 #' \code{\link{savitzkyGolay}}, \code{\link{movav}},
 #' \code{\link{gapDer}}, \code{\link{continuumRemoval}}
+#' @importFrom stats aggregate
 #' @export
 #'
 
