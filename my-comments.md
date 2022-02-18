@@ -2,6 +2,14 @@
 
 # version 0.2.3
 
+# submission message:
+Dear CRAN maintainers,
+I am submitting my package "prospectr" to CRAN. This version accounts for some bugs. 
+Prior to this submission, this tarball has been checked with in the winbuilder service. Apart from that it has been also submitted to extensive tests in rhub.
+Reverse dependencies have also been checked. 
+Best regards,
+Leonardo
+
 ## Package was built using: 
 ```
 devtools::build(
@@ -16,9 +24,9 @@ devtools::build(
 ```
 The aim of the release was to fix minor bugs
 
-# R win builder checks for release of `prospectr 0.2.3` (`positive`) 20.01.2022 passed all the checks without notes
+# R win builder checks for release of `prospectr 0.2.3` (`positive`) 18.02.2022 passed all the checks without notes
 
-# Rhub checks for release of `prospectr 0.2.3` (`positive`) 20.01.2022
+# Rhub checks for release of `prospectr 0.2.3` (`positive`) 18.02.2022
 The checks were conducted in the following platforms through rhub:
 
 ```
@@ -26,27 +34,29 @@ rhub::check(paste0(gsub("/prospectr$", "/", getwd()), "prospectr_0.2.3.tar.gz"),
             platform = c("fedora-gcc-devel"), 
             email = "ramirez.lopez.leo@gmail.com")
 ```
-- "fedora-gcc-devel" NOTE
+- "fedora-gcc-devel" NOTE 
 * checking installed package size ... NOTE
   installed size is  6.7Mb
   sub-directories of 1Mb or more:
     data   1.9Mb
     libs   4.0Mb
-
-- "windows-x86_64-devel" 
+    
+- "windows-x86_64-devel" OK
 
 - "macos-highsierra-release-cran" OK
 
-- "linux-x86_64-rocker-gcc-san" ## Not checked Rhub throwed a PREPERROR
+- "windows-x86_64-release" OK 
+
+- "linux-x86_64-rocker-gcc-san" ## Not checked Rhub returned a PREPERROR
 
 - "ubuntu-gcc-release" NOTE
 * checking installed package size ... NOTE
-  installed size is  6.9Mb
+  installed size is  7.0Mb
   sub-directories of 1Mb or more:
     data   1.9Mb
     libs   4.2Mb
 
-- "solaris-x86-patched-ods" OK
+- "solaris-x86-patched-ods"
  
 # version 0.2.2
 
