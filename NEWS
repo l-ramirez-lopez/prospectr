@@ -1,3 +1,16 @@
+prospectr 0.2.4
+===============
+
+## Improvements and fixes
+
+* read_nircal(): the function was wrongly identifying actual .nir files as 
+invalid. This preventing the function from reading any nir file. This has been 
+fixed. 
+
+
+prospectr 0.2.3
+===============
+
 ## New features
 
 * The `kenStone` function now includes a new feature that allows to initialize the
@@ -41,3 +54,62 @@ prevented the function from reading the Description field properly
 * In the `msc()` function the argument `reference_spc` has been renamed to 
 `ref_spectrum` to emphasize that its input must be is a vector and not a 
 matrix of spectra. 
+
+prospectr 0.2.2
+===============
+
+## New features
+
+* a new function for baseline correction was added. See baseline()  
+
+## Improvements and fixes
+
+* The package was stripping some symbols for Rcpp functions in Makevars in order 
+to reduce the installation size of the package. Now these lines have been 
+commented to comply with CRAN policies
+
+* standardNormalVariate returns now a matrix (previosuly a data.frame)
+
+
+prospectr 0.2.1
+===============
+* New license
+* The detrend function now allows to remove trends corresponding to different 
+polynomial orders. Check the new 'p' argument. 
+* New preprocessing function: multiplicative scatter correction (msc)
+* Now resample() also has a new argument (...) to pass additional arguments to the 
+splinefun() function (of stats) used within resample() when the argument 
+interpol = "spline" (the default since version 0.2.0)
+* Bug fix: in read_nircal, the description file was not being properly read
+* Now performing automatic unit tests with the package testthat
+
+prospectr 0.2.0
+===============
+* New maintainer [Leo Ramirez-Lopez]
+* Updated vignette
+* A new function (read_nircal) for reading buchi NIRcal files has been added
+* Documentation reviewed
+* The description of the continuum removal algorithm is was adjusted. Previously was indicated that the implemented algorithm was based on the search for a local minimum of
+the absorbance spectra the algorithm, however in fact it looks for the convex hull. Thanks to Peter Tillmann for noticing this.
+
+prospectr 0.1.4
+===============
+* Fix bug in kenStone and duplex when the group parameter is used
+
+prospectr 0.1.3
+===============
+* Fix in DESCRITPION and NAMESPACE as required by Rcpp 0.11
+
+prospectr 0.1.2
+===============
+* bug fix for readASD when ASD file version = 7.0
+* add sanity check in spliceCorrection
+
+prospectr 0.1.1
+===============
+* bug fix for shenkWest when rm.outlier = T 
+* bug fix for gapDer when input is a data.frame
+
+prospectr 0.1
+===============
+* Initial release of the package
