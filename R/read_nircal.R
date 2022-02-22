@@ -127,7 +127,7 @@ read_nircal <- function(file,
   )
 
   first_lines <- readLines(con = file, 1:2)
-  if (length(first_lines) > 1) {
+  if (length(first_lines) >= 1) {
     isnircal <- grepRaw("NIRCAL Project File", first_lines, all = TRUE)
   } else {
     isnircal <- NULL
