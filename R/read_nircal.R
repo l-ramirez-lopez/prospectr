@@ -633,7 +633,7 @@ get_nircal_response <- function(x, n) {
 
 
   if (sum(duplicated(property_names)) > 0) {
-    wnr <- c("Some property names are duplicated, please correct the names. Indices have been added to the repeated names")
+    wrn <- c("Some property names are duplicated, please correct the names. Indices have been added to the repeated names")
     dpn <- unique(property_names[duplicated(property_names)])
     for (i in 1:length(dpn)) {
       property_names[property_names == dpn] <- paste(property_names[property_names == dpn],
