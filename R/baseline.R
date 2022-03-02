@@ -61,8 +61,10 @@ baseline <- function(X, wav) {
     wav[length(wav)] + diff(wav[(length(wav) - 1):length(wav)])
   )
 
-  edges <- apply(X, 1, "max") + apply(X, 1, "min")
-
+  # make sure the edges will be well above any peak
+  edges <- abs(apply(X, 1, "max")) + abs(apply(X, 1, "min"))
+  edges <- edges * 2
+  
   X <- cbind(edges, X, edges)
   colnames(X) <- wav
 
