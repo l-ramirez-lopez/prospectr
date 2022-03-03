@@ -3,6 +3,12 @@ prospectr 0.2.4
 
 ## Improvements and fixes
 
+* baseline(): in some cases the function did not properly capture the baseline
+confounding maximum values of a peaks as part of the baseline. This has been 
+addressed in this version by ensuring the envelope used in the computation of the 
+convex hull (used to extract the baseline) is properly defined. At the edges, 
+this envelope has always values higher than any peak of the spectrum. 
+
 * read_nircal(): the function was wrongly identifying actual .nir files as 
 invalid. This preventing the function from reading any nir file. This has been 
 fixed. 
