@@ -241,8 +241,8 @@ Here is an exemple of the use of the `gapDer` function.
 # m = order of the derivative
 # w = window size ( = {2 * gap size} + 1)
 # s = segment size
-# first derivative with a gap of 10 bands
-gsd1 <- gapDer(X = NIRsoil$spc, m = 1, w = 11, s = 10) 
+# first derivative with a gap of 11 bands
+gsd1 <- gapDer(X = NIRsoil$spc, m = 1, w = 11, s = 11) 
 plot(as.numeric(colnames(d1)), 
      d1[1,], 
      type = "l", 

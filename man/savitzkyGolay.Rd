@@ -10,11 +10,11 @@ savitzkyGolay(X, m, p, w, delta.wav)
 \item{X}{a numeric matrix or vector to process (optionally a data frame that
 can be coerced to a numerical matrix).}
 
-\item{m}{the differentiation order.}
+\item{m}{an integer indcating the differentiation order.}
 
-\item{p}{the polynomial order.}
+\item{p}{an integer indicating the polynomial order.}
 
-\item{w}{a window size (must be odd).}
+\item{w}{an integer indicating the window size (must be odd).}
 
 \item{delta.wav}{(optional) sampling interval.}
 }

@@ -10,13 +10,14 @@ gapDer(X, m = 1, w = 1, s = 1, delta.wav)
 \item{X}{a numeric matrix or vector` to transform (optionally a data frame
 that can be coerced to a numerical matrix).}
 
-\item{m}{the order of the derivative, between 1 and 4 (default = 1).}
+\item{m}{an integer indicating the order of the derivative, between 1 and 4 (default = 1).}
 
-\item{w}{the filter length (should be odd and >=1), i.e. the spacing
+\item{w}{an integer indicating the gap or filter length (must be odd and >=1), i.e. the spacing
 between points over which the derivative is computed.}
 
-\item{s}{the segment size, i.e. the range over which the points are averaged
-(default = 1, i.e. no smoothing corresponding to 'Norris' Gap Derivative).}
+\item{s}{an integer indicating the segment size (must be odd and >=1), i.e.
+the range over which the points are averaged (default = 1, i.e. no
+smoothing corresponding to Norris-Gap Derivative).}
 
 \item{delta.wav}{the sampling interval (or band spacing).}
 }
