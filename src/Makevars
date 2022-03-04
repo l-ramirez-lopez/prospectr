@@ -1,6 +1,9 @@
 ## Use the R_HOME indirection to support installations of multiple R version
-PKG_LIBS = `$(R_HOME)/bin/Rscript -e "Rcpp:::LdFlags()"` $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) $(SHLIB_OPENMP_CXXFLAGS)
-PKG_CXXFLAGS = $(SHLIB_OPENMP_CXXFLAGS)
+CXX_STD = CXX11
+PKG_CPPFLAGS = -I../inst/include/
+PKG_LIBS += $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
+
+
 ## WARNING: although the following lines trip symbols to make the installation 
 ## smaller, CRAN policies do not allow this
 #strippedLib: $(SHLIB)
