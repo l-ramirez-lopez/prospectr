@@ -48,7 +48,7 @@
 #' )
 #'
 #' mtext("1st derivative spectra with a window size = 11 nm")
-#' der <- gapDer(NIRsoil$spc, m = 1, w = 11, s = 10, delta.wav = 2)
+#' der <- gapDer(NIRsoil$spc, m = 1, w = 11, s = 11, delta.wav = 2)
 #' matplot(as.numeric(colnames(der)), t(der[1:10, ]),
 #'   type = "l",
 #'   xlab = "Wavelength /nm",
