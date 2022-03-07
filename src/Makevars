@@ -2,7 +2,5 @@
 ### causing problems on MAC?
 ### This assumes that we can call Rscript to ask Rcpp about its locations
 ### Use the R_HOME indirection to support installations of multiple R version
-
-
 CXX_STD = CXX11
 PKG_CPPFLAGS = -I../inst/include/
