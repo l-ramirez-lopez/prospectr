@@ -4,6 +4,7 @@ PKG_CXXFLAGS = $(SHLIB_OPENMP_CXXFLAGS)
 CXX_STD = CXX11
 F77 = /usr/local/gfortran/bin/gfortran
 FC = /usr/local/gfortran/bin/gfortran
+
 ## WARNING: although the following lines strip symbols to make the installation 
 ## smaller, CRAN policies do not allow this
 #strippedLib: $(SHLIB)
