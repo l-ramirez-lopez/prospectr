@@ -43,6 +43,7 @@ multiplicative terms respectively.
 \examples{
 data(NIRsoil)
 NIRsoil$msc_spc <- msc(X = NIRsoil$spc)
+
 # 10 first msc spectra
 matplot(
   x = as.numeric(colnames(NIRsoil$msc_spc)),
