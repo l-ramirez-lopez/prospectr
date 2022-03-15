@@ -75,7 +75,7 @@ A BibTeX entry for LaTeX users is:
     author = {Antoine Stevens and Leornardo Ramirez-Lopez},
     publication = {R package Vignette},
     year = {2022},
-    note = {R package version 0.2.3},
+    note = {R package version 0.2.4},
   }
   ```
 ## Bug report and development version
