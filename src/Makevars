@@ -4,9 +4,9 @@ PKG_LIBS = `$(R_HOME)/bin/Rscript -e "Rcpp:::LdFlags()"` $(LAPACK_LIBS) $(BLAS_L
 PKG_CXXFLAGS = $(SHLIB_OPENMP_CXXFLAGS)
 CXX_STD = CXX11
 
-F77 = /usr/bin/gfortran
+F77 = $(GCCBASE)/bin/gfortran
 FC = $F77
-FLIBS = -L/usr/bin/gfortran
+FLIBS = -L$(GCCBASE)/bin/gfortran
 
 ## WARNING: although the following lines strip symbols to make the installation 
 ## smaller, CRAN policies do not allow this
