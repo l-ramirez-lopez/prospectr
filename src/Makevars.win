@@ -4,3 +4,7 @@ PKG_LIBS = $(shell "${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe" -e "Rcpp:::LdFlags()
 
 PKG_CPPFLAGS = -I../inst/include -I.
 PKG_LIBS += $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) $(SHLIB_OPENMP_CFLAGS)
+
+FC=$(GCCBASE)/bin/gfortran -fopenmp
+F77=$(GCCBASE)/bin/gfortran -fopenmp
+FLIBS=-L$(GCCBASE)/lib/gcc/9/ -lm
