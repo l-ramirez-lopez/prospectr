@@ -3,6 +3,9 @@
 PKG_LIBS = `$(R_HOME)/bin/Rscript -e "Rcpp:::LdFlags()"` $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
 CXX_STD = CXX11
 
+## combine with standard arguments for R
+PKG_CPPFLAGS = -I../inst/include
+
 F77 = $(GCCBASE)/bin/gfortran
 FC = $F77
 FLIBS = -L/usr/local/lib/gcc/8/gcc/x86_64-apple-darwin17.5.0/8.1.0 -L/usr/local/lib/gcc/8 -lgfortran -lquadmath -lm
