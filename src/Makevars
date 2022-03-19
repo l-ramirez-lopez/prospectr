@@ -5,7 +5,7 @@ CXX_STD = CXX11
 
 F77 = $(GCCBASE)/bin/gfortran
 FC = $F77
-FLIBS = -L$(GCCBASE)/bin/gfortran
+FLIBS = -L/usr/local/lib/gcc/8/gcc/x86_64-apple-darwin17.5.0/8.1.0 -L/usr/local/lib/gcc/8 -lgfortran -lquadmath -lm
 
 ## WARNING: although the following lines strip symbols to make the installation 
 ## smaller, CRAN policies do not allow this
