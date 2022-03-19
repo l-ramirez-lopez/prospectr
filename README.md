@@ -11,7 +11,7 @@
 <em><p align="left"> Misc. Functions for Processing and Sample Selection of Spectroscopic Data </p></em>
 _Antoine Stevens & Leo Ramirez-Lopez_
 
-_Last update: 15.03.2022_
+_Last update: 20.03.2022_
 
 _This version: 0.2.4 - mandarina -_ (this version fixes a bug in the 
 `read_nircal()` function and also some issues when installing from GitHub in MAC 
@@ -19,7 +19,7 @@ OS)
 
 `prospectr` is becoming more and more used in spectroscopic applications, which 
 is evidenced by the number of scientific publications citing the package. 
-This package is very useful for singal processing and chemometrics in general as 
+This package is very useful for signal processing and chemometrics in general as 
 it provides various utilities for pre--processing and sample selection 
 of spectral data. While similar functions are available in other packages, like 
 [`signal`](https://CRAN.R-project.org/package=signal), the 
@@ -28,6 +28,18 @@ functions in this package works indifferently for `data.frame`, `matrix` and
 C++ code through the [`Rcpp`](https://CRAN.R-project.org/package=Rcpp) 
 and [`RcppArmadillo`](https://CRAN.R-project.org/package=RcppArmadillo)
 packages.
+
+## Installing it from GitHub
+
+Install this package from github by:
+
+```
+remotes::install_github("l-ramirez-lopez/prospectr")
+```
+NOTE: in some MAC Os it is still recommended to install `gfortran` and `clang`
+from [here](https://cran.r-project.org/bin/macosx/tools/). Even for R >= 4.0. 
+For more info, check this [issue](https://github.com/tidyverts/fable/issues/193).  
+
 
 ## News
 
