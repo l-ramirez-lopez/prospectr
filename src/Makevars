@@ -1,15 +1,25 @@
-## Use the R_HOME indirection to support installations of multiple R version
-## PKG_LIBS = `$(R_HOME)/bin/Rscript -e "Rcpp:::LdFlags()"` $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) $(SHLIB_OPENMP_CXXFLAGS)
-PKG_LIBS = `$(R_HOME)/bin/Rscript -e "Rcpp:::LdFlags()"` $(LAPACK_LIBS) $(BLAS_LIBS) $(SHLIB_OPENMP_CXXFLAGS)
-PKG_CXXFLAGS = $(SHLIB_OPENMP_CXXFLAGS)
+# CXX_STD = CXX11
+# ## Use the R_HOME indirection to support installations of multiple R version
+# ## PKG_LIBS = `$(R_HOME)/bin/Rscript -e "Rcpp:::LdFlags()"` $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) $(SHLIB_OPENMP_CXXFLAGS)
+# PKG_LIBS = `$(R_HOME)/bin/Rscript -e "Rcpp:::LdFlags()"` $(LAPACK_LIBS) $(BLAS_LIBS) $(SHLIB_OPENMP_CXXFLAGS)
+# PKG_CXXFLAGS = $(SHLIB_OPENMP_CXXFLAGS)
+# CXX_STD = CXX11
+# 
+# F77 = $(GCCBASE)/bin/gfortran
+# FC = $F77
+# FLIBS = -L$(GCCBASE)/bin/gfortran
+# ## WARNING: although the following lines trip symbols to make the installation
+# ## smaller, CRAN policies do not allow this
+# #strippedLib: $(SHLIB)
+# #		if test -e "/usr/bin/strip" & test -e "/bin/uname" & [[ `uname` == "Linux" ]]; then /usr/bin/strip --strip-debug $(SHLIB); fi
+# #.phony: strippedLib
+# 
+
+PKG_CXXFLAGS = -DNDEBUG $(SHLIB_OPENMP_CXXFLAGS)
+#PKG_LIBS = `$(R_HOME)/bin/Rscript -e "Rcpp:::LdFlags()"` $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
+PKG_LIBS = $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) $(SHLIB_OPENMP_CXXFLAGS)
+
 CXX_STD = CXX11
 
 F77 = $(GCCBASE)/bin/gfortran
 FC = $F77
-FLIBS = -L$(GCCBASE)/bin/gfortran
-
-## WARNING: although the following lines strip symbols to make the installation 
-## smaller, CRAN policies do not allow this
-#strippedLib: $(SHLIB)
-#		if test -e "/usr/bin/strip" & test -e "/bin/uname" & [[ `uname` == "Linux" ]]; then /usr/bin/strip --strip-debug $(SHLIB); fi
-#.phony: strippedLib
