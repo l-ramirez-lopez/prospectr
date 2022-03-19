@@ -21,7 +21,6 @@ PKG_LIBS = $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
 
 CXX_STD = CXX11
 
-F77 = $(GCCBASE)/bin/gfortran
-FC = $F77
-
-FLIBS=-L/usr/local/gfortran/lib
+F77 = /usr/local/bin/gfortran
+FC = $(F77)
+FLIBS = -L/usr/local/gfortran/lib/gcc/x86_64-apple-darwin16/6.3.0 -L/usr/local/gfortran/lib -lgfortran -lquadmath -lm
