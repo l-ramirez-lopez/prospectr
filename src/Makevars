@@ -1,17 +1,4 @@
-## Use the R_HOME indirection to support installations of multiple R version
-## PKG_LIBS = `$(R_HOME)/bin/Rscript -e "Rcpp:::LdFlags()"` $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) $(SHLIB_OPENMP_CXXFLAGS)
-FLIBS = -L/usr/local/lib/gcc/8/gcc/x86_64-apple-darwin17.5.0/8.1.0 -L/usr/local/lib/gcc/8 -lgfortran -lquadmath -lm
+PKG_CXXFLAGS = -DNDEBUG
 PKG_LIBS = `$(R_HOME)/bin/Rscript -e "Rcpp:::LdFlags()"` $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
+
 CXX_STD = CXX11
-
-## combine with standard arguments for R
-PKG_CPPFLAGS = -I../inst/include
-
-F77 = $(GCCBASE)/bin/gfortran
-FC = $F77
-
-## WARNING: although the following lines strip symbols to make the installation 
-## smaller, CRAN policies do not allow this
-#strippedLib: $(SHLIB)
-#		if test -e "/usr/bin/strip" & test -e "/bin/uname" & [[ `uname` == "Linux" ]]; then /usr/bin/strip --strip-debug $(SHLIB); fi
-#.phony: strippedLib
