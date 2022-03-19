@@ -1,20 +1,16 @@
-PKG_CXXFLAGS = -DNDEBUG
+## Use the R_HOME indirection to support installations of multiple R version
+## PKG_LIBS = `$(R_HOME)/bin/Rscript -e "Rcpp:::LdFlags()"` $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) $(SHLIB_OPENMP_CXXFLAGS)
+FLIBS = /Library/Developer/CommandLineTools/usr/bin/gcc -lgfortran -lquadmath -lm
+PKG_LIBS = `$(R_HOME)/bin/Rscript -e "Rcpp:::LdFlags()"` $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
+CXX_STD = CXX11
 
-XCBASE:=$(shell xcrun --show-sdk-path)
-GCCBASE:=$(shell brew --prefix gcc)
-GETTEXT:=$(shell brew --prefix gettext)
-GCCVERSION:=$(shell find "${GCCBASE}/bin" -type f -name "gcc-[0-9]*" | sed "s/[^-]*-//")
 
-CC=$(GCCBASE)/bin/gcc-${GCCVERSION}
-CXX=$(GCCBASE)/bin/g++-${GCCVERSION}
-CXX11=$(GCCBASE)/bin/g++-${GCCVERSION}
-CXX14=$(GCCBASE)/bin/g++-${GCCVERSION}
-CXX17=$(GCCBASE)/bin/g++-${GCCVERSION}
-CXX1X=$(GCCBASE)/bin/g++-${GCCVERSION}
+## combine with standard arguments for R
+PKG_CPPFLAGS = -I../inst/include
 
-CPPFLAGS=-isystem "$(GCCBASE)/include" -isysroot "$(XCBASE)"
-LDFLAGS=-L"$(GCCBASE)/lib" -L"$(GETTEXT)/lib" --sysroot="$(XCBASE)"
 
-FC=$(GCCBASE)/bin/gfortran
-F77=$(GCCBASE)/bin/gfortran
-FLIBS=-L$(GCCBASE)/lib/gcc/${GCCVERSION}/ -lm -lgfortran
+## WARNING: although the following lines strip symbols to make the installation 
+## smaller, CRAN policies do not allow this
+#strippedLib: $(SHLIB)
+#		if test -e "/usr/bin/strip" & test -e "/bin/uname" & [[ `uname` == "Linux" ]]; then /usr/bin/strip --strip-debug $(SHLIB); fi
+#.phony: strippedLib
