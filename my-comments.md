@@ -33,9 +33,9 @@ rhub::check(paste0(gsub("/prospectr$", "/", getwd()), "prospectr_0.2.4.tar.gz"),
             platform = c("fedora-gcc-devel"), 
             email = "ramirez.lopez.leo@gmail.com")
 ```
-- "fedora-gcc-devel" NOTE 
+- "fedora-gcc-devel" 
 * checking installed package size ... NOTE
-  installed size is  6.7Mb
+  installed size is  6.8Mb
   sub-directories of 1Mb or more:
     data   1.9Mb
     libs   4.0Mb
@@ -44,27 +44,21 @@ rhub::check(paste0(gsub("/prospectr$", "/", getwd()), "prospectr_0.2.4.tar.gz"),
 
 - "macos-highsierra-release-cran" OK
 
-- "windows-x86_64-release" OK 
+- "windows-x86_64-release" 
+* checking installed package size ... NOTE
+  installed size is  5.2Mb
+  sub-directories of 1Mb or more:
+    data   1.9Mb
+    libs   2.4Mb
 
-- "linux-x86_64-rocker-gcc-san" ## Not checked Rhub returned a PREPERROR
-
-- "ubuntu-gcc-release" NOTE
+- "ubuntu-gcc-release" 
 * checking installed package size ... NOTE
   installed size is  7.0Mb
   sub-directories of 1Mb or more:
     data   1.9Mb
     libs   4.2Mb
 
-- "solaris-x86-patched-ods"
-
-
-
-
-
-
-
-
-
+- "solaris-x86-patched-ods" OK
 
 
 
