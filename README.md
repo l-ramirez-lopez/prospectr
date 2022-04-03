@@ -14,8 +14,7 @@ _Antoine Stevens & Leo Ramirez-Lopez_
 _Last update: 03.04.2022_
 
 _This version: 0.2.4 - mandarina -_ (this version fixes a bug in the 
-`read_nircal()` function and also some issues when installing from GitHub in MAC 
-OS)
+`read_nircal()` function)
 
 `prospectr` is becoming more and more used in spectroscopic applications, which 
 is evidenced by the number of scientific publications citing the package. 
