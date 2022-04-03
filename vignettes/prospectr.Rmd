@@ -42,13 +42,11 @@ Since the publication of the
 [special special Volume in Spectroscopy and Chemometrics in R](https://www.jstatsoft.org/issue/view/v018) [@mullen2007] many spectroscopy-related packages have been released. Most of 
 these packages can be found at the following CRAN task views:
 
-- [Multivariate Statistics](https://CRAN.R-project.org/view=Multivariate) 
-
 - [Machine Learning & Statistical Learning](https://CRAN.R-project.org/view=MachineLearning) 
 
 - [Chemometrics and Computational Physics](https://CRAN.R-project.org/view=ChemPhys) 
 
-In addition, [Bryan Hanson](https://github.com/bryanhanson?tab=followers) 
+In addition, [Bryan Hanson](https://github.com/bryanhanson) 
 provides a list of Free Open Source Software (FOSS) dedictaed to Spectroscopic 
 applications in general 
 (see [https://bryanhanson.github.io/FOSS4Spectroscopy/](https://bryanhanson.github.io/FOSS4Spectroscopy/)). 
