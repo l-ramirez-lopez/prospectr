@@ -111,7 +111,7 @@ Other useful functions are also available:
 
 ## Citing the package
 Antoine Stevens and Leornardo Ramirez-Lopez (2022). An introduction to the prospectr package. R package
-Vignette R package version 0.2.3.
+Vignette R package version 0.2.4.
 A BibTeX entry for LaTeX users is:
 
 ```
