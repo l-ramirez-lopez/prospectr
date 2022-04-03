@@ -11,7 +11,7 @@
 <em><p align="left"> Misc. Functions for Processing and Sample Selection of Spectroscopic Data </p></em>
 _Antoine Stevens & Leo Ramirez-Lopez_
 
-_Last update: 20.03.2022_
+_Last update: 03.04.2022_
 
 _This version: 0.2.4 - mandarina -_ (this version fixes a bug in the 
 `read_nircal()` function and also some issues when installing from GitHub in MAC 
