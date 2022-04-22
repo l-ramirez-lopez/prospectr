@@ -3,6 +3,17 @@ prospectr 0.2.4
 
 ## Improvements and fixes
 
+* spliceCorrection(): correcting more than one point at once  (argument splice)
+in the spectra was returning an error. This was a bug introduced in 
+version 0.2.5. Thanks to José Lucas Safanelli (https://github.com/zecojls) 
+for reporting this. 
+
+
+prospectr 0.2.4
+===============
+
+## Improvements and fixes
+
 * baseline(): in some cases the function did not properly capture the baseline
 confounding maximum values of a peaks as part of the baseline. This has been 
 addressed in this version by ensuring the envelope used in the computation of the 
