@@ -3,6 +3,11 @@ prospectr 0.2.5
 
 ## Improvements and fixes
 
+* kenStone(): an error in a sanity check that prevented the 
+function to run when the number of groups to be selected was smaller than the 
+total number of groups. This sanity check has been fixed. Thanks to 
+Pogs Manalili for reporting this. 
+
 * kenStone(): this function was failing when when using the Mahalanobis distance 
 on a matrix of one column. By default the funcion transforms the matrix onto 
 the Mahalanobis space using either SVD or eigendecomposition. This makes sense 
