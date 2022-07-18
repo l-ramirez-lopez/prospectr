@@ -127,7 +127,7 @@ kenStone <- function(X,
         pc <- 1
       }
     }
-    scores <- X <- pca$x[, 1:pc, drop = F]
+    scores <- X <- pca$x[, 1:pc, drop = FALSE]
   }
 
   if (metric == "mahal") {
