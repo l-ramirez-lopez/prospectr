@@ -1,11 +1,19 @@
-prospectr 0.2.4
+prospectr 0.2.5
 ===============
 
 ## Improvements and fixes
 
+* kenStone(): this function was failing when when using the Mahalanobis distance 
+on a matrix of one column. By default the funcion transforms the matrix onto 
+the Mahalanobis space using either SVD or eigendecomposition. This makes sense 
+for matrices with more than two columns. However for a matrix of one column, we 
+now assume that such space is equivalent to the variable divided by the its 
+standard deviation. Thanks to Sergio Roldán (https://github.com/sdroldan) for 
+reporting this. 
+
 * spliceCorrection(): correcting more than one point at once  (argument splice)
 in the spectra was returning an error. This was a bug introduced in 
-version 0.2.5. Thanks to José Lucas Safanelli (https://github.com/zecojls) 
+version 0.2.4. Thanks to José Lucas Safanelli (https://github.com/zecojls) 
 for reporting this. 
 
 
