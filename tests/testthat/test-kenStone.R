@@ -25,3 +25,8 @@ test_that("kenStone works", {
   
   expect_true(!any(!sel_samples == X_kenStone_b$model))
 })
+
+test_that("kenStone with Mahalanobis on 1 single variable", {
+  nirdata <- data("NIRsoil")
+  X_kenStone <- kenStone(NIRsoil$spc, k = 3, metric = "mahal", pc = 1)
+})
