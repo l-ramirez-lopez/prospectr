@@ -154,7 +154,7 @@ kenStone <- function(X,
       warning("group has been coerced to a factor")
     }
 
-    if (k < nlevels(group)) {
+    if (k > nlevels(group)) {
       stop("k is larger the the number of groups/levels in 'group'")
     }
   }
