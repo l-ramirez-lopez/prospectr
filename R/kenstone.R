@@ -127,7 +127,7 @@ kenStone <- function(X,
         pc <- 1
       }
     }
-    scores <- X <- pca$x[, 1:pc, drop = F]
+    scores <- X <- pca$x[, 1:pc, drop = FALSE]
   }
 
   if (metric == "mahal") {
@@ -154,7 +154,7 @@ kenStone <- function(X,
       warning("group has been coerced to a factor")
     }
 
-    if (k < nlevels(group)) {
+    if (k > nlevels(group)) {
       stop("k is larger the the number of groups/levels in 'group'")
     }
   }

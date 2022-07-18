@@ -37,14 +37,18 @@ e2m <- function(X, sm.method = c("svd", "eigen")) {
     stop("In order to project the matrix to a Mahalanobis space, the number of observations of the input matrix must greater than its number of variables")
   }
 
-  sm.method <- match.arg(sm.method)
-
-  X <- as.matrix(X)
-  vcv <- cov(X)
-  sq_vcv <- sqrtSm(vcv, method = sm.method)
-  sq_S <- solve(sq_vcv)
-  ms_x <- X %*% sq_S
-  dimnames(ms_x) <- nms
+  if (ncol(X) == 1) {
+    ms_x <- X / sd(X)
+  } else {
+    sm_method <- match.arg(sm.method)
+    
+    X <- as.matrix(X)
+    vcv <- cov(X)
+    sq_vcv <- sqrtSm(vcv, method = sm_method)
+    sq_S <- solve(sq_vcv)
+    ms_x <- X %*% sq_S
+    dimnames(ms_x) <- nms
+  }
   return(ms_x)
 }
 
