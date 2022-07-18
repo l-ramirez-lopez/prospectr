@@ -2,8 +2,11 @@
 #' @description
 #' Corrects steps in an input spectral matrix by linear interpolation of the
 #' values of the edges of the middle sensor
+#' 
 #' @usage
+#' 
 #' spliceCorrection(X, wav, splice = c(1000, 1830), interpol.bands = 10)
+#' 
 #' @param X a numeric matrix or vector to transform (optionally a data frame that can
 #' be coerced to a numerical matrix).
 #' @param wav a numeric vector with band positions.
@@ -29,7 +32,7 @@
 #'
 #'
 #' @return a matrix with the splice corrected data.
-#' @author Antoine Stevens and href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
+#' @author Antoine Stevens and \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 #' @export
 
 spliceCorrection <- function(X, wav, splice = c(1000, 1830), interpol.bands = 10) {
@@ -44,6 +47,8 @@ spliceCorrection <- function(X, wav, splice = c(1000, 1830), interpol.bands = 10
 
   if (length(splice) == 1) {
     index_b <- ncol(X)
+  } else {
+    index_b <- which(wav == splice[2])
   }
 
   has_three_regions <- length(splice) == 2
