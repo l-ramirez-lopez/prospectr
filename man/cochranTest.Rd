@@ -49,7 +49,7 @@ An observation is considered to have an outlying variance if the Cochran \emph{C
 statistic is higher than an upper limit critical value \mjeqn{C_{UL}}{C_{UL}}
 which can be evaluated with ('t Lam, 2010):
 
-\mjdeqn{C_{UL}(\alpha, n, N) = 1 + \[\frac{N-1}{F_{c}(\alpha/N,(n-1),(N-1)(n-1))}\]^{-1} }{C_{UL}(\alpha, n, N) = 1 + \[\frac{N-1}{F_{c}(\alpha/N,(n-1),(N-1)(n-1))}\]^{-1}}
+\mjdeqn{C_{UL}(\alpha, n, N) = 1 + [\frac{N-1}{F_{c}(\alpha/N,(n-1),(N-1)(n-1))}]^{-1} }{C_{UL}(\alpha, n, N) = 1 + [\frac{N-1}{F_{c}(\alpha/N,(n-1),(N-1)(n-1))}]^{-1}}
 
 where \mjeqn{\alpha}{\alpha} is the \emph{p}-value of the test, \mjeqn{n}{n} is the (average)
 number of replicates and \mjeqn{F_c}{F_c} is the critical value of the Fisher's \mjeqn{F}{F} ratio.
