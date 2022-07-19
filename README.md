@@ -13,8 +13,7 @@ _Antoine Stevens & Leo Ramirez-Lopez_
 
 _Last update: 18.07.2022_
 
-_This version: 0.2.5 - antilla -_ (this version fixes a bug in the 
-`kenStone()` function)
+_This version: 0.2.6 - chicago -_ 
 
 `prospectr` is becoming more and more used in spectroscopic applications, which 
 is evidenced by the number of scientific publications citing the package. 
