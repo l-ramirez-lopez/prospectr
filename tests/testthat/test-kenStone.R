@@ -30,7 +30,8 @@ test_that("kenStone works", {
 
 test_that("kenStone with Mahalanobis on 1 single variable", {
   data("NIRsoil")
-  X_kenStone <- kenStone(NIRsoil$spc, k = 3, metric = "mahal", pc = 1)
+  expect_true(is.list(kenStone(NIRsoil$spc, k = 3, metric = "mahal", pc = 1)))
+  
 })
 
 
