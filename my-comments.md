@@ -1,5 +1,72 @@
 # prospectr
 
+# version 0.2.5 - antilla
+
+# submission message:
+Dear CRAN maintainers,
+I am submitting my package "prospectr" to CRAN. This version accounts a bug in one function. 
+Prior to this submission, this tarball has been checked in rhub under the main platforms.
+Reverse dependencies have also been checked. 
+Best regards,
+Leonardo
+
+## Package was built using: 
+```
+devtools::build(
+  pkg = ".",
+  path = NULL,
+  binary = FALSE,
+  vignettes = TRUE,
+  manual = TRUE,
+  args = NULL,
+  quiet = FALSE
+)
+```
+
+# The release of `prospectr 0.2.5` (`antilla`) was uploaded on the R win builder 
+service on 18.07.2022 at around 21:00, however at 10:00 am on 18.07.2022 the 
+checks had not been processed. Therefore winbuilder was not used for this release.
+
+# Rhub checks for release of `prospectr 0.2.5` (`antilla`) 18.07.2022
+The checks were conducted in the following platforms through rhub:
+
+```
+rhub::check(paste0(gsub("/prospectr$", "/", getwd()), "prospectr_0.2.5.tar.gz"), 
+            platform = c("fedora-gcc-devel"), 
+            email = "ramirez.lopez.leo@gmail.com")
+```
+- "fedora-gcc-devel"  NOTE
+  installed size is  6.6Mb
+  sub-directories of 1Mb or more:
+    data   1.9Mb
+    libs   3.9Mb
+
+- "windows-x86_64-devel" OK
+
+- "macos-highsierra-release-cran" OK
+
+- "windows-x86_64-release" OK
+
+
+- "ubuntu-gcc-release" NOTE
+  installed size is  6.8Mb
+  sub-directories of 1Mb or more:
+    data   1.9Mb
+    libs   4.0Mb
+
+
+- "solaris-x86-patched-ods" checking package dependencies (2.7s)
+   Package suggested but not available: ‘testthat’
+   
+   The suggested packages are required for a complete check.
+   Checking can be attempted without them by setting the environment
+   variable _R_CHECK_FORCE_SUGGESTS_ to a false value.
+   
+   See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+   manual.
+
+
+
 # version 0.2.4
 
 # submission message:
