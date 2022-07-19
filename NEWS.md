@@ -11,7 +11,7 @@ total number of groups. This sanity check has been fixed. Thanks to
 Pogs Manalili for reporting this ([#41](https://github.com/l-ramirez-lopez/prospectr/issues/41)). 
 
 * `kenStone()`: this function was failing when when using the Mahalanobis distance 
-on a matrix of one column. By default the funcion transforms the matrix onto 
+on a matrix of one column. By default the function transforms the matrix onto 
 the Mahalanobis space using either SVD or eigendecomposition. This makes sense 
 for matrices with more than two columns. However for a matrix of one column, we 
 now assume that such space is equivalent to the variable divided by the its 
