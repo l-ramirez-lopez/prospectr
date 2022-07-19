@@ -4,11 +4,19 @@
 
 # submission message:
 Dear CRAN maintainers,
-I am submitting my package "prospectr" to CRAN. This version accounts a bug in one function. 
-Prior to this submission, this tarball has been checked in rhub under the main platforms.
+I am submitting my package "prospectr" to CRAN. This version accounts for some bugs. 
+Prior to this submission, this tarball has been checked with in the winbuilder service. Apart from that it has been also submitted to extensive tests in rhub.
+A first submission of this version failed (for "r-devel-linux-x86_64-debian-gcc"), 
+therefore following platforms were tested for a second submission using Rhub: 
+- Debian Linux, R-devel, GCC ASAN/UBSAN
+- Debian Linux, R-devel, GCC, no long double
+- Debian Linux, R-devel, clang, ISO-8859-15 locale
+- Debian Linux, R-devel, GCC
+For this second submission the package passed all the tests in the above platforms. 
 Reverse dependencies have also been checked. 
 Best regards,
 Leonardo
+
 
 ## Package was built using: 
 ```
@@ -23,9 +31,8 @@ devtools::build(
 )
 ```
 
-# The release of `prospectr 0.2.5` (`antilla`) was uploaded on the R win builder 
-service on 18.07.2022 at around 21:00, however at 10:00 am on 18.07.2022 the 
-checks had not been processed. Therefore winbuilder was not used for this release.
+# R win builder checks for release of `prospectr 0.2.5` (`antilla`) 19.07.2022 
+passed all the checks without notes.
 
 # Rhub checks for release of `prospectr 0.2.5` (`antilla`) 18.07.2022
 The checks were conducted in the following platforms through rhub:
@@ -35,6 +42,8 @@ rhub::check(paste0(gsub("/prospectr$", "/", getwd()), "prospectr_0.2.5.tar.gz"),
             platform = c("fedora-gcc-devel"), 
             email = "ramirez.lopez.leo@gmail.com")
 ```
+- "linux-x86_64-rocker-gcc-san"
+
 - "fedora-gcc-devel"  NOTE
   installed size is  6.6Mb
   sub-directories of 1Mb or more:
@@ -90,6 +99,8 @@ devtools::build(
 )
 ```
 
+
+
 # R win builder checks for release of `prospectr 0.2.4` (`mandarina`) 03.04.2022 passed all the checks without notes
 
 # Rhub checks for release of `prospectr 0.2.4` (`mandarina`) 03.04.2022
@@ -100,12 +111,24 @@ rhub::check(paste0(gsub("/prospectr$", "/", getwd()), "prospectr_0.2.4.tar.gz"),
             platform = c("fedora-gcc-devel"), 
             email = "ramirez.lopez.leo@gmail.com")
 ```
+Since there was an error with the first submission (with the flavor 
+"r-devel-linux-x86_64-debian-gcc"), the following platforms were added: 
+linux-x86_64-rocker-gcc-san; debian-gcc-devel-nold; debian-gcc-devel
+
+
+- linux-x86_64-rocker-gcc-san OK
+
+- debian-gcc-devel-nold OK
+
+- debian-gcc-devel OK
+
+
 - "fedora-gcc-devel" 
 * checking installed package size ... NOTE
-  installed size is  6.8Mb
+  installed size is  6.6Mb
   sub-directories of 1Mb or more:
     data   1.9Mb
-    libs   4.0Mb
+    libs   3.9Mb
     
 - "windows-x86_64-devel" OK
 
@@ -127,6 +150,81 @@ rhub::check(paste0(gsub("/prospectr$", "/", getwd()), "prospectr_0.2.4.tar.gz"),
 
 - "solaris-x86-patched-ods" OK
 
+# A first submission to CRAN was rejected. The problem: 
+
+Flavor: r-devel-linux-x86_64-debian-gcc
+Check: package subdirectories, Result: NOTE
+  Problems with news in 'NEWS':
+    Cannot process chunk/lines:
+      function to run when the number of groups to be selected was smaller than the
+    Cannot process chunk/lines:
+      total number of groups. This sanity check has been fixed. Thanks to
+    Cannot process chunk/lines:
+      on a matrix of one column. By default the funcion transforms the matrix onto
+    Cannot process chunk/lines:
+      the Mahalanobis space using either SVD or eigendecomposition. This makes sense
+    Cannot process chunk/lines:
+      for matrices with more than two columns. However for a matrix of one column, we
+    Cannot process chunk/lines:
+      now assume that such space is equivalent to the variable divided by the its
+    Cannot process chunk/lines:
+      standard deviation. Thanks to Sergio Roldán (https://github.com/sdroldan) for
+    Cannot process chunk/lines:
+      in the spectra was returning an error. This was a bug introduced in
+    Cannot process chunk/lines:
+      for reporting this.
+    Cannot process chunk/lines:
+      confounding maximum values of a peaks as part of the baseline. This has been
+    Cannot process chunk/lines:
+      addressed in this version by ensuring the envelope used in the computation of the
+    Cannot process chunk/lines:
+      convex hull (used to extract the baseline) is properly defined. At the edges,
+    Cannot process chunk/lines:
+      invalid. This preventing the function from reading any nir file. This has been
+    Cannot process chunk/lines:
+      fixed.
+    Cannot process chunk/lines:
+      calibration sample search with a user-defined subset of observations (which are
+    Cannot process chunk/lines:
+      to be included in the final calibration subset). Thanks to Thorsten Behrens and
+    Cannot process chunk/lines:
+      derivatives. In previous versions the function only allowed up to derivatives of
+      4th order, in this version the the function accepts as derivative order
+    Cannot process chunk/lines:
+      any integer larger than 1.
+      ## Improvements and fixes
+      * `binning() `a bug in the creation of the binning groups has been fixed. This bug
+    Cannot process chunk/lines:
+      is in fact inherited from a problem in the `findInterval()` function. The breaks
+      (given in the vec arument) might get corrupted when they contain many decimal
+    Cannot process chunk/lines:
+      places. These breaks (in vec) are used to define the final bins. The problem in
+    Cannot process chunk/lines:
+      the binning function was that when a frequency
+    Cannot process chunk/lines:
+      variable (e.g. wavelength) was exactly on the left of the bin
+    Cannot process chunk/lines:
+      range the variable was assigned to the next bin. In some cases this lead to
+    Cannot process chunk/lines:
+      argument. Previously it only accepted a vector of length two. For example, now it
+    Cannot process chunk/lines:
+      corrrects for splice steps of spectra that originates from spectrometers
+    Cannot process chunk/lines:
+      with two detectors (i.e. it corrects for the potential abrupt transition
+    Cannot process chunk/lines:
+      function evaluaes whether it is indeed a file properly produced by the BUCHI
+    Cannot process chunk/lines:
+      derivative (`gapDer`) function. One of the factors in the filter had a wrong
+    Cannot process chunk/lines:
+      prevented the function from reading the Description field properly
+      ## Changes
+      * In the `msc()` function the argument `reference_spc` has been renamed to
+      `ref_spectrum` to emphasize that its input must be is a vector and not a
+    Cannot process chunk/lines:
+      matrix of spectra.
+    Cannot process chunk/lines:
+      to reduce the installation size of the package. Now these lines have been
+      
 
 
 # version 0.2.3

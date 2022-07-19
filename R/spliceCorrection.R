@@ -2,11 +2,11 @@
 #' @description
 #' Corrects steps in an input spectral matrix by linear interpolation of the
 #' values of the edges of the middle sensor
-#' 
+#'
 #' @usage
-#' 
+#'
 #' spliceCorrection(X, wav, splice = c(1000, 1830), interpol.bands = 10)
-#' 
+#'
 #' @param X a numeric matrix or vector to transform (optionally a data frame that can
 #' be coerced to a numerical matrix).
 #' @param wav a numeric vector with band positions.

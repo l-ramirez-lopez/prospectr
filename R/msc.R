@@ -15,9 +15,9 @@
 #' @param ref_spectrum a numeric vector corresponding to an "ideal" reference
 #' spectrum (e.g. free of scattering effects). By default the function uses the
 #' mean spectrum of the input \code{X}. See details. Note that this argument was
-#' previously named as `reference_spc`, however, it has been renamed to 
-#' `ref_spectrum` to emphasize that this argument is a vector and not a 
-#' matrix of spectra. 
+#' previously named as `reference_spc`, however, it has been renamed to
+#' `ref_spectrum` to emphasize that this argument is a vector and not a
+#' matrix of spectra.
 #'
 #' @details
 #' The Multiplicative Scatter Correction (MSC) is a normalization method that
@@ -47,7 +47,7 @@
 #' @examples
 #' data(NIRsoil)
 #' NIRsoil$msc_spc <- msc(X = NIRsoil$spc)
-#' 
+#'
 #' # 10 first msc spectra
 #' matplot(
 #'   x = as.numeric(colnames(NIRsoil$msc_spc)),
