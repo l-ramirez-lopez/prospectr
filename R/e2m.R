@@ -41,7 +41,7 @@ e2m <- function(X, sm.method = c("svd", "eigen")) {
     ms_x <- X / sd(X)
   } else {
     sm_method <- match.arg(sm.method)
-    
+
     X <- as.matrix(X)
     vcv <- cov(X)
     sq_vcv <- sqrtSm(vcv, method = sm_method)

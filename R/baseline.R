@@ -50,24 +50,24 @@ baseline <- function(X, wav) {
   if (is.data.frame(X)) {
     X <- as.matrix(X)
   }
-  
+
   if (missing(wav)) {
     wav <- 1:ncol(X)
   }
-  
+
   wav <- c(
     wav[1] - diff(wav[1:2]),
     wav,
     wav[length(wav)] + diff(wav[(length(wav) - 1):length(wav)])
   )
-  
+
   # make sure the edges will be well above any peak
   edges <- abs(apply(X, 1, "max")) + abs(apply(X, 1, "min"))
   edges <- edges * 2
-  
+
   X <- cbind(edges, X, edges)
   colnames(X) <- wav
-  
+
   ## simple baseline function
   simple_bs <- function(x, wav) {
     id <- sort(chull(wav, x))
@@ -75,7 +75,7 @@ baseline <- function(X, wav) {
     hull_line <- approx(x = wav[id], y = x[id], xout = wav, method = "linear")$y
     return(hull_line)
   }
-  
+
   if (is.matrix(X)) {
     if (missing(wav)) {
       wav <- seq_len(ncol(X))
@@ -87,14 +87,14 @@ baseline <- function(X, wav) {
   } else {
     hull_line <- simple_bs(X, wav)
   }
-  
+
   hull_line <- hull_line[, -c(1, ncol(hull_line))]
   X <- X[, -c(1, ncol(X))]
-  
+
   baselined <- X - hull_line
-  
+
   wav <- wav[-c(1, length(wav))]
-  
+
   if (is.matrix(X)) {
     colnames(hull_line) <- colnames(baselined) <- wav
     rownames(hull_line) <- rownames(baselined) <- rownames(X)
