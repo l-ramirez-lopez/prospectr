@@ -1,0 +1,16 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+.gitignore
+.Rhistory
+.travis.yml
+^appveyor\.yml$
+cran-comments.md
+^my-comments\.md$
+code_ex.R
+^Rscript*
+^packrat/
+^\.Rprofile$c  
+TODO
+epo.R
+NEWS.html
+
