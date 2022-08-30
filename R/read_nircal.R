@@ -402,7 +402,8 @@ get_nircal_ids <- function(connection, from, to) {
   )
 
   ids <- strsplit(ids, "\n", useBytes = TRUE)[[1]]
-  ids <- iconv(ids, to = "UTF-8", sub = NA)
+  # ids <- iconv(ids, to = "UTF-8", sub = NA)
+  ids <- enc2utf8(ids)
   ids <- ids[-c(1, length(ids))]
   ids <- substr(x = ids, start = regexpr("/", ids) + 1, stop = 100000)
   flush(connection)
