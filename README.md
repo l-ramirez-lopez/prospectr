@@ -11,7 +11,7 @@
 <em><p align="left"> Misc. Functions for Processing and Sample Selection of Spectroscopic Data </p></em>
 _Antoine Stevens & Leo Ramirez-Lopez_
 
-_Last update: 18.07.2022_
+_Last update: 30.08.2022_
 
 _This version: 0.2.6 - chicago -_ 
 
