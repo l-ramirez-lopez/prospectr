@@ -1,5 +1,17 @@
 # `prospectr`
 
+
+`prospectr` 0.2.6
+===============
+
+### Improvements and fixes
+
+* `read_nircal()`: non-utf characters in sample IDs are properly handled (before
+some IDs were wrongly converted into NAs).Non-UTF8 characters are now converted 
+to their corresponding codes.
+
+* Documentation is now compatible with HTML5.
+
 `prospectr` 0.2.5
 ===============
 
