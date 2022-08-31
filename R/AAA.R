@@ -10,7 +10,7 @@
     "\033[34m",
     pkg, " version ",
     prospectr_v,
-    " -- \033[39m'antilla'"
+    " -- \033[39m'chicago'"
   )
 
   mss2 <- paste0(
