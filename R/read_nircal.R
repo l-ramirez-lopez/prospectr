@@ -138,7 +138,7 @@ read_nircal <- function(file,
   }
 
   rawcoords <- get_nircal_indices(x = nircalraw)
-
+  
   ids <- get_nircal_ids(connection = con, from = rawcoords$values_s[5], to = rawcoords$values_s2)
   nd <- length(ids)
 
@@ -401,8 +401,9 @@ get_nircal_ids <- function(connection, from, to) {
     "character"
   )
 
-  ids <- iconv(ids, to = "UTF-8", sub = NA)
   ids <- strsplit(ids, "\n", useBytes = TRUE)[[1]]
+  # ids <- iconv(ids, to = "UTF-8", sub = NA)
+  ids <- enc2utf8(ids)
   ids <- ids[-c(1, length(ids))]
   ids <- substr(x = ids, start = regexpr("/", ids) + 1, stop = 100000)
   flush(connection)
