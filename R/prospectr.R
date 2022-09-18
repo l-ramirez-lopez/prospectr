@@ -27,7 +27,7 @@
 #' @details
 #' 
 #' #' This is the version 
-#' `r paste(pkg_info()[1:2], collapse = " -- ")` of the package. 
+#' `r paste(pkg_info()[1:2], collapse = " \U002D\U002D ")` of the package. 
 #' The main functionality is listed here. 
 #'
 #' Currently, the following preprocessing functions are available:
