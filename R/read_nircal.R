@@ -473,9 +473,14 @@ get_nircal_description <- function(x, begin_s, spcinfo, comment_s, comment_f, n)
   } else {
     comment_s <- comment_s[1:n]
     comment_f <- comment_f[1:n]
-    
     ## The numbers in NIRCal files preceeding the files comment and description (e.g 11/ or 7/)
-    metanumbers <- grepRaw("[[0-9]]{0,}\\/Comment\n[[0-9]{0,}\\/Description", x, all = TRUE)[3]
+    metanumbers <- grepRaw("[[0-9]]{0,}\\/Comment\n[[0-9]{0,}\\/Description", x, all = TRUE)
+    if (metanumbers > 2) {
+      metanumbers <- metanumbers[3]
+    } else {
+      metanumbers <- metanumbers[1]
+    }
+    
     metanumbersinfo <- readBin(x[metanumbers:(metanumbers + begin_s[sum(metanumbers > begin_s) + 1])], "character")
     
     metanumbersinfo <- strsplit(metanumbersinfo, "\n", useBytes = TRUE)[[1]]
