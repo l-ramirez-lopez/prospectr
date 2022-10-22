@@ -99,6 +99,9 @@ duplex <- function(X,
   if (k < 2) {
     stop("Invalid argument: 'k' must be higher than 2")
   }
+  if (2 * k > nrow(X)) {
+    stop("'k' must be smaller than 'nrow(X) / 2'")
+  }
   metric <- match.arg(metric)
   if (is.data.frame(X)) {
     x <- X <- as.matrix(X)
