@@ -129,7 +129,7 @@ duplex <- function(X,
   }
 
   m <- nrow(X)
-  n <- seq_along(X)
+  n <- seq_len(nrow(X))
   half <- floor(m / 2)
   if (k > half) {
     k <- half
@@ -174,10 +174,10 @@ duplex <- function(X,
     # cal
     if (i == ini) {
       d <- D[model, -c(model, test), drop = FALSE]
-      mins_cal <- do.call(pmin.int, lapply(seq_along(d), function(i) d[i, ]))
+      mins_cal <- do.call(pmin.int, lapply(seq_len(nrow(d)), function(i) d[i, ]))
     } else {
       d <- rbind(D[nid_cal, -c(model, test), drop = FALSE], mins_cal)
-      mins_cal <- do.call(pmin.int, lapply(seq_along(d), function(i) d[i, ]))
+      mins_cal <- do.call(pmin.int, lapply(seq_len(nrow(d)), function(i) d[i, ]))
     }
 
     id <- which.max(mins_cal)
@@ -199,10 +199,10 @@ duplex <- function(X,
     # test
     if (i == ini) {
       d <- D[test, -c(model, test), drop = FALSE]
-      mins_val <- do.call(pmin.int, lapply(seq_along(d), function(i) d[i, ]))
+      mins_val <- do.call(pmin.int, lapply(seq_len(nrow(d)), function(i) d[i, ]))
     } else {
       d <- rbind(D[nid_val, -c(model, test), drop = FALSE], mins_val)
-      mins_val <- do.call(pmin.int, lapply(seq_along(d), function(i) d[i, ]))
+      mins_val <- do.call(pmin.int, lapply(seq_len(row(d)), function(i) d[i, ]))
     }
 
     id <- which.max(mins_val)
