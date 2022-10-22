@@ -170,10 +170,10 @@ duplex <- function(X,
   while (i < k) {
     # cal
     if (i == ini) {
-      d <- D[model, -c(model, test)]
+      d <- D[model, -c(model, test), drop = FALSE]
       mins_cal <- do.call(pmin.int, lapply(1:nrow(d), function(i) d[i, ]))
     } else {
-      d <- rbind(D[nid_cal, -c(model, test)], mins_cal)
+      d <- rbind(D[nid_cal, -c(model, test), drop = FALSE], mins_cal)
       mins_cal <- do.call(pmin.int, lapply(1:nrow(d), function(i) d[i, ]))
     }
 
@@ -195,10 +195,10 @@ duplex <- function(X,
 
     # test
     if (i == ini) {
-      d <- D[test, -c(model, test)]
+      d <- D[test, -c(model, test), drop = FALSE]
       mins_val <- do.call(pmin.int, lapply(1:nrow(d), function(i) d[i, ]))
     } else {
-      d <- rbind(D[nid_val, -c(model, test)], mins_val)
+      d <- rbind(D[nid_val, -c(model, test), drop = FALSE], mins_val)
       mins_val <- do.call(pmin.int, lapply(1:nrow(d), function(i) d[i, ]))
     }
 
