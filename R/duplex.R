@@ -158,7 +158,19 @@ duplex <- function(X,
   n <- n[-id]
 
   # Another two most distant points to test set
-  id <- c(arrayInd(which.max(D[, -id]), rep(m - 2, 2)))
+  d <- D[, -id] # remaining after first model set assignment
+  if (ncol(d) == 2L) {
+    # if only two samples left in test (nrow(X) == 4), assign both to test;
+    # avoids returning twice the same sample for test
+    test <- n
+    if (missing(pc)) {
+      return(list(model = model, test = test))
+    } else {
+      return(list(model = model, test = test, pc = scores))
+    }
+  } else {
+    id <- c(arrayInd(which.max(d), rep(m - 2, 2)))
+  }
 
   if (!missing(group)) {
     id <- which(group %in% group[id])
