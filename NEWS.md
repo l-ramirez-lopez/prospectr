@@ -1,5 +1,17 @@
 # `prospectr`
 
+`prospectr` 0.2.7
+===============
+
+### Improvements and fixes
+
+* `duplex()`: Avoid error when the number of samples to select is excatly half 
+of the size of the input data set 
+([#48](https://github.com/l-ramirez-lopez/prospectr/pull/48)). Thanks to Philipp 
+Baumann for his pull request solving this issue. 
+
+* `read_nircal()`: fixes a bug when reading some special type of 
+comments of each sample in the file.
 
 `prospectr` 0.2.6
 ===============
