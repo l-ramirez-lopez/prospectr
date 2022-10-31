@@ -99,6 +99,9 @@ duplex <- function(X,
   if (k < 2) {
     stop("Invalid argument: 'k' must be higher than 2")
   }
+  if (2 * k > nrow(X)) {
+    stop("'k' must be smaller than 'nrow(X) / 2'")
+  }
   metric <- match.arg(metric)
   if (is.data.frame(X)) {
     x <- X <- as.matrix(X)
@@ -114,7 +117,7 @@ duplex <- function(X,
         pc <- 1
       }
     }
-    scores <- X <- pca$x[, 1:pc, drop = F]
+    scores <- X <- pca$x[, 1:pc, drop = FALSE]
   }
 
   if (metric == "mahal") {
@@ -126,7 +129,7 @@ duplex <- function(X,
   }
 
   m <- nrow(X)
-  n <- 1:nrow(X)
+  n <- seq_len(nrow(X))
   half <- floor(m / 2)
   if (k > half) {
     k <- half
@@ -155,7 +158,19 @@ duplex <- function(X,
   n <- n[-id]
 
   # Another two most distant points to test set
-  id <- c(arrayInd(which.max(D[, -id]), rep(m - 2, 2)))
+  d <- D[, -id] # remaining after first model set assignment
+  if (ncol(d) == 2L) {
+    # if only two samples left in test (nrow(X) == 4), assign both to test;
+    # avoids returning twice the same sample for test
+    test <- n
+    if (missing(pc)) {
+      return(list(model = model, test = test))
+    } else {
+      return(list(model = model, test = test, pc = scores))
+    }
+  } else {
+    id <- c(arrayInd(which.max(d), rep(m - 2, 2)))
+  }
 
   if (!missing(group)) {
     id <- which(group %in% group[id])
@@ -170,11 +185,11 @@ duplex <- function(X,
   while (i < k) {
     # cal
     if (i == ini) {
-      d <- D[model, -c(model, test)]
-      mins_cal <- do.call(pmin.int, lapply(1:nrow(d), function(i) d[i, ]))
+      d <- D[model, -c(model, test), drop = FALSE]
+      mins_cal <- do.call(pmin.int, lapply(seq_len(nrow(d)), function(i) d[i, ]))
     } else {
-      d <- rbind(D[nid_cal, -c(model, test)], mins_cal)
-      mins_cal <- do.call(pmin.int, lapply(1:nrow(d), function(i) d[i, ]))
+      d <- rbind(D[nid_cal, -c(model, test), drop = FALSE], mins_cal)
+      mins_cal <- do.call(pmin.int, lapply(seq_len(nrow(d)), function(i) d[i, ]))
     }
 
     id <- which.max(mins_cal)
@@ -195,11 +210,11 @@ duplex <- function(X,
 
     # test
     if (i == ini) {
-      d <- D[test, -c(model, test)]
-      mins_val <- do.call(pmin.int, lapply(1:nrow(d), function(i) d[i, ]))
+      d <- D[test, -c(model, test), drop = FALSE]
+      mins_val <- do.call(pmin.int, lapply(seq_len(nrow(d)), function(i) d[i, ]))
     } else {
-      d <- rbind(D[nid_val, -c(model, test)], mins_val)
-      mins_val <- do.call(pmin.int, lapply(1:nrow(d), function(i) d[i, ]))
+      d <- rbind(D[nid_val, -c(model, test), drop = FALSE], mins_val)
+      mins_val <- do.call(pmin.int, lapply(seq_len(row(d)), function(i) d[i, ]))
     }
 
     id <- which.max(mins_val)
