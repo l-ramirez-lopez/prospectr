@@ -20,8 +20,11 @@
 #' @param group An optional `factor` (or vector that can be coerced to a factor
 #' by \code{\link{as.factor}}) of length equal to nrow(X), giving the identifier
 #' of related observations (e.g. samples of the same batch of measurements,
-#' samples of the same origin, or of the same soil profile). When one observation
-#' is selected by the procedure all observations of the same group are removed
+#' samples of the same origin, or of the same soil profile). Note that by using 
+#' this option, the sampling is conducted by groups and not by individual 
+#' samples. Therefore, the value of \code{k} becomes the number of groups to 
+#' sample. When one observation is selected by the procedure all observations 
+#' of the same group are removed
 #' together and assigned to the calibration set. This allows to select calibration
 #' points that are independent from the remaining points.
 #' @param .center logical value indicating whether the input matrix should be
