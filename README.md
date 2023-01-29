@@ -16,9 +16,9 @@ Data
 
 </em> *Antoine Stevens & Leo Ramirez-Lopez*
 
-*Last update: 2022-09-18*
+*Last update: 2023-01-29*
 
-Version: 0.2.6 – cakes
+Version: 0.2.7 – cakes
 
 `prospectr` is becoming more and more used in spectroscopic
 applications, which is evidenced by the number of scientific
