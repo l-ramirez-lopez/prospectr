@@ -2,12 +2,11 @@ Package: prospectr
 Type: Package
 Title: Miscellaneous Functions for Processing 
        and Sample Selection of Spectroscopic Data
-Version: 0.2.6
-Date: 2022-08-31
+Version: 0.2.7
+Date: 2022-10-07
 Author: 
     Antoine Stevens [aut, cre] (<https://orcid.org/0000-0002-1588-7519>), 
-    Leonardo Ramirez-Lopez [aut, cre] (<https://orcid.org/0000-0002-5369-5120>),
-    Guillaume Hans [ctb] (<https://orcid.org/0000-0002-6503-5760>)
+    Leonardo Ramirez-Lopez [aut, cre] (<https://orcid.org/0000-0002-5369-5120>)
 Maintainer: 
     Leonardo Ramirez-Lopez <ramirez.lopez.leo@gmail.com>
 BugReports: 
@@ -42,3 +41,4 @@ LazyDataCompression: xz
 Repository: CRAN
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
+Config/VersionName: cakes

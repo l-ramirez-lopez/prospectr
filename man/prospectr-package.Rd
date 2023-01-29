@@ -11,12 +11,16 @@
 Misc functions for spectral data
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-This package implements a number of \code{R} functions useful for
+This package implements a number of functions useful for
 pre-processing spectral data well as for selecting representaive samples/spectra.
 The functions included here are particularly useful in Near-Infrarred and Infrared
 Spectroscopy applications.
 }
 \details{
+#' This is the version
+0.2.7 -- cakes of the package.
+The main functionality is listed here.
+
 Currently, the following preprocessing functions are available:
 
 \itemize{
