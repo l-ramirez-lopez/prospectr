@@ -22,7 +22,7 @@
 #' of related observations (e.g. samples of the same batch of measurements,
 #' samples of the same origin, or of the same soil profile). Note that by using 
 #' this option in some cases, the number of samples retrieved is not exactly the
-#' one specified in `k` as it will depennd on the groups. See details.  
+#' one specified in `k` as it will depend on the groups. See details.  
 #' @param .center logical value indicating whether the input matrix should be
 #' centered before Principal Component Analysis. Default set to \code{TRUE}.
 #' @param .scale logical value indicating whether the input matrix should be
