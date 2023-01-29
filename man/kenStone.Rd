@@ -24,12 +24,11 @@ number of components explaining at least (\code{pc * 100}) percent of the total
 variance.}
 
 \item{group}{An optional \code{factor} (or vector that can be coerced to a factor
-by \code{\link{as.factor}}) of length equal to nrow(X), giving the identifier
+by \code{\link{as.factor}}) of length equal to \code{nrow(X)}, giving the identifier
 of related observations (e.g. samples of the same batch of measurements,
-samples of the same origin, or of the same soil profile). When one observation
-is selected by the procedure all observations of the same group are removed
-together and assigned to the calibration set. This allows to select calibration
-points that are independent from the remaining points.}
+samples of the same origin, or of the same soil profile). Note that by using
+this option in some cases, the number of samples retrieved is not exactly the
+one specified in \code{k} as it will depennd on the groups. See details.}
 
 \item{.center}{logical value indicating whether the input matrix should be
 centered before Principal Component Analysis. Default set to \code{TRUE}.}
@@ -90,6 +89,18 @@ corresponding value for point \mjeqn{j}{j},
 \mjeqn{\hat \lambda_a}{hat lambda_a} is the eigenvalue of principal
 component \mjeqn{a}{a} and \mjeqn{A}{A} is the number of principal components
 included in the computation.
+
+When the \code{group} argument is used, the sampling is conducted in such a
+way that at each iteration, when a single sample is selected, this sample
+along with all the samples that belong to its group, are assigned to the
+final calibration set. In this respect, at each iteration, the algorithm
+will select one sample (in case that sample is the only one in that group)
+or more to the calibration set. This also implies that the argument \code{k}
+passed to the function will not necessary reflect the exact number of samples
+selected. For example, if \code{k = 2} and if the first sample identified
+belongs to with group of 5 samples and the second one belongs to a group with
+10 samples, then, the total amount of samples retrieved by the
+function will be 15.
 }
 \examples{
 data(NIRsoil)

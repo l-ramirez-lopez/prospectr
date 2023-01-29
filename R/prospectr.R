@@ -19,12 +19,16 @@
 #' Misc functions for spectral data
 #' \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 #'
-#' This package implements a number of `R` functions useful for
+#' This package implements a number of functions useful for
 #' pre-processing spectral data well as for selecting representaive samples/spectra.
 #' The functions included here are particularly useful in Near-Infrarred and Infrared
 #' Spectroscopy applications.
 #'
 #' @details
+#' 
+#' #' This is the version 
+#' `r paste(pkg_info()[1:2], collapse = " \U002D\U002D ")` of the package. 
+#' The main functionality is listed here. 
 #'
 #' Currently, the following preprocessing functions are available:
 #'
