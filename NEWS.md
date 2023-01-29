@@ -5,6 +5,12 @@
 
 ### Improvements and fixes
 
+* `kenStone()`: An issue has been fixed for the `k` argument when `group` 
+was used. The function prevented to pass a value to the `k` argument 
+larger than the number of groups passed to the `group` argument 
+([#51](https://github.com/l-ramirez-lopez/prospectr/issues/51)). Thanks to 
+Michael Simmler from Agroscope for pointing at this isssue. 
+
 * `duplex()`: Avoid error when the number of samples to select is excatly half 
 of the size of the input data set 
 ([#48](https://github.com/l-ramirez-lopez/prospectr/pull/48)). Thanks to Philipp 
