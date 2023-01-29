@@ -18,12 +18,11 @@
 #' number of components explaining at least (`pc * 100`) percent of the total
 #' variance.
 #' @param group An optional `factor` (or vector that can be coerced to a factor
-#' by \code{\link{as.factor}}) of length equal to nrow(X), giving the identifier
+#' by \code{\link{as.factor}}) of length equal to \code{nrow(X)}, giving the identifier
 #' of related observations (e.g. samples of the same batch of measurements,
-#' samples of the same origin, or of the same soil profile). When one observation
-#' is selected by the procedure all observations of the same group are removed
-#' together and assigned to the calibration set. This allows to select calibration
-#' points that are independent from the remaining points.
+#' samples of the same origin, or of the same soil profile). Note that by using 
+#' this option in some cases, the number of samples retrieved is not exactly the
+#' one specified in `k` as it will depennd on the groups. See details.  
 #' @param .center logical value indicating whether the input matrix should be
 #' centered before Principal Component Analysis. Default set to \code{TRUE}.
 #' @param .scale logical value indicating whether the input matrix should be
@@ -90,7 +89,19 @@
 #' \mjeqn{\hat \lambda_a}{hat lambda_a} is the eigenvalue of principal
 #' component \mjeqn{a}{a} and \mjeqn{A}{A} is the number of principal components
 #' included in the computation.
-#'
+#' 
+#' When the \code{group} argument is used, the sampling is conducted in such a 
+#' way that at each iteration, when a single sample is selected, this sample 
+#' along with all the samples that belong to its group, are assigned to the
+#' final calibration set. In this respect, at each iteration, the algorithm 
+#' will select one sample (in case that sample is the only one in that group) 
+#' or more to the calibration set. This also implies that the argument \code{k}
+#' passed to the function will not necessary reflect the exact number of samples
+#' selected. For example, if \code{k = 2} and if the first sample identified 
+#' belongs to with group of 5 samples and the second one belongs to a group with 
+#' 10 samples, then, the total amount of samples retrieved by the 
+#' function will be 15. 
+#' 
 #' @seealso  \code{\link{duplex}}, \code{\link{shenkWest}}, \code{\link{naes}},
 #' \code{\link{honigs}}
 #' @export
@@ -129,7 +140,7 @@ kenStone <- function(X,
     }
     scores <- X <- pca$x[, 1:pc, drop = FALSE]
   }
-
+  
   if (metric == "mahal") {
     # Project in the Mahalanobis distance space
     X <- e2m(X, sm.method = "svd")
@@ -137,14 +148,14 @@ kenStone <- function(X,
       scores <- X
     }
   }
-
+  
   m <- nrow(X)
-  n <- 1:m
-
+  n_ref <- 1:m
+  
   if (k >= m) {
     k <- m - 1
   }
-
+  
   if (!missing(group)) {
     if (length(group) != nrow(X)) {
       stop("length(group) should be equal to nrow(X)")
@@ -153,32 +164,28 @@ kenStone <- function(X,
       group <- as.factor(group)
       warning("group has been coerced to a factor")
     }
-
-    if (k > nlevels(group)) {
-      stop("k is larger the the number of groups/levels in 'group'")
-    }
   }
-
+  
   distance_mat <- fastDist(X, X, "euclid")
   rm(X)
   gc()
-
+  
   if (!is.null(init)) {
     # init is used to initialize the model set
-
+    
     is_integer <- function(x, tol = .Machine$double.eps^0.5) abs(x - round(x)) < tol
     ## sanity checks for init
     if (!all(is_integer(init))) {
       stop("Seems like you are tryning to use non-integers in the init argument")
     }
-
+    
     init <- unique(init)
-
+    
     if (k < length(init)) {
       stop("Invalid argument: 'k' must be larger than the length of init")
     }
     id <- init
-
+    
     if (length(init) == 1) {
       id <- c(id, which.max(distance_mat[, id]))
     }
@@ -186,40 +193,59 @@ kenStone <- function(X,
     # Fist two most distant points to initialize the model set
     id <- c(arrayInd(which.max(distance_mat), rep(m, 2)))
   }
-
+  
   if (!missing(group)) {
-    id <- which(group %in% group[id])
-    group <- group[-id]
+    iter_group <- group
+    id <- which(iter_group %in% iter_group[id])
+    iter_group <- iter_group[-id]
   }
-
-  model <- n[id]
-  n <- n[-id]
+  
+  model <- n_ref[id]
+  n_ref <- n_ref[-id]
   ini <- i <- length(model)
-
+  
+  # browser()
   while (i < k) {
     if (i == ini) {
-      distance_sub <- distance_mat[model, -model]
-    } # first loop
+      distance_sub <- distance_mat[model, -model] # first loop
+    } 
     else {
       distance_sub <- rbind(mins, distance_mat[nid, -model])
     }
-
+    
     mins <- do.call(pmin.int, lapply(1:nrow(distance_sub), function(i) distance_sub[i, ]))
-
+    # # alternatively
+    # mins <- apply(distance_sub, MARGIN = 2, function(x) min(x))
+    
     id <- which.max(mins)
-
+    
     if (!missing(group)) {
-      id <- which(group %in% group[id])
-      group <- group[-id]
+      id <- which(iter_group %in% iter_group[id])
+      # print(iter_group[id])
+      # print(length(iter_group[id]))
+      iter_group <- iter_group[-id]
     }
-
-    nid <- n[id]
+    
+    nid <- n_ref[id]
     model <- c(model, nid)
-    n <- n[-id]
+    n_ref <- n_ref[-id]
     mins <- mins[-id]
     i <- length(model)
   }
-
+  
+  if (!missing(group)) {
+    mss <- paste0(
+      "\033[3m",
+      "Samples selected: ", 
+      length(model), 
+      " from ", 
+      length(unique(group[model])), 
+      " groups \n",
+      "\033[23m"
+    )
+    cat(mss)
+  }
+  
   if (missing(pc)) {
     return(list(model = model, test = (1:m)[-model]))
   } else {
