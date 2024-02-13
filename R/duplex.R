@@ -158,7 +158,7 @@ duplex <- function(X,
   n <- n[-id]
 
   # Another two most distant points to test set
-  d <- D[, -id] # remaining after first model set assignment
+  d <- D[-id, -id] # remaining after first model set assignment
   if (ncol(d) == 2L) {
     # if only two samples left in test (nrow(X) == 4), assign both to test;
     # avoids returning twice the same sample for test
