@@ -113,6 +113,23 @@ X <- expand.grid(1:20, 1:20) + rnorm(1e5, 0, .1)
 plot(X, xlab = "VAR1", ylab = "VAR2")
 sel <- kenStone(X, k = 25, metric = "euclid")
 points(X[sel$model, ], pch = 19, col = 2)
+
+# Using the group argument
+library(prospectr)
+
+# create groups
+set.seed(1)
+my_groups <- sample(1:275, nrow(spc), replace = TRUE) |> as.factor()
+
+# check the group size 
+table(my_groups)
+
+results_group <- kenStone(X = NIRsoil$spc, k = 2, pc = 3, group = my_groups)
+
+# as the first two samples selected belong to groups
+# which have in total more than 2 samples (k).
+my_groups[results_group$model] |>  factor() |> table()
+
 }
 \references{
 Kennard, R.W., and Stone, L.A., 1969. Computer aided design of experiments.
