@@ -38,11 +38,11 @@
 #' Analysis. Default set to \code{FALSE}.
 #' @return a `list` with components:
 #' \itemize{
-#'  \item{'`model`'}{ numeric vector giving the row indices of the input data
+#'  \item{'`model`': numeric vector giving the row indices of the input data
 #'  selected for calibration}
-#'  \item{'`test`'}{ numeric vector giving the row indices of the input data
+#'  \item{'`test`': numeric vector giving the row indices of the input data
 #'  selected for validation}
-#'  \item{'`pc`'}{ if the `pc` argument is specified, a numeric matrix of the
+#'  \item{'`pc`': if the `pc` argument is specified, a numeric matrix of the
 #'  scaled pc scores}
 #' }
 #' @references

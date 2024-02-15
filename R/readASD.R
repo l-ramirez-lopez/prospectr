@@ -16,13 +16,13 @@
 #'
 #' if `out_format` = `'list'`, a `list` of the input file(s) data consisting of a list with components:
 #' \itemize{
-#'  \item{`Name`}{ name of the file imported}
-#'  \item{`datetime`}{ date and time of acquisition in `POSIXct` format}
-#'  \item{`header`}{ list with information from the header file}
-#'  \item{`radiance`}{ if applicable, a numeric vector of radiance values}
-#'  \item{`reference`}{ if applicable, a numeric vector of radiance values of the white reference}
-#'  \item{`reflectance`}{ numeric vector of reflectance values}
-#'  \item{`wavelength`}{ numeric vector of the band positions}
+#'  \item{`Name`: name of the file imported}
+#'  \item{`datetime`: date and time of acquisition in `POSIXct` format}
+#'  \item{`header`: list with information from the header file}
+#'  \item{`radiance`: if applicable, a numeric vector of radiance values}
+#'  \item{`reference`: if applicable, a numeric vector of radiance values of the white reference}
+#'  \item{`reflectance`: numeric vector of reflectance values}
+#'  \item{`wavelength`: numeric vector of the band positions}
 #' }
 #' @author Antoine Stevens (\R port), Iain Robinson (matlab function) & Leonardo Ramirez-Lopez (\R port)
 #' @references

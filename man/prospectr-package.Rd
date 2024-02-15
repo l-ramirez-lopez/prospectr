@@ -12,8 +12,8 @@ Misc functions for spectral data
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
 This package implements a number of functions useful for
-pre-processing spectral data well as for selecting representaive samples/spectra.
-The functions included here are particularly useful in Near-Infrarred and Infrared
+pre-processing spectral data well as for selecting representative samples/spectra.
+The functions included here are particularly useful in Near-Infrared and Infrared
 Spectroscopy applications.
 }
 \details{

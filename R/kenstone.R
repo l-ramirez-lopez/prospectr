@@ -37,11 +37,11 @@
 #' in the \code{init} subset.
 #' @return a list with the following components:
 #' \itemize{
-#'  \item{`model`:}{ numeric vector giving the row indices of the input data
+#'  \item{`model`: numeric vector giving the row indices of the input data
 #'  selected for calibration}
-#'  \item{`test`:}{ numeric vector giving the row indices of the remaining
+#'  \item{`test`: numeric vector giving the row indices of the remaining
 #'  observations}
-#'  \item{`pc`:}{ if the `pc` argument is specified, a numeric matrix of the
+#'  \item{`pc`: if the `pc` argument is specified, a numeric matrix of the
 #'  scaled pc scores}
 #'  }
 #' @references
@@ -64,7 +64,7 @@
 #' 
 #' # create groups
 #' set.seed(1)
-#' my_groups <- sample(1:275, nrow(spc), replace = TRUE) |> as.factor()
+#' my_groups <- sample(1:275, nrow(NIRsoil$spc), replace = TRUE) |> as.factor()
 #' 
 #' # check the group size 
 #' table(my_groups)

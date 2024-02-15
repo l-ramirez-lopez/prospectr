@@ -46,18 +46,18 @@ Analysis. Default set to FALSE.}
 \value{
 a \code{list} with components:
 \itemize{
-\item{'\code{model}'}{ indices of the observations (row indices of the input
+\item{'\code{model}': indices of the observations (row indices of the input
 data)
 selected for calibration}
-\item{'\code{test}'}{ indices of the remaining observations (row indices of the
+\item{'\code{test}': indices of the remaining observations (row indices of the
 input data)}
-\item{'\code{pc}'}{a numeric matrix of the scaled pc scores}
-\item{'\code{loop.optimal}'}{ index of the loop producing the maximum difference
+\item{'\code{pc}': a numeric matrix of the scaled pc scores}
+\item{'\code{loop.optimal}': index of the loop producing the maximum difference
 between the observed and
 theoretical sum of leverages of the selected samples}
-\item{'\code{leverage}'}{ data frame giving the observed and theoretical
+\item{'\code{leverage}': data frame giving the observed and theoretical
 cumulative sums of leverage of the points selected in each loop}
-\item{'\code{details}'}{ list with the indices of the observations kept in each
+\item{'\code{details}': list with the indices of the observations kept in each
 loop}
 }
 }

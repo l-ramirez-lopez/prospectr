@@ -18,13 +18,13 @@ if \code{out_format} = \code{'matrix'}, reflectance values of the input file(s) 
 
 if \code{out_format} = \code{'list'}, a \code{list} of the input file(s) data consisting of a list with components:
 \itemize{
-\item{\code{Name}}{ name of the file imported}
-\item{\code{datetime}}{ date and time of acquisition in \code{POSIXct} format}
-\item{\code{header}}{ list with information from the header file}
-\item{\code{radiance}}{ if applicable, a numeric vector of radiance values}
-\item{\code{reference}}{ if applicable, a numeric vector of radiance values of the white reference}
-\item{\code{reflectance}}{ numeric vector of reflectance values}
-\item{\code{wavelength}}{ numeric vector of the band positions}
+\item{\code{Name}: name of the file imported}
+\item{\code{datetime}: date and time of acquisition in \code{POSIXct} format}
+\item{\code{header}: list with information from the header file}
+\item{\code{radiance}: if applicable, a numeric vector of radiance values}
+\item{\code{reference}: if applicable, a numeric vector of radiance values of the white reference}
+\item{\code{reflectance}: numeric vector of reflectance values}
+\item{\code{wavelength}: numeric vector of the band positions}
 }
 }
 \description{
