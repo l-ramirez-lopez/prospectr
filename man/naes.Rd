@@ -38,15 +38,15 @@ scaled before Principal Component Analysis. Default set to \code{FALSE}.}
 \value{
 a list with components:
 \itemize{
-\item{'\code{model}'}{ numeric vector giving the row indices of the input data
+\item{'\code{model}': numeric vector giving the row indices of the input data
 selected for calibration}
-\item{'\code{test}'}{ numeric vector giving the row indices of the remaining
+\item{'\code{test}': numeric vector giving the row indices of the remaining
 observations}
-\item{'\code{pc}'}{ if the \code{pc} argument is specified, a numeric matrix of the
+\item{'\code{pc}': if the \code{pc} argument is specified, a numeric matrix of the
 scaled pc scores}
-\item{'\code{cluster}'}{ integer vector indicating the cluster to which each
+\item{'\code{cluster}': integer vector indicating the cluster to which each
 point was assigned}
-\item{'\code{centers}'}{ a matrix of cluster centres}
+\item{'\code{centers}': a matrix of cluster centres}
 }
 }
 \description{
