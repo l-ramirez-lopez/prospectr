@@ -20,8 +20,8 @@
 #' \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 #'
 #' This package implements a number of functions useful for
-#' pre-processing spectral data well as for selecting representaive samples/spectra.
-#' The functions included here are particularly useful in Near-Infrarred and Infrared
+#' pre-processing spectral data well as for selecting representative samples/spectra.
+#' The functions included here are particularly useful in Near-Infrared and Infrared
 #' Spectroscopy applications.
 #'
 #' @details
@@ -62,13 +62,12 @@
 #'
 #'  Other useful functions are also available:
 #'
-#'  \itemize{
+#' \itemize{
 #'   \item{\code{\link{read_nircal}}}
 #'   \item{\code{\link{readASD}}}
 #'   \item{\code{\link{spliceCorrection}}}
 #'   \item{\code{\link{cochranTest}}}
 #'  }
-#' @docType package
 #' @name prospectr-package
 #' @aliases prospectr-package prospectr
 #' @title Overview of the functions in the prospectr package
@@ -90,7 +89,7 @@
 #' }
 ######################################################################
 # prospectr
-# Copyrigth (C) 2022 Leonardo Ramirez-Lopez
+# Copyrigth (C) 2024 Leonardo Ramirez-Lopez
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -102,6 +101,5 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 ######################################################################
-
-
+"_PACKAGE"
 NULL
