@@ -3,10 +3,10 @@ citHeader("To cite package 'prospectr' in publications use:")
 year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
 vers <- paste("R package version", meta$Version)
      
-citEntry(entry="Manual",
+bibentry(bibtype = "Manual",
   title = "An introduction to the prospectr package",
-  author = personList(as.person("Antoine Stevens"),
-                      as.person("Leornardo Ramirez-Lopez")),
+  author = c(as.person("Antoine Stevens"),
+             as.person("Leornardo Ramirez-Lopez")),
   publication = "R package Vignette",
   year = year,
   note = vers,
