@@ -48,11 +48,11 @@ in the \code{init} subset.}
 \value{
 a list with the following components:
 \itemize{
-\item{\code{model}:}{ numeric vector giving the row indices of the input data
+\item{\code{model}: numeric vector giving the row indices of the input data
 selected for calibration}
-\item{\code{test}:}{ numeric vector giving the row indices of the remaining
+\item{\code{test}: numeric vector giving the row indices of the remaining
 observations}
-\item{\code{pc}:}{ if the \code{pc} argument is specified, a numeric matrix of the
+\item{\code{pc}: if the \code{pc} argument is specified, a numeric matrix of the
 scaled pc scores}
 }
 }
@@ -119,7 +119,7 @@ library(prospectr)
 
 # create groups
 set.seed(1)
-my_groups <- sample(1:275, nrow(spc), replace = TRUE) |> as.factor()
+my_groups <- sample(1:275, nrow(NIRsoil$spc), replace = TRUE) |> as.factor()
 
 # check the group size 
 table(my_groups)

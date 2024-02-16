@@ -37,8 +37,8 @@ are supplied).
 Other typical examples of splice artifacts caused by concatenating data
 captured by different detectors inside the spectrometer:
 \itemize{
-\item{XDS (FOSS)}{ 1100 nm}
-\item{ProxiMate (BUCHI Labortechnik)}{ 900 nm}
+\item{XDS (FOSS): 1100 nm}
+\item{ProxiMate (BUCHI Labortechnik): 900 nm}
 }
 }
 \author{

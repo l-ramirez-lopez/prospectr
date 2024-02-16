@@ -38,11 +38,11 @@
 #' Analysis. Default set to \code{FALSE}.
 #' @return a `list` with components:
 #' \itemize{
-#'  \item{'`model`'}{ numeric vector giving the row indices of the input data
+#'  \item{'`model`': numeric vector giving the row indices of the input data
 #'  selected for calibration}
-#'  \item{'`test`'}{ numeric vector giving the row indices of the input data
+#'  \item{'`test`': numeric vector giving the row indices of the input data
 #'  selected for validation}
-#'  \item{'`pc`'}{ if the `pc` argument is specified, a numeric matrix of the
+#'  \item{'`pc`': if the `pc` argument is specified, a numeric matrix of the
 #'  scaled pc scores}
 #' }
 #' @references
@@ -99,9 +99,6 @@ duplex <- function(X,
   if (k < 2) {
     stop("Invalid argument: 'k' must be higher than 2")
   }
-  if (2 * k > nrow(X)) {
-    stop("'k' must be smaller than 'nrow(X) / 2'")
-  }
   metric <- match.arg(metric)
   if (is.data.frame(X)) {
     x <- X <- as.matrix(X)
@@ -117,9 +114,9 @@ duplex <- function(X,
         pc <- 1
       }
     }
-    scores <- X <- pca$x[, 1:pc, drop = FALSE]
+    scores <- X <- pca$x[, 1:pc, drop = F]
   }
-
+  
   if (metric == "mahal") {
     # Project in the Mahalanobis distance space
     X <- e2m(X, sm.method = "svd")
@@ -127,14 +124,14 @@ duplex <- function(X,
       scores <- X
     }
   }
-
+  
   m <- nrow(X)
-  n <- seq_len(nrow(X))
+  n <- 1:nrow(X)
   half <- floor(m / 2)
   if (k > half) {
     k <- half
   }
-
+  
   if (!missing(group)) {
     if (length(group) != nrow(X)) {
       stop("length(group) must be equal to nrow(X)")
@@ -144,44 +141,32 @@ duplex <- function(X,
       warning("group has been coerced to a factor")
     }
   }
-
+  
   # Fist two most distant points to model set
   D <- fastDist(X, X, "euclid")
   id <- c(arrayInd(which.max(D), rep(m, 2)))
-
+  
   if (!missing(group)) {
     id <- which(group %in% group[id])
     group <- group[-id]
   }
-
+  
   model <- n[id]
   n <- n[-id]
-
+  
   # Another two most distant points to test set
-  d <- D[-id, -id] # remaining after first model set assignment
-  if (ncol(d) == 2L) {
-    # if only two samples left in test (nrow(X) == 4), assign both to test;
-    # avoids returning twice the same sample for test
-    test <- n
-    if (missing(pc)) {
-      return(list(model = model, test = test))
-    } else {
-      return(list(model = model, test = test, pc = scores))
-    }
-  } else {
-    id <- c(arrayInd(which.max(d), rep(m - 2, 2)))
-  }
-
+  id <- c(arrayInd(which.max(D[, -id]), rep(m - 2, 2)))
+  
   if (!missing(group)) {
     id <- which(group %in% group[id])
     group <- group[-id]
   }
-
+  
   test <- n[id]
   n <- n[-id]
-
+  
   ini <- i <- length(model)
-
+  
   while (i < k) {
     # cal
     if (i == ini) {
@@ -191,39 +176,39 @@ duplex <- function(X,
       d <- rbind(D[nid_cal, -c(model, test), drop = FALSE], mins_cal)
       mins_cal <- do.call(pmin.int, lapply(seq_len(nrow(d)), function(i) d[i, ]))
     }
-
+    
     id <- which.max(mins_cal)
-
+    
     if (!missing(group)) {
       id <- which(group %in% group[id])
       group <- group[-id]
     }
-
+    
     nid_cal <- n[id]
     model <- c(model, nid_cal)
     n <- n[-id]
-
+    
     mins_cal <- mins_cal[-id]
     if (i != ini) {
       mins_val <- mins_val[-id]
     }
-
+    
     # test
     if (i == ini) {
       d <- D[test, -c(model, test), drop = FALSE]
       mins_val <- do.call(pmin.int, lapply(seq_len(nrow(d)), function(i) d[i, ]))
     } else {
       d <- rbind(D[nid_val, -c(model, test), drop = FALSE], mins_val)
-      mins_val <- do.call(pmin.int, lapply(seq_len(row(d)), function(i) d[i, ]))
+      mins_val <- do.call(pmin.int, lapply(seq_len(nrow(d)), function(i) d[i, ]))
     }
-
+    
     id <- which.max(mins_val)
-
+    
     if (!missing(group)) {
       id <- which(group %in% group[id])
       group <- group[-id]
     }
-
+    
     nid_val <- n[id]
     test <- c(test, nid_val)
     n <- n[-id]
@@ -231,7 +216,7 @@ duplex <- function(X,
     mins_cal <- mins_cal[-id]
     i <- length(model)
   }
-
+  
   if (missing(pc)) {
     return(list(model = model, test = test))
   } else {
