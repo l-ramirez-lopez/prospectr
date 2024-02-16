@@ -3,9 +3,10 @@
 
 ### Improvements and fixes
 
-* `duplex()`: Selecting the 2nd set of most distant points was wrong. 
-([#56](https://github.com/l-ramirez-lopez/prospectr/pull/56)). Thanks to  
-Matthew Dirks (skylogic004) fixing this issue. 
+
+* `read_nircal()`: The function was crashing because of some special characters 
+in the IDs. This has been fixed 
+([#65](https://github.com/l-ramirez-lopez/prospectr/issues/65)). 
 
 * `kenStone()`: An issue has been fixed for the `k` argument when `group` 
 was used. The function prevented to pass a value to the `k` argument 
@@ -21,7 +22,6 @@ Baumann for his pull request solving this issue. Some modifications to his
 original solution were made which also address the concerns raised by 
 Matthew Dirks (skylogic004) 
 ([#56](https://github.com/l-ramirez-lopez/prospectr/pull/56)). Thank you! 
-
 
 * `read_nircal()`: fixes a bug when reading some special type of 
 comments of each sample in the file.

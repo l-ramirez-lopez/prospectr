@@ -1,4 +1,59 @@
 # prospectr
+# version 0.2.7 - cakes
+
+# submission message:
+Dear CRAN maintainers,
+I am submitting my package "prospectr" to CRAN. This version fixes problems with the documentation which were reported in the CRAN checks.
+Prior to this submission, this tarball has been checked with in the winbuilder service. Apart from that it has been also submitted to extensive tests in rhub.
+For this second submission the package passed all the tests in the above platforms. 
+Reverse dependencies have also been checked. 
+Best regards,
+Leonardo
+
+
+## Package was built using: 
+```
+devtools::build(
+  pkg = ".",
+  path = NULL,
+  binary = FALSE,
+  vignettes = TRUE,
+  manual = TRUE,
+  args = NULL,
+  quiet = FALSE
+)
+```
+
+# R win builder checks for release of `prospectr 0.2.7` (`ccakes`) 15.02.2024 
+passed all the checks without notes.
+
+# Rhub checks for release of `prospectr 0.2.7` (`ccakes`) 15.02.2024
+The checks were conducted in the following platforms through rhub:
+
+```
+rhub::check(paste0(gsub("/prospectr$", "/", getwd()), "prospectr_0.2.7.tar.gz"), 
+            platform = c("fedora-gcc-devel"), 
+            email = "ramirez.lopez.leo@gmail.com")
+```
+- "fedora-gcc-devel"  NOTE
+* checking installed package size ... NOTE
+  installed size is  6.5Mb
+  sub-directories of 1Mb or more:
+    data   1.9Mb
+    libs   3.1Mb
+
+- "windows-x86_64-devel" OK
+
+- "macos-highsierra-release-cran" (not tested)
+
+- "windows-x86_64-release" OK
+
+- "ubuntu-gcc-release" OK
+
+- "solaris-x86-patched-ods" (not tested)
+
+
+
 # version 0.2.6 - chicago
 
 # submission message:

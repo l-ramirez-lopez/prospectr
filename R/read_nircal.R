@@ -400,12 +400,16 @@ get_nircal_ids <- function(connection, from, to) {
     readBin(connection, what = "raw", n = to - from),
     "character"
   )
-  
+  ids <- enc2utf8(ids)
   ids <- strsplit(ids, "\n", useBytes = TRUE)[[1]]
   # ids <- iconv(ids, to = "UTF-8", sub = NA)
-  ids <- enc2utf8(ids)
-  ids <- ids[-c(1, length(ids))]
-  ids <- substr(x = ids, start = regexpr("/", ids) + 1, stop = 100000)
+  ids2 <- ids[-c(1, length(ids))]
+
+  ids <- try(substr(x = ids2, start = regexpr("/", ids) + 1, stop = 100000))
+  if (inherits(ids, "try-error")) {
+    ids <- iconv(ids2, from = "Latin1", to = "UTF-8")
+  }
+  
   flush(connection)
   return(ids)
 }
