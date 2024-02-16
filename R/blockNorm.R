@@ -29,9 +29,7 @@
 #' produces a matrix with a pre--determined sum of squares.
 #' @note
 #' This is a \R port of the \file{MBnorm.m} function of the MB matlab toolbox
-#' by Fran van den Berg which can be found at:
-#' \href{http://www.models.life.ku.dk/~courses/MBtoolbox/mbtmain.htm}{http://www.models.life.ku.dk/~courses/MBtoolbox/mbtmain.htm}
-#'
+#' by Fran van den Berg. 
 #' @export
 blockNorm <- function(X, targetnorm = 1) {
   if (!any(class(X) %in% c("matrix", "data.frame"))) {
