@@ -14,7 +14,7 @@ Data
 
 </em> *Antoine Stevens & Leo Ramirez-Lopez*
 
-*Last update: 2023-01-29*
+*Last update: 2024-02-16*
 
 Version: 0.2.7 – cakes
 
@@ -128,8 +128,8 @@ BibTeX entry for LaTeX users is:
         title = {An introduction to the prospectr package},
         author = {Antoine Stevens and Leornardo Ramirez-Lopez},
         publication = {R package Vignette},
-        year = {2022},
-        note = {R package version 0.2.4},
+        year = {2024},
+        note = {R package version 0.2.7},
       }
 
 ## Bug report and development version
