@@ -12,11 +12,11 @@
 #' @author Antoine Stevens
 #' @return a `list` with components:
 #' \itemize{
-#'  \item{'`model`'}{ numeric vector giving the row indices of the input data
+#'  \item{'`model`': numeric vector giving the row indices of the input data
 #'  selected for calibration}
-#'  \item{'`test`'}{ numeric vector giving the row indices of the remaining
+#'  \item{'`test`': numeric vector giving the row indices of the remaining
 #'  observations}
-#'  \item{'`bands`'}{ indices of the columns used during the selection procedure}
+#'  \item{'`bands`': indices of the columns used during the selection procedure}
 #' }
 #' @examples
 #' data(NIRsoil)

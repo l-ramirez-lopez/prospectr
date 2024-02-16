@@ -7,9 +7,9 @@
 bitAND(aa, bb)
 }
 \arguments{
-\item{a}{integer}
+\item{aa}{integer}
 
-\item{b}{integer}
+\item{bb}{integer}
 }
 \description{
 bitwise operations  in C++

@@ -19,9 +19,9 @@ be coerced to a numerical matrix).}
 \value{
 a list with components:
 \itemize{
-\item{'\code{X}'}{ input matrix from which outlying observations (rows) have
+\item{'\code{X}': input matrix from which outlying observations (rows) have
 been removed}
-\item{'\code{outliers}'}{ numeric vector giving the row indices of the input
+\item{'\code{outliers}': numeric vector giving the row indices of the input
 data that have been flagged as outliers}
 }
 }

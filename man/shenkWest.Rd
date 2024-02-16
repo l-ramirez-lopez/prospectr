@@ -36,11 +36,11 @@ before Principal Component Analysis. Default set to \code{FALSE}.}
 \value{
 a \code{list} with components:
 \itemize{
-\item{'\code{model}'}{ numeric vector giving the row indices of the input data
+\item{'\code{model}': numeric vector giving the row indices of the input data
 selected for calibration}
-\item{'\code{test}'}{ numeric vector giving the row indices of the remaining
+\item{'\code{test}': numeric vector giving the row indices of the remaining
 observations}
-\item{'\code{pc}'}{a numeric matrix of the scaled pc scores}
+\item{'\code{pc}': a numeric matrix of the scaled pc scores}
 }
 }
 \description{

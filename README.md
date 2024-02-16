@@ -1,7 +1,5 @@
 # prospectr
 
-[![Travis-CI Build
-Status](https://travis-ci.org/l-ramirez-lopez/prospectr.svg?branch=master)](https://travis-ci.org/l-ramirez-lopez/prospectr/)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/prospectr)](https://CRAN.R-project.org/package=prospectr)
 [![Downloads](https://cranlogs.r-pkg.org/badges/prospectr)](https://cranlogs.r-pkg.org/badges/prospectr)
 

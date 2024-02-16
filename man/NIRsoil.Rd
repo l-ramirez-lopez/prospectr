@@ -26,10 +26,13 @@ following the ISO14235 method.
 }
 \details{
 The dataset includes 618 training and 207 test samples with 5 variables:
-Nt (Total Nitrogen), Ciso (Carbon),
-CEC (Cation Exchange Capacity), train (vector of {0,1} indicating
-training (1) and validation (0) samples) and spc (a matrix with absorbance
-NIR data and band positions as \code{colnames}).
+\itemize{
+\item{Nt (Total Nitrogen).}
+\item{Ciso (Carbon).}
+\item{CEC (Cation Exchange Capacity).}
+\item{train (binary vector indicating training (1) and validation (0) samples).}
+\item{and spc (a matrix of spectral NIR absorbance values, where the band/wavelength positions are stored as \code{colnames}).}
+}
 Nt, Ciso and CEC have respectively 22 \\%, 11 \\% and 46 \\% of the observations
 with missing values.
 }
