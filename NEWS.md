@@ -1,6 +1,4 @@
-# `prospectr`
-
-`prospectr` 0.2.7
+`prospectr 0.2.7 (cakes)`
 ===============
 
 ### Improvements and fixes
