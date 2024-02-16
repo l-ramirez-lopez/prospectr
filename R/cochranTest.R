@@ -13,9 +13,9 @@
 #' @author Antoine Stevens
 #' @return a list with components:
 #' \itemize{
-#'  \item{'`X`'}{ input matrix from which outlying observations (rows) have
+#'  \item{'`X`': input matrix from which outlying observations (rows) have
 #'  been removed}
-#'  \item{'`outliers`'}{ numeric vector giving the row indices of the input
+#'  \item{'`outliers`': numeric vector giving the row indices of the input
 #'  data that have been flagged as outliers}
 #' }
 #'

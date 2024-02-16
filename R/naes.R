@@ -26,15 +26,15 @@
 #' scaled before Principal Component Analysis. Default set to \code{FALSE}.
 #' @return a list with components:
 #' \itemize{
-#'  \item{'`model`'}{ numeric vector giving the row indices of the input data
+#'  \item{'`model`': numeric vector giving the row indices of the input data
 #'  selected for calibration}
-#'  \item{'`test`'}{ numeric vector giving the row indices of the remaining
+#'  \item{'`test`': numeric vector giving the row indices of the remaining
 #'  observations}
-#'  \item{'`pc`'}{ if the `pc` argument is specified, a numeric matrix of the
+#'  \item{'`pc`': if the `pc` argument is specified, a numeric matrix of the
 #'  scaled pc scores}
-#'  \item{'`cluster`'}{ integer vector indicating the cluster to which each
+#'  \item{'`cluster`': integer vector indicating the cluster to which each
 #'  point was assigned}
-#'  \item{'`centers`'}{ a matrix of cluster centres}
+#'  \item{'`centers`': a matrix of cluster centres}
 #' }
 #' @details K-means sampling is a simple procedure based on cluster analysis to
 #' select calibration samples from large multivariate datasets.

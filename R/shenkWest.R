@@ -28,11 +28,11 @@
 #' @author Antoine Stevens
 #' @return a `list` with components:
 #' \itemize{
-#'  \item{'`model`'}{ numeric vector giving the row indices of the input data
+#'  \item{'`model`': numeric vector giving the row indices of the input data
 #'  selected for calibration}
-#'  \item{'`test`'}{ numeric vector giving the row indices of the remaining
+#'  \item{'`test`': numeric vector giving the row indices of the remaining
 #'  observations}
-#'  \item{'`pc`'}{a numeric matrix of the scaled pc scores}
+#'  \item{'`pc`': a numeric matrix of the scaled pc scores}
 #' }
 #' @details
 #' The SELECT algorithm is an iterative procedure based on the standardized

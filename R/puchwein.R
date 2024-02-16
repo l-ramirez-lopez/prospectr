@@ -37,18 +37,18 @@
 #' @author Antoine Stevens
 #' @return a `list` with components:
 #' \itemize{
-#'  \item{'`model`'}{ indices of the observations (row indices of the input
+#'  \item{'`model`': indices of the observations (row indices of the input
 #'  data)
 #'  selected for calibration}
-#'  \item{'`test`'}{ indices of the remaining observations (row indices of the
+#'  \item{'`test`': indices of the remaining observations (row indices of the
 #'  input data)}
-#'  \item{'`pc`'}{a numeric matrix of the scaled pc scores}
-#'  \item{'`loop.optimal`'}{ index of the loop producing the maximum difference
+#'  \item{'`pc`': a numeric matrix of the scaled pc scores}
+#'  \item{'`loop.optimal`': index of the loop producing the maximum difference
 #'  between the observed and
 #'  theoretical sum of leverages of the selected samples}
-#'  \item{'`leverage`'}{ data frame giving the observed and theoretical
+#'  \item{'`leverage`': data frame giving the observed and theoretical
 #'  cumulative sums of leverage of the points selected in each loop}
-#'  \item{'`details`'}{ list with the indices of the observations kept in each
+#'  \item{'`details`': list with the indices of the observations kept in each
 #'  loop}
 #' }
 #' @examples

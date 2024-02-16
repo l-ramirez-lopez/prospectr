@@ -4,8 +4,8 @@
 #' @title bitwise operations 
 #' @description
 #' bitwise operations  in C++
-#' @param a integer 
-#' @param b integer
+#' @param aa integer 
+#' @param bb integer
 #' @keywords internal
 #' @useDynLib prospectr
 bitAND <- function(aa, bb) {

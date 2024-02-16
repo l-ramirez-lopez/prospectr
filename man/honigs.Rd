@@ -18,11 +18,11 @@ values (optionally a data frame that can be coerced to a numerical matrix).}
 \value{
 a \code{list} with components:
 \itemize{
-\item{'\code{model}'}{ numeric vector giving the row indices of the input data
+\item{'\code{model}': numeric vector giving the row indices of the input data
 selected for calibration}
-\item{'\code{test}'}{ numeric vector giving the row indices of the remaining
+\item{'\code{test}': numeric vector giving the row indices of the remaining
 observations}
-\item{'\code{bands}'}{ indices of the columns used during the selection procedure}
+\item{'\code{bands}': indices of the columns used during the selection procedure}
 }
 }
 \description{
