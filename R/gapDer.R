@@ -73,9 +73,6 @@ gapDer <- function(X, m = 1, w = 1, s = 1, delta.wav) {
   if (w < 1 | !w %% 2) {
     stop("w must be odd and >= 1")
   }
-  if (m < 1 | m > 4) {
-    stop("m must be between 1 and 4")
-  }
   if (s < 1 | !s %% 2) {
     stop("s must be odd and >= 1")
   }
