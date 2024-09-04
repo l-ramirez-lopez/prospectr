@@ -11,7 +11,7 @@
 #'
 #' @param X A numeric matrix of spectra or a vector representing a single 
 #' spectrum to be corrected (optionally a data frame that can be coerced to a 
-#' numeric matrix).
+#' numeric matrix). Rows represent each spectrum and columns the band positions. 
 #' @param wav A numeric vector representing the band positions (e.g. wavelengths)
 #' corresponding to the spectral data.
 #' @param splice A numeric vector of length 1 or 2 specifying the band 
