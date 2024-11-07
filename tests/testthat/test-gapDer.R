@@ -8,7 +8,7 @@ test_that("gapDer works", {
   expect_is(X_gapDer, "matrix")
   expect_true(round(max(abs(X_gapDer[1, ])), 5) == 0.00517)
   
-  X_gapDer <- gapDer(NIRsoil$spc[1,], m = 1, w = 3)
-  expect_is(X_gapDer, "matrix")
-  expect_true(round(max(abs(X_gapDer[1, ])), 5) == 0.00517)
+  X_gapDer_vec <- gapDer(NIRsoil$spc[1,], m = 1, w = 3)
+  expect_is(X_gapDer_vec, "matrix")
+  expect_true(round(max(abs(X_gapDer_vec[1, ])), 5) == 0.00517)
 })
