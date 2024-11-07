@@ -132,15 +132,6 @@ gapDer <- function(X, m = 1, w = 1, s = 1, delta.wav) {
     rownames(output) <- rownames(X)
   }
 
-  if (is.vector(X)) {
-    if (w >= length(X)) {
-      stop("filter length w must be lower than length(X)")
-    }
-    output <- convCppV(X, sg_filter) # Convolution
-    g <- (w - 1) / 2
-    names(output) <- names(X)[((g + 1):(length(X) - g))]
-  }
-
   if (!missing(delta.wav)) {
     output <- output / delta.wav^m
   }
