@@ -82,13 +82,17 @@ gapDer <- function(X, m = 1, w = 1, s = 1, delta.wav) {
 
   filter_length <- m * w + (m + 1) * s
 
+  if (is.data.frame(X)) {
+    X <- as.matrix(X)
+  } else if (is.vector(X)) {
+    X <- matrix(X, nrow = 1)
+  }
+  
   if (filter_length > ncol(X)) {
     stop("the current parameters produce a filter with a length larger than the number of variables in X")
   }
 
-  if (is.data.frame(X)) {
-    X <- as.matrix(X)
-  }
+
 
   zw <- rep(0, w)
   os <- rep(1, s)
