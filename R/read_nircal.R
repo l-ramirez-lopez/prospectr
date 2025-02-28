@@ -405,7 +405,7 @@ get_nircal_ids <- function(connection, from, to) {
   # ids <- iconv(ids, to = "UTF-8", sub = NA)
   ids2 <- ids[-c(1, length(ids))]
 
-  ids <- try(substr(x = ids2, start = regexpr("/", ids) + 1, stop = 100000))
+  ids <- try(substr(x = ids2, start = regexpr("/", ids) + 1, stop = 100000), silent = TRUE)
   if (inherits(ids, "try-error")) {
     ids <- iconv(ids2, from = "Latin1", to = "UTF-8")
   }
@@ -444,7 +444,12 @@ get_nircal_comments <- function(connection, metanumbers, begin_s, comment_s, com
         "character"
       )
       # i.comment <- readChar(connection, nchars = comment_f[..i..] - comment_s[..i..])
-      i.comment
+      comments <- try(gsub("^[.]{0,}[0-9]{1,}\\/", "", x), silent = TRUE)
+      if (inherits(comments, "try-error")) {
+        i.comment <- iconv(i.comment, from = "Latin1", to = "UTF-8")
+        comments <- gsub("^[.]{0,}[0-9]{1,}\\/", "", i.comment)
+      }
+      comments
     }
     
     comment <- description <- rep(NA, n)
@@ -458,7 +463,6 @@ get_nircal_comments <- function(connection, metanumbers, begin_s, comment_s, com
     )
     
     comment[idxcomments] <- i.comment
-    comment <- gsub("^[.]{0,}[0-9]{1,}\\/", "", comment)
     
     flush(connection)
     
