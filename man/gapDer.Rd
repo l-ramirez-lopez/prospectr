@@ -10,9 +10,9 @@ gapDer(X, m = 1, w = 1, s = 1, delta.wav)
 \item{X}{a numeric matrix or vector` to transform (optionally a data frame
 that can be coerced to a numerical matrix).}
 
-\item{m}{an integer indicating the order of the derivative, larger than 1
-(default is 1). Note that this function allows for high order derivatives
-(e.g. m = 6).}
+\item{m}{an integer indicating the order of the derivative.
+Note that this function allows for high order derivatives (e.g. m = 6). If 0
+is passed, the function will just smooth out the signal(s).}
 
 \item{w}{an integer indicating the gap size (must be odd and >=1), i.e. the spacing
 between points over which the derivative is computed.}

@@ -1,4 +1,35 @@
 # prospectr
+# version 0.2.8 - galo
+
+# submission message:
+Dear CRAN maintainers,
+I am submitting my package "prospectr" to CRAN. This version fixes problems with the documentation which were reported in the CRAN checks.
+Prior to this submission, this tarball has been checked with in the winbuilder service. 
+Reverse dependencies have also been checked. 
+Best regards,
+Leonardo
+
+
+## Package was built using: 
+```
+devtools::build(
+  pkg = ".",
+  path = NULL,
+  binary = FALSE,
+  vignettes = TRUE,
+  manual = TRUE,
+  args = NULL,
+  quiet = FALSE
+)
+```
+
+# R win builder checks for release of `prospectr 0.2.8` (`galo`) 50.03.2025 
+passed all the checks without notes.
+
+No rhub tests
+-----------------
+
+# prospectr
 # version 0.2.7 - cakes
 
 # submission message:

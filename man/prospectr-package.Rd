@@ -15,13 +15,10 @@ This package implements a number of functions useful for
 pre-processing spectral data well as for selecting representative samples/spectra.
 The functions included here are particularly useful in Near-Infrared and Infrared
 Spectroscopy applications.
-
-All the functions are designed to accept spectral data as as matrix where
-rows represent each spectrum and columns the band positions.
 }
 \details{
-#' This is the version
-0.2.7 -- cakes of the package.
+This is the version
+0.2.8 -- galo of the package.
 The main functionality is listed here.
 
 Currently, the following preprocessing functions are available:
