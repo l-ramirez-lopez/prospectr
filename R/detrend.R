@@ -67,7 +67,7 @@ detrend <- function(X, wav, p = 2) {
     stop("'p' must be an integer larger than 0")
   }
 
-  if (p != round(p)) {
+  if (p != as.integer(p)) {
     stop("'p' must be an integer")
   }
 
