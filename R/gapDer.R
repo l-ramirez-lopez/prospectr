@@ -5,9 +5,9 @@
 #' gapDer(X, m = 1, w = 1, s = 1, delta.wav)
 #' @param X a numeric matrix or vector` to transform (optionally a data frame
 #' that can be coerced to a numerical matrix).
-#' @param m an integer indicating the order of the derivative, larger than 1
-#' (default is 1). Note that this function allows for high order derivatives
-#' (e.g. m = 6).
+#' @param m an integer indicating the order of the derivative. 
+#' Note that this function allows for high order derivatives (e.g. m = 6). If 0 
+#' is passed, the function will just smooth out the signal(s). 
 #' @param w an integer indicating the gap size (must be odd and >=1), i.e. the spacing
 #' between points over which the derivative is computed.
 #' @param s an integer indicating the segment size (must be odd and >=1), i.e.
@@ -73,9 +73,7 @@ gapDer <- function(X, m = 1, w = 1, s = 1, delta.wav) {
   if (w < 1 | !w %% 2) {
     stop("w must be odd and >= 1")
   }
-  # if (m < 1 | m > 4) {
-  #   stop("m must be between 1 and 4")
-  # }
+
   if (s < 1 | !s %% 2) {
     stop("s must be odd and >= 1")
   }
