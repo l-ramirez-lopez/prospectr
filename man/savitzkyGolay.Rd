@@ -10,7 +10,7 @@ savitzkyGolay(X, m, p, w, delta.wav)
 \item{X}{a numeric matrix or vector to process (optionally a data frame that
 can be coerced to a numerical matrix).}
 
-\item{m}{an integer indcating the differentiation order.}
+\item{m}{an integer indicating the differentiation order.}
 
 \item{p}{an integer indicating the polynomial order.}
 
