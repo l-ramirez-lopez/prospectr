@@ -2,10 +2,21 @@ Package: prospectr
 Type: Package
 Title: Miscellaneous Functions for Processing 
        and Sample Selection of Spectroscopic Data
-Version: 0.2.7
-Date: 2022-10-07
+Version: 0.2.8
+Date: 2025-03-05
+Authors@R: c(
+  person(given = "Antoine",
+         family = "Stevens",
+         role = c("aut"),
+         comment = c(ORCID = "0000-0002-1588-7519")),
+  person(given = "Leonardo",
+         family = "Ramirez-Lopez",
+         role = c("aut", "cre"),
+         email = "ramirez.lopez.leo@gmail.com",
+         comment = c(ORCID = "0000-0002-5369-5120"))
+  )
 Author: 
-    Antoine Stevens [aut, cre] (<https://orcid.org/0000-0002-1588-7519>), 
+    Antoine Stevens [aut] (<https://orcid.org/0000-0002-1588-7519>), 
     Leonardo Ramirez-Lopez [aut, cre] (<https://orcid.org/0000-0002-5369-5120>)
 Maintainer: 
     Leonardo Ramirez-Lopez <ramirez.lopez.leo@gmail.com>
@@ -41,4 +52,4 @@ LazyDataCompression: xz
 Repository: CRAN
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-Config/VersionName: cakes
+Config/VersionName: galo

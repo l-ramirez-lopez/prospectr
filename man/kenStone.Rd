@@ -119,7 +119,8 @@ library(prospectr)
 
 # create groups
 set.seed(1)
-my_groups <- sample(1:275, nrow(NIRsoil$spc), replace = TRUE) |> as.factor()
+my_groups <- sample(1:275, nrow(NIRsoil$spc), replace = TRUE) 
+my_groups <- as.factor(my_groups)
 
 # check the group size 
 table(my_groups)
@@ -128,7 +129,7 @@ results_group <- kenStone(X = NIRsoil$spc, k = 2, pc = 3, group = my_groups)
 
 # as the first two samples selected belong to groups
 # which have in total more than 2 samples (k).
-my_groups[results_group$model] |>  factor() |> table()
+table(factor(my_groups[results_group$model]))
 
 }
 \references{

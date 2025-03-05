@@ -24,11 +24,9 @@
 #' The functions included here are particularly useful in Near-Infrared and Infrared
 #' Spectroscopy applications.
 #'
-#' All the functions are designed to accept spectral data as as matrix where 
-#' rows represent each spectrum and columns the band positions.  
 #' @details
 #' 
-#' #' This is the version 
+#' This is the version 
 #' `r paste(pkg_info()[1:2], collapse = " \U002D\U002D ")` of the package. 
 #' The main functionality is listed here. 
 #'
@@ -91,7 +89,7 @@
 #' }
 ######################################################################
 # prospectr
-# Copyrigth (C) 2024 Leonardo Ramirez-Lopez
+# Copyrigth (C) 2025 Leonardo Ramirez-Lopez
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

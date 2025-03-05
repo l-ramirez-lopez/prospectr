@@ -14,9 +14,9 @@ Data
 
 </em> *Antoine Stevens & Leo Ramirez-Lopez*
 
-*Last update: 2024-02-16*
+*Last update: 2025-03-05*
 
-Version: 0.2.7 – cakes
+Version: 0.2.8 – galo
 
 `prospectr` is becoming more and more used in spectroscopic
 applications, which is evidenced by the number of scientific
@@ -120,16 +120,16 @@ Other useful functions are also available:
 
 ## Citing the package
 
-Antoine Stevens and Leornardo Ramirez-Lopez (2022). An introduction to
-the prospectr package. R package Vignette R package version 0.2.4. A
+Antoine Stevens and Leornardo Ramirez-Lopez (2025). An introduction to
+the prospectr package. R package Vignette R package version 0.2.8. A
 BibTeX entry for LaTeX users is:
 
      @Manual{stevens2022prospectr,
         title = {An introduction to the prospectr package},
         author = {Antoine Stevens and Leornardo Ramirez-Lopez},
         publication = {R package Vignette},
-        year = {2024},
-        note = {R package version 0.2.7},
+        year = {2025},
+        note = {R package version 0.2.8},
       }
 
 ## Bug report and development version
