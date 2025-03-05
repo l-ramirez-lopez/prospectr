@@ -1,3 +1,16 @@
+`prospectr 0.2.8 (galo)`
+===============
+
+### Improvements and fixes
+
+* `read_nircal()`: The function was still crashing because of some special characters 
+in the IDs. This has been fixed 
+([#65](https://github.com/l-ramirez-lopez/prospectr/issues/65)). 
+
+
+* `gap_der()`: It can now accept `m = 0`. 
+
+
 `prospectr 0.2.7 (cakes)`
 ===============
 
@@ -53,7 +66,7 @@ the Mahalanobis space using either SVD or eigendecomposition. This makes sense
 for matrices with more than two columns. However for a matrix of one column, we 
 now assume that such space is equivalent to the variable divided by the its 
 standard deviation. Thanks to Sergio Roldan (https://github.com/sdroldan) for 
-reporting this ([#40](https://github.com/l-ramirez-lopez/prospectr/issues/40])).
+reporting this ([#40](https://github.com/l-ramirez-lopez/prospectr/issues/40)).
 
 
 * `spliceCorrection()`: correcting more than one point at once  (argument splice)
