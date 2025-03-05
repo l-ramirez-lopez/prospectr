@@ -97,6 +97,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// get_msc_coeff2
+NumericMatrix get_msc_coeff2(arma::mat X, arma::vec ref_spectrum, int p);
+RcppExport SEXP _prospectr_get_msc_coeff2(SEXP XSEXP, SEXP ref_spectrumSEXP, SEXP pSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type X(XSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type ref_spectrum(ref_spectrumSEXP);
+    Rcpp::traits::input_parameter< int >::type p(pSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_msc_coeff2(X, ref_spectrum, p));
+    return rcpp_result_gen;
+END_RCPP
+}
 // resample_fwhm
 NumericMatrix resample_fwhm(NumericMatrix X, NumericVector wav, NumericVector new_wav, NumericVector fwhm);
 RcppExport SEXP _prospectr_resample_fwhm(SEXP XSEXP, SEXP wavSEXP, SEXP new_wavSEXP, SEXP fwhmSEXP) {
@@ -146,6 +159,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_prospectr_fastDist", (DL_FUNC) &_prospectr_fastDist, 3},
     {"_prospectr_fastDistV", (DL_FUNC) &_prospectr_fastDistV, 3},
     {"_prospectr_get_msc_coeff", (DL_FUNC) &_prospectr_get_msc_coeff, 2},
+    {"_prospectr_get_msc_coeff2", (DL_FUNC) &_prospectr_get_msc_coeff2, 3},
     {"_prospectr_resample_fwhm", (DL_FUNC) &_prospectr_resample_fwhm, 4},
     {"_prospectr_resample_fwhm_vec", (DL_FUNC) &_prospectr_resample_fwhm_vec, 4},
     {"_prospectr_residLm", (DL_FUNC) &_prospectr_residLm, 2},

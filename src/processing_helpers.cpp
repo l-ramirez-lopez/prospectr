@@ -121,26 +121,34 @@ NumericVector fastDistV(NumericMatrix X, NumericVector Y, String method){
 }
 
 //' @title get_msc_coeff
-//' @description
-//' Coefficients for multiplicative Scatter Correction written in C++
-//' @param X matrix 
-//' @param ref_spectrum a matrix of one row and same columns as in X
-//' @keywords internal
-//' @useDynLib prospectr
-// [[Rcpp::export]]
-NumericMatrix get_msc_coeff(arma::mat X, 
-                            arma::vec ref_spectrum) {
-  
-  
-  arma::mat ref = arma::ones(X.n_cols, 2);
-  ref.col(1) = ref_spectrum;
-  arma::mat aa = trans(ref) * ref;
-  arma::mat bb = trans(X * ref);
-  
-  arma::mat lm = arma::solve(aa, bb);
-  
-  return Rcpp::wrap(lm);
-}
+ //' @description
+ //' Coefficients for Multiplicative Scatter Correction with adjustable polynomial order
+ //' @param X matrix of spectral data (rows = samples, columns = wavelengths)
+ //' @param ref_spectrum vector of the reference spectrum (length = number of wavelengths)
+ //' @param p integer indicating the polynomial order (default is 1)
+ //' @keywords internal
+ //' @useDynLib prospectr
+ // [[Rcpp::export]]
+ NumericMatrix get_msc_coeff(arma::mat X, arma::vec ref_spectrum, int p = 1) {
+   int n_wavelengths = X.n_cols;
+   
+   // Construct the design matrix for the polynomial terms
+   arma::mat ref(n_wavelengths, p + 1, arma::fill::ones); 
+
+   for (int i = 1; i <= p; ++i) {
+     ref.col(i) = arma::pow(ref_spectrum, i); 
+   }
+   
+   // Compute the coefficients
+   arma::mat aa = trans(ref) * ref;
+   arma::mat bb = trans(X * ref);
+   
+   arma::mat lm = arma::solve(aa, bb);
+   
+   return Rcpp::wrap(lm);
+ }
+
+
 
 //' @title Resample to given band position and fwhm
 //' @description
