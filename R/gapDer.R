@@ -120,7 +120,7 @@ gapDer <- function(X, m = 1, w = 1, s = 1, delta.wav) {
     if (w >= ncol(X)) {
       stop("filter length w must be lower than ncol(X)")
     }
-    output <- prospectr:::convCppM(X, sg_filter) # Convolution
+    output <- convCppM(X, sg_filter) # Convolution
     g <- (length(sg_filter) - 1) / 2
     colnames(output) <- colnames(X)[(g + 1):(ncol(X) - g)]
     rownames(output) <- rownames(X)
@@ -130,7 +130,7 @@ gapDer <- function(X, m = 1, w = 1, s = 1, delta.wav) {
     if (w >= length(X)) {
       stop("filter length w must be lower than length(X)")
     }
-    output <- prospectr:::convCppV(X, sg_filter) # Convolution
+    output <- convCppV(X, sg_filter) # Convolution
     g <- (w - 1) / 2
     names(output) <- names(X)[((g + 1):(length(X) - g))]
   }
