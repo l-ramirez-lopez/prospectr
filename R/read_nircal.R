@@ -444,7 +444,12 @@ get_nircal_comments <- function(connection, metanumbers, begin_s, comment_s, com
         "character"
       )
       # i.comment <- readChar(connection, nchars = comment_f[..i..] - comment_s[..i..])
-      i.comment
+      comments <- try(gsub("^[.]{0,}[0-9]{1,}\\/", "", i.comment))
+      if (inherits(comments, "try-error")) {
+        i.comment <- iconv(i.comment, from = "Latin1", to = "UTF-8")
+        comments <- gsub("^[.]{0,}[0-9]{1,}\\/", "", i.comment)
+      }
+      comments
     }
     
     comment <- description <- rep(NA, n)
