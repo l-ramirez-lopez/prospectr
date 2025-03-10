@@ -80,13 +80,17 @@ gapDer <- function(X, m = 1, w = 1, s = 1, delta.wav) {
 
   filter_length <- m * w + (m + 1) * s
 
+  if (is.data.frame(X)) {
+    X <- as.matrix(X)
+  } else if (is.vector(X)) {
+    X <- matrix(X, nrow = 1)
+  }
+  
   if (filter_length > ncol(X)) {
     stop("the current parameters produce a filter with a length larger than the number of variables in X")
   }
 
-  if (is.data.frame(X)) {
-    X <- as.matrix(X)
-  }
+
 
   zw <- rep(0, w)
   os <- rep(1, s)
@@ -124,15 +128,6 @@ gapDer <- function(X, m = 1, w = 1, s = 1, delta.wav) {
     g <- (length(sg_filter) - 1) / 2
     colnames(output) <- colnames(X)[(g + 1):(ncol(X) - g)]
     rownames(output) <- rownames(X)
-  }
-
-  if (is.vector(X)) {
-    if (w >= length(X)) {
-      stop("filter length w must be lower than length(X)")
-    }
-    output <- convCppV(X, sg_filter) # Convolution
-    g <- (w - 1) / 2
-    names(output) <- names(X)[((g + 1):(length(X) - g))]
   }
 
   if (!missing(delta.wav)) {
