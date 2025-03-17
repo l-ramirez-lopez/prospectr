@@ -18,7 +18,7 @@ Spectroscopy applications.
 }
 \details{
 This is the version
-0.2.8 -- galo of the package.
+0.2.9 -- hallo-galo of the package.
 The main functionality is listed here.
 
 Currently, the following preprocessing functions are available:

@@ -2,8 +2,8 @@ Package: prospectr
 Type: Package
 Title: Miscellaneous Functions for Processing 
        and Sample Selection of Spectroscopic Data
-Version: 0.2.8
-Date: 2025-03-05
+Version: 0.2.9
+Date: 2025-03-17
 Authors@R: c(
   person(given = "Antoine",
          family = "Stevens",
@@ -52,4 +52,4 @@ LazyDataCompression: xz
 Repository: CRAN
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-Config/VersionName: galo
+Config/VersionName: hallo-galo
