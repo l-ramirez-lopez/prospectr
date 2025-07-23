@@ -405,7 +405,7 @@ get_nircal_ids <- function(connection, from, to) {
   # ids <- iconv(ids, to = "UTF-8", sub = NA)
   ids2 <- ids[-c(1, length(ids))]
 
-  ids <- try(substr(x = ids2, start = regexpr("/", ids) + 1, stop = 100000))
+  ids <- try(substr(x = ids2, start = regexpr("/", ids2) + 1, stop = 100000))
   if (inherits(ids, "try-error")) {
     ids <- iconv(ids2, from = "Latin1", to = "UTF-8")
   }
