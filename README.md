@@ -14,9 +14,9 @@ Data
 
 </em> *Antoine Stevens & Leo Ramirez-Lopez*
 
-*Last update: 2025-03-05*
+*Last update: 2025-08-19*
 
-Version: 0.2.8 – galo
+Version: 0.2.10 – vadian
 
 `prospectr` is becoming more and more used in spectroscopic
 applications, which is evidenced by the number of scientific
@@ -31,6 +31,8 @@ code through the [`Rcpp`](https://CRAN.R-project.org/package=Rcpp) and
 [`RcppArmadillo`](https://CRAN.R-project.org/package=RcppArmadillo)
 packages.
 
+------------------------------------------------------------------------
+
 ## Installing it from GitHub
 
 Install this package from github by:
@@ -42,16 +44,26 @@ NOTE: in some MAC Os it is still recommended to install `gfortran` and
 for R &gt;= 4.0. For more info, check this
 [issue](https://github.com/tidyverts/fable/issues/193).
 
-## News
-
-Check the NEWS document for new functionality and general changes in the
-package.
-
-## Vignette
-
-A vignette for `prospectr` explaining its core functionality is
-available at
-<https://CRAN.R-project.org/package=prospectr/vignettes/prospectr.html>.
+<table style="width:50%;">
+<colgroup>
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">## News</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">## Vignette</td>
+</tr>
+<tr>
+<td style="text-align: left;">A vignette for <code>prospectr</code>
+explaining its core functionality is available at <a
+href="https://CRAN.R-project.org/package=prospectr/vignettes/prospectr.html">https://CRAN.R-project.org/package=prospectr/vignettes/prospectr.html</a>.</td>
+</tr>
+</tbody>
+</table>
 
 ## Core functionality
 
@@ -118,6 +130,8 @@ Other useful functions are also available:
 -   `cochranTest()` : detects replicate outliers with the Cochran *C*
     test
 
+------------------------------------------------------------------------
+
 ## Citing the package
 
 Antoine Stevens and Leornardo Ramirez-Lopez (2025). An introduction to
@@ -132,6 +146,8 @@ BibTeX entry for LaTeX users is:
         note = {R package version 0.2.8},
       }
 
+------------------------------------------------------------------------
+
 ## Bug report and development version
 
 You can send an email to the package maintainer
@@ -140,3 +156,107 @@ You can send an email to the package maintainer
 To install the development version of `prospectr`, simply install
 [`devtools`](https://CRAN.R-project.org/package=devtools) from CRAN then
 run `install_github("l-ramirez-lopez/prospectr")`.
+
+------------------------------------------------------------------------
+
+# Contributing to `prospectr`
+
+If you want to contribute to `prospectr`, I can already tell you: Thanks
+for your interest! 🎉 We value contributions of all kinds — code,
+documentation, testing, or ideas.
+
+------------------------------------------------------------------------
+
+## How to contribute
+
+1.  **Open an issue first**
+
+    -   Every contribution starts with an issue.
+    -   Describe clearly the bug, feature request, documentation need,
+        or performance improvement.
+    -   Issues help us discuss, refine, and track contributions.
+
+2.  **Create a branch**
+
+    -   Each branch in this repository corresponds to a **version of the
+        package**.
+
+    -   When you contribute, create a new branch from the current
+        development version.
+
+    -   The branch name should follow this format:
+
+            <type>-<short-scope-or-description>-<issue_id>
+
+        Where `<type>` is one of:
+
+        -   `fix` – a bug fix
+        -   `feat` – a new feature
+        -   `docs` – documentation only changes
+        -   `test` – tests or testing infrastructure
+        -   `refactor` – code change that neither fixes a bug nor adds a
+            feature
+        -   `perf` – performance improvements
+        -   `chore` – maintenance (e.g., CI configs, housekeeping)
+
+    **Examples**:
+
+    -   `fix-snv-preprocessing-123`
+    -   `docs-update-readme-145`
+    -   `feat-new-outlier-function-152`
+
+    Here, `123`, `145`, etc. correspond to the GitHub issue number.
+
+3.  **Make your changes**
+
+    -   Ensure code follows **R style guidelines** (base R conventions,
+        ≤80 characters per line).
+    -   Include documentation updates (`roxygen2` style) where
+        applicable.
+    -   Add or update tests if relevant.
+
+4.  **Commit your changes**
+
+    -   Use [Conventional Commit](https://www.conventionalcommits.org/)
+        style:
+
+            <type>(optional-scope): <description>
+
+        Examples:
+
+        -   `fix(preprocessing): handle NA values in SNV`
+        -   `docs: expand README with new usage example`
+        -   `feat(pls): add kernel PLS method`
+
+5.  **Sync with upstream**
+
+    -   Regularly fetch and rebase from the main repository to keep your
+        branch up to date.
+
+            git fetch upstream
+            git rebase upstream/main
+
+6.  **Open a Pull Request (PR)**
+
+    -   Link the PR to the corresponding issue.
+    -   Provide a clear description of your changes, why they are
+        needed, and how they were tested.
+
+------------------------------------------------------------------------
+
+## Other ways to contribute
+
+Not all contributions are code! You can also:
+
+-   Improve documentation and vignettes.
+-   Report reproducible bugs with `sessionInfo()`.
+-   Suggest enhancements or new features.
+-   Share use cases in teaching or applied spectroscopy.
+
+------------------------------------------------------------------------
+
+## Code of Conduct
+
+`prospectr` adheres to the [Contributor Covenant Code of
+Conduct](https://www.contributor-covenant.org/). By participating, you
+are expected to uphold this code.

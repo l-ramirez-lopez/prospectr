@@ -3,7 +3,7 @@ Type: Package
 Title: Miscellaneous Functions for Processing 
        and Sample Selection of Spectroscopic Data
 Version: 0.2.10
-Date: 2025-03-17
+Date: 2025-08-19
 Authors@R: c(
   person(given = "Antoine",
          family = "Stevens",
