@@ -183,7 +183,7 @@ for complex datasets                 |
   
 
 First and second derivatives of a spectrum can be computed with the finite 
-difference method (difference between to subsequent data points), provided 
+difference method (difference between two subsequent data points), provided 
 that the band width is constant: 
 
 $$ x_i' = x_i - x_{i-1}$$
