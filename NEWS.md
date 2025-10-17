@@ -81,7 +81,7 @@ for reporting this ([#39](https://github.com/l-ramirez-lopez/prospectr/issues/39
 ### Improvements and fixes
 
 * `baseline()`: in some cases the function did not properly capture the baseline
-confounding maximum values of a peaks as part of the baseline. This has been 
+confounding maximum values of peaks as part of the baseline. This has been 
 addressed in this version by ensuring the envelope used in the computation of the 
 convex hull (used to extract the baseline) is properly defined. At the edges, 
 this envelope has always values higher than any peak of the spectrum. 
