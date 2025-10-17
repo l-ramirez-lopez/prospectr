@@ -25,7 +25,7 @@ processing and chemometrics in general as it provides various utilities
 for pre–processing and sample selection of spectral data. While similar
 functions are available in other packages, like
 [`signal`](https://CRAN.R-project.org/package=signal), the functions in
-this package works indifferently for `data.frame`, `matrix` and `vector`
+this package work indifferently for `data.frame`, `matrix` and `vector`
 inputs. Besides, several functions are optimized for speed and use C++
 code through the [`Rcpp`](https://CRAN.R-project.org/package=Rcpp) and
 [`RcppArmadillo`](https://CRAN.R-project.org/package=RcppArmadillo)
