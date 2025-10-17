@@ -109,7 +109,7 @@ any integer larger than 1.
 ### Improvements and fixes
 * `binning() `a bug in the creation of the binning groups has been fixed. This bug 
 is in fact inherited from a problem in the `findInterval()` function. The breaks 
-(given in the vec arument) might get corrupted when they contain many decimal 
+(given in the vec argument) might get corrupted when they contain many decimal 
 places. These breaks (in vec) are used to define the final bins. The problem in 
 the binning function was that when a frequency 
 variable (e.g. wavelength) was exactly on the left of the bin
