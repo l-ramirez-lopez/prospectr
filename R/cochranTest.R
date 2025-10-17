@@ -5,7 +5,7 @@
 #' *C* test for homogeneity in variance.
 #' @usage
 #' cochranTest(X, id, fun = 'sum', alpha = 0.05)
-#' @param X a a numeric matrix (optionally a data frame that can
+#' @param X a numeric matrix (optionally a data frame that can
 #' be coerced to a numerical matrix).
 #' @param id factor of the replicate identifiers.
 #' @param fun function to aggregate data: 'sum' (default), 'mean', 'PC1' or 'PC2'.
@@ -20,15 +20,14 @@
 #' }
 #'
 #' @details
-#' The Cochran *C* test is test whether a single estimate of variance is
-#' significantly larger than a a group of variances.
-#' It can be computed as:
+#' The Cochran *C* test tests whether a single estimate of variance is
+#' significantly larger than a group of variances.
+#' The Cochran *C* statistic is computed as:
 #'
-#' \mjdeqn{RMSD = \sqrt{\frac{1}{n} \sum_{i=1}^n {(y_i - \ddot{y}_i)^2}}}{RMSD = sqrt{{1}/{n} sum (y_i - ddot{y}_i)^2}}
+#' \mjdeqn{C = \frac{\max(S_i^2)}{\sum_{i=1}^{N} S_i^2}}{C = max(S_i^2) / sum(S_i^2)}
 #'
-#' where \mjeqn{y_i}{y_i} is the value of the side variable of the \mjeqn{i}{i}th sample,
-#' \mjeqn{\ddot{y}_i}{\ddot{y}_i} is the value of the side variable of the nearest neighbor
-#' of the \mjeqn{i}{i}th sample and \mjeqn{n}{n} is the total number of observations.
+#' where \mjeqn{S_i^2}{S_i^2} is the variance of the \mjeqn{i}{i}th group of replicates,
+#' and \mjeqn{N}{N} is the total number of groups.
 #'
 #' For multivariate data, the variance \mjeqn{S_i^2}{S_i^2} can be computed on aggregated
 #' data, using a summary function (`fun` argument)
