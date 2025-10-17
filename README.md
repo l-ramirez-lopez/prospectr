@@ -120,13 +120,13 @@ Other useful functions are also available:
 
 ## Citing the package
 
-Antoine Stevens and Leonardo Ramirez-Lopez (2025). An introduction to
+Antoine Stevens and Leornardo Ramirez-Lopez (2025). An introduction to
 the prospectr package. R package Vignette R package version 0.2.8. A
 BibTeX entry for LaTeX users is:
 
      @Manual{stevens2022prospectr,
         title = {An introduction to the prospectr package},
-        author = {Antoine Stevens and Leonardo Ramirez-Lopez},
+        author = {Antoine Stevens and Leornardo Ramirez-Lopez},
         publication = {R package Vignette},
         year = {2025},
         note = {R package version 0.2.8},
