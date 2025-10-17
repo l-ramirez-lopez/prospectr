@@ -372,7 +372,7 @@ Check: package subdirectories, Result: NOTE
     Cannot process chunk/lines:
       argument. Previously it only accepted a vector of length two. For example, now it
     Cannot process chunk/lines:
-      corrrects for splice steps of spectra that originates from spectrometers
+      corrects for splice steps of spectra that originates from spectrometers
     Cannot process chunk/lines:
       with two detectors (i.e. it corrects for the potential abrupt transition
     Cannot process chunk/lines:
