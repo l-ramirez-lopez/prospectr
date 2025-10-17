@@ -338,7 +338,7 @@ Check: package subdirectories, Result: NOTE
     Cannot process chunk/lines:
       for reporting this.
     Cannot process chunk/lines:
-      confounding maximum values of peaks as part of the baseline. This has been
+      confounding maximum values of a peaks as part of the baseline. This has been
     Cannot process chunk/lines:
       addressed in this version by ensuring the envelope used in the computation of the
     Cannot process chunk/lines:
@@ -353,14 +353,14 @@ Check: package subdirectories, Result: NOTE
       to be included in the final calibration subset). Thanks to Thorsten Behrens and
     Cannot process chunk/lines:
       derivatives. In previous versions the function only allowed up to derivatives of
-      4th order, in this version the function accepts as derivative order
+      4th order, in this version the the function accepts as derivative order
     Cannot process chunk/lines:
       any integer larger than 1.
       ## Improvements and fixes
       * `binning() `a bug in the creation of the binning groups has been fixed. This bug
     Cannot process chunk/lines:
       is in fact inherited from a problem in the `findInterval()` function. The breaks
-      (given in the vec argument) might get corrupted when they contain many decimal
+      (given in the vec arument) might get corrupted when they contain many decimal
     Cannot process chunk/lines:
       places. These breaks (in vec) are used to define the final bins. The problem in
     Cannot process chunk/lines:
@@ -372,11 +372,11 @@ Check: package subdirectories, Result: NOTE
     Cannot process chunk/lines:
       argument. Previously it only accepted a vector of length two. For example, now it
     Cannot process chunk/lines:
-      corrects for splice steps of spectra that originates from spectrometers
+      corrrects for splice steps of spectra that originates from spectrometers
     Cannot process chunk/lines:
       with two detectors (i.e. it corrects for the potential abrupt transition
     Cannot process chunk/lines:
-      function evaluates whether it is indeed a file properly produced by the BUCHI
+      function evaluaes whether it is indeed a file properly produced by the BUCHI
     Cannot process chunk/lines:
       derivative (`gapDer`) function. One of the factors in the filter had a wrong
     Cannot process chunk/lines:
