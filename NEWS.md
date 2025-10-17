@@ -81,7 +81,7 @@ for reporting this ([#39](https://github.com/l-ramirez-lopez/prospectr/issues/39
 ### Improvements and fixes
 
 * `baseline()`: in some cases the function did not properly capture the baseline
-confounding maximum values of peaks as part of the baseline. This has been 
+confounding maximum values of a peaks as part of the baseline. This has been 
 addressed in this version by ensuring the envelope used in the computation of the 
 convex hull (used to extract the baseline) is properly defined. At the edges, 
 this envelope has always values higher than any peak of the spectrum. 
@@ -109,7 +109,7 @@ any integer larger than 1.
 ### Improvements and fixes
 * `binning() `a bug in the creation of the binning groups has been fixed. This bug 
 is in fact inherited from a problem in the `findInterval()` function. The breaks 
-(given in the vec argument) might get corrupted when they contain many decimal 
+(given in the vec arument) might get corrupted when they contain many decimal 
 places. These breaks (in vec) are used to define the final bins. The problem in 
 the binning function was that when a frequency 
 variable (e.g. wavelength) was exactly on the left of the bin
@@ -118,12 +118,12 @@ small discrepancies in the in the computation of the mean of the bins.
 
 * ``spliceCorrection()`` now accepts one or two values as input for the splice
 argument. Previously it only accepted a vector of length two. For example, now it 
-corrects for splice steps of spectra that originates from spectrometers 
+corrrects for splice steps of spectra that originates from spectrometers 
 with two detectors (i.e. it corrects for the potential abrupt transition 
-between the two detectors). 
+betwteen the two detectors). 
 
 * An extra sanity check has been added to the ``read_nircal()`` function. The 
-function evaluates whether it is indeed a file properly produced by the BUCHI 
+function evaluaes whether it is indeed a file properly produced by the BUCHI 
 nircal software. 
 
 * There was a bug in the filter for the 3rd order derivative in gap segment 
@@ -172,9 +172,9 @@ polynomial orders. Check the new 'p' argument.
 * Updated vignette
 * A new function (`read_nircal()`) for reading buchi NIRcal files has been added
 * Documentation reviewed
-* The description of the continuum removal algorithm was adjusted. Previously 
-it was indicated that the implemented algorithm was based on the search for a 
-local minimum of the absorbance spectra, however in fact it looks 
+* The description of the continuum removal algorithm is was adjusted. Previously 
+was indicated that the implemented algorithm was based on the search for a 
+local minimum of the absorbance spectra the algorithm, however in fact it looks 
 for the convex hull. Thanks to Peter Tillmann for noticing this.
 
 `prospectr` 0.1.4
