@@ -39,7 +39,7 @@ processing and analysis of spectroscopic data.
 
 
 Since the publication of the 
-[special special Volume in Spectroscopy and Chemometrics in R](https://www.jstatsoft.org/issue/view/v018) [@mullen2007] many spectroscopy-related packages have been released. Most of 
+[special Volume in Spectroscopy and Chemometrics in R](https://www.jstatsoft.org/issue/view/v018) [@mullen2007] many spectroscopy-related packages have been released. Most of 
 these packages can be found at the following CRAN task views:
 
 - [Machine Learning & Statistical Learning](https://CRAN.R-project.org/view=MachineLearning) 
