@@ -120,7 +120,7 @@ small discrepancies in the in the computation of the mean of the bins.
 argument. Previously it only accepted a vector of length two. For example, now it 
 corrects for splice steps of spectra that originates from spectrometers 
 with two detectors (i.e. it corrects for the potential abrupt transition 
-betwteen the two detectors). 
+between the two detectors). 
 
 * An extra sanity check has been added to the ``read_nircal()`` function. The 
 function evaluates whether it is indeed a file properly produced by the BUCHI 
