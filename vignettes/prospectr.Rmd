@@ -113,7 +113,7 @@ individual spectra. The noise will decrease with a factor $\sqrt{n}$. When this
 is not possible, or if residual noise is still present in the data, the noise 
 can be removed mathematically. 
 
-## Moving average or runnnig mean
+## Moving average or running mean
 
 A moving average filter is a column-wise operation which average contiguous 
 wavelengths within a given window size. 
