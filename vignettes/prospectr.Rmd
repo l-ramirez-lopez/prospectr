@@ -24,7 +24,7 @@ knitr::include_graphics("logo.jpg")
 # Preamble
 `prospectr` is becoming more and more used in spectroscopic applications, which 
 is evidenced by the number of scientific publications citing the package. This 
-package is very useful for singal processing and chemometrics in general as it 
+package is very useful for signal processing and chemometrics in general as it 
 provides various utilities for pre--processing and sample selection of spectral 
 data. While similar functions are available in other packages, like [`signal`](https://CRAN.R-project.org/package=signal), the functions in this 
 package works indifferently for `data.frame`, `matrix` and `vector` inputs. 
