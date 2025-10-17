@@ -5,7 +5,7 @@
 #' *C* test for homogeneity in variance.
 #' @usage
 #' cochranTest(X, id, fun = 'sum', alpha = 0.05)
-#' @param X a a numeric matrix (optionally a data frame that can
+#' @param X a numeric matrix (optionally a data frame that can
 #' be coerced to a numerical matrix).
 #' @param id factor of the replicate identifiers.
 #' @param fun function to aggregate data: 'sum' (default), 'mean', 'PC1' or 'PC2'.
