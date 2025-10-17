@@ -25,7 +25,7 @@ processing and chemometrics in general as it provides various utilities
 for pre–processing and sample selection of spectral data. While similar
 functions are available in other packages, like
 [`signal`](https://CRAN.R-project.org/package=signal), the functions in
-this package works indifferently for `data.frame`, `matrix` and `vector`
+this package work indifferently for `data.frame`, `matrix` and `vector`
 inputs. Besides, several functions are optimized for speed and use C++
 code through the [`Rcpp`](https://CRAN.R-project.org/package=Rcpp) and
 [`RcppArmadillo`](https://CRAN.R-project.org/package=RcppArmadillo)
@@ -120,13 +120,13 @@ Other useful functions are also available:
 
 ## Citing the package
 
-Antoine Stevens and Leornardo Ramirez-Lopez (2025). An introduction to
+Antoine Stevens and Leonardo Ramirez-Lopez (2025). An introduction to
 the prospectr package. R package Vignette R package version 0.2.8. A
 BibTeX entry for LaTeX users is:
 
      @Manual{stevens2022prospectr,
         title = {An introduction to the prospectr package},
-        author = {Antoine Stevens and Leornardo Ramirez-Lopez},
+        author = {Antoine Stevens and Leonardo Ramirez-Lopez},
         publication = {R package Vignette},
         year = {2025},
         note = {R package version 0.2.8},
