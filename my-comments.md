@@ -338,7 +338,7 @@ Check: package subdirectories, Result: NOTE
     Cannot process chunk/lines:
       for reporting this.
     Cannot process chunk/lines:
-      confounding maximum values of a peaks as part of the baseline. This has been
+      confounding maximum values of peaks as part of the baseline. This has been
     Cannot process chunk/lines:
       addressed in this version by ensuring the envelope used in the computation of the
     Cannot process chunk/lines:
