@@ -172,10 +172,7 @@ polynomial orders. Check the new 'p' argument.
 * Updated vignette
 * A new function (`read_nircal()`) for reading buchi NIRcal files has been added
 * Documentation reviewed
-* The description of the continuum removal algorithm is was adjusted. Previously 
-was indicated that the implemented algorithm was based on the search for a 
-local minimum of the absorbance spectra the algorithm, however in fact it looks 
-for the convex hull. Thanks to Peter Tillmann for noticing this.
+* The description of the continuum removal algorithm was adjusted. Previously, it was indicated that the implemented algorithm was based on the search for a local minimum of the absorbance spectra; however, in fact it looks for the convex hull. Thanks to Peter Tillmann for noticing this.
 
 `prospectr` 0.1.4
 ===============
