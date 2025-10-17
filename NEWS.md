@@ -123,7 +123,7 @@ with two detectors (i.e. it corrects for the potential abrupt transition
 betwteen the two detectors). 
 
 * An extra sanity check has been added to the ``read_nircal()`` function. The 
-function evaluaes whether it is indeed a file properly produced by the BUCHI 
+function evaluates whether it is indeed a file properly produced by the BUCHI 
 nircal software. 
 
 * There was a bug in the filter for the 3rd order derivative in gap segment 
