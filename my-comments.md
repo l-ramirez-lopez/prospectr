@@ -376,7 +376,7 @@ Check: package subdirectories, Result: NOTE
     Cannot process chunk/lines:
       with two detectors (i.e. it corrects for the potential abrupt transition
     Cannot process chunk/lines:
-      function evaluaes whether it is indeed a file properly produced by the BUCHI
+      function evaluates whether it is indeed a file properly produced by the BUCHI
     Cannot process chunk/lines:
       derivative (`gapDer`) function. One of the factors in the filter had a wrong
     Cannot process chunk/lines:
