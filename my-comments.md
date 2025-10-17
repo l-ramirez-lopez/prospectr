@@ -353,7 +353,7 @@ Check: package subdirectories, Result: NOTE
       to be included in the final calibration subset). Thanks to Thorsten Behrens and
     Cannot process chunk/lines:
       derivatives. In previous versions the function only allowed up to derivatives of
-      4th order, in this version the the function accepts as derivative order
+      4th order, in this version the function accepts as derivative order
     Cannot process chunk/lines:
       any integer larger than 1.
       ## Improvements and fixes
