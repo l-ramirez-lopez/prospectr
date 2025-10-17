@@ -284,7 +284,7 @@ a normalization method that attempts to account for additive and multiplicative
 effects by aligning each spectrum ($x_i$) with an ideal reference one ($x_r$) as
 follows:
 $$x_i = m_i x_r + a_i$$
-$$MSC(x_i) = \frac{a_i - x_i}{m_i}$$
+$$MSC(x_i) = \frac{x_i - a_i}{m_i}$$
 where $a_i$ and $m_i$ are the additive and multiplicative terms respectively.
 
 
