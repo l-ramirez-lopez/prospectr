@@ -24,7 +24,7 @@ knitr::include_graphics("logo.jpg")
 # Preamble
 `prospectr` is becoming more and more used in spectroscopic applications, which 
 is evidenced by the number of scientific publications citing the package. This 
-package is very useful for singal processing and chemometrics in general as it 
+package is very useful for signal processing and chemometrics in general as it 
 provides various utilities for pre--processing and sample selection of spectral 
 data. While similar functions are available in other packages, like [`signal`](https://CRAN.R-project.org/package=signal), the functions in this 
 package works indifferently for `data.frame`, `matrix` and `vector` inputs. 
@@ -32,14 +32,14 @@ Besides, several functions are optimized for speed and use C++ code through the 
 
 # Introduction
 Several spectroscopic techniques such as Near-Infrared (NIR) spectroscopy are 
-high--troughput, non--destructive and cheap sensing methods that has a range of 
+high--throughput, non--destructive and cheap sensing methods that have a range of 
 applications in agricultural, medical, food and environmental science. A number 
 of `R` packages of interest for the spectroscopist is already available for 
 processing and analysis of spectroscopic data. 
 
 
 Since the publication of the 
-[special special Volume in Spectroscopy and Chemometrics in R](https://www.jstatsoft.org/issue/view/v018) [@mullen2007] many spectroscopy-related packages have been released. Most of 
+[special Volume in Spectroscopy and Chemometrics in R](https://www.jstatsoft.org/issue/view/v018) [@mullen2007] many spectroscopy-related packages have been released. Most of 
 these packages can be found at the following CRAN task views:
 
 - [Machine Learning & Statistical Learning](https://CRAN.R-project.org/view=MachineLearning) 
@@ -47,14 +47,14 @@ these packages can be found at the following CRAN task views:
 - [Chemometrics and Computational Physics](https://CRAN.R-project.org/view=ChemPhys) 
 
 In addition, [Bryan Hanson](https://github.com/bryanhanson) 
-provides a list of Free Open Source Software (FOSS) dedictaed to Spectroscopic 
+provides a list of Free Open Source Software (FOSS) dedicated to Spectroscopic 
 applications in general 
 (see [https://bryanhanson.github.io/FOSS4Spectroscopy/](https://bryanhanson.github.io/FOSS4Spectroscopy/)). 
 
 # Citing the package
 `prospectr` is becoming more and more used in spectroscopic applications, which 
 is evidenced by the number of scientific publications citing the package. 
-This package is very useful for singal processing and chemometrics in general as 
+This package is very useful for signal processing and chemometrics in general as 
 provides various utilities for pre--processing and sample selection 
 of spectral data. Please use the following citation. Simply type and you will 
 get the info you need:
@@ -113,7 +113,7 @@ individual spectra. The noise will decrease with a factor $\sqrt{n}$. When this
 is not possible, or if residual noise is still present in the data, the noise 
 can be removed mathematically. 
 
-## Moving average or runnnig mean
+## Moving average or running mean
 
 A moving average filter is a column-wise operation which average contiguous 
 wavelengths within a given window size. 
