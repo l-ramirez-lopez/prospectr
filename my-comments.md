@@ -360,7 +360,7 @@ Check: package subdirectories, Result: NOTE
       * `binning() `a bug in the creation of the binning groups has been fixed. This bug
     Cannot process chunk/lines:
       is in fact inherited from a problem in the `findInterval()` function. The breaks
-      (given in the vec arument) might get corrupted when they contain many decimal
+      (given in the vec argument) might get corrupted when they contain many decimal
     Cannot process chunk/lines:
       places. These breaks (in vec) are used to define the final bins. The problem in
     Cannot process chunk/lines:
