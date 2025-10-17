@@ -118,7 +118,7 @@ small discrepancies in the in the computation of the mean of the bins.
 
 * ``spliceCorrection()`` now accepts one or two values as input for the splice
 argument. Previously it only accepted a vector of length two. For example, now it 
-corrrects for splice steps of spectra that originates from spectrometers 
+corrects for splice steps of spectra that originates from spectrometers 
 with two detectors (i.e. it corrects for the potential abrupt transition 
 betwteen the two detectors). 
 
