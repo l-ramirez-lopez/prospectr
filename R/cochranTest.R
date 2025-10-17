@@ -20,7 +20,7 @@
 #' }
 #'
 #' @details
-#' The Cochran *C* test is test whether a single estimate of variance is
+#' The Cochran *C* test tests whether a single estimate of variance is
 #' significantly larger than a a group of variances.
 #' It can be computed as:
 #'
