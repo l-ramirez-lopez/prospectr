@@ -32,7 +32,7 @@ Besides, several functions are optimized for speed and use C++ code through the 
 
 # Introduction
 Several spectroscopic techniques such as Near-Infrared (NIR) spectroscopy are 
-high--troughput, non--destructive and cheap sensing methods that has a range of 
+high--throughput, non--destructive and cheap sensing methods that has a range of 
 applications in agricultural, medical, food and environmental science. A number 
 of `R` packages of interest for the spectroscopist is already available for 
 processing and analysis of spectroscopic data. 
