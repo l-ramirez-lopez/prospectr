@@ -6,7 +6,7 @@
 #' savitzkyGolay(X, m, p, w, delta.wav)
 #' @param X a numeric matrix or vector to process (optionally a data frame that
 #' can be coerced to a numerical matrix).
-#' @param m an integer indcating the differentiation order.
+#' @param m an integer indicating the differentiation order.
 #' @param p an integer indicating the polynomial order.
 #' @param w an integer indicating the window size (must be odd).
 #' @param delta.wav (optional) sampling interval.
