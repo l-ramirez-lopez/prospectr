@@ -82,10 +82,10 @@ cochranTest <- function(X, id, fun = "sum", alpha = 0.05) {
         apply(X[, -1], 1, mean)
       },
       PC1 = {
-        prcomp(X[, -1], center = TRUE, .scale = FALSE)$x[, 1]
+        prcomp(X[, -1], center = TRUE, scale. = FALSE)$x[, 1]
       },
       PC2 = {
-        prcomp(X[, -1], center = TRUE, .scale = FALSE)$x[, 2]
+        prcomp(X[, -1], center = TRUE, scale. = FALSE)$x[, 2]
       }
     )
 
