@@ -128,6 +128,37 @@ test_that("read_nircal metadata=FALSE nWavenumbers equals ncol(spc)", {
   expect_equal(d$nWavenumbers[1], ncol(d$spc))
 })
 
+# ── numerical regression ──────────────────────────────────────────────────────
+test_that("read_nircal returns the expected number of samples", {
+  d <- read_nircal(nir_file, progress = FALSE, verbose = FALSE)
+  expect_equal(nrow(d), 20)
+})
+
+test_that("read_nircal nWavenumbers equals 1501", {
+  d <- read_nircal(nir_file, progress = FALSE, verbose = FALSE)
+  expect_equal(d$nWavenumbers[1], 1501)
+})
+
+test_that("read_nircal wavenumber axis spans 4000 to 10000", {
+  d   <- read_nircal(nir_file, progress = FALSE, verbose = FALSE)
+  wav <- as.numeric(colnames(d$spc))
+  expect_equal(wav[1],        4000)
+  expect_equal(wav[length(wav)], 10000)
+})
+
+test_that("read_nircal spectral values match reference values", {
+  d <- read_nircal(nir_file, progress = FALSE, verbose = FALSE)
+  expect_equal(round(d$spc[1, 1],          6), 0.181285)
+  expect_equal(round(d$spc[1, ncol(d$spc)], 6), 0.667604)
+  expect_equal(round(mean(d$spc[1, ]),     6), 0.524597)
+})
+
+test_that("read_nircal response columns are present", {
+  d <- read_nircal(nir_file, progress = FALSE, verbose = FALSE)
+  expected_resp <- c("K", "Ca", "Mg", "Mn", "Zn", "Cu", "Fe", "N", "B", "P", "S")
+  expect_true(all(expected_resp %in% colnames(d)))
+})
+
 # ── reproducibility ───────────────────────────────────────────────────────────
 test_that("read_nircal returns identical results on repeated calls", {
   d1 <- read_nircal(nir_file, progress = FALSE, verbose = FALSE)
