@@ -18,9 +18,7 @@ test_that("savitzkyGolay smoothing (m=0) preserves approximate values", {
 
   expect_is(X_smooth, "matrix")
   expect_equal(nrow(X_smooth), nrow(NIRsoil$spc))
-  # smoothed values should be in a similar range as input
-  expect_true(max(X_smooth) < max(NIRsoil$spc) * 2)
-  expect_true(min(X_smooth) > min(NIRsoil$spc) - 0.1)
+  expect_true(round(max(X_smooth[1, ]), 5) == 0.37242)
 })
 
 test_that("savitzkyGolay higher order derivative (m=2) works", {
@@ -31,6 +29,7 @@ test_that("savitzkyGolay higher order derivative (m=2) works", {
   expect_is(X_sg2, "matrix")
   expect_equal(nrow(X_sg2), nrow(NIRsoil$spc))
   expect_true(ncol(X_sg2) < ncol(NIRsoil$spc))
+  expect_true(round(max(abs(X_sg2[1, ])), 5) == 0.00082)
 })
 
 test_that("savitzkyGolay scales output when delta.wav is provided", {

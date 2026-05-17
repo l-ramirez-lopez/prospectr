@@ -54,6 +54,8 @@ test_that("msc accepts data.frame input", {
 
   expect_is(X_msc, "matrix")
   expect_equal(dim(X_msc), dim(NIRsoil$spc))
+  expect_true(round(max(X_msc[1, ]), 5) == 0.37394)
+  expect_true(round(min(X_msc[1, ]), 5) == 0.29474)
 })
 
 test_that("msc errors when ref_spectrum is not a vector", {

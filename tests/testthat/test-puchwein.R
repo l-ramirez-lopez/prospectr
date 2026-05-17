@@ -1,6 +1,6 @@
 context("test-puchwein")
 
-test_that("puchwein returns correct output structure", {
+test_that("puchwein returns correct output structure and expected selection", {
   data("NIRsoil")
 
   sel <- puchwein(NIRsoil$spc, k = 0.2, pc = .99)
@@ -8,6 +8,17 @@ test_that("puchwein returns correct output structure", {
   expect_is(sel, "list")
   expect_true(all(c("model", "test", "pc", "loop.optimal", "leverage") %in% names(sel)))
   expect_false("details" %in% names(sel))
+
+  sel_samples <- c(
+     20,  39,  41,  56, 105, 122, 141, 178, 186, 204, 205, 225, 238, 242,
+    247, 248, 251, 254, 260, 266, 276, 279, 282, 286, 287, 294, 305, 312,
+    313, 328, 330, 342, 345, 358, 391, 410, 438, 448, 455, 466, 484, 486,
+    526, 534, 572, 574, 578, 594, 606, 608, 609, 611, 613, 614, 615, 618,
+    619, 638, 648, 666, 669, 701, 702, 706, 709, 715, 732, 734, 736, 737,
+    779, 788, 789, 793, 800, 803, 819, 822, 825
+  )
+  expect_equal(length(sel$model), 79)
+  expect_equal(sort(sel$model), sel_samples)
 })
 
 test_that("puchwein model and test cover all samples", {
@@ -66,7 +77,7 @@ test_that("puchwein works with integer pc", {
 
   expect_is(sel, "list")
   expect_equal(ncol(sel$pc), 5)
-  expect_true(length(sel$model) > 0)
+  expect_equal(length(sel$model), 238)
 })
 
 test_that("puchwein works with data.frame input", {

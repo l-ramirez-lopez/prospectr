@@ -25,6 +25,8 @@ test_that("spliceCorrection returns matrix with same dimensions", {
   expect_equal(dim(X_corrected), dim(X))
   expect_equal(colnames(X_corrected), colnames(X))
   expect_equal(rownames(X_corrected), rownames(X))
+  expect_true(round(mean(X_corrected[1, ]), 6) == 0.328357)
+  expect_true(round(max(X_corrected[1, ]), 5) == 0.5265)
 })
 
 test_that("spliceCorrection reduces discontinuity at splice points", {

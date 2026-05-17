@@ -34,6 +34,7 @@ test_that("baseline works without wav argument", {
   expect_is(X_baselined, "matrix")
   expect_equal(nrow(X_baselined), nrow(NIRsoil$spc))
   expect_equal(ncol(X_baselined), ncol(NIRsoil$spc))
+  expect_true(round(mean(X_baselined), 6) == 0.005746)
 })
 
 test_that("baseline works on data.frame input", {

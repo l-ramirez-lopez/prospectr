@@ -58,6 +58,10 @@ test_that("kenStone works with Euclidean metric", {
   expect_is(X_ks_euclid, "list")
   expect_equal(length(X_ks_euclid$model), 20)
   expect_equal(sort(c(X_ks_euclid$model, X_ks_euclid$test)), seq_len(nrow(NIRsoil$spc)))
+
+  sel_euclid <- c(87, 141, 204, 257, 279, 287, 291, 338, 410, 455,
+                  570, 614, 615, 618, 619, 633, 734, 800, 819, 824)
+  expect_equal(sort(X_ks_euclid$model), sel_euclid)
 })
 
 test_that("kenStone works with pc as variance proportion (pc < 1)", {
@@ -67,6 +71,10 @@ test_that("kenStone works with pc as variance proportion (pc < 1)", {
 
   expect_is(X_ks_pc, "list")
   expect_equal(length(X_ks_pc$model), 20)
+
+  sel_pc99 <- c(39, 204, 218, 268, 287, 310, 350, 410, 594, 614,
+                615, 617, 619, 683, 701, 717, 737, 789, 822, 825)
+  expect_equal(sort(X_ks_pc$model), sel_pc99)
 })
 
 test_that("kenStone works with groups", {
