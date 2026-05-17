@@ -5,7 +5,7 @@ nir_file <- test_path("testdata/muestras-tejido-foliar_transfer.nir")
 # ── error handling ────────────────────────────────────────────────────────────
 test_that("read_nircal errors on a non-existent file", {
   expect_error(
-    read_nircal("does_not_exist.nir", progress = FALSE, verbose = FALSE)
+    suppressWarnings(read_nircal("does_not_exist.nir", progress = FALSE, verbose = FALSE))
   )
 })
 
@@ -156,9 +156,9 @@ test_that("read_nircal wavenumber axis spans 4000 to 10000", {
 
 test_that("read_nircal spectral values match reference values", {
   d <- suppressWarnings(read_nircal(nir_file, progress = FALSE, verbose = FALSE))
-  expect_equal(round(d$spc[1, 1],            6), 0.181285)
-  expect_equal(round(d$spc[1, ncol(d$spc)], 6), 0.667604)
-  expect_equal(round(mean(d$spc[1, ]),       6), 0.524597)
+  expect_equal(unname(round(d$spc[1, 1],            6)), 0.181285)
+  expect_equal(unname(round(d$spc[1, ncol(d$spc)], 6)), 0.667604)
+  expect_equal(round(mean(d$spc[1, ]),              6),  0.524597)
 })
 
 test_that("read_nircal response columns are present", {
