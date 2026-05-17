@@ -62,6 +62,7 @@ readASD <- function(fnames, in_format = c("binary", "txt"), out_format = c("matr
     if (in_format == "binary") {
       # open a connection
       con <- file(f, "rb")
+      on.exit(if (isOpen(con)) close(con), add = TRUE)
       # Retrieve comments
       seek(con, where = 3, origin = "start", rw = "r")
       Comments <- paste(readBin(con, "character", n = 157), collapse = "")
