@@ -145,6 +145,13 @@ test_that("readASD matrix has expected dimensions", {
 test_that("readASD wavelength axis spans 350 to 2500 nm", {
   lst <- readASD(asd_file, in_format = "binary", out_format = "list")
   wav <- lst[[1]]$wavelength
-  expect_equal(wav[1],        350)
+  expect_equal(wav[1],           350)
   expect_equal(wav[length(wav)], 2500)
+})
+
+test_that("readASD spectral values match reference values", {
+  m <- readASD(asd_file, in_format = "binary", out_format = "matrix")
+  expect_equal(round(m[1, 1],        8), 0.0268232)
+  expect_equal(round(m[1, ncol(m)],  8), 0.3356252)
+  expect_equal(round(mean(m[1, ]),   8), 0.2743279)
 })
