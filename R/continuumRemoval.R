@@ -83,7 +83,7 @@ continuumRemoval <- function(
     wav,
     type = c("R", "A"),
     interpol = c("linear", "spline"),
-    method = c("division", "sustraction")
+    method = c("division", "subtraction")
 ) {
   
   if (!missing(method) && method == "substraction") {
