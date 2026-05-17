@@ -7,7 +7,7 @@
 cochranTest(X, id, fun = 'sum', alpha = 0.05)
 }
 \arguments{
-\item{X}{a a numeric matrix (optionally a data frame that can
+\item{X}{a numeric matrix (optionally a data frame that can
 be coerced to a numerical matrix).}
 
 \item{id}{factor of the replicate identifiers.}
@@ -31,7 +31,7 @@ Detects and removes replicate outliers in data series based on the Cochran
 \emph{C} test for homogeneity in variance.
 }
 \details{
-The Cochran \emph{C} test is test whether a single estimate of variance is
+The Cochran \emph{C} test tests whether a single estimate of variance is
 significantly larger than a a group of variances.
 It can be computed as:
 
