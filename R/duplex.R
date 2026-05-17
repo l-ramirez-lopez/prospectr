@@ -129,6 +129,10 @@ duplex <- function(X,
   n <- 1:nrow(X)
   half <- floor(m / 2)
   if (k > half) {
+    warning(
+      "'k' (", k, ") exceeds the maximum number of samples DUPLEX can select ",
+      "(floor(nrow(X) / 2) = ", half, "). 'k' has been set to ", half, "."
+    )
     k <- half
   }
   
