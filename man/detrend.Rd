@@ -4,25 +4,30 @@
 \alias{detrend}
 \title{Detrending spectral data}
 \usage{
-detrend(X, wav, p = 2)
+detrend(X, wav, p = 2, snv = TRUE)
 }
 \arguments{
-\item{X}{a numeric matrix or vector to process  (optionally a data frame that
+\item{X}{a numeric matrix or vector to process (optionally a data frame that
 can be coerced to a numerical matrix)}
 
 \item{wav}{the wavelengths/ band centers.}
 
 \item{p}{an integer larger than 1 indicating the polynomial order (default is
 2, as in the original paper of Barnes et al., 1989).}
+
+\item{snv}{a logical indicating whether an SNV transformation should be
+applied to each spectrum before polynomial fitting. Default is \code{TRUE},
+which reproduces the procedure of Barnes et al. (1989). Set to \code{FALSE}
+to perform pure polynomial detrending without prior normalisation.}
 }
 \value{
 a matrix or vector with the detrended data.
 }
 \description{
 \loadmathjax
-Normalizes each row of an input matrix by applying a SNV transformation
-followed by fitting a second order linear model and returning the fitted
-residuals.
+Applies a row-wise polynomial detrending transformation to spectral data.
+Optionally, an SNV transformation is applied prior to fitting, as prescribed
+by Barnes et al. (1989).
 }
 \details{
 The detrend is a row-wise transformation that allows to correct for
@@ -36,6 +41,11 @@ explanatory variable as follows:
 were a, b, c are estimated by least squares, and \mjeqn{e_i}{e_i} are the
 spectral residuals of the least square fit. The residuals of the \mjeqn{i}{i}th
 correspond to the \mjeqn{i}{i}th detrended spectrum.
+
+To remain faithful to Barnes et al. (1989), \code{snv = TRUE} (the default)
+applies an SNV transformation to each spectrum before polynomial fitting.
+Users who wish to apply detrending independently of SNV — for example, as a
+separate step in a preprocessing pipeline — should set \code{snv = FALSE}.
 }
 \examples{
 data(NIRsoil)
