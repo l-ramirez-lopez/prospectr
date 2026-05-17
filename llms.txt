@@ -1,0 +1,219 @@
+# `prospectr` Miscellaneous Functions for Processing and Sample Selection of Spectroscopic Data
+
+![](./reference/figures/logo.png)
+
+*Last update: 2026-05-17*
+
+Version: 0.2.9 – proxy
+
+In science, one man’s noise is another man’s signal
+
+## About
+
+`prospectr` provides tools for signal processing and chemometrics, with
+a focus on pre-processing and sample selection of spectral data. It is
+increasingly used in spectroscopic applications, as reflected by the
+growing number of scientific publications citing the package.
+
+Although similar functions are available in other packages such as
+[`signal`](https://CRAN.R-project.org/package=signal), many functions in
+`prospectr` are designed to work consistently with `data.frame`,
+`matrix`, and `vector` inputs. Several functions are optimised for speed
+and rely on C++ code through the
+[`Rcpp`](https://CRAN.R-project.org/package=Rcpp) and
+[`RcppArmadillo`](https://CRAN.R-project.org/package=RcppArmadillo)
+packages.
+
+## Documentation
+
+The package includes three vignettes covering all major functionality:
+
+1.  **An introduction to the `prospectr` package**: Overview,
+    installation, and how to cite the package.
+2.  **Signal processing**: Pre-processing methods including smoothing,
+    derivatives, scatter corrections, baseline removal, centering,
+    scaling, resampling, and continuum removal.
+3.  **Selecting representative calibration samples**: Algorithms for
+    selecting representative calibration and validation subsets from
+    spectral data.
+
+## Core functionality
+
+**Signal processing:**
+
+- [`movav()`](https://l-ramirez-lopez.github.io/prospectr/reference/movav.md):
+  moving average filter
+- [`savitzkyGolay()`](https://l-ramirez-lopez.github.io/prospectr/reference/savitzkyGolay.md):
+  Savitzky-Golay smoothing and derivatives
+- [`gapDer()`](https://l-ramirez-lopez.github.io/prospectr/reference/gapDer.md):
+  gap-segment derivative
+- [`baseline()`](https://l-ramirez-lopez.github.io/prospectr/reference/baseline.md):
+  baseline removal
+- [`continuumRemoval()`](https://l-ramirez-lopez.github.io/prospectr/reference/continuumRemoval.md):
+  continuum-removed reflectance or absorbance
+- [`detrend()`](https://l-ramirez-lopez.github.io/prospectr/reference/detrend.md):
+  SNV-Detrend normalisation
+- [`standardNormalVariate()`](https://l-ramirez-lopez.github.io/prospectr/reference/standardNormalVariate.md):
+  Standard Normal Variate (SNV) transformation
+- [`msc()`](https://l-ramirez-lopez.github.io/prospectr/reference/msc.md):
+  Multiplicative Scatter Correction
+- [`binning()`](https://l-ramirez-lopez.github.io/prospectr/reference/binning.md):
+  average a signal in column bins
+- [`resample()`](https://l-ramirez-lopez.github.io/prospectr/reference/resample.md):
+  resample a signal to new band positions
+- [`resample2()`](https://l-ramirez-lopez.github.io/prospectr/reference/resample2.md):
+  resample a signal using FWHM values
+- [`blockScale()`](https://l-ramirez-lopez.github.io/prospectr/reference/blockScale.md):
+  block scaling
+- [`blockNorm()`](https://l-ramirez-lopez.github.io/prospectr/reference/blockNorm.md):
+  sum of squares block weighting
+
+**Calibration sampling:**
+
+- [`naes()`](https://l-ramirez-lopez.github.io/prospectr/reference/naes.md):
+  k-means sampling
+- [`kenStone()`](https://l-ramirez-lopez.github.io/prospectr/reference/kenStone.md):
+  Kennard-Stone (CADEX) algorithm
+- [`duplex()`](https://l-ramirez-lopez.github.io/prospectr/reference/duplex.md):
+  DUPLEX algorithm
+- [`shenkWest()`](https://l-ramirez-lopez.github.io/prospectr/reference/shenkWest.md):
+  SELECT algorithm
+- [`puchwein()`](https://l-ramirez-lopez.github.io/prospectr/reference/puchwein.md):
+  Puchwein sampling
+- [`honigs()`](https://l-ramirez-lopez.github.io/prospectr/reference/honigs.md):
+  sample selection by spectral subtraction
+
+**Other utilities:**
+
+- [`read_nircal()`](https://l-ramirez-lopez.github.io/prospectr/reference/read_nircal.md):
+  read binary files from BUCHI NIRCal software
+- [`readASD()`](https://l-ramirez-lopez.github.io/prospectr/reference/readASD.md):
+  read binary or ASCII files from ASD instruments
+- [`spliceCorrection()`](https://l-ramirez-lopez.github.io/prospectr/reference/spliceCorrection.md):
+  correct for detector splice steps in ASD FieldSpec Pro
+- [`cochranTest()`](https://l-ramirez-lopez.github.io/prospectr/reference/cochranTest.md):
+  detect replicate outliers with the Cochran *C* test
+
+## Installation
+
+Install from CRAN:
+
+``` r
+
+install.packages("prospectr")
+```
+
+Or install the development version from GitHub:
+
+``` r
+
+# install.packages("devtools")
+devtools::install_github("l-ramirez-lopez/prospectr")
+```
+
+The package requires a C++ compiler. On Windows, install
+[Rtools](https://cran.r-project.org/bin/windows/Rtools/). On macOS, you
+may need to install `gfortran` and `clang` from [CRAN
+tools](https://cran.r-project.org/bin/macosx/tools/).
+
+## Citing the package
+
+``` r
+
+citation(package = "prospectr")
+```
+
+## Bug reports
+
+Report issues at
+[GitHub](https://github.com/l-ramirez-lopez/prospectr/issues) or contact
+the maintainer (<ramirez.lopez.leo@gmail.com>).
+
+## Related packages
+
+- [`resemble`](https://github.com/l-ramirez-lopez/resemble):
+  Memory-based learning and local modelling for spectral chemometrics.
+
+# Package index
+
+## Signal processing
+
+- [`movav()`](https://l-ramirez-lopez.github.io/prospectr/reference/movav.md)
+  : Moving average
+- [`savitzkyGolay()`](https://l-ramirez-lopez.github.io/prospectr/reference/savitzkyGolay.md)
+  : Savitzky-Golay smoothing and differentiation
+- [`gapDer()`](https://l-ramirez-lopez.github.io/prospectr/reference/gapDer.md)
+  : Gap-Segment derivative
+- [`baseline()`](https://l-ramirez-lopez.github.io/prospectr/reference/baseline.md)
+  : baseline
+- [`continuumRemoval()`](https://l-ramirez-lopez.github.io/prospectr/reference/continuumRemoval.md)
+  : Continuum Removal
+- [`detrend()`](https://l-ramirez-lopez.github.io/prospectr/reference/detrend.md)
+  : Detrending spectral data
+- [`standardNormalVariate()`](https://l-ramirez-lopez.github.io/prospectr/reference/standardNormalVariate.md)
+  : Standard normal variate transformation
+- [`msc()`](https://l-ramirez-lopez.github.io/prospectr/reference/msc.md)
+  : Multiplicative Scatter Correction (msc)
+- [`binning()`](https://l-ramirez-lopez.github.io/prospectr/reference/binning.md)
+  : Signal binning
+- [`resample()`](https://l-ramirez-lopez.github.io/prospectr/reference/resample.md)
+  : Resample spectral data
+- [`resample2()`](https://l-ramirez-lopez.github.io/prospectr/reference/resample2.md)
+  : Resample a high resolution signal to a low resolution signal using
+  full width half maximum (FWHM) values
+- [`blockScale()`](https://l-ramirez-lopez.github.io/prospectr/reference/blockScale.md)
+  : Hard or soft block scaling
+- [`blockNorm()`](https://l-ramirez-lopez.github.io/prospectr/reference/blockNorm.md)
+  : Sum of squares block weighting
+
+## Calibration sampling
+
+- [`naes()`](https://l-ramirez-lopez.github.io/prospectr/reference/naes.md)
+  : k-means sampling
+- [`kenStone()`](https://l-ramirez-lopez.github.io/prospectr/reference/kenStone.md)
+  : Kennard-Stone algorithm for calibration sampling
+- [`duplex()`](https://l-ramirez-lopez.github.io/prospectr/reference/duplex.md)
+  : DUPLEX algorithm for calibration sampling
+- [`puchwein()`](https://l-ramirez-lopez.github.io/prospectr/reference/puchwein.md)
+  : Puchwein algorithm for calibration sampling
+- [`shenkWest()`](https://l-ramirez-lopez.github.io/prospectr/reference/shenkWest.md)
+  : SELECT algorithm for calibration sampling
+- [`honigs()`](https://l-ramirez-lopez.github.io/prospectr/reference/honigs.md)
+  : Honigs algorithm for calibration sampling
+
+## Other functions
+
+- [`cochranTest()`](https://l-ramirez-lopez.github.io/prospectr/reference/cochranTest.md)
+  :
+
+  Cochran *C* Test
+
+- [`spliceCorrection()`](https://l-ramirez-lopez.github.io/prospectr/reference/spliceCorrection.md)
+  : Splice correction of a spectral matrix acquired with an ASD
+  spectrometer
+
+- [`readASD()`](https://l-ramirez-lopez.github.io/prospectr/reference/readASD.md)
+  : Read ASD FieldSpec Pro binary and ASCII files
+
+- [`read_nircal()`](https://l-ramirez-lopez.github.io/prospectr/reference/read_nircal.md)
+  : Import BUCHI NIRCal files
+
+- [`prospectr-package`](https://l-ramirez-lopez.github.io/prospectr/reference/prospectr-package.md)
+  [`prospectr`](https://l-ramirez-lopez.github.io/prospectr/reference/prospectr-package.md)
+  : Overview of the functions in the prospectr package
+
+## Data
+
+- [`NIRsoil`](https://l-ramirez-lopez.github.io/prospectr/reference/NIRsoil.md)
+  : NIRSoil
+
+# Articles
+
+### Vignettes
+
+- [An introduction to the \`prospectr\`
+  package](https://l-ramirez-lopez.github.io/prospectr/articles/aa-intro.md):
+- [Pre-processing spectral
+  data](https://l-ramirez-lopez.github.io/prospectr/articles/bb-pre-processing-spectral-data.md):
+- [Selecting representative calibration
+  samples](https://l-ramirez-lopez.github.io/prospectr/articles/cc-selecting-representative-calibration-samples.md):

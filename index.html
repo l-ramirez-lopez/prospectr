@@ -4,160 +4,188 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Miscellaneous Functions for Processing and Sample Selection of Spectroscopic Data • prospectr</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
-<script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Miscellaneous Functions for Processing and Sample Selection of Spectroscopic Data">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" sizes="any" href="favicon.ico">
+<link rel="manifest" href="site.webmanifest">
+<script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Miscellaneous Functions for Processing and Sample Selection of Spectroscopic Data">
+<meta name="description" content="Functions to preprocess spectroscopic data and conduct (representative) sample selection/calibration sampling.">
 <meta property="og:description" content="Functions to preprocess spectroscopic data and conduct (representative) sample selection/calibration sampling.">
-<meta property="og:image" content="/logo.png">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<meta property="og:image" content="https://l-ramirez-lopez.github.io/prospectr/logo.png">
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
-    <div class="container template-home">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">prospectr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.9</span>
-      </span>
-    </div>
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="articles/prospectr.html">Get started</a>
-</li>
-<li>
-  <a href="reference/index.html">Reference</a>
-</li>
-<li>
-  <a href="news/index.html">Changelog</a>
+    <a class="navbar-brand me-2" href="index.html">prospectr</a>
+
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.9</small>
+
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="articles/aa-intro.html">An introduction to the `prospectr` package</a></li>
+    <li><a class="dropdown-item" href="articles/bb-pre-processing-spectral-data.html">Pre-processing spectral data</a></li>
+    <li><a class="dropdown-item" href="articles/cc-selecting-representative-calibration-samples.html">Selecting representative calibration samples</a></li>
+  </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/l-ramirez-lopez/prospectr/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
-
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/l-ramirez-lopez/prospectr"><span class="fa fab fa-github"></span></a></li>
       </ul>
 </div>
-<!--/.nav-collapse -->
+
+
   </div>
-<!--/.container -->
+</nav><div class="container template-home">
+<div class="row">
+  <main id="main" class="col-md-9"><div class="section level1">
+<div class="page-header">
+<img src="logo.png" class="logo" alt=""><h1 id="prospectr-miscellaneous-functions-for-processing-and-sample-selection-of-spectroscopic-data">
+<code>prospectr</code> Miscellaneous Functions for Processing and Sample Selection of Spectroscopic Data<a class="anchor" aria-label="anchor" href="#prospectr-miscellaneous-functions-for-processing-and-sample-selection-of-spectroscopic-data"></a>
+</h1>
 </div>
-<!--/.navbar -->
+<!-- badges: start -->
 
-
-
-      </header><div class="row">
-  <div class="contents col-md-9">
-<div class="section level1">
-<div class="page-header"><h1 id="prospectr">prospectr<a class="anchor" aria-label="anchor" href="#prospectr"></a>
-</h1></div>
-<p><a href="https://CRAN.R-project.org/package=prospectr" class="external-link"><img src="http://www.r-pkg.org/badges/version/prospectr" alt="CRAN_Status_Badge"></a> <a href="https://cranlogs.r-pkg.org/badges/prospectr" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/prospectr" alt="Downloads"></a></p>
 <p><img align="right" src="./reference/figures/logo.png" width="15%"></p>
-<!-- badges: end -->
+<p><em>Last update: 2026-05-17</em></p>
+<p>Version: 0.2.9 – proxy</p>
 <em>
-<p align="left">
-Misc. Functions for Processing and Sample Selection of Spectroscopic Data
+<p align="right">
+In science, one man’s noise is another man’s signal
 </p>
-<p></p></em> <em>Antoine Stevens &amp; Leo Ramirez-Lopez</em>
-<p><em>Last update: 2025-03-05</em></p>
-<p>Version: 0.2.8 – galo</p>
-<p><code>prospectr</code> is becoming more and more used in spectroscopic applications, which is evidenced by the number of scientific publications citing the package. This package is very useful for signal processing and chemometrics in general as it provides various utilities for pre–processing and sample selection of spectral data. While similar functions are available in other packages, like <a href="https://CRAN.R-project.org/package=signal" class="external-link"><code>signal</code></a>, the functions in this package work indifferently for <code>data.frame</code>, <code>matrix</code> and <code>vector</code> inputs. Besides, several functions are optimized for speed and use C++ code through the <a href="https://CRAN.R-project.org/package=Rcpp" class="external-link"><code>Rcpp</code></a> and <a href="https://CRAN.R-project.org/package=RcppArmadillo" class="external-link"><code>RcppArmadillo</code></a> packages.</p>
+<p></p></em>
 <div class="section level2">
-<h2 id="installing-it-from-github">Installing it from GitHub<a class="anchor" aria-label="anchor" href="#installing-it-from-github"></a>
+<h2 id="about">About<a class="anchor" aria-label="anchor" href="#about"></a>
 </h2>
-<p>Install this package from github by:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"l-ramirez-lopez/prospectr"</span>)</span></code></pre></div>
-<p>NOTE: in some MAC Os it is still recommended to install <code>gfortran</code> and <code>clang</code> from <a href="https://cran.r-project.org/bin/macosx/tools/" class="external-link">here</a>. Even for R &gt;= 4.0. For more info, check this <a href="https://github.com/tidyverts/fable/issues/193" class="external-link">issue</a>.</p>
+<p><code>prospectr</code> provides tools for signal processing and chemometrics, with a focus on pre-processing and sample selection of spectral data. It is increasingly used in spectroscopic applications, as reflected by the growing number of scientific publications citing the package.</p>
+<p>Although similar functions are available in other packages such as <a href="https://CRAN.R-project.org/package=signal" class="external-link"><code>signal</code></a>, many functions in <code>prospectr</code> are designed to work consistently with <code>data.frame</code>, <code>matrix</code>, and <code>vector</code> inputs. Several functions are optimised for speed and rely on C++ code through the <a href="https://CRAN.R-project.org/package=Rcpp" class="external-link"><code>Rcpp</code></a> and <a href="https://CRAN.R-project.org/package=RcppArmadillo" class="external-link"><code>RcppArmadillo</code></a> packages.</p>
 </div>
 <div class="section level2">
-<h2 id="news">News<a class="anchor" aria-label="anchor" href="#news"></a>
+<h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
 </h2>
-<p>Check the NEWS document for new functionality and general changes in the package.</p>
-</div>
-<div class="section level2">
-<h2 id="vignette">Vignette<a class="anchor" aria-label="anchor" href="#vignette"></a>
-</h2>
-<p>A vignette for <code>prospectr</code> explaining its core functionality is available at <a href="https://CRAN.R-project.org/package=prospectr/vignettes/prospectr.html" class="external-link uri">https://CRAN.R-project.org/package=prospectr/vignettes/prospectr.html</a>.</p>
+<p>The package includes three vignettes covering all major functionality:</p>
+<ol style="list-style-type: decimal">
+<li>
+<strong>An introduction to the <code>prospectr</code> package</strong>: Overview, installation, and how to cite the package.</li>
+<li>
+<strong>Signal processing</strong>: Pre-processing methods including smoothing, derivatives, scatter corrections, baseline removal, centering, scaling, resampling, and continuum removal.</li>
+<li>
+<strong>Selecting representative calibration samples</strong>: Algorithms for selecting representative calibration and validation subsets from spectral data.</li>
+</ol>
 </div>
 <div class="section level2">
 <h2 id="core-functionality">Core functionality<a class="anchor" aria-label="anchor" href="#core-functionality"></a>
 </h2>
-<p>A vignette gives an overview of the main functions of the package. Just type <code>vignette("prospectr-intro")</code> in the console to access it. Currently, the following preprocessing functions are available:</p>
+<p><strong>Signal processing:</strong></p>
 <ul>
-<li><p><code><a href="reference/resample.html">resample()</a></code> : resample a signal to new coordinates by linear or spline interpolation</p></li>
-<li><p><code><a href="reference/resample2.html">resample2()</a></code> : resample a signal to new coordinates using FWHM values</p></li>
-<li><p><code><a href="reference/movav.html">movav()</a></code> : moving average</p></li>
-<li><p><code><a href="reference/standardNormalVariate.html">standardNormalVariate()</a></code> : standard normal variate</p></li>
-<li><p><code><a href="reference/msc.html">msc()</a></code> : multiplicative scatter correction</p></li>
-<li><p><code><a href="reference/detrend.html">detrend()</a></code> : detrend normalization</p></li>
-<li><p><code><a href="reference/baseline.html">baseline()</a></code> : baseline removal/correction</p></li>
-<li><p><code><a href="reference/blockScale.html">blockScale()</a></code> : block scaling</p></li>
-<li><p><code><a href="reference/blockNorm.html">blockNorm()</a></code> : sum of squares block weighting</p></li>
-<li><p><code><a href="reference/binning.html">binning()</a></code> : average in column–wise subsets</p></li>
-<li><p><code><a href="reference/savitzkyGolay.html">savitzkyGolay()</a></code> : Savitzky-Golay filter (smoothing and derivatives)</p></li>
-<li><p><code><a href="reference/gapDer.html">gapDer()</a></code> : gap-segment derivative</p></li>
-<li><p><code><a href="reference/continuumRemoval.html">continuumRemoval()</a></code> : continuum-removed absorbance or reflectance values</p></li>
+<li>
+<code><a href="reference/movav.html">movav()</a></code>: moving average filter</li>
+<li>
+<code><a href="reference/savitzkyGolay.html">savitzkyGolay()</a></code>: Savitzky-Golay smoothing and derivatives</li>
+<li>
+<code><a href="reference/gapDer.html">gapDer()</a></code>: gap-segment derivative</li>
+<li>
+<code><a href="reference/baseline.html">baseline()</a></code>: baseline removal</li>
+<li>
+<code><a href="reference/continuumRemoval.html">continuumRemoval()</a></code>: continuum-removed reflectance or absorbance</li>
+<li>
+<code><a href="reference/detrend.html">detrend()</a></code>: SNV-Detrend normalisation</li>
+<li>
+<code><a href="reference/standardNormalVariate.html">standardNormalVariate()</a></code>: Standard Normal Variate (SNV) transformation</li>
+<li>
+<code><a href="reference/msc.html">msc()</a></code>: Multiplicative Scatter Correction</li>
+<li>
+<code><a href="reference/binning.html">binning()</a></code>: average a signal in column bins</li>
+<li>
+<code><a href="reference/resample.html">resample()</a></code>: resample a signal to new band positions</li>
+<li>
+<code><a href="reference/resample2.html">resample2()</a></code>: resample a signal using FWHM values</li>
+<li>
+<code><a href="reference/blockScale.html">blockScale()</a></code>: block scaling</li>
+<li>
+<code><a href="reference/blockNorm.html">blockNorm()</a></code>: sum of squares block weighting</li>
 </ul>
-<p>The selection of representative samples/observations for calibration of spectral models can be achieved with one of the following functions:</p>
+<p><strong>Calibration sampling:</strong></p>
 <ul>
-<li><p><code><a href="reference/naes.html">naes()</a></code> : k-means sampling</p></li>
-<li><p><code><a href="reference/kenStone.html">kenStone()</a></code> : CADEX (Kennard–Stone) algorithm</p></li>
-<li><p><code><a href="reference/duplex.html">duplex()</a></code> : DUPLEX algorithm</p></li>
-<li><p><code><a href="reference/shenkWest.html">shenkWest()</a></code> : SELECT algorithm</p></li>
-<li><p><code><a href="reference/puchwein.html">puchwein()</a></code> : Puchwein sampling</p></li>
-<li><p><code><a href="reference/honigs.html">honigs()</a></code> : Unique-sample selection by spectral subtraction</p></li>
+<li>
+<code><a href="reference/naes.html">naes()</a></code>: k-means sampling</li>
+<li>
+<code><a href="reference/kenStone.html">kenStone()</a></code>: Kennard-Stone (CADEX) algorithm</li>
+<li>
+<code><a href="reference/duplex.html">duplex()</a></code>: DUPLEX algorithm</li>
+<li>
+<code><a href="reference/shenkWest.html">shenkWest()</a></code>: SELECT algorithm</li>
+<li>
+<code><a href="reference/puchwein.html">puchwein()</a></code>: Puchwein sampling</li>
+<li>
+<code><a href="reference/honigs.html">honigs()</a></code>: sample selection by spectral subtraction</li>
 </ul>
-<p>Other useful functions are also available:</p>
+<p><strong>Other utilities:</strong></p>
 <ul>
-<li><p><code><a href="reference/read_nircal.html">read_nircal()</a></code> : read binary files exported from BUCHI NIRCal software</p></li>
-<li><p><code><a href="reference/readASD.html">readASD()</a></code> : read binary or text files from an ASD instrument (Indico Pro format)</p></li>
-<li><p><code><a href="reference/spliceCorrection.html">spliceCorrection()</a></code> : correct spectra for steps at the splice of detectors in an ASD FieldSpec Pro</p></li>
-<li><p><code><a href="reference/cochranTest.html">cochranTest()</a></code> : detects replicate outliers with the Cochran <em>C</em> test</p></li>
+<li>
+<code><a href="reference/read_nircal.html">read_nircal()</a></code>: read binary files from BUCHI NIRCal software</li>
+<li>
+<code><a href="reference/readASD.html">readASD()</a></code>: read binary or ASCII files from ASD instruments</li>
+<li>
+<code><a href="reference/spliceCorrection.html">spliceCorrection()</a></code>: correct for detector splice steps in ASD FieldSpec Pro</li>
+<li>
+<code><a href="reference/cochranTest.html">cochranTest()</a></code>: detect replicate outliers with the Cochran <em>C</em> test</li>
 </ul>
+</div>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>Install from CRAN:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"prospectr"</span><span class="op">)</span></span></code></pre></div>
+<p>Or install the development version from GitHub:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"l-ramirez-lopez/prospectr"</span><span class="op">)</span></span></code></pre></div>
+<p>The package requires a C++ compiler. On Windows, install <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>. On macOS, you may need to install <code>gfortran</code> and <code>clang</code> from <a href="https://cran.r-project.org/bin/macosx/tools/" class="external-link">CRAN tools</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="citing-the-package">Citing the package<a class="anchor" aria-label="anchor" href="#citing-the-package"></a>
 </h2>
-<p>Antoine Stevens and Leornardo Ramirez-Lopez (2025). An introduction to the prospectr package. R package Vignette R package version 0.2.8. A BibTeX entry for LaTeX users is:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a> <span class="sc">@</span>Manual{stevens2022prospectr,</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>    title <span class="ot">=</span> {An introduction to the prospectr package},</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>    author <span class="ot">=</span> {Antoine Stevens and Leornardo Ramirez<span class="sc">-</span>Lopez},</span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>    publication <span class="ot">=</span> {R package Vignette},</span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>    year <span class="ot">=</span> {<span class="dv">2025</span>},</span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>    note <span class="ot">=</span> {R package version <span class="dv">0</span>.<span class="fl">2.8</span>},</span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>  }</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"prospectr"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="bug-report-and-development-version">Bug report and development version<a class="anchor" aria-label="anchor" href="#bug-report-and-development-version"></a>
+<h2 id="bug-reports">Bug reports<a class="anchor" aria-label="anchor" href="#bug-reports"></a>
 </h2>
-<p>You can send an email to the package maintainer (<a href="mailto:ramirez.lopez.leo@gmail.com" class="email">ramirez.lopez.leo@gmail.com</a>) or create an <a href="https://github.com/l-ramirez-lopez/prospectr/issues" class="external-link">issue</a> on github. To install the development version of <code>prospectr</code>, simply install <a href="https://CRAN.R-project.org/package=devtools" class="external-link"><code>devtools</code></a> from CRAN then run <code>install_github("l-ramirez-lopez/prospectr")</code>.</p>
+<p>Report issues at <a href="https://github.com/l-ramirez-lopez/prospectr/issues" class="external-link">GitHub</a> or contact the maintainer (<a href="mailto:ramirez.lopez.leo@gmail.com" class="email">ramirez.lopez.leo@gmail.com</a>).</p>
+</div>
+<div class="section level2">
+<h2 id="related-packages">Related packages<a class="anchor" aria-label="anchor" href="#related-packages"></a>
+</h2>
+<ul>
+<li>
+<a href="https://github.com/l-ramirez-lopez/resemble" class="external-link"><code>resemble</code></a>: Memory-based learning and local modelling for spectral chemometrics.</li>
+</ul>
 </div>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="links">
+  </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
 <li><a href="https://cloud.r-project.org/package=prospectr" class="external-link">View on CRAN</a></li>
@@ -191,25 +219,29 @@ Misc. Functions for Processing and Sample Selection of Spectroscopic Data
 </ul>
 </div>
 
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://app.codecov.io/gh/l-ramirez-lopez/prospectr" class="external-link"><img src="https://codecov.io/gh/l-ramirez-lopez/prospectr/badge.svg" alt="codecov"></a></li>
+<li><a href="https://CRAN.R-project.org/package=prospectr" class="external-link"><img src="https://www.r-pkg.org/badges/version/prospectr?v=2.png" alt="CRAN status"></a></li>
+<li><a href="https://CRAN.R-project.org/package=prospectr" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/prospectr?v=2.png" alt="Downloads"></a></li>
+</ul>
+</div>
 
-
-  </div>
+  </aside>
 </div>
 
 
-      <footer><div class="copyright">
-  <p></p>
-<p>Developed by Antoine Stevens, Leonardo Ramirez-Lopez.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p>Developed by Antoine Stevens, Leonardo Ramirez-Lopez.</p>
 </div>
 
-<div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+<div class="pkgdown-footer-right">
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
-
 
 
 
