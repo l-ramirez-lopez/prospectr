@@ -1,3 +1,50 @@
+`prospectr 0.2.9 (proxy)`
+===============
+
+### Bug fixes
+
+* `continuumRemoval()`: fixed `NA` values produced for spectra with very low
+  reflectance in the first bands and high NIR reflectance. The fixed boundary
+  offset of 1 wavelength unit used in the internal convex hull computation was
+  too large for spectra with fine spectral resolution or wavelengths expressed
+  in units other than nanometres. The offset is now derived from the actual
+  spectral resolution at each edge, making the behaviour unit-agnostic
+  (reported by @jbferet,
+  [#80](https://github.com/l-ramirez-lopez/prospectr/issues/80)).
+
+* `continuumRemoval()`: fixed `NaN` produced at the first wavelength when its
+  reflectance value is exactly zero. The continuum-removed value is now set to
+  1 (no absorption feature) at bands where both the spectrum and the continuum
+  are zero
+  ([#80](https://github.com/l-ramirez-lopez/prospectr/issues/80)).
+
+* `continuumRemoval()`: corrected a long-standing typo in the `method`
+  argument: `"substraction"` has been replaced by `"subtraction"`. A
+  deprecation warning is issued if the old spelling is passed explicitly.
+
+### New features
+
+* `detrend()`: added `snv` argument (default `TRUE`) to allow polynomial
+  detrending without a prior SNV transformation. The default behaviour is
+  unchanged and remains consistent with Barnes et al. (1989). Set `snv =
+  FALSE` to apply pure polynomial detrending independently of SNV, for
+  example as a separate step in a pre-processing pipeline.
+
+* The vignette has been reorganised into three separate vignettes with
+  extended examples: (1) an introduction to the package, (2) signal
+  processing, and (3) calibration sampling.
+
+### Documentation
+
+* `spliceCorrection()`: clarified that `wav` must be a numeric vector of
+  length equal to `ncol(X)`, not a two-element range vector
+  ([#69](https://github.com/l-ramirez-lopez/prospectr/issues/69)).
+
+* `duplex()`: a warning is now issued when `k` exceeds `floor(nrow(X) / 2)`,
+  the maximum number of samples selectable per set. Previously, `k` was
+  silently capped to this limit with no indication to the user (reported by
+  @georgejr45).
+
 `prospectr 0.2.8 (galo)`
 ===============
 
