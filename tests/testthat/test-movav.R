@@ -35,6 +35,7 @@ test_that("movav works on data.frame input", {
 
   expect_is(X_movav, "matrix")
   expect_equal(nrow(X_movav), 10)
+  expect_true(round(max(X_movav[1, ]), 5) == 0.37237)
 })
 
 test_that("movav errors when w is missing", {

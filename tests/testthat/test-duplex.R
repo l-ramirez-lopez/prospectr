@@ -61,6 +61,10 @@ test_that("duplex works with Euclidean metric", {
   expect_is(X_duplex_euclid, "list")
   expect_equal(length(X_duplex_euclid$model), 20)
   expect_equal(length(X_duplex_euclid$test), 20)
+
+  sel_euclid <- c(410, 279, 824, 570, 633, 291, 455, 338, 618, 141,
+                  734, 825, 800, 819, 257, 147, 87, 287, 399, 818)
+  expect_equal(X_duplex_euclid$model, sel_euclid)
 })
 
 test_that("duplex works with pc as integer", {
@@ -70,4 +74,8 @@ test_that("duplex works with pc as integer", {
 
   expect_is(X_duplex_pc, "list")
   expect_equal(length(X_duplex_pc$model), 20)
+
+  sel_pc5 <- c(386, 377, 410, 619, 186, 617, 578, 592, 697, 723,
+               594, 39, 311, 702, 501, 572, 391, 611, 303, 261)
+  expect_equal(X_duplex_pc$model, sel_pc5)
 })

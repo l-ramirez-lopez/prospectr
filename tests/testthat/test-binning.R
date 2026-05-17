@@ -18,8 +18,8 @@ test_that("binning works with bin.size argument", {
 
   expect_is(X_binned, "matrix")
   expect_equal(nrow(X_binned), nrow(NIRsoil$spc))
-  # fewer columns than original
   expect_true(ncol(X_binned) < ncol(NIRsoil$spc))
+  expect_true(round(max(X_binned[1, ]), 5) == 0.37191)
 })
 
 test_that("binning works with bins argument", {
@@ -31,6 +31,7 @@ test_that("binning works with bins argument", {
   expect_is(X_binned, "matrix")
   expect_equal(nrow(X_binned), nrow(NIRsoil$spc))
   expect_equal(ncol(X_binned), n_bins)
+  expect_true(round(max(X_binned[1, ]), 5) == 0.36769)
 })
 
 test_that("binning errors when both bins and bin.size are given", {
