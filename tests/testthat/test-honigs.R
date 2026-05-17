@@ -48,6 +48,10 @@ test_that("honigs works with type = 'R' (reflectance)", {
   expect_equal(length(X_honigs_R$model), 20)
   expect_true(all(X_honigs_R$model >= 1))
   expect_true(all(X_honigs_R$model <= nrow(NIRsoil$spc)))
+
+  sel_R <- c(619, 39, 377, 186, 669, 666, 402, 383, 37, 592,
+             431, 126, 749, 710, 615, 775, 548, 284, 141, 330)
+  expect_equal(X_honigs_R$model, sel_R)
 })
 
 test_that("honigs type A and R select different samples", {

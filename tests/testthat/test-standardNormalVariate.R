@@ -31,6 +31,7 @@ test_that("standardNormalVariate works on data.frame input", {
 
   expect_is(X_snv, "matrix")
   expect_equal(dim(X_snv), dim(NIRsoil$spc))
+  expect_true(round(max(X_snv[1, ]), 5) == 2.63444)
 })
 
 test_that("standardNormalVariate errors on non-matrix non-data.frame input", {
