@@ -67,6 +67,12 @@ test_that("shenkWest works with integer pc", {
   X_sw <- shenkWest(NIRsoil$spc, pc = 5, d.min = .3, rm.outlier = FALSE)
 
   expect_is(X_sw, "list")
-  expect_true(length(X_sw$model) > 0)
   expect_equal(ncol(X_sw$pc), 5)
+
+  sel_pc5 <- c(656, 222, 600, 214, 199, 488, 219, 468, 275, 288,
+               791, 220, 469, 225, 260, 312, 562, 281, 358, 403,
+               235, 262, 304, 310, 344, 393, 399, 580, 609,  28,
+                44, 337, 424, 501, 593, 635, 737,  39, 101, 167,
+               178, 326, 331, 449, 485, 583, 585, 612, 617)
+  expect_equal(X_sw$model, sel_pc5)
 })

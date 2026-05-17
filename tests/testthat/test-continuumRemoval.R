@@ -29,6 +29,7 @@ test_that("continuumRemoval works with type = 'A' (absorbance)", {
 
   expect_is(X_cr_A, "matrix")
   expect_equal(dim(X_cr_A), dim(NIRsoil$spc))
+  expect_true(round(min(X_cr_A[1, ]), 5) == 0)
 })
 
 test_that("continuumRemoval works with method = 'subtraction'", {
@@ -39,6 +40,7 @@ test_that("continuumRemoval works with method = 'subtraction'", {
 
   expect_is(X_cr_sub, "matrix")
   expect_equal(dim(X_cr_sub), dim(NIRsoil$spc))
+  expect_true(round(min(X_cr_sub[1, ]), 5) == 0.92942)
 })
 
 test_that("continuumRemoval works with interpol = 'spline'", {
@@ -50,6 +52,7 @@ test_that("continuumRemoval works with interpol = 'spline'", {
   expect_is(X_cr_sp, "matrix")
   expect_equal(nrow(X_cr_sp), 10)
   expect_equal(ncol(X_cr_sp), ncol(NIRsoil$spc))
+  expect_true(round(min(X_cr_sp[1, ]), 5) == 0.80512)
 })
 
 test_that("continuumRemoval works without wav argument", {

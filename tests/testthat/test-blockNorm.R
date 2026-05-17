@@ -26,6 +26,7 @@ test_that("blockNorm works with targetnorm != 1", {
   expect_is(X_blockNorm, "list")
   ss <- sum(X_blockNorm$Xscaled^2)
   expect_equal(ss, 0.5, tolerance = 1e-6)
+  expect_true(round(max(X_blockNorm$Xscaled[1, ]), 5) == 0.00103)
 })
 
 test_that("blockNorm works with data.frame input", {

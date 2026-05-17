@@ -20,6 +20,7 @@ test_that("gapDer works with second order derivative (m=2)", {
   expect_is(X_gapDer2, "matrix")
   expect_equal(nrow(X_gapDer2), nrow(NIRsoil$spc))
   expect_true(ncol(X_gapDer2) < ncol(NIRsoil$spc))
+  expect_true(round(max(abs(X_gapDer2[1, ])), 5) == 0.00089)
 })
 
 test_that("gapDer works with segment smoothing (s > 1)", {
@@ -29,6 +30,7 @@ test_that("gapDer works with segment smoothing (s > 1)", {
 
   expect_is(X_gapDer_s3, "matrix")
   expect_equal(nrow(X_gapDer_s3), nrow(NIRsoil$spc))
+  expect_true(round(max(abs(X_gapDer_s3[1, ])), 5) == 0.00497)
   # smoothed version has fewer columns than w=3, s=1
   X_gapDer_s1 <- gapDer(NIRsoil$spc, m = 1, w = 3, s = 1)
   expect_true(ncol(X_gapDer_s3) < ncol(X_gapDer_s1))

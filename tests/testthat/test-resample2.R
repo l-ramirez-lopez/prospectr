@@ -25,6 +25,7 @@ test_that("resample2 works with scalar fwhm (constant bandwidth)", {
   expect_is(X_resample, "matrix")
   expect_equal(nrow(X_resample), nrow(NIRsoil$spc))
   expect_equal(ncol(X_resample), length(new_wav))
+  expect_true(round(max(abs(X_resample[1, ])), 5) == 0.32769)
 })
 
 test_that("resample2 works without fwhm (defaults to band spacing)", {
@@ -37,6 +38,7 @@ test_that("resample2 works without fwhm (defaults to band spacing)", {
   expect_is(X_resample, "matrix")
   expect_equal(nrow(X_resample), nrow(NIRsoil$spc))
   expect_equal(ncol(X_resample), length(new_wav))
+  expect_true(round(max(abs(X_resample[1, ])), 5) == 0.32143)
 })
 
 test_that("resample2 works on data.frame input", {

@@ -17,13 +17,15 @@ test_that("resample works with spline interpolation (default)", {
 test_that("resample works with linear interpolation", {
   data("NIRsoil")
   wav <- as.numeric(colnames(NIRsoil$spc))
-  new_wav <- seq(1100, 2500, 10)
+  # trim 1 step inside each boundary so linear (no extrapolation) stays in range
+  new_wav <- seq(wav[2], wav[length(wav) - 1], 10)
 
   X_linear <- resample(NIRsoil$spc, wav, new_wav, interpol = "linear")
 
   expect_is(X_linear, "matrix")
   expect_equal(nrow(X_linear), nrow(NIRsoil$spc))
   expect_equal(ncol(X_linear), length(new_wav))
+  expect_true(!any(is.na(X_linear)))
 })
 
 test_that("resample spline and linear produce different results", {
