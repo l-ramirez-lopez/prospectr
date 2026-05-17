@@ -52,5 +52,5 @@ test_that("baseline result equals original minus baselines", {
   X_baselined <- baseline(NIRsoil$spc, wav = wav)
   baselines <- attr(X_baselined, "baselines")
 
-  expect_equal(X_baselined, NIRsoil$spc - baselines, tolerance = 1e-10)
+  expect_equal(unclass(X_baselined), NIRsoil$spc - baselines, tolerance = 1e-10)
 })
