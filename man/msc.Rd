@@ -35,7 +35,7 @@ spectrum (\mjeqn{x_i}{x_i}) to an ideal reference one (\mjeqn{x_r}{x_r}) as
 follows:
 
 \mjdeqn{x_i = m_i x_r + a_i}{x_i = m_i x_r + a_i}
-\mjdeqn{MSC(x_i) = \frac{a_i - x_i}{m_i}}{MSC(x_i) = {a_i - x_i}/{m_i}}
+\mjdeqn{MSC(x_i) = \frac{x_i - a_i}{m_i}}{MSC(x_i) = {x_i - a_i}/{m_i}}
 
 where \mjeqn{a_i}{a_i} and \mjeqn{m_i}{m_i} are the additive and
 multiplicative terms respectively.
