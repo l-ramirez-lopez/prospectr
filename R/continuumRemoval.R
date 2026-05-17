@@ -7,10 +7,12 @@
 #' @usage
 #' continuumRemoval(X, wav, type = c("R", "A"),
 #'                  interpol = c("linear", "spline"),
-#'                  method = c("division", "substraction"))
+#'                  method = c("division", "subtraction"))
 #' @param X a numeric matrix or vector to process (optionally a data frame that can
 #' be coerced to a numerical matrix).
-#' @param wav optional. A numeric vector of band positions.
+#' @param wav a numeric vector of band positions of length equal to \code{ncol(X)}
+#' (or \code{length(X)} if \code{X} is a vector). If not provided, integer
+#' indices \code{1:ncol(X)} are used.
 #' @param type the type of data: 'R' for reflectance (default), 'A' for
 #' absorbance.
 #' @param interpol the interpolation method between points on the convex hull:
@@ -38,49 +40,54 @@
 #' \code{\link{gapDer}}, \code{\link{binning}}
 #' @details
 #' The continuum removal technique was introduced by Clark and Roush (1984)
-#' as a method to highlight energy absorption features of minerals.
-#' It can be viewed as a way to perform albedo normalization.
-#' The algorithm find points lying on the convex hull (local maxima or envelope)
-#' of a spectrum, connects the points by linear or spline interpolation and
-#' normalizes the spectrum by dividing (or subtracting) the input data by the
-#' interpolated line.
+#' to highlight absorption features in spectra by removing the effect of
+#' the overall spectral shape (albedo). It is widely used in remote sensing
+#' and spectroscopy to isolate and compare absorption band depths across
+#' samples or sensors.
+#'
+#' The algorithm identifies points lying on the convex hull (upper envelope)
+#' of a spectrum, connects them by linear or spline interpolation to form a
+#' continuum line, and normalises the spectrum against that line either by
+#' division or subtraction. Division (default) yields values in \[0, 1\] for
+#' reflectance spectra, where 1 indicates no absorption. Subtraction yields
+#' residuals relative to the continuum.
+#'
+#' When \code{type = "A"} (absorbance), spectra are inverted to reflectance
+#' before computing the continuum and back-transformed afterwards.
+#'
+#' At wavelengths where both the spectral value and the continuum are zero,
+#' the continuum-removed value is set to 1 (no absorption feature), since
+#' division of zero by zero is undefined.
 #' @references
 #' Clark, R.N., and Roush, T.L., 1984. Reflectance Spectroscopy: Quantitative
 #' Analysis Techniques for Remote Sensing Applications. J. Geophys. Res. 89,
 #' 6329-6340.
 #' @export
-
-continuumRemoval <- function(X,
-                             wav,
-                             type = c("R", "A"),
-                             interpol = c("linear", "spline"),
-                             method = c("division", "substraction")) {
+continuumRemoval <- function(
+    X,
+    wav,
+    type = c("R", "A"),
+    interpol = c("linear", "spline"),
+    method = c("division", "sustraction")
+) {
+  
+  if (!missing(method) && method == "substraction") {
+    warning("'substraction' is a typo; please use 'subtraction'. Continuing with 'subtraction'.")
+    method <- "subtraction"
+  }
+  
   if (is.data.frame(X)) {
     X <- as.matrix(X)
   }
-
+  
   type <- match.arg(type)
   interpol <- match.arg(interpol)
   method <- match.arg(method)
-
+  
   if (type == "A") {
     X <- 1 / X
   }
-
-  crfun <- function(x, wav, interpol) {
-    id <- sort(chull(c(wav[1] - 1, wav, wav[length(wav)] + 1), c(0, x, 0)))
-    id <- id[-c(1, length(id))] - 1
-    cont <- switch(interpol,
-      linear = {
-        approx(x = wav[id], y = x[id], xout = wav, method = "linear")$y
-      },
-      spline = {
-        splinefun(x = wav[id], y = x[id])(wav)
-      }
-    )
-    return(cont)
-  }
-
+  
   if (is.matrix(X)) {
     if (missing(wav)) {
       wav <- seq_len(ncol(X))
@@ -88,30 +95,56 @@ continuumRemoval <- function(X,
     if (length(wav) != ncol(X)) {
       stop("length(wav) should be equal to ncol(X)")
     }
-
-    cont <- t(apply(X, 1, function(x) crfun(x, wav, interpol)))
+    
+    cont <- t(apply(X, 1, function(x) cr_fun(x, wav, interpol)))
   } else {
-    cont <- crfun(X, wav, interpol)
+    cont <- cr_fun(X, wav, interpol)
   }
-
-
+  
+  
   if (method == "division") {
     cr <- X / cont
+    cr <- X / cont
+    cr[X == 0 & cont == 0] <- 1
   } # like ENVI
   else {
     cr <- 1 + X - cont
   }
-
+  
   if (type == "A") {
     cr <- 1 / cr - 1
   }
-
+  
   if (is.matrix(X)) {
     colnames(cr) <- wav
     rownames(cr) <- rownames(X)
   } else {
     names(cr) <- wav
   }
-
+  
   return(cr)
+}
+
+
+#' @noRd
+#' @export
+cr_fun <- function(x, wav, interpol) {
+  neighbor_left <- (wav[2] - wav[1]) / 1000
+  neighbor_right <- (wav[length(wav)] - wav[length(wav) - 1]) / 1000
+  y_bound <- min(x) - (max(x) - min(x))
+  
+  id <- sort(
+    chull(
+      c(wav[1] - neighbor_left, wav, wav[length(wav)] + neighbor_right),
+      c(y_bound, x, y_bound)
+    )
+  )
+  id <- id[-c(1, length(id))] - 1
+  
+  cont <- switch(
+    interpol,
+    linear = approx(x = wav[id], y = x[id], xout = wav, method = "linear")$y,
+    spline = splinefun(x = wav[id], y = x[id])(wav)
+  )
+  return(cont)
 }
