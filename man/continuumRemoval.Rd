@@ -6,13 +6,15 @@
 \usage{
 continuumRemoval(X, wav, type = c("R", "A"),
                  interpol = c("linear", "spline"),
-                 method = c("division", "substraction"))
+                 method = c("division", "subtraction"))
 }
 \arguments{
 \item{X}{a numeric matrix or vector to process (optionally a data frame that can
 be coerced to a numerical matrix).}
 
-\item{wav}{optional. A numeric vector of band positions.}
+\item{wav}{a numeric vector of band positions of length equal to \code{ncol(X)}
+(or \code{length(X)} if \code{X} is a vector). If not provided, integer
+indices \code{1:ncol(X)} are used.}
 
 \item{type}{the type of data: 'R' for reflectance (default), 'A' for
 absorbance.}
@@ -33,12 +35,24 @@ Compute the continuum removed values of a data matrix or vector
 }
 \details{
 The continuum removal technique was introduced by Clark and Roush (1984)
-as a method to highlight energy absorption features of minerals.
-It can be viewed as a way to perform albedo normalization.
-The algorithm find points lying on the convex hull (local maxima or envelope)
-of a spectrum, connects the points by linear or spline interpolation and
-normalizes the spectrum by dividing (or subtracting) the input data by the
-interpolated line.
+to highlight absorption features in spectra by removing the effect of
+the overall spectral shape (albedo). It is widely used in remote sensing
+and spectroscopy to isolate and compare absorption band depths across
+samples or sensors.
+
+The algorithm identifies points lying on the convex hull (upper envelope)
+of a spectrum, connects them by linear or spline interpolation to form a
+continuum line, and normalises the spectrum against that line either by
+division or subtraction. Division (default) yields values in [0, 1] for
+reflectance spectra, where 1 indicates no absorption. Subtraction yields
+residuals relative to the continuum.
+
+When \code{type = "A"} (absorbance), spectra are inverted to reflectance
+before computing the continuum and back-transformed afterwards.
+
+At wavelengths where both the spectral value and the continuum are zero,
+the continuum-removed value is set to 1 (no absorption feature), since
+division of zero by zero is undefined.
 }
 \examples{
 data(NIRsoil)
