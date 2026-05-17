@@ -25,23 +25,22 @@ BugReports:
 Description: Functions to preprocess spectroscopic data 
     and conduct (representative) sample selection/calibration sampling.
 License: MIT + file LICENSE
-URL: https://github.com/l-ramirez-lopez/prospectr
-VignetteBuilder: knitr
+URL: https://github.com/l-ramirez-lopez/prospectr, https://l-ramirez-lopez.github.io/prospectr/
+VignetteBuilder: quarto
 Suggests:
     knitr,
-    rmarkdown,
-    formatR,
     testthat,
-    bookdown
+    quarto,
+    covr
 LinkingTo: 
     Rcpp, 
     RcppArmadillo
 Depends:
-    R (>= 3.5.0),
+    R (>= 3.5.0)
 Imports:
     foreach,
     iterators,
-    Rcpp (>= 1.0.1),
+    Rcpp (>= 1.0.3),
     mathjaxr (>= 1.0), 
     lifecycle (>= 0.2.0)
 RdMacros: mathjaxr
