@@ -5,7 +5,7 @@ asd_file <- test_path("testdata/3L9257.000")
 # ── error handling ────────────────────────────────────────────────────────────
 test_that("readASD errors on a non-existent file", {
   expect_error(
-    readASD("does_not_exist.000", in_format = "binary", out_format = "matrix")
+    suppressWarnings(readASD("does_not_exist.000", in_format = "binary", out_format = "matrix"))
   )
 })
 
