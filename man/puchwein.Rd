@@ -101,6 +101,7 @@ The Puchwein algorithm is an iterative method and can be slow for large
 data matrices.
 }
 \examples{
+\dontrun{
 data(NIRsoil)
 sel <- puchwein(NIRsoil$spc, k = 0.2, pc = .99)
 plot(sel$pc[, 1:2])
@@ -115,6 +116,7 @@ plot(sel$leverage$loop, sel$leverage$diff,
   ylab = "Difference between theoretical and \n observed sum of leverages"
 )
 par(opar)
+}
 }
 \references{
 Puchwein, G., 1988. Selection of calibration samples for near-infrared

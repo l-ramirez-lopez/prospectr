@@ -55,6 +55,7 @@
 #' guide to multivariate calibration and classification. NIR Publications,
 #' Chichester, United Kingdom.
 #' @examples
+#' \dontrun{
 #' data(NIRsoil)
 #' sel <- naes(NIRsoil$spc, k = 5, p = .99, method = 0)
 #' # clusters
@@ -76,6 +77,7 @@
 #'   pch = 15,
 #'   cex = 1
 #' )
+#' }
 #' @author Antoine Stevens & \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 #' @seealso \code{\link{kenStone}}, \code{\link{honigs}}, \code{\link{duplex}},
 #' \code{\link{shenkWest}}

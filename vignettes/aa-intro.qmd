@@ -68,6 +68,12 @@ If you use `prospectr` in your work, please cite it. The recommended citation
 can be obtained in R with:
 
 ```{r}
+#| message: false
+library(prospectr)
+```
+
+
+```{r}
 #| label: citation
 #| echo: true
 citation(package = "prospectr")
