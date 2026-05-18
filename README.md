@@ -1,11 +1,13 @@
 
 
-# `prospectr` Miscellaneous Functions for Processing and Sample Selection of Spectroscopic Data
+# `prospectr`
+
+## Functions for Chemometric Processing and Sample Selection of Spectroscopic Data
 
 <!-- badges: start -->
 
 ![R-CMD-check](https://github.com/l-ramirez-lopez/prospectr/actions/workflows/R-CMD-check.yaml/badge.svg)
-[![codecov](https://codecov.io/gh/l-ramirez-lopez/prospectr/badge.svg)](https://app.codecov.io/gh/l-ramirez-lopez/prospectr)
+[![codecov](https://codecov.io/github/l-ramirez-lopez/prospectr/graph/badge.svg)](https://app.codecov.io/gh/l-ramirez-lopez/prospectr)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/prospectr?v=2.png)](https://CRAN.R-project.org/package=prospectr)
 [![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/prospectr?v=2.png)](https://CRAN.R-project.org/package=prospectr)
@@ -13,7 +15,7 @@ status](https://www.r-pkg.org/badges/version/prospectr?v=2.png)](https://CRAN.R-
 
 <img align="right" src="./man/figures/logo.png" width="15%">
 
-*Last update: 2026-05-17*
+*Last update: 2026-05-18*
 
 Version: 0.2.9 – proxy
 
@@ -101,8 +103,8 @@ install.packages("prospectr")
 Or install the development version from GitHub:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("l-ramirez-lopez/prospectr")
+# install.packages("remotes")
+remotes::install_github("l-ramirez-lopez/prospectr")
 ```
 
 The package requires a C++ compiler. On Windows, install

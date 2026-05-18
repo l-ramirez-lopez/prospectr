@@ -4,7 +4,9 @@ template:
   bootstrap: 5
 
 home:
-  strip_header: false
+  strip_header: true 
+  title: "`prospectr`: Chemometric Processing of Spectroscopic Data in R"   
+  description: "Fast, reliable tools for signal pre-processing, spectral resampling, and representative calibration-sample selection from NIR, MIR, and vis–NIR data."   
 
 navbar:
   structure:
