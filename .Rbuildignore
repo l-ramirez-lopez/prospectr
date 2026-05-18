@@ -12,6 +12,7 @@
 ^cran-comments\.md$
 ^my-comments\.md$
 ^README\.Rmd$
+^README\.qmd$
 ^NEWS\.html$
 ^TODO$
 ^CRAN-SUBMISSION$
