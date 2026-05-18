@@ -7,9 +7,9 @@
 <!-- badges: start -->
 
 ![R-CMD-check](https://github.com/l-ramirez-lopez/prospectr/actions/workflows/R-CMD-check.yaml/badge.svg)
-[![codecov](https://codecov.io/github/l-ramirez-lopez/prospectr/graph/badge.svg)](https://app.codecov.io/gh/l-ramirez-lopez/prospectr)  
+[![codecov](https://codecov.io/github/l-ramirez-lopez/prospectr/graph/badge.svg)](https://app.codecov.io/gh/l-ramirez-lopez/prospectr)
 [![CRAN
-status](https://www.r-pkg.org/badges/version/prospectr?v=2.png)](https://CRAN.R-project.org/package=prospectr)  
+status](https://www.r-pkg.org/badges/version/prospectr?v=2.png)](https://CRAN.R-project.org/package=prospectr)
 [![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/prospectr?v=2.png)](https://CRAN.R-project.org/package=prospectr)  
 <!-- badges: end -->
 
