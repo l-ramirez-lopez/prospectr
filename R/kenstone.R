@@ -48,6 +48,7 @@
 #' Kennard, R.W., and Stone, L.A., 1969. Computer aided design of experiments.
 #' Technometrics 11, 137-148.
 #' @examples
+#' \dontrun{
 #' data(NIRsoil)
 #' sel <- kenStone(NIRsoil$spc, k = 30, pc = .99)
 #' plot(sel$pc[, 1:2], xlab = "PC1", ylab = "PC2")
@@ -75,7 +76,7 @@
 #' # as the first two samples selected belong to groups
 #' # which have in total more than 2 samples (k).
 #' table(factor(my_groups[results_group$model]))
-#' 
+#' }
 #' @author Antoine Stevens &
 #' \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez} with
 #' contributions from Thorsten Behrens and Philipp Baumann

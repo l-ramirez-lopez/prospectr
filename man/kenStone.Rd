@@ -103,6 +103,7 @@ belongs to with group of 5 samples and the second one belongs to a group with
 function will be 15.
 }
 \examples{
+\dontrun{
 data(NIRsoil)
 sel <- kenStone(NIRsoil$spc, k = 30, pc = .99)
 plot(sel$pc[, 1:2], xlab = "PC1", ylab = "PC2")
@@ -130,7 +131,7 @@ results_group <- kenStone(X = NIRsoil$spc, k = 2, pc = 3, group = my_groups)
 # as the first two samples selected belong to groups
 # which have in total more than 2 samples (k).
 table(factor(my_groups[results_group$model]))
-
+}
 }
 \references{
 Kennard, R.W., and Stone, L.A., 1969. Computer aided design of experiments.
