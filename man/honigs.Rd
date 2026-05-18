@@ -66,6 +66,7 @@ The number of samples selected \code{k} selected by the algorithm cannot be
 greater than the number of wavelengths.
 }
 \examples{
+\dontrun{
 data(NIRsoil)
 sel <- honigs(NIRsoil$spc, k = 10, type = "A")
 wav <- as.numeric(colnames(NIRsoil$spc))
@@ -88,6 +89,7 @@ matlines(wav,
 )
 # add bands used during the selection process
 abline(v = wav[sel$bands])
+}
 }
 \references{
 Honigs D.E., Hieftje, G.M., Mark, H.L. and Hirschfeld, T.B. 1985.

@@ -52,6 +52,7 @@
 #'  loop}
 #' }
 #' @examples
+#' \dontrun{
 #' data(NIRsoil)
 #' sel <- puchwein(NIRsoil$spc, k = 0.2, pc = .99)
 #' plot(sel$pc[, 1:2])
@@ -66,6 +67,7 @@
 #'   ylab = "Difference between theoretical and \n observed sum of leverages"
 #' )
 #' par(opar)
+#' }
 #' @references
 #' Puchwein, G., 1988. Selection of calibration samples for near-infrared
 #' spectrometry by factor analysis of spectra. Analytical Chemystry 60, 569-573.

@@ -66,6 +66,7 @@ the number of desired calibration samples,
 }
 }
 \examples{
+\dontrun{
 data(NIRsoil)
 sel <- naes(NIRsoil$spc, k = 5, p = .99, method = 0)
 # clusters
@@ -87,6 +88,7 @@ points(sel$pc[sel2$model, 1:2],
   pch = 15,
   cex = 1
 )
+}
 }
 \references{
 Naes, T., 1987. The design of calibration in near infra-red reflectance
