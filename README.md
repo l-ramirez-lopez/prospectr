@@ -118,6 +118,13 @@ tools](https://cran.r-project.org/bin/macosx/tools/).
 citation(package = "prospectr")
 ```
 
+## Contributing
+
+Contributions are welcome! Please read our Contributing Guidelines
+(available in the GitHub repo) before submitting pull requests.
+
+This project follows a Code of Conduct available in the GitHub repo.
+
 ## Bug reports
 
 Report issues at
