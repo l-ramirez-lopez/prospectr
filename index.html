@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Miscellaneous Functions for Processing and Sample Selection of Spectroscopic Data • prospectr</title>
+<title>`prospectr`: Chemometric Processing of Spectroscopic Data in R • prospectr</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
 <link rel="icon" type="”image/svg+xml”" href="favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -15,9 +15,9 @@
 <link href="deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Miscellaneous Functions for Processing and Sample Selection of Spectroscopic Data">
-<meta name="description" content="Functions to preprocess spectroscopic data and conduct (representative) sample selection/calibration sampling.">
-<meta property="og:description" content="Functions to preprocess spectroscopic data and conduct (representative) sample selection/calibration sampling.">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="`prospectr`: Chemometric Processing of Spectroscopic Data in R">
+<meta name="description" content="Fast, reliable tools for signal pre-processing, spectral resampling, and representative calibration-sample selection from NIR, MIR, and vis–NIR data.">
+<meta property="og:description" content="Fast, reliable tools for signal pre-processing, spectral resampling, and representative calibration-sample selection from NIR, MIR, and vis–NIR data.">
 <meta property="og:image" content="https://l-ramirez-lopez.github.io/prospectr/logo.png">
 </head>
 <body>
@@ -60,21 +60,21 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header">
-<img src="logo.png" class="logo" alt=""><h1 id="prospectr-miscellaneous-functions-for-processing-and-sample-selection-of-spectroscopic-data">
-<code>prospectr</code> Miscellaneous Functions for Processing and Sample Selection of Spectroscopic Data<a class="anchor" aria-label="anchor" href="#prospectr-miscellaneous-functions-for-processing-and-sample-selection-of-spectroscopic-data"></a>
-</h1>
-</div>
+
+<div class="section level2">
+<h2 id="functions-for-chemometric-processing-and-sample-selection-of-spectroscopic-data">Functions for Chemometric Processing and Sample Selection of Spectroscopic Data<a class="anchor" aria-label="anchor" href="#functions-for-chemometric-processing-and-sample-selection-of-spectroscopic-data"></a>
+</h2>
 <!-- badges: start -->
 
 <p><img align="right" src="./reference/figures/logo.png" width="15%"></p>
-<p><em>Last update: 2026-05-17</em></p>
+<p><em>Last update: 2026-05-18</em></p>
 <p>Version: 0.2.9 – proxy</p>
 <em>
 <p align="right">
 In science, one man’s noise is another man’s signal
 </p>
 <p></p></em>
+</div>
 <div class="section level2">
 <h2 id="about">About<a class="anchor" aria-label="anchor" href="#about"></a>
 </h2>
@@ -161,8 +161,8 @@ In science, one man’s noise is another man’s signal
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"prospectr"</span><span class="op">)</span></span></code></pre></div>
 <p>Or install the development version from GitHub:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"l-ramirez-lopez/prospectr"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"l-ramirez-lopez/prospectr"</span><span class="op">)</span></span></code></pre></div>
 <p>The package requires a C++ compiler. On Windows, install <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>. On macOS, you may need to install <code>gfortran</code> and <code>clang</code> from <a href="https://cran.r-project.org/bin/macosx/tools/" class="external-link">CRAN tools</a>.</p>
 </div>
 <div class="section level2">
@@ -222,7 +222,7 @@ In science, one man’s noise is another man’s signal
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://app.codecov.io/gh/l-ramirez-lopez/prospectr" class="external-link"><img src="https://codecov.io/gh/l-ramirez-lopez/prospectr/badge.svg" alt="codecov"></a></li>
+<li><a href="https://app.codecov.io/gh/l-ramirez-lopez/prospectr" class="external-link"><img src="https://codecov.io/github/l-ramirez-lopez/prospectr/graph/badge.svg" alt="codecov"></a></li>
 <li><a href="https://CRAN.R-project.org/package=prospectr" class="external-link"><img src="https://www.r-pkg.org/badges/version/prospectr?v=2.png" alt="CRAN status"></a></li>
 <li><a href="https://CRAN.R-project.org/package=prospectr" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/prospectr?v=2.png" alt="Downloads"></a></li>
 </ul>

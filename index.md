@@ -1,8 +1,8 @@
-# `prospectr` Miscellaneous Functions for Processing and Sample Selection of Spectroscopic Data
+## Functions for Chemometric Processing and Sample Selection of Spectroscopic Data
 
 ![](./reference/figures/logo.png)
 
-*Last update: 2026-05-17*
+*Last update: 2026-05-18*
 
 Version: 0.2.9 – proxy
 
@@ -107,8 +107,8 @@ Or install the development version from GitHub:
 
 ``` r
 
-# install.packages("devtools")
-devtools::install_github("l-ramirez-lopez/prospectr")
+# install.packages("remotes")
+remotes::install_github("l-ramirez-lopez/prospectr")
 ```
 
 The package requires a C++ compiler. On Windows, install
