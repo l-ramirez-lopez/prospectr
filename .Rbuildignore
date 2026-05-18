@@ -27,5 +27,8 @@
 ^src/.*\.dll$
 ^vignettes/.*\.html$
 ^vignettes/.*_files$
-^vignettes/\.quarto$
+^vignettes/\.
+^CODE_OF_CONDUCT\.md$
+^CONTRIBUTING\.md$
+quarto$
 ^README\.qmd$
