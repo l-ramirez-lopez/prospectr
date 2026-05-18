@@ -26,3 +26,5 @@
 ^src/.*\.dll$
 ^vignettes/.*\.html$
 ^vignettes/.*_files$
+^vignettes/\.quarto$
+^README\.qmd$
