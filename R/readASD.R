@@ -540,6 +540,15 @@ readASD <- function(fnames, in_format = c("binary", "txt"), out_format = c("matr
             reference = "Missing reference spectrum",
             wavelength = wavelength
           )
+        } else {
+          spc[[i]] <- list(
+            name = filename,
+            datetime = DateTime,
+            header = H,
+            reflectance = target,
+            reference = "Missing reference spectrum",
+            wavelength = wavelength
+          )
         }
       } else {
         spc[[i]] <- list(
