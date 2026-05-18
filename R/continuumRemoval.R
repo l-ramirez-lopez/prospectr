@@ -142,7 +142,6 @@ continuumRemoval <- function(
 
 
 #' @noRd
-#' @export
 cr_fun <- function(x, wav, interpol) {
   neighbor_left <- (wav[2] - wav[1]) / 1000
   neighbor_right <- (wav[length(wav)] - wav[length(wav) - 1]) / 1000
