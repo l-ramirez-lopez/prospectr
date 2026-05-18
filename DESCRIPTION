@@ -3,7 +3,7 @@ Type: Package
 Title: Miscellaneous Functions for Processing 
        and Sample Selection of Spectroscopic Data
 Version: 0.2.9
-Date: 2026-05-17
+Date: 2026-05-18
 Authors@R: c(
   person(given = "Antoine",
          family = "Stevens",
@@ -25,7 +25,7 @@ BugReports:
 Description: Functions to preprocess spectroscopic data 
     and conduct (representative) sample selection/calibration sampling.
 License: MIT + file LICENSE
-URL: https://github.com/l-ramirez-lopez/prospectr, https://l-ramirez-lopez.github.io/prospectr/
+URL: https://l-ramirez-lopez.github.io/prospectr/, https://github.com/l-ramirez-lopez/prospectr 
 VignetteBuilder: quarto
 Suggests:
     knitr,
