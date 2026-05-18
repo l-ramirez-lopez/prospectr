@@ -44,6 +44,8 @@ are listed in @tbl-preprocessing.
 #| tbl-cap: "Pre-processing functions available in the package."
 #| echo: false
 
+library(prospectr)
+
 preprocessing_fns <- data.frame(
   `Function` = c(
     "`movav`", "`savitzkyGolay`", "`gapDer`", "`baseline`",
