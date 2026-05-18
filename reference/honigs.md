@@ -99,6 +99,7 @@ Antoine Stevens
 ## Examples
 
 ``` r
+if (FALSE) { # \dontrun{
 data(NIRsoil)
 sel <- honigs(NIRsoil$spc, k = 10, type = "A")
 wav <- as.numeric(colnames(NIRsoil$spc))
@@ -121,4 +122,5 @@ matlines(wav,
 )
 # add bands used during the selection process
 abline(v = wav[sel$bands])
+} # }
 ```

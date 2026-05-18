@@ -108,6 +108,7 @@ Ramirez-Lopez](https://orcid.org/0000-0002-5369-5120)
 ## Examples
 
 ``` r
+if (FALSE) { # \dontrun{
 data(NIRsoil)
 sel <- naes(NIRsoil$spc, k = 5, p = .99, method = 0)
 # clusters
@@ -129,4 +130,5 @@ points(sel$pc[sel2$model, 1:2],
   pch = 15,
   cex = 1
 )
+} # }
 ```

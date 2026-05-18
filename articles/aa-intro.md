@@ -51,6 +51,11 @@ citation can be obtained in R with:
 
 ``` r
 
+library(prospectr)
+```
+
+``` r
+
 citation(package = "prospectr")
 ```
 
