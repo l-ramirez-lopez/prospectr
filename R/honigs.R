@@ -19,6 +19,7 @@
 #'  \item{'`bands`': indices of the columns used during the selection procedure}
 #' }
 #' @examples
+#' \dontrun{
 #' data(NIRsoil)
 #' sel <- honigs(NIRsoil$spc, k = 10, type = "A")
 #' wav <- as.numeric(colnames(NIRsoil$spc))
@@ -41,6 +42,7 @@
 #' )
 #' # add bands used during the selection process
 #' abline(v = wav[sel$bands])
+#' }
 #' @details
 #' The Honigs algorithm is a simple method to select calibration samples based
 #' on their absorption features. Absorbance, reflectance and continuum-removed
