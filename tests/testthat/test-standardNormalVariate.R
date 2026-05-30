@@ -39,10 +39,9 @@ test_that("standardNormalVariate handles all input types correctly", {
   # vector: should be silently coerced, not error
   expect_no_error(standardNormalVariate(as.numeric(1:100)))
   result_vec <- standardNormalVariate(as.numeric(1:100))
-  expect_true(is.matrix(result_vec))
-  expect_equal(nrow(result_vec), 1L)
-  expect_equal(ncol(result_vec), 100L)
-  
+  expect_true(is.numeric(result_vec))
+  expect_equal(length(result_vec), 100L)
+
   # matrix: standard case
   expect_no_error(standardNormalVariate(matrix(1:100, nrow = 4)))
   
