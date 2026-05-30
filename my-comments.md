@@ -34,12 +34,12 @@ Leonardo
 
 ```r
 pkgbuild::build(
-  path      = ".",
+  path = ".",
   dest_path = "..",
-  binary    = FALSE,
+  binary = FALSE,
   vignettes = TRUE,
-  manual    = FALSE,
-  quiet     = FALSE
+  manual = FALSE,
+  quiet = FALSE
 )
 ```
 
