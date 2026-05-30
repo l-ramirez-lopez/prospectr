@@ -46,6 +46,7 @@
 #' Shenk and Westerhaus (1991), i.e. samples with a standardized Mahalanobis
 #' distance `>3` are removed.
 #' @examples
+#' \dontrun{
 #' data(NIRsoil)
 #' # reduce data size
 #' NIRsoil$spc <- binning(X = NIRsoil$spc, bin.size = 5)
@@ -58,13 +59,12 @@
 #' plot(sel$pc[, 1:2], xlab = "PC1", ylab = "PC2")
 #' # points selected for calibration
 #' points(sel$pc[sel$model, 1:2], pch = 15, col = 3)
+#' }
 #' @references Shenk, J.S., and Westerhaus, M.O., 1991. Population Definition,
 #' Sample Selection, and Calibration Procedures for Near Infrared Reflectance
 #' Spectroscopy. Crop Science 31, 469-474.
 #' @seealso \code{\link{kenStone}}, \code{\link{duplex}}, \code{\link{puchwein}}
 #' @export
-#'
-
 shenkWest <- function(X,
                       d.min = 0.6,
                       pc = 0.95,
