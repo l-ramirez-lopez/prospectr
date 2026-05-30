@@ -7,8 +7,9 @@
 #' @usage
 #' standardNormalVariate(X)
 #' @param X a numeric matrix of spectral data (optionally a data frame that can
-#' be coerced to a numerical matrix).
-#' @author Antoine Stevens
+#' be coerced to a numerical matrix). Optionally, a vector can be provided, 
+#' in which case it will be treated as a single spectrum.
+#' @author Antoine Stevens and Leonardo Ramirez-Lopez
 #' @examples
 #' data(NIRsoil)
 #' NIRsoil$spc_snv <- standardNormalVariate(X = NIRsoil$spc)
@@ -41,12 +42,18 @@
 #' transformation and de-trending of near-infrared diffuse reflectance spectra.
 #' Applied spectroscopy, 43(5): 772-777.
 #' @export
-#'
 standardNormalVariate <- function(X) {
-  if (!any(class(X) %in% c("matrix", "data.frame"))) {
-    stop("X must be a matrix or optionally a data.frame")
+  if (is.vector(X)) {
+    X <- matrix(X, nrow = 1, dimnames = list(NULL, names(X)))
   }
-  X <- sweep(X, 1, rowMeans(X, na.rm = TRUE), "-")
-  X <- sweep(X, 1, apply(X, 1, sd, na.rm = TRUE), "/")
-  as.matrix(X)
+  if (!any(class(X) %in% c("matrix", "data.frame"))) {
+    stop("X must be a vector, matrix or optionally a data.frame")
+  }
+  X  <- as.matrix(X)
+  mn <- rowMeans(X, na.rm = TRUE)
+  X  <- X - mn
+  # number of non-NA values per row for correct denominator
+  n_obs <- rowSums(!is.na(X))
+  sds   <- sqrt(rowSums(X^2, na.rm = TRUE) / (n_obs - 1))
+  X / sds
 }
