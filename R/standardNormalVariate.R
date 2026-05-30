@@ -43,11 +43,13 @@
 #' Applied spectroscopy, 43(5): 772-777.
 #' @export
 standardNormalVariate <- function(X) {
+  outf <- function(x) x
   if (is.vector(X)) {
     if (length(X) < 2) {
       stop("X has only one element: SNV is undefined.")
     }
     X <- matrix(X, nrow = 1, dimnames = list(NULL, names(X)))
+    outf <- function(x) x[1, ]
   }
   if (!any(class(X) %in% c("matrix", "data.frame"))) {
     stop("X must be a vector, matrix or optionally a data.frame")
@@ -66,5 +68,5 @@ standardNormalVariate <- function(X) {
     )
   }
   
-  X / sds
+  outf(X / sds)
 }
