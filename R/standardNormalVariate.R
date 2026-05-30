@@ -44,6 +44,9 @@
 #' @export
 standardNormalVariate <- function(X) {
   if (is.vector(X)) {
+    if (length(X) < 2) {
+      stop("X has only one element: SNV is undefined.")
+    }
     X <- matrix(X, nrow = 1, dimnames = list(NULL, names(X)))
   }
   if (!any(class(X) %in% c("matrix", "data.frame"))) {
@@ -51,9 +54,17 @@ standardNormalVariate <- function(X) {
   }
   X  <- as.matrix(X)
   mn <- rowMeans(X, na.rm = TRUE)
-  X  <- X - mn
-  # number of non-NA values per row for correct denominator
+  X <- X - mn
   n_obs <- rowSums(!is.na(X))
-  sds   <- sqrt(rowSums(X^2, na.rm = TRUE) / (n_obs - 1))
+  sds <- sqrt(rowSums(X^2, na.rm = TRUE) / (n_obs - 1))
+  
+  zero_var <- sds == 0 | is.na(sds)
+  if (any(zero_var)) {
+    stop(
+      sum(zero_var),
+      " row(s) have zero or undefined variance: SNV is undefined."
+    )
+  }
+  
   X / sds
 }
