@@ -15,7 +15,7 @@ status](https://www.r-pkg.org/badges/version/prospectr?v=2.png)](https://CRAN.R-
 
 <img align="right" src="./man/figures/logo.png" width="15%">
 
-*Last update: 2026-05-18*
+*Last update: 2026-05-31*
 
 Version: 0.2.9 – proxy
 
