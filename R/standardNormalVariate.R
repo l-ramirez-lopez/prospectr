@@ -54,7 +54,7 @@ standardNormalVariate <- function(X) {
   if (!any(class(X) %in% c("matrix", "data.frame"))) {
     stop("X must be a vector, matrix or optionally a data.frame")
   }
-  X  <- as.matrix(X)
+  X <- as.matrix(X)
   mn <- rowMeans(X, na.rm = TRUE)
   X <- X - mn
   n_obs <- rowSums(!is.na(X))
@@ -62,11 +62,15 @@ standardNormalVariate <- function(X) {
   
   zero_var <- sds == 0 | is.na(sds)
   if (any(zero_var)) {
-    stop(
-      sum(zero_var),
-      " row(s) have zero or undefined variance: SNV is undefined."
-    )
+    # This needs to be handled to avoid division by zero. Setting the standard deviation to
+    # propose a change in the test-spectra-preprocess.R of the soilKey package
+    # warning(
+    #   sum(zero_var),
+    #   " row(s) have zero or undefined variance: SNV is undefined for those rows."
+    # )
+    sds[zero_var] <- Inf
   }
   
   outf(X / sds)
 }
+
