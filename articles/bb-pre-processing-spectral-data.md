@@ -15,11 +15,6 @@ guarantees this will actually work. The pre-processing functions
 currently available in the package are listed in
 [Table 1](#tbl-preprocessing).
 
-    [34mprospectr version 0.2.9 -- proxy[39m
-
-    [34mcheck the package repository at: https://l-ramirez-lopez.github.io/prospectr/,
-    https://github.com/l-ramirez-lopez/prospectr[39m
-
 | Function                | Description                                      |
 |:------------------------|:-------------------------------------------------|
 | `movav`                 | Simple moving (or running) average filter        |

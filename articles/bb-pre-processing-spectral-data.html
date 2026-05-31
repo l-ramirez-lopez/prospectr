@@ -65,7 +65,7 @@
       <p class="author">Antoine Stevens and Leonardo Ramirez-Lopez</p>
       <p class="date">2026-05-31</p>
 
-      <small class="dont-index">Source: <a href="https://github.com/l-ramirez-lopez/prospectr/blob/v0.2.9/vignettes/bb-pre-processing-spectral-data.qmd" class="external-link"><code>vignettes/bb-pre-processing-spectral-data.qmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/l-ramirez-lopez/prospectr/blob/main/vignettes/bb-pre-processing-spectral-data.qmd" class="external-link"><code>vignettes/bb-pre-processing-spectral-data.qmd</code></a></small>
       <div class="d-none name"><code></code></div>
     </div>
 
@@ -89,13 +89,6 @@
 </h2>
 <p>The aim of spectral pre-treatment is to improve signal quality before modelling as well as remove physical information from the spectra. Applying a pre-treatment can increase the repeatability/reproducibility of the method, model robustness and accuracy, although there are no guarantees this will actually work. The pre-processing functions currently available in the package are listed in <a href="#tbl-preprocessing" class="quarto-xref">Table 1</a>.</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>[34mprospectr version 0.2.9 -- proxy[39m</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>[34mcheck the package repository at: https://l-ramirez-lopez.github.io/prospectr/,
-https://github.com/l-ramirez-lopez/prospectr[39m</code></pre>
-</div>
 <div id="tbl-preprocessing" class="cell quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-tbl"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-preprocessing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table 1: Pre-processing functions available in the package.
@@ -172,7 +165,7 @@ Table 1: Pre-processing functions available in the package.
 </div>
 <p>We show below how they can be used, using the Near-Infrared (NIR) dataset (<code>NIRsoil</code>) included in the package <span class="citation" data-cites="fernandez2008">(<a href="#ref-fernandez2008" role="doc-biblioref">Fernandez-Pierna and Dardenne, 2008</a>)</span>. Observations should be arranged row-wise.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://l-ramirez-lopez.github.io/prospectr/">prospectr</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">NIRsoil</span><span class="op">)</span></span>
 <span><span class="co"># NIRsoil is a data.frame with 825 observations and 5 variables:</span></span>
@@ -201,7 +194,7 @@ Table 1: Pre-processing functions available in the package.
 </h3>
 <p>A moving average filter is a column-wise operation that averages contiguous wavelengths within a given window size, as illustrated in <a href="#fig-movav" class="quarto-xref">Figure 1</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Add some noise</span></span>
 <span><span class="va">noisy</span> <span class="op">&lt;-</span> <span class="va">NIRsoil</span><span class="op">$</span><span class="va">spc</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">NIRsoil</span><span class="op">$</span><span class="va">spc</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">0.001</span><span class="op">)</span></span>
 <span></span>
@@ -243,7 +236,7 @@ Figure 1: Effect of a moving average with window size of 11 bands on a raw spec
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>x</mi><mi>j</mi><mo>*</mo></msubsup><mo>=</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mi>−</mi><mi>k</mi></mrow><mi>k</mi></munderover><msub><mi>c</mi><mi>h</mi></msub><msub><mi>x</mi><mrow><mi>j</mi><mo>+</mo><mi>h</mi></mrow></msub></mrow><annotation encoding="application/x-tex">x_j^* = \frac{1}{N}\sum_{h=-k}^{k} c_h x_{j+h}</annotation></semantics></math></p>
 <p>where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mi>x</mi><mi>j</mi><mo>*</mo></msubsup><annotation encoding="application/x-tex">x_j^*</annotation></semantics></math> is the smoothed value, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math> is a normalising coefficient, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math> is the number of neighbouring values on each side of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>, and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>c</mi><mi>h</mi></msub><annotation encoding="application/x-tex">c_h</annotation></semantics></math> are pre-computed coefficients that depend on the chosen polynomial order, window size, and derivative degree (0 = smoothing, 1 = first derivative, 2 = second derivative).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># p = polynomial order</span></span>
 <span><span class="co"># w = window size (must be odd)</span></span>
 <span><span class="co"># m = m-th derivative (0 = smoothing)</span></span>
@@ -256,7 +249,7 @@ Figure 1: Effect of a moving average with window size of 11 bands on a raw spec
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 825 700</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">sg</span><span class="op">)</span></span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 825 690</code></pre>
@@ -314,7 +307,7 @@ Table 2: Advantages and drawbacks of derivative spectra.
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>x</mi><mi>i</mi><mo>″</mo></msubsup><mo>=</mo><msub><mi>x</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>−</mo><mn>2</mn><mo>⋅</mo><msub><mi>x</mi><mi>i</mi></msub><mo>+</mo><msub><mi>x</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">x_i'' = x_{i-1} - 2 \cdot x_i + x_{i+1}</annotation></semantics></math></p>
 <p>In R this can be achieved with the <code>diff</code> function from <code>base</code>, as shown in <a href="#fig-derivatives" class="quarto-xref">Figure 2</a>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diff.html" class="external-link">diff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">NIRsoil</span><span class="op">$</span><span class="va">spc</span><span class="op">)</span>, differences <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>  <span class="co"># first derivative</span></span>
 <span><span class="va">d2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diff.html" class="external-link">diff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">NIRsoil</span><span class="op">$</span><span class="va">spc</span><span class="op">)</span>, differences <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span>  <span class="co"># second derivative</span></span>
 <span></span>
@@ -346,7 +339,7 @@ Figure 2: First and second derivatives of a raw spectrum.
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>x</mi><mi>i</mi><mo>″</mo></msubsup><mo>=</mo><msub><mi>x</mi><mrow><mi>i</mi><mo>−</mo><mi>k</mi></mrow></msub><mo>−</mo><mn>2</mn><mo>⋅</mo><msub><mi>x</mi><mi>i</mi></msub><mo>+</mo><msub><mi>x</mi><mrow><mi>i</mi><mo>+</mo><mi>k</mi></mrow></msub></mrow><annotation encoding="application/x-tex">x_i'' = x_{i-k} - 2 \cdot x_i + x_{i+k}</annotation></semantics></math></p>
 <p>where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math> is the gap size. This can be achieved using the <code>lag</code> argument of <code>diff</code> (see <a href="#fig-gap-derivative" class="quarto-xref">Figure 3</a>):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># m = derivative order; w = gap size; s = segment size</span></span>
 <span><span class="va">gsd1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gapDer.html">gapDer</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">NIRsoil</span><span class="op">$</span><span class="va">spc</span>, m <span class="op">=</span> <span class="fl">1</span>, w <span class="op">=</span> <span class="fl">11</span>, s <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span></span>
@@ -394,7 +387,7 @@ Figure 3: Comparison of first derivative (finite difference) and gap derivative
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="normal">SNV</mtext><mi>i</mi></msub><mo>=</mo><mfrac><mrow><msub><mi>x</mi><mi>i</mi></msub><mo>−</mo><msub><mover><mi>x</mi><mo accent="true">‾</mo></mover><mi>i</mi></msub></mrow><msub><mi>s</mi><mi>i</mi></msub></mfrac></mrow><annotation encoding="application/x-tex">\text{SNV}_i = \frac{x_i - \bar{x}_i}{s_i}</annotation></semantics></math></p>
 <p>where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mover><mi>x</mi><mo accent="true">‾</mo></mover><mi>i</mi></msub><annotation encoding="application/x-tex">\bar{x}_i</annotation></semantics></math> is the mean and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>s</mi><mi>i</mi></msub><annotation encoding="application/x-tex">s_i</annotation></semantics></math> the standard deviation of the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>-th spectrum (i.e. computed across all bands of that observation).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">snv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/standardNormalVariate.html">standardNormalVariate</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">NIRsoil</span><span class="op">$</span><span class="va">spc</span><span class="op">)</span></span>
 <span><span class="va">wav</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">NIRsoil</span><span class="op">$</span><span class="va">spc</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -439,7 +432,7 @@ Figure 4: Raw absorbance spectra (left) and SNV-transformed spectra (right) for
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">MSC</mtext><mo stretchy="false" form="prefix">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mrow><msub><mi>x</mi><mi>i</mi></msub><mo>−</mo><msub><mi>a</mi><mi>i</mi></msub></mrow><msub><mi>m</mi><mi>i</mi></msub></mfrac></mrow><annotation encoding="application/x-tex">\text{MSC}(x_i) = \frac{x_i - a_i}{m_i}</annotation></semantics></math></p>
 <p>where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>a</mi><mi>i</mi></msub><annotation encoding="application/x-tex">a_i</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>m</mi><mi>i</mi></msub><annotation encoding="application/x-tex">m_i</annotation></semantics></math> are the additive and multiplicative scatter coefficients, respectively, estimated by ordinary least squares for each spectrum.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Reference spectrum is the column mean of the full matrix</span></span>
 <span><span class="va">msc_spc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/msc.html">msc</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">NIRsoil</span><span class="op">$</span><span class="va">spc</span>, ref_spectrum <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colMeans</a></span><span class="op">(</span><span class="va">NIRsoil</span><span class="op">$</span><span class="va">spc</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -468,7 +461,7 @@ Figure 5: Effect of MSC on a raw spectrum (reference = mean spectrum).
 </div>
 <p>Because MSC correction depends on a reference spectrum, that reference must be stored and reused when processing new spectra. The following example shows how to apply the correction estimated on a training set to a separate validation set:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Training and validation partitions</span></span>
 <span><span class="va">Xr</span> <span class="op">&lt;-</span> <span class="va">NIRsoil</span><span class="op">$</span><span class="va">spc</span><span class="op">[</span><span class="va">NIRsoil</span><span class="op">$</span><span class="va">train</span> <span class="op">==</span> <span class="fl">1</span>, <span class="op">]</span></span>
 <span><span class="va">Xu</span> <span class="op">&lt;-</span> <span class="va">NIRsoil</span><span class="op">$</span><span class="va">spc</span><span class="op">[</span><span class="va">NIRsoil</span><span class="op">$</span><span class="va">train</span> <span class="op">==</span> <span class="fl">0</span>, <span class="op">]</span></span>
@@ -484,7 +477,7 @@ Figure 5: Effect of MSC on a raw spectrum (reference = mean spectrum).
 </h3>
 <p>The <em>SNV-Detrend</em> transformation <span class="citation" data-cites="barnes1989">(<a href="#ref-barnes1989" role="doc-biblioref">Barnes et al., 1989</a>)</span> extends SNV by additionally correcting for wavelength-dependent scattering effects, i.e. residual curvature remaining after SNV. After the SNV transformation, a second-order polynomial is fitted to each spectrum and subtracted from it (<a href="#fig-detrend" class="quarto-xref">Figure 6</a>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">wav</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">NIRsoil</span><span class="op">$</span><span class="va">spc</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">dt</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/detrend.html">detrend</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">NIRsoil</span><span class="op">$</span><span class="va">spc</span>, wav <span class="op">=</span> <span class="va">wav</span><span class="op">)</span></span>
 <span></span>
@@ -531,7 +524,7 @@ Figure 6: Effect of SNV-Detrend on a raw spectrum. Note the different y-axis sc
 <li>The baseline is subtracted from the original spectrum.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">wav</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">NIRsoil</span><span class="op">$</span><span class="va">spc</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">bs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/baseline.html">baseline</a></span><span class="op">(</span><span class="va">NIRsoil</span><span class="op">$</span><span class="va">spc</span>, <span class="va">wav</span><span class="op">)</span></span>
 <span><span class="va">fitted_baselines</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">bs</span>, <span class="st">"baselines"</span><span class="op">)</span></span>
@@ -580,7 +573,7 @@ Figure 7: Raw absorbance spectra (left) and baseline-corrected spectra (right) 
 <p>where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">Xc</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">Xs</annotation></semantics></math> are the mean-centred and auto-scaled matrices, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mover><mi>X</mi><mo accent="true">‾</mo></mover><mi>j</mi></msub><annotation encoding="application/x-tex">\bar{X}_j</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>s</mi><mi>j</mi></msub><annotation encoding="application/x-tex">s_j</annotation></semantics></math> are the mean and standard deviation of variable <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>. In R these operations are obtained with the <code>scale</code> function.</p>
 <p>Spectroscopic models can often be improved by incorporating ancillary data (e.g. temperature) alongside the spectra <span class="citation" data-cites="fearn2010">(<a href="#ref-fearn2010" role="doc-biblioref">Fearn, 2010</a>)</span>. However, due to the high dimensionality of spectral data, ancillary variables risk being dominated by the spectral block and contributing negligibly to the model <span class="citation" data-cites="eriksson2006">(<a href="#ref-eriksson2006" role="doc-biblioref">Eriksson et al., 2006</a>)</span>. <em>Block scaling</em> addresses this by applying different scaling weights to different blocks of variables. With <em>soft block scaling</em>, each block is divided by a constant such that the sum of its column variances equals <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mi>p</mi></msqrt><annotation encoding="application/x-tex">\sqrt{p}</annotation></semantics></math>, where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math> is the number of variables in the block. With <em>hard block scaling</em>, the block is scaled so that the sum of its column variances equals 1.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># type = "soft" or "hard"</span></span>
 <span><span class="co"># Returns a list with the scaled matrix (Xscaled) and the divisor (f)</span></span>
 <span><span class="va">bsc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/blockScale.html">blockScale</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">NIRsoil</span><span class="op">$</span><span class="va">spc</span>, type <span class="op">=</span> <span class="st">"hard"</span><span class="op">)</span><span class="op">$</span><span class="va">Xscaled</span></span>
@@ -591,7 +584,7 @@ Figure 7: Raw absorbance spectra (left) and baseline-corrected spectra (right) 
 </div>
 <p>A limitation of block scaling is that all variables within a block are brought to the same variance. When this is undesirable, <em>sum-of-squares block weighting</em> (<code>blockNorm</code>) provides an alternative: the spectral matrix is multiplied by a scalar to achieve a pre-specified sum of squares.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># targetnorm = desired Frobenius norm (sum of squares) for X</span></span>
 <span><span class="va">bn</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/blockNorm.html">blockNorm</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">NIRsoil</span><span class="op">$</span><span class="va">spc</span>, targetnorm <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">$</span><span class="va">Xscaled</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">bn</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>  <span class="co"># should equal 1</span></span></code></pre></div>
@@ -604,7 +597,7 @@ Figure 7: Raw absorbance spectra (left) and baseline-corrected spectra (right) 
 </h2>
 <p>To match the spectral response of one instrument to another, a signal can be resampled to new band positions by interpolation (<code>resample</code>) or by convolution using full-width at half-maximum (FWHM) values (<code>resample2</code>). <a href="#fig-resample" class="quarto-xref">Figure 8</a> shows an example of resampling a NIR spectrum to a coarser resolution of 10 nm using <code>resample</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">wav</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">NIRsoil</span><span class="op">$</span><span class="va">spc</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">wav_coarse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">wav</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">wav</span><span class="op">)</span>, by <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span></span>
@@ -646,7 +639,7 @@ Figure 8: Original NIR spectrum and resampled spectrum at a coarser resolution 
 <p>where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>x</mi><mi>i</mi></msub><annotation encoding="application/x-tex">x_i</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>c</mi><mi>i</mi></msub><annotation encoding="application/x-tex">c_i</annotation></semantics></math> are the original and continuum values at the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>-th wavelength of a set of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math> wavelengths. The result <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ϕ</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\phi_i</annotation></semantics></math> is dimensionless and bounded in <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[0, 1]</annotation></semantics></math> for reflectance spectra, where values close to 1 indicate no absorption relative to the continuum.</p>
 <p>The <code>continuumRemoval</code> function handles both reflectance (<code>type = "R"</code>, default) and absorbance (<code>type = "A"</code>) spectra. For absorbance data, spectra are first converted to reflectance (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>/</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">1/X</annotation></semantics></math>) before computing the continuum, and the result is back-transformed afterwards. This means that for absorbance data, <code>continuumRemoval</code> and <code>baseline</code> are not equivalent: they compute the convex-hull envelope on different scales. For reflectance data the two functions are more directly comparable, differing only in the final step: <code>baseline</code> subtracts the continuum (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mi>i</mi></msub><mo>−</mo><msub><mi>c</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">x_i - c_i</annotation></semantics></math>), whereas <code>continuumRemoval</code> divides by it (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mi>i</mi></msub><mi>/</mi><msub><mi>c</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">x_i / c_i</annotation></semantics></math>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode cell-code" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># type = "A" for absorbance, "R" for reflectance (default)</span></span>
 <span><span class="va">cr</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/continuumRemoval.html">continuumRemoval</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">NIRsoil</span><span class="op">$</span><span class="va">spc</span>, type <span class="op">=</span> <span class="st">"A"</span><span class="op">)</span></span>
 <span><span class="va">wav</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">NIRsoil</span><span class="op">$</span><span class="va">spc</span><span class="op">)</span><span class="op">)</span></span>
