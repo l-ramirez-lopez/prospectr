@@ -8,7 +8,8 @@ standardNormalVariate(X)
 }
 \arguments{
 \item{X}{a numeric matrix of spectral data (optionally a data frame that can
-be coerced to a numerical matrix).}
+be coerced to a numerical matrix). Optionally, a vector can be provided,
+in which case it will be treated as a single spectrum.}
 }
 \value{
 a matrix of normalized spectral data.
@@ -55,5 +56,5 @@ Applied spectroscopy, 43(5): 772-777.
 \code{\link{blockNorm}}
 }
 \author{
-Antoine Stevens
+Antoine Stevens and Leonardo Ramirez-Lopez
 }
