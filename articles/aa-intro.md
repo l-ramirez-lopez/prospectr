@@ -84,6 +84,8 @@ vignettes:
 - **Calibration sampling**: algorithms for selecting representative
   calibration and validation subsets from spectral data.
 
+## References
+
 Mullen, K.M., Stokkum, I.H. van, 2007. An introduction to the’special
 volume spectroscopy and chemometrics in r’. Journal of Statistical
 Software 18.
