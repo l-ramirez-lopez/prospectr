@@ -60,6 +60,7 @@ Shenk and Westerhaus (1991), i.e. samples with a standardized Mahalanobis
 distance \verb{>3} are removed.
 }
 \examples{
+\dontrun{
 data(NIRsoil)
 # reduce data size
 NIRsoil$spc <- binning(X = NIRsoil$spc, bin.size = 5)
@@ -72,6 +73,7 @@ sel <- shenkWest(NIRsoil$spc, pc = .99, d.min = .3, rm.outlier = TRUE)
 plot(sel$pc[, 1:2], xlab = "PC1", ylab = "PC2")
 # points selected for calibration
 points(sel$pc[sel$model, 1:2], pch = 15, col = 3)
+}
 }
 \references{
 Shenk, J.S., and Westerhaus, M.O., 1991. Population Definition,

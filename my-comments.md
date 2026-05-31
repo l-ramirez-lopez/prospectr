@@ -1,4 +1,87 @@
 # prospectr
+# version 0.2.9
+
+## Cover letter
+
+Dear CRAN maintainers,
+
+I am submitting version 0.2.9 of the `prospectr` package. This release
+focuses on bug fixes and improved test coverage. The key changes are:
+
+- **`readASD()`**: fixed a file-connection leak (the binary connection was not
+  closed on early exit); fixed a missing output branch in the txt-format path
+  when the position index is greater than 2, which silently dropped spectra.
+- **`read_nircal()`**: fixed a file-connection leak (connection was only closed
+  inside a progress-reporting branch, leaving it open otherwise).
+- **`cochranTest()`**: fixed an invalid argument name in both `prcomp()` calls
+  (`.scale = FALSE` → `scale. = FALSE`), which produced spurious warnings and
+  incorrect PC scores.
+- **`continuumRemoval()`**: removed an erroneous `@export` tag from the
+  internal helper `cr_fun()`, which caused an "undocumented object" WARNING
+  in `R CMD check`.
+- **`standardNormalVariate()`**: updated to handle zero-variance rows silently
+  by returning zero rather than `NaN`, resolving a check failure previously
+  reported in the reverse dependency `soilKey`.
+- Added GitHub Actions CI workflows (`R-CMD-check`, `test-coverage`) and
+  expanded the test suite.
+
+Regarding the auto-check reverse dependence failure: the issue was traced to the `soilKey`
+package, which passed a constant-value row to `standardNormalVariate()` and
+did not handle the resulting `NaN` output. This has been resolved in
+`prospectr` by updating `standardNormalVariate()` to return zero for
+zero-variance rows. The `soilKey` reverse dependency check now passes.
+
+The tarball has been checked on R-winbuilder (R-release and R-devel).
+Reverse dependencies have been checked and are unaffected.
+
+Best regards,
+Leonardo
+
+---
+
+## Package build
+
+```r
+pkgbuild::build(
+  path = ".",
+  dest_path = "..",
+  binary = FALSE,
+  vignettes = TRUE,
+  manual = FALSE,
+  quiet = FALSE
+)
+```
+
+---
+
+## Test environments
+
+### Local
+- Ubuntu 24.04, R 4.5.0 (release)
+
+### GitHub Actions (all passing)
+- ubuntu-latest, R release
+- ubuntu-latest, R devel
+- windows-latest, R release
+- macos-latest, R release
+
+### R-winbuilder
+- Windows Server 2022, R-release — OK (no ERRORs, no WARNINGs, 1 NOTE: installed
+  package size, data/libs subdirectories — pre-existing, not introduced by this release)
+- Windows Server 2022, R-devel   — OK (same NOTE as above)
+
+---
+
+## Notes carried over from previous releases (not introduced here)
+
+- **Installed package size NOTE**: `data/` (≈ 1.9 Mb) and `libs/` (≈ 3–4 Mb)
+  push the installed size above the 5 Mb threshold on several platforms. This
+  is inherent to the package's compiled code and example datasets and has been
+  present since version 0.2.1.
+
+-----------------
+
+# prospectr
 # version 0.2.8 - galo
 
 # submission message:
@@ -338,7 +421,7 @@ Check: package subdirectories, Result: NOTE
     Cannot process chunk/lines:
       for reporting this.
     Cannot process chunk/lines:
-      confounding maximum values of a peaks as part of the baseline. This has been
+      confounding maximum values of peaks as part of the baseline. This has been
     Cannot process chunk/lines:
       addressed in this version by ensuring the envelope used in the computation of the
     Cannot process chunk/lines:
@@ -353,14 +436,14 @@ Check: package subdirectories, Result: NOTE
       to be included in the final calibration subset). Thanks to Thorsten Behrens and
     Cannot process chunk/lines:
       derivatives. In previous versions the function only allowed up to derivatives of
-      4th order, in this version the the function accepts as derivative order
+      4th order, in this version the function accepts as derivative order
     Cannot process chunk/lines:
       any integer larger than 1.
       ## Improvements and fixes
       * `binning() `a bug in the creation of the binning groups has been fixed. This bug
     Cannot process chunk/lines:
       is in fact inherited from a problem in the `findInterval()` function. The breaks
-      (given in the vec arument) might get corrupted when they contain many decimal
+      (given in the vec argument) might get corrupted when they contain many decimal
     Cannot process chunk/lines:
       places. These breaks (in vec) are used to define the final bins. The problem in
     Cannot process chunk/lines:
@@ -372,11 +455,11 @@ Check: package subdirectories, Result: NOTE
     Cannot process chunk/lines:
       argument. Previously it only accepted a vector of length two. For example, now it
     Cannot process chunk/lines:
-      corrrects for splice steps of spectra that originates from spectrometers
+      corrects for splice steps of spectra that originates from spectrometers
     Cannot process chunk/lines:
       with two detectors (i.e. it corrects for the potential abrupt transition
     Cannot process chunk/lines:
-      function evaluaes whether it is indeed a file properly produced by the BUCHI
+      function evaluates whether it is indeed a file properly produced by the BUCHI
     Cannot process chunk/lines:
       derivative (`gapDer`) function. One of the factors in the filter had a wrong
     Cannot process chunk/lines:

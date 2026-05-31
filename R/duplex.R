@@ -67,6 +67,7 @@
 #'
 #' @author Antoine Stevens & \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 #' @examples
+#' \dontrun{
 #' data(NIRsoil)
 #' sel <- duplex(NIRsoil$spc, k = 30, metric = "mahal", pc = .99)
 #' plot(sel$pc[, 1:2], xlab = "PC1", ylab = "PC2")
@@ -78,6 +79,7 @@
 #' sel <- duplex(X, k = 25, metric = "mahal")
 #' points(X[sel$model, ], pch = 19, col = 2) # points selected for calibration
 #' points(X[sel$test, ], pch = 15, col = 3) # points selected for validation
+#' }
 #' @seealso
 #' \code{\link{kenStone}}, \code{\link{honigs}}, \code{\link{shenkWest}},
 #' \code{\link{naes}}
@@ -129,6 +131,10 @@ duplex <- function(X,
   n <- 1:nrow(X)
   half <- floor(m / 2)
   if (k > half) {
+    warning(
+      "'k' (", k, ") exceeds the maximum number of samples DUPLEX can select ",
+      "(floor(nrow(X) / 2) = ", half, "). 'k' has been set to ", half, "."
+    )
     k <- half
   }
   

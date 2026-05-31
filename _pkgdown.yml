@@ -1,0 +1,65 @@
+url: https://l-ramirez-lopez.github.io/prospectr/
+
+template:
+  bootstrap: 5
+
+home:
+  strip_header: true 
+  title: "`prospectr`: Chemometric Processing of Spectroscopic Data in R"   
+  description: "Fast, reliable tools for signal pre-processing, spectral resampling, and representative calibration-sample selection from NIR, MIR, and vis–NIR data."   
+
+navbar:
+  structure:
+    left:  [intro, reference, articles, changelog]
+    right: [search, github]
+  components:
+    github:
+      icon: fab fa-github
+      href: https://github.com/l-ramirez-lopez/prospectr
+
+logo:
+  image: logo.jpg
+
+articles:
+  - title: "Vignettes"
+    navbar: ~
+    contents:
+    - "aa-intro"
+    - "bb-pre-processing-spectral-data"
+    - "cc-selecting-representative-calibration-samples"
+
+reference:
+  - title: "Signal processing"
+    contents:
+    - movav
+    - savitzkyGolay
+    - gapDer
+    - baseline
+    - continuumRemoval
+    - detrend
+    - standardNormalVariate
+    - msc
+    - binning
+    - resample
+    - resample2
+    - blockScale
+    - blockNorm
+  - title: "Calibration sampling"
+    contents:
+    - naes
+    - kenStone
+    - duplex
+    - puchwein
+    - shenkWest
+    - honigs
+  - title: "Other functions"
+    contents:
+    - cochranTest
+    - spliceCorrection
+    - readASD
+    - read_nircal
+    - prospectr-package
+  - title: "Data"
+    contents:
+    - NIRsoil
+    

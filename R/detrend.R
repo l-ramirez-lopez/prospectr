@@ -1,16 +1,20 @@
 #' @title Detrending spectral data
 #' @description
 #' \loadmathjax
-#' Normalizes each row of an input matrix by applying a SNV transformation
-#' followed by fitting a second order linear model and returning the fitted
-#' residuals.
+#' Applies a row-wise polynomial detrending transformation to spectral data.
+#' Optionally, an SNV transformation is applied prior to fitting, as prescribed
+#' by Barnes et al. (1989).
 #' @usage
-#' detrend(X, wav, p = 2)
-#' @param X a numeric matrix or vector to process  (optionally a data frame that
+#' detrend(X, wav, p = 2, snv = TRUE)
+#' @param X a numeric matrix or vector to process (optionally a data frame that
 #' can be coerced to a numerical matrix)
 #' @param wav the wavelengths/ band centers.
 #' @param p an integer larger than 1 indicating the polynomial order (default is
 #' 2, as in the original paper of Barnes et al., 1989).
+#' @param snv a logical indicating whether an SNV transformation should be
+#' applied to each spectrum before polynomial fitting. Default is \code{TRUE},
+#' which reproduces the procedure of Barnes et al. (1989). Set to \code{FALSE}
+#' to perform pure polynomial detrending without prior normalisation.
 #' @author Antoine Stevens and \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 #' @examples
 #' data(NIRsoil)
@@ -45,6 +49,11 @@
 #' spectral residuals of the least square fit. The residuals of the \mjeqn{i}{i}th
 #' correspond to the \mjeqn{i}{i}th detrended spectrum.
 #'
+#' To remain faithful to Barnes et al. (1989), \code{snv = TRUE} (the default)
+#' applies an SNV transformation to each spectrum before polynomial fitting.
+#' Users who wish to apply detrending independently of SNV — for example, as a
+#' separate step in a preprocessing pipeline — should set \code{snv = FALSE}.
+#'
 #' @seealso \code{\link{standardNormalVariate}}, \code{\link{blockScale}},
 #'  \code{\link{blockNorm}}
 #' @references Barnes RJ, Dhanoa MS, Lister SJ. 1989. Standard normal variate
@@ -53,37 +62,42 @@
 #' @return a matrix or vector with the detrended data.
 #' @export
 
-detrend <- function(X, wav, p = 2) {
+detrend <- function(X, wav, p = 2, snv = TRUE) {
   if (missing(wav)) {
     stop("argument wav must be specified")
   }
-
+  
   if (is.data.frame(X)) {
     X <- as.matrix(X)
   }
-
+  
   was_vec <- is.vector(X)
   if (p < 1) {
     stop("'p' must be an integer larger than 0")
   }
-
+  
   if (p != round(p)) {
     stop("'p' must be an integer")
   }
-
+  
+  if (!is.logical(snv) || length(snv) != 1 || is.na(snv)) {
+    stop("'snv' must be a single logical value (TRUE or FALSE)")
+  }
+  
   if (is.vector(X)) {
     nms <- names(X)
     X <- matrix(X, ncol = length(X))
   }
-
+  
   xpoly <- stats::poly(wav, p)
-  # SNV transformation
-  X <- sweep(X, 1, rowMeans(X), "-")
-  X <- sweep(X, 1, apply(X, 1, sd), "/")
-
-  # get the residuals output <- t(apply(X, 1, function(y) lm.fit(x= xpoly,y)$residuals))
-  output <- residLm(X, xpoly) # using Rcpp ...
-
+  
+  if (snv) {
+    X <- sweep(X, 1, rowMeans(X), "-")
+    X <- sweep(X, 1, apply(X, 1, sd), "/")
+  }
+  
+  output <- residLm(X, xpoly)
+  
   if (was_vec) {
     output <- as.vector(output)
     names(output) <- nms

@@ -101,7 +101,8 @@ read_nircal <- function(file,
                         progress = TRUE,
                         verbose = TRUE) {
   con <- file(file, "rb")
-  
+  on.exit(if (isOpen(con)) close(con), add = TRUE)
+
   if ("url" %in% class(con)) {
     close(con)
     tmp <- tempfile(pattern = "", fileext = ".nir")
@@ -272,10 +273,6 @@ read_nircal <- function(file,
     )
     dextracted[, colnames(metda)] <- metda
     
-    if (progress) {
-      # Close connection
-      close(con, type = "rb")
-    }
   } else {
     guididx <- unlist(lapply(rawcoords$spcinfo[1:nd],
                              FUN = function(x, l) x:(x + l),
