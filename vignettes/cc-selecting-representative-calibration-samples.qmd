@@ -171,26 +171,6 @@ par(mfrow = c(1, 1))
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Kennard-Stone sampling (`kenStone`)
 
 To select a subset of $n$ samples

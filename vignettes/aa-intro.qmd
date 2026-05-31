@@ -88,3 +88,5 @@ The functionality of `prospectr` is documented in two additional vignettes:
 - **Calibration sampling**: algorithms for selecting representative calibration
   and validation subsets from spectral data.
   
+
+  
