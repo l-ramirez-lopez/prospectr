@@ -19,11 +19,20 @@ focuses on bug fixes and improved test coverage. The key changes are:
 - **`continuumRemoval()`**: removed an erroneous `@export` tag from the
   internal helper `cr_fun()`, which caused an "undocumented object" WARNING
   in `R CMD check`.
+- **`standardNormalVariate()`**: updated to handle zero-variance rows silently
+  by returning zero rather than `NaN`, resolving a check failure previously
+  reported in the reverse dependency `soilKey`.
 - Added GitHub Actions CI workflows (`R-CMD-check`, `test-coverage`) and
   expanded the test suite.
 
-The tarball has been checked on R-winbuilder (R-release and R-devel). Reverse
-dependencies have been checked and are unaffected.
+Regarding the auto-check reverse dependence failure: the issue was traced to the `soilKey`
+package, which passed a constant-value row to `standardNormalVariate()` and
+did not handle the resulting `NaN` output. This has been resolved in
+`prospectr` by updating `standardNormalVariate()` to return zero for
+zero-variance rows. The `soilKey` reverse dependency check now passes.
+
+The tarball has been checked on R-winbuilder (R-release and R-devel).
+Reverse dependencies have been checked and are unaffected.
 
 Best regards,
 Leonardo
