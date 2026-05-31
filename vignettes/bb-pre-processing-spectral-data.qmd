@@ -1,0 +1,641 @@
+---
+title: "Pre-processing spectral data"
+author:
+  - name: Antoine Stevens and Leonardo Ramirez-Lopez
+    email: ramirez.lopez.leo@gmail.com
+date: today
+bibliography: prospectr.bib
+csl: elsevier-harvard.csl
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    toc-location: left
+    code-overflow: wrap
+    smooth-scroll: true
+    html-math-method: mathjax
+vignette: >
+  %\VignetteIndexEntry{Pre-processing spectral data}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{quarto::html}
+---
+
+:::: {.columns}
+::: {.column width="70%"}
+> *Organism is opposed to chaos... as message is to noise.* -- [@wiener1954human]
+:::
+::: {.column width="30%"}
+<img src="logo.jpg" style="width: 150%; max-width: 150px;">
+:::
+::::
+
+# Introduction
+
+The aim of spectral pre-treatment is to improve signal quality before modelling
+as well as remove physical information from the spectra. Applying a
+pre-treatment can increase the repeatability/reproducibility of the method,
+model robustness and accuracy, although there are no guarantees this will
+actually work. The pre-processing functions currently available in the package
+are listed in @tbl-preprocessing.
+
+
+```{r}
+#| label: tbl-preprocessing
+#| tbl-cap: "Pre-processing functions available in the package."
+#| echo: false
+#| message: false
+
+library(prospectr)
+
+preprocessing_fns <- data.frame(
+  `Function` = c(
+    "`movav`", "`savitzkyGolay`", "`gapDer`", "`baseline`",
+    "`continuumRemoval`", "`detrend`", "`standardNormalVariate`",
+    "`msc`", "`binning`", "`resample`", "`resample2`",
+    "`blockScale`", "`blockNorm`"
+  ),
+  `Description` = c(
+    "Simple moving (or running) average filter",
+    "Savitzky--Golay smoothing and derivative",
+    "Gap--segment derivative",
+    "Baseline removal (similar to `continuumRemoval`)",
+    "Computes continuum--removed values",
+    "Detrend normalisation",
+    "Standard Normal Variate (SNV) transformation",
+    "Multiplicative Scatter Correction",
+    "Average a signal in column bins",
+    "Resample a signal to new band positions",
+    "Resample a signal using new FWHM values",
+    "Block scaling",
+    "Sum of squares block weighting"
+  ),
+  check.names = FALSE
+)
+
+knitr::kable(preprocessing_fns)
+```
+
+We show below how they can be used, using the Near-Infrared (NIR) dataset
+(`NIRsoil`) included in the package [@fernandez2008]. Observations should be
+arranged row-wise.
+
+```{r}
+#| label: load-NIRsoil
+#| message: false
+
+library(prospectr)
+data(NIRsoil)
+# NIRsoil is a data.frame with 825 observations and 5 variables:
+# Nt (Total Nitrogen), Ciso (Carbon), CEC (Cation Exchange Capacity),
+# train (0/1 indicator for training (1) and validation (0) samples),
+# spc (spectral matrix)
+str(NIRsoil)
+```
+
+# Noise removal
+
+Noise represents random fluctuations around the signal that can originate from
+the instrument or environmental laboratory conditions. The simplest solution is
+to perform $n$ repeated measurements and average the individual spectra; noise
+decreases by a factor of $\sqrt{n}$. When this is not possible, or if residual
+noise remains, it can be removed mathematically.
+
+## Moving average
+
+A moving average filter is a column-wise operation that averages contiguous
+wavelengths within a given window size, as illustrated in @fig-movav.
+
+```{r}
+#| label: fig-movav
+#| fig-cap: "Effect of a moving average with window size of 11 bands on a raw spectrum."
+#| fig-height: 4
+#| fig-width: 6
+#| echo: true
+
+# Add some noise
+noisy <- NIRsoil$spc + rnorm(length(NIRsoil$spc), 0, 0.001)
+
+# Plot the first spectrum
+plot(
+  x = as.numeric(colnames(NIRsoil$spc)),
+  y = noisy[1, ],
+  type = "l",
+  lwd = 1.5,
+  xlab = "Wavelength",
+  ylab = "Absorbance"
+)
+
+# Window size of 11 bands; note the 5 first and last bands are lost
+X <- movav(X = noisy, w = 11)
+lines(x = as.numeric(colnames(X)), y = X[1, ], lwd = 1.5, col = "red")
+grid()
+legend(
+  "topleft",
+  legend = c("Raw", "Moving average"),
+  lty = 1,
+  col = c("black", "red")
+)
+```
+
+## Savitzky-Golay filtering
+
+Savitzky-Golay filtering [@savitzky1964] is a widely used pre-processing
+technique. It fits a local polynomial regression on the signal and requires
+**equidistant** bandwidth. Mathematically, it operates as a weighted sum of
+neighbouring values:
+
+$$x_j^* = \frac{1}{N}\sum_{h=-k}^{k} c_h x_{j+h}$$
+
+where $x_j^*$ is the smoothed value, $N$ is a normalising coefficient, $k$ is
+the number of neighbouring values on each side of $j$, and $c_h$ are
+pre-computed coefficients that depend on the chosen polynomial order, window
+size, and derivative degree (0 = smoothing, 1 = first derivative, 2 = second derivative).
+
+```{r}
+#| label: savitzky-golay
+#| echo: true
+
+# p = polynomial order
+# w = window size (must be odd)
+# m = m-th derivative (0 = smoothing)
+# Accepts vectors, data frames, or matrices (observations row-wise)
+sgvec <- savitzkyGolay(X = NIRsoil$spc[1, ], p = 3, w = 11, m = 0)
+sg <- savitzkyGolay(X = NIRsoil$spc, p = 3, w = 11, m = 0)
+
+# Bands at the edges of the spectral matrix are lost
+dim(NIRsoil$spc)
+dim(sg)
+```
+
+
+# Derivatives
+
+Taking numerical derivatives of the spectra can remove both additive and
+multiplicative effects and has further consequences summarised in @tbl-derivatives.
+
+```{r}
+#| label: tbl-derivatives
+#| tbl-cap: "Advantages and drawbacks of derivative spectra."
+#| echo: false
+
+der_table <- data.frame(
+  Advantage = c(
+    "Reduces baseline offset",
+    "Can resolve overlapping absorptions",
+    "Compensates for instrumental drift",
+    "Enhances small spectral absorptions",
+    "Often increases predictive accuracy for complex datasets"
+  ),
+  Drawback = c(
+    "Risk of overfitting the calibration model",
+    "Increases noise; smoothing required",
+    "Increases uncertainty in model coefficients",
+    "Complicates spectral interpretation",
+    "Removes the baseline"
+  )
+)
+
+knitr::kable(der_table)
+```
+
+First and second derivatives can be computed with the finite difference method
+(difference between two subsequent data points), provided that bandwidth is
+constant:
+
+$$x_i' = x_i - x_{i-1}$$
+
+$$x_i'' = x_{i-1} - 2 \cdot x_i + x_{i+1}$$
+
+In R this can be achieved with the `diff` function from `base`, as shown in
+@fig-derivatives:
+
+```{r}
+#| label: fig-derivatives
+#| fig-cap: "First and second derivatives of a raw spectrum."
+#| fig-height: 4
+#| fig-width: 6
+#| echo: true
+
+d1 <- t(diff(t(NIRsoil$spc), differences = 1))  # first derivative
+d2 <- t(diff(t(NIRsoil$spc), differences = 2))  # second derivative
+
+plot(
+  as.numeric(colnames(d1)), d1[1, ],
+  type = "l", lwd = 1.5,
+  xlab = "Wavelength", ylab = ""
+)
+lines(as.numeric(colnames(d2)), d2[1, ], lwd = 1.5, col = "red")
+grid()
+legend(
+  "topleft",
+  legend = c("1st derivative", "2nd derivative"),
+  lty = 1, col = c("black", "red")
+)
+```
+
+Derivatives tend to amplify noise. The gap derivative and the Savitzky-Golay
+algorithm both address this. The gap derivative is computed as:
+
+$$x_i' = x_{i+k} - x_{i-k}$$
+
+$$x_i'' = x_{i-k} - 2 \cdot x_i + x_{i+k}$$
+
+where $k$ is the gap size. This can be achieved using the `lag` argument of
+`diff` (see @fig-gap-derivative):
+
+```{r}
+#| label: fig-gap-derivative
+#| fig-cap: "Comparison of first derivative (finite difference) and
+#|   gap derivative (lag = 10 bands) for the first spectrum."
+#| fig-height: 4
+#| fig-width: 6
+#| echo: true
+
+# m = derivative order; w = gap size; s = segment size
+gsd1 <- gapDer(X = NIRsoil$spc, m = 1, w = 11, s = 5)
+
+plot(
+  as.numeric(colnames(d1)), d1[1, ],
+  type = "l", lwd = 1.5,
+  xlab = "Wavelength (nm)", ylab = "1st derivative"
+)
+par(new = TRUE)
+plot(
+  as.numeric(colnames(gsd1)), gsd1[1, ],
+  type = "l", lwd = 1.5, col = "red",
+  xaxt = "n", yaxt = "n",
+  xlab = "", ylab = ""
+)
+axis(4, col = "red")
+mtext("Gap-segment derivative", side = 4, line = 3, col = "red")
+grid()
+legend(
+  "topleft",
+  legend = c("1st derivative", "Gap-segment 1st derivative"),
+  lty = 1, col = c("black", "red")
+)
+par(new = FALSE)
+```
+
+For greater control over smoothing, the Savitzky-Golay (`savitzkyGolay`) and
+gap-segment derivative (`gapDer`) functions are preferable. The gap-segment
+algorithm first smooths the signal over a given segment size, then computes a
+derivative of a given order over a given gap size. See @luo2005properties and
+@hopkins2001norris for details on these methods.
+
+
+# Scatter and baseline corrections
+
+Undesired spectral variations due to light *scatter* effects and variations in
+effective *path length* can be removed using scatter corrections.
+
+## Standard Normal Variate (SNV)
+
+The *Standard Normal Variate* (SNV) transformation [@barnes1989] is a
+row-wise standardisation that corrects for light *scatter* by centering and
+scaling each spectrum individually (@fig-snv):
+
+$$\text{SNV}_i = \frac{x_i - \bar{x}_i}{s_i}$$
+
+where $\bar{x}_i$ is the mean and $s_i$ the standard deviation of the $i$-th
+spectrum (i.e. computed across all bands of that observation).
+
+```{r}
+#| label: fig-snv
+#| fig-cap: "Raw absorbance spectra (left) and SNV-transformed spectra (right)
+#|   for the first five observations."
+#| fig-height: 4
+#| fig-width: 8
+#| echo: true
+
+snv <- standardNormalVariate(X = NIRsoil$spc)
+wav <- as.numeric(colnames(NIRsoil$spc))
+
+par(mfrow = c(1, 2))
+
+matplot(
+  wav, t(NIRsoil$spc[1:5, ]),
+  type = "l", lty = 1, lwd = 1.5,
+  col = c("black", "grey20", "grey40", "grey60", "grey80"),
+  xlab = "Wavelength (nm)", ylab = "Absorbance",
+  main = "Raw"
+)
+grid()
+
+matplot(
+  wav, t(snv[1:5, ]),
+  type = "l", lty = 1, lwd = 1.5,
+  col = c("red", "tomato", "coral", "salmon", "lightsalmon"),
+  xlab = "Wavelength (nm)", ylab = "SNV (Absorbance)",
+  main = "SNV"
+)
+grid()
+
+par(mfrow = c(1, 1))
+```
+
+According to @fearn2008, SNV should be applied *after* filtering (e.g.
+Savitzky-Golay) rather than before.
+
+
+
+
+## Multiplicative Scatter Correction (MSC)
+
+Along with SNV, MSC [@geladi1985linearization] is one of the most widely used
+pre-processing techniques in NIR spectroscopy [@rinnan2009review]. It is a
+scatter correction method that accounts for additive and multiplicative effects
+by regressing each spectrum ($x_i$) against a reference spectrum ($x_r$,
+typically the mean spectrum, @fig-msc):
+
+$$x_i = m_i x_r + a_i$$
+
+$$\text{MSC}(x_i) = \frac{x_i - a_i}{m_i}$$
+
+where $a_i$ and $m_i$ are the additive and multiplicative scatter coefficients,
+respectively, estimated by ordinary least squares for each spectrum.
+
+```{r}
+#| label: fig-msc
+#| fig-cap: "Effect of MSC on a raw spectrum (reference = mean spectrum)."
+#| fig-height: 4
+#| fig-width: 6
+#| echo: true
+
+# Reference spectrum is the column mean of the full matrix
+msc_spc <- msc(X = NIRsoil$spc, ref_spectrum = colMeans(NIRsoil$spc))
+
+plot(
+  as.numeric(colnames(NIRsoil$spc)), NIRsoil$spc[1, ],
+  type = "l", lwd = 1.5,
+  xlab = "Wavelength (nm)", ylab = "Absorbance"
+)
+lines(as.numeric(colnames(msc_spc)), msc_spc[1, ], lwd = 1.5, col = "red")
+grid()
+legend(
+  "topleft",
+  legend = c("Raw", "MSC"),
+  lty = 1, col = c("black", "red")
+)
+```
+
+Because MSC correction depends on a reference spectrum, that reference must be
+stored and reused when processing new spectra. The following example shows how
+to apply the correction estimated on a training set to a separate validation
+set:
+
+```{r}
+#| label: msc-transfer
+#| eval: false
+#| echo: true
+
+# Training and validation partitions
+Xr <- NIRsoil$spc[NIRsoil$train == 1, ]
+Xu <- NIRsoil$spc[NIRsoil$train == 0, ]
+
+# Fit MSC on the training set (reference = mean of Xr by default)
+Xr_msc <- msc(Xr)
+
+# Apply the same reference spectrum to the validation set
+Xu_msc <- msc(Xu, ref_spectrum = attr(Xr_msc, "Reference spectrum"))
+```
+
+## SNV-Detrend
+
+The *SNV-Detrend* transformation [@barnes1989] extends SNV by additionally
+correcting for wavelength-dependent scattering effects, i.e. residual
+curvature remaining after SNV. After the SNV transformation, a second-order
+polynomial is fitted to each spectrum and subtracted from it (@fig-detrend).
+
+```{r}
+#| label: fig-detrend
+#| fig-cap: "Effect of SNV-Detrend on a raw spectrum. Note the different
+#|   y-axis scales: raw absorbance (left) and detrended signal (right)."
+#| fig-height: 4
+#| fig-width: 6
+#| echo: true
+
+wav <- as.numeric(colnames(NIRsoil$spc))
+dt  <- detrend(X = NIRsoil$spc, wav = wav)
+
+# Dual y-axis: raw and detrended spectra are on different scales
+plot(
+  wav, NIRsoil$spc[1, ],
+  type = "l", lwd = 1.5,
+  xlab = "Wavelength (nm)", ylab = "Absorbance"
+)
+par(new = TRUE)
+plot(
+  wav, dt[1, ],
+  type = "l", lwd = 1.5, col = "red",
+  xaxt = "n", yaxt = "n",
+  xlab = "", ylab = ""
+)
+axis(4, col = "red")
+mtext("Detrended", side = 4, line = 3, col = "red")
+grid()
+legend(
+  "topleft",
+  legend = c("Raw", "SNV-Detrend"),
+  lty = 1, col = c("black", "red")
+)
+par(new = FALSE)
+```
+
+
+## Baseline removal
+
+The `baseline` function estimates and removes the baseline of each spectrum in
+three steps, with the result illustrated in @fig-baseline:
+
+1. The convex hull points of each spectrum are identified using
+   `grDevices::chull`.
+2. The convex hull points are linearly interpolated to the wavelength positions
+   of the original spectrum to produce the baseline.
+3. The baseline is subtracted from the original spectrum.
+
+```{r}
+#| label: fig-baseline
+#| fig-cap: "Raw absorbance spectra (left) and baseline-corrected spectra (right)
+#| for the first three observations."
+#| fig-height: 4
+#| fig-width: 8
+#| echo: true
+
+wav <- as.numeric(colnames(NIRsoil$spc))
+bs <- baseline(NIRsoil$spc, wav)
+fitted_baselines <- attr(bs, "baselines")
+
+par(mfrow = c(1, 2))
+
+# Raw spectra with fitted baselines
+matplot(
+  wav, t(NIRsoil$spc[1:3, ]),
+  type = "l", lty = 1, lwd = 1.5,
+  col = c("black", "grey40", "grey70"),
+  xlab = "Wavelength (nm)", ylab = "Absorbance",
+  main = "Raw and baseline"
+)
+matlines(wav, t(fitted_baselines[1:3, ]), lty = 2, col = c("black", "grey40", "grey70"))
+grid()
+
+# Baseline-corrected spectra
+matplot(
+  wav, t(bs[1:3, ]),
+  type = "l", lty = 1, lwd = 1.5,
+  col = c("red", "tomato", "salmon"),
+  xlab = "Wavelength (nm)", ylab = "Absorbance",
+  main = "Baseline corrected"
+)
+grid()
+
+par(mfrow = c(1, 1))
+```
+
+# Centering and scaling
+
+Centering and scaling transform a given matrix so that columns have zero mean
+(*centering*), unit variance (*scaling*), or both (*auto-scaling*):
+
+$$Xc_{ij} = X_{ij} - \bar{X}_{j}$$
+
+$$Xs_{ij} = \frac{X_{ij} - \bar{X}_{j}}{s_{j}}$$
+
+where $Xc$ and $Xs$ are the mean-centred and auto-scaled matrices, $\bar{X}_j$
+and $s_j$ are the mean and standard deviation of variable $j$. In R these
+operations are obtained with the `scale` function.
+
+Spectroscopic models can often be improved by incorporating ancillary data
+(e.g. temperature) alongside the spectra [@fearn2010]. However, due to the
+high dimensionality of spectral data, ancillary variables risk being dominated
+by the spectral block and contributing negligibly to the model
+[@eriksson2006]. *Block scaling* addresses this by applying different scaling
+weights to different blocks of variables. With *soft block scaling*, each block
+is divided by a constant such that the sum of its column variances equals
+$\sqrt{p}$, where $p$ is the number of variables in the block. With *hard block
+scaling*, the block is scaled so that the sum of its column variances equals 1.
+
+```{r}
+#| label: block-scale
+#| echo: true
+
+# type = "soft" or "hard"
+# Returns a list with the scaled matrix (Xscaled) and the divisor (f)
+bsc <- blockScale(X = NIRsoil$spc, type = "hard")$Xscaled
+sum(apply(bsc, 2, var))  # should equal 1
+```
+
+A limitation of block scaling is that all variables within a block are brought
+to the same variance. When this is undesirable, *sum-of-squares block
+weighting* (`blockNorm`) provides an alternative: the spectral matrix is
+multiplied by a scalar to achieve a pre-specified sum of squares.
+
+```{r}
+#| label: block-norm
+#| echo: true
+
+# targetnorm = desired Frobenius norm (sum of squares) for X
+bn <- blockNorm(X = NIRsoil$spc, targetnorm = 1)$Xscaled
+sum(bn^2)  # should equal 1
+```
+
+# Resampling
+
+To match the spectral response of one instrument to another, a signal can be
+resampled to new band positions by interpolation (`resample`) or by convolution
+using full-width at half-maximum (FWHM) values (`resample2`). @fig-resample
+shows an example of resampling a NIR spectrum to a coarser resolution of 10 nm
+using `resample`.
+
+```{r}
+#| label: fig-resample
+#| fig-cap: "Original NIR spectrum and resampled spectrum at a coarser
+#|   resolution (every 10 nm) using interpolation."
+#| fig-height: 4
+#| fig-width: 6
+#| echo: true
+
+wav <- as.numeric(colnames(NIRsoil$spc))
+wav_coarse <- seq(min(wav), max(wav), by = 10)
+
+rs <- resample(X = NIRsoil$spc, wav = wav, new.wav = wav_coarse)
+
+plot(
+  wav, NIRsoil$spc[1, ],
+  type = "l", lwd = 1.5,
+  xlab = "Wavelength (nm)", ylab = "Absorbance"
+)
+lines(
+  wav_coarse, rs[1, ], lwd = 1.5, col = "red", type = "b", pch = 19, cex = 0.5
+)
+grid()
+legend(
+  "topleft",
+  legend = c("Original", "Resampled (10 nm)"),
+  lty = 1, col = c("black", "red")
+)
+```
+
+# Other transformations
+
+## Continuum removal
+
+The continuum removal technique was introduced by @clark1984 to highlight
+absorption features by removing the effect of the overall spectral shape
+(albedo). The method identifies the convex-hull envelope (continuum) of each
+spectrum and normalises the original values against it (@fig-continuum-removal):
+
+$$\phi_{i} = \frac{x_{i}}{c_{i}}, \quad i = \{1, \ldots, p\}$$
+
+where $x_i$ and $c_i$ are the original and continuum values at the $i$-th
+wavelength of a set of $p$ wavelengths. The result $\phi_i$ is dimensionless
+and bounded in $[0, 1]$ for reflectance spectra, where values close to 1
+indicate no absorption relative to the continuum.
+
+The `continuumRemoval` function handles both reflectance (`type = "R"`,
+default) and absorbance (`type = "A"`) spectra. For absorbance data, spectra
+are first converted to reflectance ($1/X$) before computing the continuum,
+and the result is back-transformed afterwards. This means that for absorbance
+data, `continuumRemoval` and `baseline` are not equivalent: they compute the
+convex-hull envelope on different scales. For reflectance data the two
+functions are more directly comparable, differing only in the final step:
+`baseline` subtracts the continuum ($x_i - c_i$), whereas `continuumRemoval`
+divides by it ($x_i / c_i$).
+
+```{r}
+#| label: fig-continuum-removal
+#| fig-cap: "Raw absorbance spectra (left) and continuum-removed spectra (right)
+#|   for the first three observations."
+#| fig-height: 4
+#| fig-width: 8
+#| echo: true
+
+# type = "A" for absorbance, "R" for reflectance (default)
+cr  <- continuumRemoval(X = NIRsoil$spc, type = "A")
+wav <- as.numeric(colnames(NIRsoil$spc))
+
+par(mfrow = c(1, 2))
+
+matplot(
+  wav, t(NIRsoil$spc[1:3, ]),
+  type = "l", lty = 1, lwd = 1.5,
+  col = c("black", "grey40", "grey70"),
+  xlab = "Wavelength (nm)", ylab = "Absorbance",
+  main = "Raw"
+)
+grid()
+
+matplot(
+  wav, t(cr[1:3, ]),
+  type = "l", lty = 1, lwd = 1.5,
+  col = c("red", "tomato", "salmon"),
+  xlab = "Wavelength (nm)", ylab = "Continuum-removed",
+  main = "Continuum removal"
+)
+grid()
+
+par(mfrow = c(1, 1))
+```
+
+# References {-}
