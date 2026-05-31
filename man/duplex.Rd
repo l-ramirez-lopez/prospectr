@@ -76,6 +76,7 @@ by the procedure is the Euclidean distance, but the Mahalanobis distance can
 be used as well using the \code{pc} argument (see \code{\link{kenStone}}).
 }
 \examples{
+\dontrun{
 data(NIRsoil)
 sel <- duplex(NIRsoil$spc, k = 30, metric = "mahal", pc = .99)
 plot(sel$pc[, 1:2], xlab = "PC1", ylab = "PC2")
@@ -87,6 +88,7 @@ plot(X[, 1], X[, 2], xlab = "VAR1", ylab = "VAR2")
 sel <- duplex(X, k = 25, metric = "mahal")
 points(X[sel$model, ], pch = 19, col = 2) # points selected for calibration
 points(X[sel$test, ], pch = 15, col = 3) # points selected for validation
+}
 }
 \references{
 Kennard, R.W., and Stone, L.A., 1969. Computer aided design of experiments.

@@ -5,7 +5,7 @@
 #' *C* test for homogeneity in variance.
 #' @usage
 #' cochranTest(X, id, fun = 'sum', alpha = 0.05)
-#' @param X a a numeric matrix (optionally a data frame that can
+#' @param X a numeric matrix (optionally a data frame that can
 #' be coerced to a numerical matrix).
 #' @param id factor of the replicate identifiers.
 #' @param fun function to aggregate data: 'sum' (default), 'mean', 'PC1' or 'PC2'.
@@ -20,7 +20,7 @@
 #' }
 #'
 #' @details
-#' The Cochran *C* test is test whether a single estimate of variance is
+#' The Cochran *C* test tests whether a single estimate of variance is
 #' significantly larger than a a group of variances.
 #' It can be computed as:
 #'
@@ -82,10 +82,10 @@ cochranTest <- function(X, id, fun = "sum", alpha = 0.05) {
         apply(X[, -1], 1, mean)
       },
       PC1 = {
-        prcomp(X[, -1], center = TRUE, .scale = FALSE)$x[, 1]
+        prcomp(X[, -1], center = TRUE, scale. = FALSE)$x[, 1]
       },
       PC2 = {
-        prcomp(X[, -1], center = TRUE, .scale = FALSE)$x[, 2]
+        prcomp(X[, -1], center = TRUE, scale. = FALSE)$x[, 2]
       }
     )
 

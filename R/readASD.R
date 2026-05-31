@@ -62,6 +62,7 @@ readASD <- function(fnames, in_format = c("binary", "txt"), out_format = c("matr
     if (in_format == "binary") {
       # open a connection
       con <- file(f, "rb")
+      on.exit(try(close(con), silent = TRUE), add = TRUE)
       # Retrieve comments
       seek(con, where = 3, origin = "start", rw = "r")
       Comments <- paste(readBin(con, "character", n = 157), collapse = "")
@@ -535,6 +536,15 @@ readASD <- function(fnames, in_format = c("binary", "txt"), out_format = c("matr
         if (pos <= 2) {
           spc[[i]] <- list(
             name = filename,
+            reflectance = target,
+            reference = "Missing reference spectrum",
+            wavelength = wavelength
+          )
+        } else {
+          spc[[i]] <- list(
+            name = filename,
+            datetime = DateTime,
+            header = H,
             reflectance = target,
             reference = "Missing reference spectrum",
             wavelength = wavelength
