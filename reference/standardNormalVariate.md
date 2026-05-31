@@ -14,7 +14,8 @@ standardNormalVariate(X)
 - X:
 
   a numeric matrix of spectral data (optionally a data frame that can be
-  coerced to a numerical matrix).
+  coerced to a numerical matrix). Optionally, a vector can be provided,
+  in which case it will be treated as a single spectrum.
 
 ## Value
 
@@ -45,7 +46,7 @@ spectra. Applied spectroscopy, 43(5): 772-777.
 
 ## Author
 
-Antoine Stevens
+Antoine Stevens and Leonardo Ramirez-Lopez
 
 ## Examples
 

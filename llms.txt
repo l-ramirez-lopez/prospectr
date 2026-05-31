@@ -2,7 +2,7 @@
 
 ![](./reference/figures/logo.png)
 
-*Last update: 2026-05-18*
+*Last update: 2026-05-31*
 
 Version: 0.2.9 – proxy
 
@@ -122,6 +122,13 @@ tools](https://cran.r-project.org/bin/macosx/tools/).
 
 citation(package = "prospectr")
 ```
+
+## Contributing
+
+Contributions are welcome! Please read our Contributing Guidelines
+(available in the GitHub repo) before submitting pull requests.
+
+This project follows a Code of Conduct available in the GitHub repo.
 
 ## Bug reports
 

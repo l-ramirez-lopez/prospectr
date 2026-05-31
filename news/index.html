@@ -37,12 +37,13 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.2.9" id="prospectr-029-proxy"><code>prospectr 0.2.9 (proxy)</code><a class="anchor" aria-label="anchor" href="#prospectr-029-proxy"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.2.9" id="prospectr-029-proxy"><code>prospectr 0.2.9 (proxy)</code><a class="anchor" aria-label="anchor" href="#prospectr-029-proxy"></a></h2><p class="text-muted">CRAN release: 2026-05-31</p>
 <div class="section level4">
 <h4 id="bug-fixes-0-2-9">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-2-9"></a></h4>
 <ul><li><p><code><a href="../reference/continuumRemoval.html">continuumRemoval()</a></code>: fixed <code>NA</code> values produced for spectra with very low reflectance in the first bands and high NIR reflectance. The fixed boundary offset of 1 wavelength unit used in the internal convex hull computation was too large for spectra with fine spectral resolution or wavelengths expressed in units other than nanometres. The offset is now derived from the actual spectral resolution at each edge, making the behaviour unit-agnostic (reported by <a href="https://github.com/jbferet" class="external-link">@jbferet</a>, <a href="https://github.com/l-ramirez-lopez/prospectr/issues/80" class="external-link">#80</a>).</p></li>
 <li><p><code><a href="../reference/continuumRemoval.html">continuumRemoval()</a></code>: fixed <code>NaN</code> produced at the first wavelength when its reflectance value is exactly zero. The continuum-removed value is now set to 1 (no absorption feature) at bands where both the spectrum and the continuum are zero (<a href="https://github.com/l-ramirez-lopez/prospectr/issues/80" class="external-link">#80</a>).</p></li>
 <li><p><code><a href="../reference/continuumRemoval.html">continuumRemoval()</a></code>: corrected a long-standing typo in the <code>method</code> argument: <code>"substraction"</code> has been replaced by <code>"subtraction"</code>. A deprecation warning is issued if the old spelling is passed explicitly.</p></li>
+<li><p><code><a href="../reference/standardNormalVariate.html">standardNormalVariate()</a></code>: now it can handle a single spectrum passed as a vector.</p></li>
 </ul></div>
 <div class="section level4">
 <h4 id="new-features-0-2-9">New features<a class="anchor" aria-label="anchor" href="#new-features-0-2-9"></a></h4>

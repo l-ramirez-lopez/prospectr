@@ -2,6 +2,8 @@
 
 ## `prospectr 0.2.9 (proxy)`
 
+CRAN release: 2026-05-31
+
 #### Bug fixes
 
 - [`continuumRemoval()`](https://l-ramirez-lopez.github.io/prospectr/reference/continuumRemoval.md):
@@ -25,6 +27,9 @@
   corrected a long-standing typo in the `method` argument:
   `"substraction"` has been replaced by `"subtraction"`. A deprecation
   warning is issued if the old spelling is passed explicitly.
+
+- [`standardNormalVariate()`](https://l-ramirez-lopez.github.io/prospectr/reference/standardNormalVariate.md):
+  now it can handle a single spectrum passed as a vector.
 
 #### New features
 

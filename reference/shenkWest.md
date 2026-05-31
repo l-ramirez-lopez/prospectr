@@ -93,6 +93,7 @@ Antoine Stevens
 ## Examples
 
 ``` r
+if (FALSE) { # \dontrun{
 data(NIRsoil)
 # reduce data size
 NIRsoil$spc <- binning(X = NIRsoil$spc, bin.size = 5)
@@ -100,10 +101,10 @@ sel <- shenkWest(NIRsoil$spc, pc = .99, d.min = .3, rm.outlier = FALSE)
 plot(sel$pc[, 1:2], xlab = "PC1", ylab = "PC2")
 # points selected for calibration
 points(sel$pc[sel$model, 1:2], pch = 19, col = 2)
-
 # without outliers
 sel <- shenkWest(NIRsoil$spc, pc = .99, d.min = .3, rm.outlier = TRUE)
 plot(sel$pc[, 1:2], xlab = "PC1", ylab = "PC2")
 # points selected for calibration
 points(sel$pc[sel$model, 1:2], pch = 15, col = 3)
+} # }
 ```

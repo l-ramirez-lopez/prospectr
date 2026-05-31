@@ -17,8 +17,8 @@ currently available in the package are listed in
 
     [34mprospectr version 0.2.9 -- proxy[39m
 
-    [34mcheck the package repository at: https://github.com/l-ramirez-lopez/prospectr,
-    https://l-ramirez-lopez.github.io/prospectr/[39m
+    [34mcheck the package repository at: https://l-ramirez-lopez.github.io/prospectr/,
+    https://github.com/l-ramirez-lopez/prospectr[39m
 
 | Function                | Description                                      |
 |:------------------------|:-------------------------------------------------|

@@ -1,5 +1,102 @@
 # prospectr
 
+# version 0.2.9
+
+## Cover letter
+
+Dear CRAN maintainers,
+
+I am submitting version 0.2.9 of the `prospectr` package. This release
+focuses on bug fixes and improved test coverage. The key changes are:
+
+- **[`readASD()`](https://l-ramirez-lopez.github.io/prospectr/reference/readASD.md)**:
+  fixed a file-connection leak (the binary connection was not closed on
+  early exit); fixed a missing output branch in the txt-format path when
+  the position index is greater than 2, which silently dropped spectra.
+- **[`read_nircal()`](https://l-ramirez-lopez.github.io/prospectr/reference/read_nircal.md)**:
+  fixed a file-connection leak (connection was only closed inside a
+  progress-reporting branch, leaving it open otherwise).
+- **[`cochranTest()`](https://l-ramirez-lopez.github.io/prospectr/reference/cochranTest.md)**:
+  fixed an invalid argument name in both
+  [`prcomp()`](https://rdrr.io/r/stats/prcomp.html) calls
+  (`.scale = FALSE` → `scale. = FALSE`), which produced spurious
+  warnings and incorrect PC scores.
+- **[`continuumRemoval()`](https://l-ramirez-lopez.github.io/prospectr/reference/continuumRemoval.md)**:
+  removed an erroneous `@export` tag from the internal helper
+  `cr_fun()`, which caused an “undocumented object” WARNING in
+  `R CMD check`.
+- **[`standardNormalVariate()`](https://l-ramirez-lopez.github.io/prospectr/reference/standardNormalVariate.md)**:
+  updated to handle zero-variance rows silently by returning zero rather
+  than `NaN`, resolving a check failure previously reported in the
+  reverse dependency `soilKey`.
+- Added GitHub Actions CI workflows (`R-CMD-check`, `test-coverage`) and
+  expanded the test suite.
+
+Regarding the auto-check reverse dependence failure: the issue was
+traced to the `soilKey` package, which passed a constant-value row to
+[`standardNormalVariate()`](https://l-ramirez-lopez.github.io/prospectr/reference/standardNormalVariate.md)
+and did not handle the resulting `NaN` output. This has been resolved in
+`prospectr` by updating
+[`standardNormalVariate()`](https://l-ramirez-lopez.github.io/prospectr/reference/standardNormalVariate.md)
+to return zero for zero-variance rows. The `soilKey` reverse dependency
+check now passes.
+
+The tarball has been checked on R-winbuilder (R-release and R-devel).
+Reverse dependencies have been checked and are unaffected.
+
+Best regards, Leonardo
+
+------------------------------------------------------------------------
+
+## Package build
+
+``` r
+
+pkgbuild::build(
+  path = ".",
+  dest_path = "..",
+  binary = FALSE,
+  vignettes = TRUE,
+  manual = FALSE,
+  quiet = FALSE
+)
+```
+
+------------------------------------------------------------------------
+
+## Test environments
+
+### Local
+
+- Ubuntu 24.04, R 4.5.0 (release)
+
+### GitHub Actions (all passing)
+
+- ubuntu-latest, R release
+- ubuntu-latest, R devel
+- windows-latest, R release
+- macos-latest, R release
+
+### R-winbuilder
+
+- Windows Server 2022, R-release — OK (no ERRORs, no WARNINGs, 1 NOTE:
+  installed package size, data/libs subdirectories — pre-existing, not
+  introduced by this release)
+- Windows Server 2022, R-devel — OK (same NOTE as above)
+
+------------------------------------------------------------------------
+
+## Notes carried over from previous releases (not introduced here)
+
+- **Installed package size NOTE**: `data/` (≈ 1.9 Mb) and `libs/` (≈ 3–4
+  Mb) push the installed size above the 5 Mb threshold on several
+  platforms. This is inherent to the package’s compiled code and example
+  datasets and has been present since version 0.2.1.
+
+------------------------------------------------------------------------
+
+# prospectr
+
 # version 0.2.8 - galo
 
 # submission message:
