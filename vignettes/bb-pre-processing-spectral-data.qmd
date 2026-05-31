@@ -43,6 +43,7 @@ are listed in @tbl-preprocessing.
 #| label: tbl-preprocessing
 #| tbl-cap: "Pre-processing functions available in the package."
 #| echo: false
+#| message: false
 
 library(prospectr)
 
