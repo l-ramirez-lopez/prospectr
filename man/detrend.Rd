@@ -4,7 +4,7 @@
 \alias{detrend}
 \title{Detrending spectral data}
 \usage{
-detrend(X, wav, p = 2, snv = TRUE)
+detrend(X, wav, p = 2, snv = TRUE, method = "poly")
 }
 \arguments{
 \item{X}{a numeric matrix or vector to process (optionally a data frame that
@@ -19,6 +19,16 @@ can be coerced to a numerical matrix)}
 applied to each spectrum before polynomial fitting. Default is \code{TRUE},
 which reproduces the procedure of Barnes et al. (1989). Set to \code{FALSE}
 to perform pure polynomial detrending without prior normalisation.}
+
+\item{method}{a character string specifying the polynomial basis used for
+fitting. Either \code{"poly"} (default) or \code{"raw"}.
+\code{"poly"} uses \code{\link[stats]{poly}} to construct an orthogonal
+polynomial basis, as in the original implementation. \code{"raw"} uses
+z-scored wavelengths raised to successive integer powers
+(\mjeqn{\tilde\lambda^0, \tilde\lambda^1, \ldots, \tilde\lambda^p}{}),
+where \mjeqn{\tilde\lambda = (\lambda - \bar\lambda) / \mathrm{sd}(\lambda)}{}.
+The two methods are not numerically equivalent; \code{"raw"} is provided
+for interoperability with implementations that use a raw power basis.}
 }
 \value{
 a matrix or vector with the detrended data.

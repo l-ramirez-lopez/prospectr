@@ -39,6 +39,7 @@ model robustness and accuracy, although there are no guarantees this will
 actually work. The pre-processing functions currently available in the package
 are listed in @tbl-preprocessing.
 
+
 ```{r}
 #| label: tbl-preprocessing
 #| tbl-cap: "Pre-processing functions available in the package."
