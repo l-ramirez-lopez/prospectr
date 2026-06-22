@@ -16,6 +16,7 @@ navbar:
     github:
       icon: fab fa-github
       href: https://github.com/l-ramirez-lopez/prospectr
+      aria-label: "GitHub repository"
 
 logo:
   image: logo.jpg
