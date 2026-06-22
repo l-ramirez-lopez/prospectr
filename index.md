@@ -2,9 +2,9 @@
 
 ![](./reference/figures/logo.png)
 
-*Last update: 2026-05-31*
+*Last update: 2026-06-22*
 
-Version: 0.2.9 – proxy
+Version: 0.2.10 – zurich
 
 In science, one man’s noise is another man’s signal
 

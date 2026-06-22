@@ -11,8 +11,8 @@ Infrared Spectroscopy applications.
 
 ## Details
 
-This is the version 0.2.9 – proxy of the package. The main functionality
-is listed here.
+This is the version 0.2.10 – zurich of the package. The main
+functionality is listed here.
 
 Currently, the following preprocessing functions are available:
 

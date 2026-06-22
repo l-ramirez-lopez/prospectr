@@ -7,7 +7,7 @@ prescribed by Barnes et al. (1989).
 ## Usage
 
 ``` r
-detrend(X, wav, p = 2, snv = TRUE)
+detrend(X, wav, p = 2, snv = TRUE, method = "poly")
 ```
 
 ## Arguments
@@ -32,6 +32,18 @@ detrend(X, wav, p = 2, snv = TRUE)
   to each spectrum before polynomial fitting. Default is `TRUE`, which
   reproduces the procedure of Barnes et al. (1989). Set to `FALSE` to
   perform pure polynomial detrending without prior normalisation.
+
+- method:
+
+  a character string specifying the polynomial basis used for fitting.
+  Either `"poly"` (default) or `"raw"`. `"poly"` uses
+  [`poly`](https://rdrr.io/r/stats/poly.html) to construct an orthogonal
+  polynomial basis, as in the original implementation. `"raw"` uses
+  z-scored wavelengths raised to successive integer powers
+  (\\\tilde\lambda^0, \tilde\lambda^1, \ldots, \tilde\lambda^p\\), where
+  \\\tilde\lambda = (\lambda - \bar\lambda) / \mathrm{sd}(\lambda)\\.
+  The two methods are not numerically equivalent; `"raw"` is provided
+  for interoperability with implementations that use a raw power basis.
 
 ## Value
 

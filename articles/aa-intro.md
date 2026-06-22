@@ -62,7 +62,8 @@ citation(package = "prospectr")
     To cite package 'prospectr' in publications use:
 
       Antoine Stevens and Leornardo Ramirez-Lopez (2026). An introduction
-      to the prospectr package. R package Vignette R package version 0.2.9.
+      to the prospectr package. R package Vignette R package version
+      0.2.10.
 
     A BibTeX entry for LaTeX users is
 
@@ -71,7 +72,7 @@ citation(package = "prospectr")
         author = {Antoine Stevens and Leornardo Ramirez-Lopez},
         publication = {R package Vignette},
         year = {2026},
-        note = {R package version 0.2.9},
+        note = {R package version 0.2.10},
       }
 
 ## 4 Further reading
