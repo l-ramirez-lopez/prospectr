@@ -5,7 +5,7 @@
 #' Optionally, an SNV transformation is applied prior to fitting, as prescribed
 #' by Barnes et al. (1989).
 #' @usage
-#' detrend(X, wav, p = 2, snv = TRUE, method = "poly")
+#' detrend(X, wav, p = 2, snv = TRUE, method = c("poly", "raw"))
 #' @param X a numeric matrix or vector to process (optionally a data frame that
 #' can be coerced to a numerical matrix)
 #' @param wav the wavelengths/ band centers.
