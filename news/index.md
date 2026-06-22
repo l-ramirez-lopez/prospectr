@@ -1,5 +1,16 @@
 # Changelog
 
+## `prospectr 0.2.10 (zurich)`
+
+#### Features:
+
+- [`detrend()`](https://l-ramirez-lopez.github.io/prospectr/reference/detrend.md):
+  New `method` argument to allow polynomial detrending without a prior
+  SNV transformation. The default behaviour is unchanged and remains
+  consistent with Barnes et al. (1989). Set `method = "poly"` to apply
+  pure polynomial detrending independently of SNV, for example as a
+  separate step in a pre-processing pipeline.
+
 ## `prospectr 0.2.9 (proxy)`
 
 CRAN release: 2026-05-31

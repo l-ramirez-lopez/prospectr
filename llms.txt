@@ -1,6 +1,6 @@
 ## Functions for Chemometric Processing and Sample Selection of Spectroscopic Data
 
-![](./reference/figures/logo.png)
+![prospectr logo](./reference/figures/logo.png)
 
 *Last update: 2026-06-22*
 

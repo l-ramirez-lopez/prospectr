@@ -24,7 +24,7 @@
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/l-ramirez-lopez/prospectr"><span class="fa fab fa-github"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/l-ramirez-lopez/prospectr" aria-label="GitHub repository"><span class="fa fab fa-github"></span></a></li>
       </ul></div>
 
 
@@ -41,23 +41,11 @@
 
 </div>
 <div class="section level1">
-<h1 id="version-029">version 0.2.9<a class="anchor" aria-label="anchor" href="#version-029"></a></h1>
+<h1 id="version-0210">version 0.2.10<a class="anchor" aria-label="anchor" href="#version-0210"></a></h1>
 <div class="section level2">
 <h2 id="cover-letter">Cover letter<a class="anchor" aria-label="anchor" href="#cover-letter"></a></h2>
 <p>Dear CRAN maintainers,</p>
-<p>I am submitting version 0.2.9 of the <code>prospectr</code> package. This release focuses on bug fixes and improved test coverage. The key changes are:</p>
-<ul><li>
-<strong><code><a href="reference/readASD.html">readASD()</a></code></strong>: fixed a file-connection leak (the binary connection was not closed on early exit); fixed a missing output branch in the txt-format path when the position index is greater than 2, which silently dropped spectra.</li>
-<li>
-<strong><code><a href="reference/read_nircal.html">read_nircal()</a></code></strong>: fixed a file-connection leak (connection was only closed inside a progress-reporting branch, leaving it open otherwise).</li>
-<li>
-<strong><code><a href="reference/cochranTest.html">cochranTest()</a></code></strong>: fixed an invalid argument name in both <code><a href="https://rdrr.io/r/stats/prcomp.html" class="external-link">prcomp()</a></code> calls (<code>.scale = FALSE</code> → <code>scale. = FALSE</code>), which produced spurious warnings and incorrect PC scores.</li>
-<li>
-<strong><code><a href="reference/continuumRemoval.html">continuumRemoval()</a></code></strong>: removed an erroneous <code>@export</code> tag from the internal helper <code>cr_fun()</code>, which caused an “undocumented object” WARNING in <code>R CMD check</code>.</li>
-<li>
-<strong><code><a href="reference/standardNormalVariate.html">standardNormalVariate()</a></code></strong>: updated to handle zero-variance rows silently by returning zero rather than <code>NaN</code>, resolving a check failure previously reported in the reverse dependency <code>soilKey</code>.</li>
-<li>Added GitHub Actions CI workflows (<code>R-CMD-check</code>, <code>test-coverage</code>) and expanded the test suite.</li>
-</ul><p>Regarding the auto-check reverse dependence failure: the issue was traced to the <code>soilKey</code> package, which passed a constant-value row to <code><a href="reference/standardNormalVariate.html">standardNormalVariate()</a></code> and did not handle the resulting <code>NaN</code> output. This has been resolved in <code>prospectr</code> by updating <code><a href="reference/standardNormalVariate.html">standardNormalVariate()</a></code> to return zero for zero-variance rows. The <code>soilKey</code> reverse dependency check now passes.</p>
+<p>I am submitting version 0.2.10 of the <code>prospectr</code> package. This release focuses on a new argument for the <code><a href="reference/detrend.html">detrend()</a></code> function which allows polynomial detrending without a prior SNV transformation.</p>
 <p>The tarball has been checked on R-winbuilder (R-release and R-devel). Reverse dependencies have been checked and are unaffected.</p>
 <p>Best regards, Leonardo</p>
 <hr></div>
@@ -72,6 +60,14 @@
 <span>  manual <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  quiet <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
+<p>Locally has been tested in Ubuntu:</p>
+<pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">check</span><span class="op">(</span></span>
+<span>  args <span class="op">=</span> <span class="st">"--as-cran"</span>,</span>
+<span>  env_vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>    `_R_CHECK_CRAN_INCOMING_` <span class="op">=</span> <span class="st">"true"</span>,</span>
+<span>    `_R_CHECK_CRAN_INCOMING_REMOTE_` <span class="op">=</span> <span class="st">"true"</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre>
 <hr></div>
 <div class="section level2">
 <h2 id="test-environments">Test environments<a class="anchor" aria-label="anchor" href="#test-environments"></a></h2>
@@ -92,6 +88,62 @@
 <li>Windows Server 2022, R-devel — OK (same NOTE as above)</li>
 </ul><hr></div>
 </div>
+</div>
+<div class="section level1">
+<h1 id="prospectr-1">prospectr<a class="anchor" aria-label="anchor" href="#prospectr-1"></a></h1>
+</div>
+<div class="section level1">
+<h1 id="version-029">version 0.2.9<a class="anchor" aria-label="anchor" href="#version-029"></a></h1>
+<div class="section level2">
+<h2 id="cover-letter-1">Cover letter<a class="anchor" aria-label="anchor" href="#cover-letter-1"></a></h2>
+<p>Dear CRAN maintainers,</p>
+<p>I am submitting version 0.2.9 of the <code>prospectr</code> package. This release focuses on bug fixes and improved test coverage. The key changes are:</p>
+<ul><li>
+<strong><code><a href="reference/readASD.html">readASD()</a></code></strong>: fixed a file-connection leak (the binary connection was not closed on early exit); fixed a missing output branch in the txt-format path when the position index is greater than 2, which silently dropped spectra.</li>
+<li>
+<strong><code><a href="reference/read_nircal.html">read_nircal()</a></code></strong>: fixed a file-connection leak (connection was only closed inside a progress-reporting branch, leaving it open otherwise).</li>
+<li>
+<strong><code><a href="reference/cochranTest.html">cochranTest()</a></code></strong>: fixed an invalid argument name in both <code><a href="https://rdrr.io/r/stats/prcomp.html" class="external-link">prcomp()</a></code> calls (<code>.scale = FALSE</code> → <code>scale. = FALSE</code>), which produced spurious warnings and incorrect PC scores.</li>
+<li>
+<strong><code><a href="reference/continuumRemoval.html">continuumRemoval()</a></code></strong>: removed an erroneous <code>@export</code> tag from the internal helper <code>cr_fun()</code>, which caused an “undocumented object” WARNING in <code>R CMD check</code>.</li>
+<li>
+<strong><code><a href="reference/standardNormalVariate.html">standardNormalVariate()</a></code></strong>: updated to handle zero-variance rows silently by returning zero rather than <code>NaN</code>, resolving a check failure previously reported in the reverse dependency <code>soilKey</code>.</li>
+<li>Added GitHub Actions CI workflows (<code>R-CMD-check</code>, <code>test-coverage</code>) and expanded the test suite.</li>
+</ul><p>Regarding the auto-check reverse dependence failure: the issue was traced to the <code>soilKey</code> package, which passed a constant-value row to <code><a href="reference/standardNormalVariate.html">standardNormalVariate()</a></code> and did not handle the resulting <code>NaN</code> output. This has been resolved in <code>prospectr</code> by updating <code><a href="reference/standardNormalVariate.html">standardNormalVariate()</a></code> to return zero for zero-variance rows. The <code>soilKey</code> reverse dependency check now passes.</p>
+<p>The tarball has been checked on R-winbuilder (R-release and R-devel). Reverse dependencies have been checked and are unaffected.</p>
+<p>Best regards, Leonardo</p>
+<hr></div>
+<div class="section level2">
+<h2 id="package-build-1">Package build<a class="anchor" aria-label="anchor" href="#package-build-1"></a></h2>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">pkgbuild</span><span class="fu">::</span><span class="fu"><a href="https://pkgbuild.r-lib.org/reference/build.html" class="external-link">build</a></span><span class="op">(</span></span>
+<span>  path <span class="op">=</span> <span class="st">"."</span>,</span>
+<span>  dest_path <span class="op">=</span> <span class="st">".."</span>,</span>
+<span>  binary <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  vignettes <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  manual <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  quiet <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<hr></div>
+<div class="section level2">
+<h2 id="test-environments-1">Test environments<a class="anchor" aria-label="anchor" href="#test-environments-1"></a></h2>
+<div class="section level3">
+<h3 id="local-1">Local<a class="anchor" aria-label="anchor" href="#local-1"></a></h3>
+<ul><li>Ubuntu 24.04, R 4.5.0 (release)</li>
+</ul></div>
+<div class="section level3">
+<h3 id="github-actions-all-passing-1">GitHub Actions (all passing)<a class="anchor" aria-label="anchor" href="#github-actions-all-passing-1"></a></h3>
+<ul><li>ubuntu-latest, R release</li>
+<li>ubuntu-latest, R devel</li>
+<li>windows-latest, R release</li>
+<li>macos-latest, R release</li>
+</ul></div>
+<div class="section level3">
+<h3 id="r-winbuilder-1">R-winbuilder<a class="anchor" aria-label="anchor" href="#r-winbuilder-1"></a></h3>
+<ul><li>Windows Server 2022, R-release — OK (no ERRORs, no WARNINGs, 1 NOTE: installed package size, data/libs subdirectories — pre-existing, not introduced by this release)</li>
+<li>Windows Server 2022, R-devel — OK (same NOTE as above)</li>
+</ul><hr></div>
+</div>
 <div class="section level2">
 <h2 id="notes-carried-over-from-previous-releases-not-introduced-here">Notes carried over from previous releases (not introduced here)<a class="anchor" aria-label="anchor" href="#notes-carried-over-from-previous-releases-not-introduced-here"></a></h2>
 <ul><li>
@@ -99,7 +151,7 @@
 </ul><hr></div>
 </div>
 <div class="section level1">
-<h1 id="prospectr-1">prospectr<a class="anchor" aria-label="anchor" href="#prospectr-1"></a></h1>
+<h1 id="prospectr-2">prospectr<a class="anchor" aria-label="anchor" href="#prospectr-2"></a></h1>
 </div>
 <div class="section level1">
 <h1 id="version-028---galo">version 0.2.8 - galo<a class="anchor" aria-label="anchor" href="#version-028---galo"></a></h1>
@@ -128,7 +180,7 @@
 </div>
 </div>
 <div class="section level1">
-<h1 id="prospectr-2">prospectr<a class="anchor" aria-label="anchor" href="#prospectr-2"></a></h1>
+<h1 id="prospectr-3">prospectr<a class="anchor" aria-label="anchor" href="#prospectr-3"></a></h1>
 </div>
 <div class="section level1">
 <h1 id="version-027---cakes">version 0.2.7 - cakes<a class="anchor" aria-label="anchor" href="#version-027---cakes"></a></h1>

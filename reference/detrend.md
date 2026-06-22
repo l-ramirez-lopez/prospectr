@@ -7,7 +7,7 @@ prescribed by Barnes et al. (1989).
 ## Usage
 
 ``` r
-detrend(X, wav, p = 2, snv = TRUE, method = "poly")
+detrend(X, wav, p = 2, snv = TRUE, method = c("poly", "raw"))
 ```
 
 ## Arguments
