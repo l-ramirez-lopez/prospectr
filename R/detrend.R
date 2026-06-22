@@ -5,7 +5,7 @@
 #' Optionally, an SNV transformation is applied prior to fitting, as prescribed
 #' by Barnes et al. (1989).
 #' @usage
-#' detrend(X, wav, p = 2, snv = TRUE)
+#' detrend(X, wav, p = 2, snv = TRUE, method = "poly")
 #' @param X a numeric matrix or vector to process (optionally a data frame that
 #' can be coerced to a numerical matrix)
 #' @param wav the wavelengths/ band centers.
@@ -15,6 +15,15 @@
 #' applied to each spectrum before polynomial fitting. Default is \code{TRUE},
 #' which reproduces the procedure of Barnes et al. (1989). Set to \code{FALSE}
 #' to perform pure polynomial detrending without prior normalisation.
+#' @param method a character string specifying the polynomial basis used for
+#' fitting. Either \code{"poly"} (default) or \code{"raw"}.
+#' \code{"poly"} uses \code{\link[stats]{poly}} to construct an orthogonal
+#' polynomial basis, as in the original implementation. \code{"raw"} uses
+#' z-scored wavelengths raised to successive integer powers
+#' (\mjeqn{\tilde\lambda^0, \tilde\lambda^1, \ldots, \tilde\lambda^p}{}),
+#' where \mjeqn{\tilde\lambda = (\lambda - \bar\lambda) / \mathrm{sd}(\lambda)}{}.
+#' The two methods are not numerically equivalent; \code{"raw"} is provided
+#' for interoperability with implementations that use a raw power basis.
 #' @author Antoine Stevens and \href{https://orcid.org/0000-0002-5369-5120}{Leonardo Ramirez-Lopez}
 #' @examples
 #' data(NIRsoil)
@@ -61,8 +70,7 @@
 #' Applied spectroscopy, 43(5): 772-777.
 #' @return a matrix or vector with the detrended data.
 #' @export
-
-detrend <- function(X, wav, p = 2, snv = TRUE) {
+detrend <- function(X, wav, p = 2, snv = TRUE, method = c("poly", "raw")) {
   if (missing(wav)) {
     stop("argument wav must be specified")
   }
@@ -72,6 +80,7 @@ detrend <- function(X, wav, p = 2, snv = TRUE) {
   }
   
   was_vec <- is.vector(X)
+  
   if (p < 1) {
     stop("'p' must be an integer larger than 0")
   }
@@ -84,19 +93,26 @@ detrend <- function(X, wav, p = 2, snv = TRUE) {
     stop("'snv' must be a single logical value (TRUE or FALSE)")
   }
   
+  method <- match.arg(method)
+  
   if (is.vector(X)) {
     nms <- names(X)
     X <- matrix(X, ncol = length(X))
   }
   
-  xpoly <- stats::poly(wav, p)
+  basis <- if (method == "poly") {
+    stats::poly(wav, p)
+  } else {
+    wav_scaled <- (wav - mean(wav)) / sd(wav)
+    outer(wav_scaled, 0:p, `^`)
+  }
   
   if (snv) {
     X <- sweep(X, 1, rowMeans(X), "-")
     X <- sweep(X, 1, apply(X, 1, sd), "/")
   }
   
-  output <- residLm(X, xpoly)
+  output <- residLm(X, basis)
   
   if (was_vec) {
     output <- as.vector(output)
