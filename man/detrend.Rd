@@ -4,7 +4,7 @@
 \alias{detrend}
 \title{Detrending spectral data}
 \usage{
-detrend(X, wav, p = 2, snv = TRUE, method = "poly")
+detrend(X, wav, p = 2, snv = TRUE, method = c("poly", "raw"))
 }
 \arguments{
 \item{X}{a numeric matrix or vector to process (optionally a data frame that
