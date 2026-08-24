@@ -1,15 +1,6 @@
-`prospectr 0.2.11 (detrendy)`
+`prospectr 0.2.11 (postdetrendy)`
 ===============
 
-### New features
-
-* `detrend()`: added a `method` argument selecting the polynomial basis used
-  for fitting. The default, `"poly"`, builds an orthogonal basis with
-  `stats::poly()` and reproduces the previous behaviour. `"raw"` uses z-scored
-  wavelengths raised to successive integer powers and is provided for
-  interoperability with implementations based on a raw power basis. The two
-  are not numerically equivalent.
-  
 ### Bug fixes
 
 * `read_nircal()`: fixed a failure when reading files whose sample IDs contain
