@@ -1,3 +1,65 @@
+# version 0.2.11
+
+## Cover letter
+
+Dear CRAN maintainers,
+
+I am submitting version 0.2.11 of the `prospectr` package. This release
+fixes some bugs in the `read_nircal()` function. 
+
+The tarball has been checked on R-winbuilder (R-release and R-devel).
+Reverse dependencies have been checked and are unaffected.
+
+Best regards,
+Leonardo
+
+---
+
+## Package build
+
+```r
+pkgbuild::build(
+  path = ".",
+  dest_path = "..",
+  binary = FALSE,
+  vignettes = TRUE,
+  manual = FALSE,
+  quiet = FALSE
+)
+```
+
+Locally has been tested in Ubuntu:
+
+```
+devtools::check(
+  args = "--as-cran",
+  env_vars = c(
+    `_R_CHECK_CRAN_INCOMING_` = "true",
+    `_R_CHECK_CRAN_INCOMING_REMOTE_` = "true"
+  )
+)
+```
+
+---
+
+## Test environments
+
+### Local
+- Ubuntu 24.04, R 4.5.0 (release)
+
+### GitHub Actions (all passing)
+- ubuntu-latest, R release
+- ubuntu-latest, R devel
+- windows-latest, R release
+- macos-latest, R release
+
+### R-winbuilder
+- Windows Server 2022, R-release — OK (no ERRORs, no WARNINGs, 1 NOTE: installed
+  package size, data/libs subdirectories — pre-existing, not introduced by this release)
+- Windows Server 2022, R-devel   — OK (same NOTE as above)
+
+---
+
 # prospectr
 # version 0.2.10
 
