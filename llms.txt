@@ -4,7 +4,7 @@
 
 *Last update: 2026-08-24*
 
-Version: 0.2.11 – detrendy
+Version: 0.2.11 – postdetrendy
 
 In science, one man’s noise is another man’s signal
 

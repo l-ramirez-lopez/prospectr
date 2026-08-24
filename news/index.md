@@ -1,17 +1,6 @@
 # Changelog
 
-## `prospectr 0.2.11 (detrendy)`
-
-#### New features
-
-- [`detrend()`](https://l-ramirez-lopez.github.io/prospectr/reference/detrend.md):
-  added a `method` argument selecting the polynomial basis used for
-  fitting. The default, `"poly"`, builds an orthogonal basis with
-  [`stats::poly()`](https://rdrr.io/r/stats/poly.html) and reproduces
-  the previous behaviour. `"raw"` uses z-scored wavelengths raised to
-  successive integer powers and is provided for interoperability with
-  implementations based on a raw power basis. The two are not
-  numerically equivalent.
+## `prospectr 0.2.11 (postdetrendy)`
 
 #### Bug fixes
 
