@@ -2,8 +2,8 @@ Package: prospectr
 Type: Package
 Title: Miscellaneous Functions for Processing 
        and Sample Selection of Spectroscopic Data
-Version: 0.2.10
-Date: 2026-06-22
+Version: 0.2.11
+Date: 2026-08-24
 Authors@R: c(
   person(given = "Antoine",
          family = "Stevens",
