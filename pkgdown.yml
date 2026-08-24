@@ -1,11 +1,11 @@
 pandoc: 3.8.3
-pkgdown: 2.2.0
+pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
   aa-intro: aa-intro.html
   bb-pre-processing-spectral-data: bb-pre-processing-spectral-data.html
   cc-selecting-representative-calibration-samples: cc-selecting-representative-calibration-samples.html
-last_built: 2026-06-22T22:14Z
+last_built: 2026-08-24T20:34Z
 urls:
   reference: https://l-ramirez-lopez.github.io/prospectr/reference
   article: https://l-ramirez-lopez.github.io/prospectr/articles

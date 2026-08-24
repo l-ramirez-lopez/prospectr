@@ -1,6 +1,71 @@
 # Changelog
 
+## `prospectr 0.2.11 (detrendy)`
+
+#### New features
+
+- [`detrend()`](https://l-ramirez-lopez.github.io/prospectr/reference/detrend.md):
+  added a `method` argument selecting the polynomial basis used for
+  fitting. The default, `"poly"`, builds an orthogonal basis with
+  [`stats::poly()`](https://rdrr.io/r/stats/poly.html) and reproduces
+  the previous behaviour. `"raw"` uses z-scored wavelengths raised to
+  successive integer powers and is provided for interoperability with
+  implementations based on a raw power basis. The two are not
+  numerically equivalent.
+
+#### Bug fixes
+
+- [`read_nircal()`](https://l-ramirez-lopez.github.io/prospectr/reference/read_nircal.md):
+  fixed a failure when reading files whose sample IDs contain non-ASCII
+  characters. NIRCal stores text in a Windows single-byte codepage
+  (CP1252/latin1), but those bytes were passed to
+  [`enc2utf8()`](https://rdrr.io/r/base/Encoding.html), which honours
+  the declared encoding of the input and therefore performs no
+  conversion at all on strings read with
+  [`readBin()`](https://rdrr.io/r/base/readBin.html). In a UTF-8 locale
+  the bytes were then left invalid and
+  [`nchar()`](https://rdrr.io/r/base/nchar.html) aborted with
+  `invalid multibyte string`. The record-number prefix is now stripped
+  byte-wise and the text converted explicitly, so IDs such as
+  `Adubo Líquido_Tanque 05 - 18/02/2022` are read correctly, including
+  their internal slashes
+  ([\#94](https://github.com/l-ramirez-lopez/prospectr/issues/94)).
+
+- [`read_nircal()`](https://l-ramirez-lopez.github.io/prospectr/reference/read_nircal.md):
+  fixed a failure when the names of the response variables contain
+  regular expression metacharacters. The names are used to locate the
+  sample blocks in the raw file and were interpolated into the search
+  pattern unescaped, so names such as `Ca++` or `Mg++` aborted the read
+  with `invalid use of repetition operators`. Names containing `(`, `)`
+  or `+` (for example `P (Resina)` or `H+Al`) were affected more
+  quietly: the pattern remained valid but no longer matched the file,
+  and the corresponding blocks were never found. Metacharacters are now
+  escaped before the search
+  ([\#94](https://github.com/l-ramirez-lopez/prospectr/issues/94)).
+
+- [`read_nircal()`](https://l-ramirez-lopez.github.io/prospectr/reference/read_nircal.md):
+  fixed corruption of accented response variable names. These were
+  converted with `iconv(from = "ASCII", sub = "byte")`, which replaces
+  each non-ASCII byte with its hex escape as literal text, so a variable
+  named `Matéria Orgânica` was returned as `Mat<e9>ria Org<e2>nica`.
+  Conversion now uses the encoding the files are actually written in
+  ([\#94](https://github.com/l-ramirez-lopez/prospectr/issues/94)).
+
+- [`read_nircal()`](https://l-ramirez-lopez.github.io/prospectr/reference/read_nircal.md):
+  fixed the renaming of duplicated response variable names. The index
+  was compared against the full vector of duplicated names rather than
+  the one being processed, so files carrying two or more distinct
+  duplicated names were labelled incorrectly
+  ([\#94](https://github.com/l-ramirez-lopez/prospectr/issues/94)).
+
+#### Internal
+
+- Continuous integration moved to GitHub Actions (`R-CMD-check`,
+  `pkgdown`, `rhub` and test coverage workflows).
+
 ## `prospectr 0.2.10 (zurich)`
+
+CRAN release: 2026-06-23
 
 #### Features:
 

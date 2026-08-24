@@ -63,7 +63,7 @@ citation(package = "prospectr")
 
       Antoine Stevens and Leornardo Ramirez-Lopez (2026). An introduction
       to the prospectr package. R package Vignette R package version
-      0.2.10.
+      0.2.11.
 
     A BibTeX entry for LaTeX users is
 
@@ -72,7 +72,7 @@ citation(package = "prospectr")
         author = {Antoine Stevens and Leornardo Ramirez-Lopez},
         publication = {R package Vignette},
         year = {2026},
-        note = {R package version 0.2.10},
+        note = {R package version 0.2.11},
       }
 
 ## 4 Further reading
