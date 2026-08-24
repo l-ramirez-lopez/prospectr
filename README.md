@@ -17,7 +17,7 @@ status](https://www.r-pkg.org/badges/version/prospectr?v=2.png)](https://CRAN.R-
 
 *Last update: 2026-08-24*
 
-Version: 0.2.11 – detrendy
+Version: 0.2.11 – postdetrendy
 
 <em>
 <p align="right">
