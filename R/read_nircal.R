@@ -390,6 +390,26 @@ get_nircal_indices <- function(x) {
   ))
 }
 
+
+to_utf8 <- function(x) {
+  converted <- iconv(x, from = "UTF-8", to = "UTF-8")
+  needs_conversion <- is.na(converted) & !is.na(x)
+  for (enc in c("CP1252", "latin1")) {
+    if (!any(needs_conversion)) 
+      break
+    converted[needs_conversion] <- iconv(x[needs_conversion], from = enc, to = "UTF-8")
+    needs_conversion <- is.na(converted) & !is.na(x)
+  }
+  if (any(needs_conversion)) {
+    converted[needs_conversion] <- iconv(
+      x[needs_conversion],
+      from = "CP1252", to = "UTF-8", sub = "byte"
+    )
+  }
+  converted
+}
+
+
 get_nircal_ids <- function(connection, from, to) {
   seek(connection, where = from, origin = "start")
   
@@ -397,15 +417,12 @@ get_nircal_ids <- function(connection, from, to) {
     readBin(connection, what = "raw", n = to - from),
     "character"
   )
-  ids <- enc2utf8(ids)
-  ids <- strsplit(ids, "\n", useBytes = TRUE)[[1]]
-  # ids <- iconv(ids, to = "UTF-8", sub = NA)
-  ids2 <- ids[-c(1, length(ids))]
 
-  ids <- try(substr(x = ids2, start = regexpr("/", ids2) + 1, stop = nchar(ids2)))
-  if (inherits(ids, "try-error")) {
-    ids <- iconv(ids2, from = "Latin1", to = "UTF-8")
-  }
+  ids <- strsplit(ids, "\n", useBytes = TRUE)[[1]]
+  ids <- ids[-c(1, length(ids))]
+  ids <- sub("^[^/]*/", "", ids, useBytes = TRUE)
+  ids <- to_utf8(ids)
+
   
   flush(connection)
   return(ids)
@@ -551,6 +568,15 @@ get_nircal_description <- function(x, begin_s, spcinfo, comment_s, comment_f, n)
   }
 }
 
+#' @title escape regex metacharacters in nircal property names
+#' @description internal
+#' @keywords internal
+escape_regex <- function(x) {
+  gsub("([][{}()*+?.^$|\\\\])", "\\\\\\1", x, useBytes = TRUE)
+}
+
+
+
 #' @title get the number of spectral variables in the nircaa file
 #' @description internal
 #' @keywords internal
@@ -561,6 +587,13 @@ get_nircal_lengthspc <- function(connection, from, to) {
   speclength <- as.numeric(speclength[length(speclength)])
   flush(connection)
   return(speclength)
+}
+
+#' @title escape regex metacharacters in nircal text fields
+#' @description internal
+#' @keywords internal
+escape_regex <- function(x) {
+  gsub("([][{}()*+?.^$|\\\\])", "\\\\\\1", x, useBytes = TRUE)
 }
 
 #' @title get the response variables in the nircal file
@@ -596,17 +629,18 @@ get_nircal_response <- function(x, n) {
     what = "character"
   )
   
-  property_names_utf <- iconv(property_names_char, from = "ASCII", to = "UTF-8", sub = "byte")
-  
+  property_names_utf <- to_utf8(property_names_char)
+  nms <- strsplit(property_names_char, "\n", useBytes = TRUE)[[1]]
+  property_names_raw <- nms[seq_len(nproperties_n) + 1]
+
   property_names_utf <- strsplit(property_names_utf, "\n", useBytes = TRUE)[[1]][1 + c(1:nproperties_n)]
-  property_names_char <- strsplit(property_names_char, "\n", useBytes = TRUE)[[1]][1 + c(1:nproperties_n)]
-  
+
   # property_names_search <- sapply(
   #   property_names_char,
   #   FUN = function(x) strsplit(x, "[0-9]{0,}/")[[1]][[2]],
   #   USE.NAMES = FALSE
   # )
-  property_names_search <- property_names_char
+  property_names_search <- escape_regex(property_names_raw)
   
   # property_names_search <- gsub(
   #   pattern = "[[:punct:]]",
@@ -622,14 +656,7 @@ get_nircal_response <- function(x, n) {
     FUN = function(x) strsplit(x, "[0-9]{0,}/")[[1]][[2]],
     USE.NAMES = FALSE
   )
-  
-  proppositions <- grepRaw(paste(property_names_char, collapse = "\n"),
-                           x,
-                           fixed = FALSE,
-                           all = TRUE
-  )[-1]
-  
-  
+
   nval <- paste(length(property_names), "Values")
   
   property_names_search <- paste(
