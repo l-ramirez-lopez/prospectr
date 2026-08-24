@@ -13,11 +13,11 @@ status](https://www.r-pkg.org/badges/version/prospectr?v=2.png)](https://CRAN.R-
 [![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/prospectr?v=2.png)](https://CRAN.R-project.org/package=prospectr)  
 <!-- badges: end -->
 
-<img align="right" src="./man/figures/logo.png" width="15%">
+<img align="right" src="./man/figures/logo.png" width="15%" alt="prospectr logo">
 
 *Last update: 2026-08-24*
 
-Version: 0.2.11 – detrendy
+Version: 0.2.10 – zurich
 
 <em>
 <p align="right">
