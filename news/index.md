@@ -2,6 +2,8 @@
 
 ## `prospectr 0.2.11 (postdetrendy)`
 
+CRAN release: 2026-08-25
+
 #### Bug fixes
 
 - [`read_nircal()`](https://l-ramirez-lopez.github.io/prospectr/reference/read_nircal.md):

@@ -10,7 +10,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/l-ramirez-lopez/prospectr/blob/main/inst/CITATION)
+[`inst/CITATION`](https://github.com/l-ramirez-lopez/prospectr/blob/v0.2.11/inst/CITATION)
 
 Antoine Stevens and Leornardo Ramirez-Lopez (2026). An introduction to
 the prospectr package. R package Vignette R package version 0.2.11.

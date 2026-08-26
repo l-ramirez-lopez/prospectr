@@ -33,11 +33,11 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/l-ramirez-lopez/prospectr/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/l-ramirez-lopez/prospectr/blob/v0.2.11/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.2.11" id="prospectr-0211-postdetrendy"><code>prospectr 0.2.11 (postdetrendy)</code><a class="anchor" aria-label="anchor" href="#prospectr-0211-postdetrendy"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.2.11" id="prospectr-0211-postdetrendy"><code>prospectr 0.2.11 (postdetrendy)</code><a class="anchor" aria-label="anchor" href="#prospectr-0211-postdetrendy"></a></h2><p class="text-muted">CRAN release: 2026-08-25</p>
 <div class="section level4">
 <h4 id="bug-fixes-0-2-11">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-2-11"></a></h4>
 <ul><li><p><code><a href="../reference/read_nircal.html">read_nircal()</a></code>: fixed a failure when reading files whose sample IDs contain non-ASCII characters. NIRCal stores text in a Windows single-byte codepage (CP1252/latin1), but those bytes were passed to <code><a href="https://rdrr.io/r/base/Encoding.html" class="external-link">enc2utf8()</a></code>, which honours the declared encoding of the input and therefore performs no conversion at all on strings read with <code><a href="https://rdrr.io/r/base/readBin.html" class="external-link">readBin()</a></code>. In a UTF-8 locale the bytes were then left invalid and <code><a href="https://rdrr.io/r/base/nchar.html" class="external-link">nchar()</a></code> aborted with <code>invalid multibyte string</code>. The record-number prefix is now stripped byte-wise and the text converted explicitly, so IDs such as <code>Adubo Líquido_Tanque 05 - 18/02/2022</code> are read correctly, including their internal slashes (<a href="https://github.com/l-ramirez-lopez/prospectr/issues/94" class="external-link">#94</a>).</p></li>
